@@ -29,6 +29,10 @@
   <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
   
   <link rel="stylesheet" href="style.css">
+  <!-- Page Loader Script (inline for immediate execution) -->
+  <script>
+    (function(){var l='<div class="page-loader" id="page-loader"><div class="loader-content"><div class="loader-logo"><img src="./Assests/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80"></div><div class="loader-bar-container"><div class="loader-percentage"><span class="loader-percentage-num" id="loader-percent">0</span><span class="loader-percentage-symbol">%</span></div><div class="loader-bar-wrapper"><div class="loader-bar" id="loader-bar"></div></div><div class="loader-text">Loading<span class="loader-dots"><span></span><span></span><span></span></span></div></div></div></div>';document.write(l);})();
+  </script>
   
   <script type="application/ld+json">
   {
@@ -103,77 +107,11 @@
     <section class="section" aria-labelledby="posts-title">
       <div class="container">
         <div class="blog-grid" id="blog-posts">
-          <!-- Blog Post 1 -->
-          <article class="blog-card" data-animate="scale" data-animate-delay="1">
-            <div class="blog-card-image">
-              <img src="./Assests/blog/post-1.webp" alt="College campus with students" width="400" height="250" loading="lazy">
-              <span class="blog-card-category">Insights</span>
-            </div>
-            <div class="blog-card-content">
-              <div class="blog-card-meta">
-                <span class="blog-card-date">May 15, 2024</span>
-                <span class="blog-card-read">5 min read</span>
-              </div>
-              <h2 class="blog-card-title">Why College is the Best Time to Start a Startup</h2>
-              <p class="blog-card-excerpt">
-                The unique advantages of starting your entrepreneurial journey while still in university. From low risk to high resources, discover why now is the time.
-              </p>
-              <a href="#" class="blog-card-link">
-                Read More
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </article>
-          
-          <!-- Blog Post 2 -->
-          <article class="blog-card" data-animate="scale" data-animate-delay="2">
-            <div class="blog-card-image">
-              <img src="./Assests/blog/post-2.webp" alt="Idea validation process" width="400" height="250" loading="lazy">
-              <span class="blog-card-category">Tutorial</span>
-            </div>
-            <div class="blog-card-content">
-              <div class="blog-card-meta">
-                <span class="blog-card-date">May 10, 2024</span>
-                <span class="blog-card-read">8 min read</span>
-              </div>
-              <h2 class="blog-card-title">How to Validate Your Startup Idea in 48 Hours</h2>
-              <p class="blog-card-excerpt">
-                A step-by-step guide to testing your business idea before investing months of work. Learn the lean validation framework used by successful founders.
-              </p>
-              <a href="#" class="blog-card-link">
-                Read More
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </article>
-          
-          <!-- Blog Post 3 -->
-          <article class="blog-card" data-animate="scale" data-animate-delay="3">
-            <div class="blog-card-image">
-              <img src="./Assests/blog/post-3.webp" alt="Pitch deck presentation" width="400" height="250" loading="lazy">
-              <span class="blog-card-category">Guide</span>
-            </div>
-            <div class="blog-card-content">
-              <div class="blog-card-meta">
-                <span class="blog-card-date">May 5, 2024</span>
-                <span class="blog-card-read">6 min read</span>
-              </div>
-              <h2 class="blog-card-title">The Anatomy of a Perfect Pitch Deck</h2>
-              <p class="blog-card-excerpt">
-                What investors look for in a pitch deck and how to craft one that gets attention. Includes templates and real examples from funded startups.
-              </p>
-              <a href="#" class="blog-card-link">
-                Read More
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </article>
+          <!-- Blog posts will be loaded dynamically from API -->
+          <div class="blog-loading" id="blog-loading">
+            <div class="loading-spinner"></div>
+            <p>Loading articles...</p>
+          </div>
         </div>
         
         <!-- More Posts Coming Soon -->

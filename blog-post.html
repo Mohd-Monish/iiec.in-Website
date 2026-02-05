@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="Read this article from IIEC on innovation, entrepreneurship, and startups.">
+  <meta name="keywords" content="IIEC, Innovation, Incubation, Entrepreneurship Cell, CSMU, blog, startups, articles, insights">
+  <meta name="author" content="IIEC">
+  <meta name="theme-color" content="#05070f">
+  
+  <!-- Open Graph (will be updated dynamically) -->
+  <meta property="og:title" content="Blog Post | IIEC">
+  <meta property="og:description" content="Read this article from IIEC.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://iiec.in/blog-post">
+  <meta property="og:image" content="./Assests/og-image.webp">
+  
+  <title>Blog Post | IIEC</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="./Assests/favicon.png">
+  <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
+  
+  <link rel="stylesheet" href="style.css">
+  <!-- Page Loader Script (inline for immediate execution) -->
+  <script>
+    (function(){var l='<div class="page-loader" id="page-loader"><div class="loader-content"><div class="loader-logo"><img src="./Assests/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80"></div><div class="loader-bar-container"><div class="loader-percentage"><span class="loader-percentage-num" id="loader-percent">0</span><span class="loader-percentage-symbol">%</span></div><div class="loader-bar-wrapper"><div class="loader-bar" id="loader-bar"></div></div><div class="loader-text">Loading<span class="loader-dots"><span></span><span></span><span></span></span></div></div></div></div>';document.write(l);})();
+  </script>
+  
+  <style>
+    /* Blog Post Page Specific Styles */
+    .blog-post-hero {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      overflow: hidden;
+      margin-top: var(--navbar-height);
+    }
+    
+    .blog-post-hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .blog-post-hero:hover img {
+      transform: scale(1.02);
+    }
+    
+    .blog-post-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--color-bg) 0%, rgba(5, 7, 15, 0.3) 50%, transparent 100%);
+    }
+    
+    .blog-post-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-4);
+    }
+    
+    .blog-post-header {
+      margin-top: -120px;
+      position: relative;
+      z-index: 10;
+      margin-bottom: var(--space-8);
+    }
+    
+    .blog-post-category {
+      display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      background: var(--color-accent);
+      color: var(--color-bg);
+      font-size: var(--text-sm);
+      font-weight: var(--font-semibold);
+      border-radius: var(--radius-full);
+      text-transform: capitalize;
+      margin-bottom: var(--space-4);
+      box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.3);
+    }
+    
+    .blog-post-title {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: var(--font-bold);
+      line-height: 1.2;
+      margin-bottom: var(--space-4);
+      background: linear-gradient(135deg, var(--text-primary), var(--color-accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .blog-post-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      color: var(--text-secondary);
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-6);
+    }
+    
+    .blog-post-meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    
+    .blog-post-meta-item svg {
+      width: 16px;
+      height: 16px;
+      color: var(--color-accent);
+    }
+    
+    .blog-post-content {
+      font-size: var(--text-lg);
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    
+    .blog-post-content p {
+      margin-bottom: var(--space-6);
+    }
+    
+    .blog-post-content h1 {
+      font-size: var(--text-3xl);
+      color: var(--text-primary);
+      margin: var(--space-10) 0 var(--space-4);
+    }
+    
+    .blog-post-content h2 {
+      font-size: var(--text-2xl);
+      color: var(--text-primary);
+      margin: var(--space-8) 0 var(--space-4);
+    }
+    
+    .blog-post-content h3 {
+      font-size: var(--text-xl);
+      color: var(--text-primary);
+      margin: var(--space-6) 0 var(--space-3);
+    }
+    
+    .blog-post-content strong {
+      color: var(--color-accent);
+      font-weight: var(--font-semibold);
+    }
+    
+    .blog-post-content ul,
+    .blog-post-content ol {
+      margin: var(--space-4) 0 var(--space-6);
+      padding-left: var(--space-8);
+    }
+    
+    .blog-post-content li {
+      margin-bottom: var(--space-2);
+    }
+    
+    .blog-post-content blockquote {
+      border-left: 4px solid var(--color-accent);
+      padding: var(--space-4) var(--space-6);
+      margin: var(--space-6) 0;
+      background: rgba(var(--color-accent-rgb), 0.05);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-style: italic;
+      color: var(--text-muted);
+    }
+    
+    .blog-post-content code {
+      background: rgba(var(--color-accent-rgb), 0.1);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9em;
+    }
+    
+    .blog-post-content pre {
+      background: var(--color-surface);
+      border: 1px solid var(--glass-border);
+      padding: var(--space-6);
+      border-radius: var(--radius-lg);
+      overflow-x: auto;
+      margin: var(--space-6) 0;
+    }
+    
+    .blog-post-content pre code {
+      background: none;
+      padding: 0;
+    }
+    
+    .blog-post-content a {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: all var(--transition-fast);
+    }
+    
+    .blog-post-content a:hover {
+      text-decoration-thickness: 2px;
+      color: var(--color-accent-light);
+    }
+    
+    .blog-post-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-lg);
+      margin: var(--space-6) 0;
+    }
+    
+    .blog-post-author {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      background: var(--color-surface);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      margin-top: var(--space-10);
+    }
+    
+    .blog-post-author-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--text-xl);
+      font-weight: var(--font-bold);
+      color: var(--color-bg);
+    }
+    
+    .blog-post-author-info h4 {
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-1);
+    }
+    
+    .blog-post-author-info p {
+      color: var(--text-muted);
+      font-size: var(--text-sm);
+    }
+    
+    /* Related Posts Section */
+    .related-posts {
+      margin-top: var(--space-16);
+      padding-top: var(--space-10);
+      border-top: 1px solid var(--glass-border);
+    }
+    
+    .related-posts-title {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--space-8);
+      text-align: center;
+    }
+    
+    .related-posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-6);
+    }
+    
+    /* Back to Blog Link */
+    .back-to-blog {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      color: var(--text-secondary);
+      font-weight: var(--font-medium);
+      margin-bottom: var(--space-6);
+      padding: var(--space-2) var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-full);
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+    
+    .back-to-blog:hover {
+      background: rgba(var(--color-accent-rgb), 0.1);
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+      gap: var(--space-3);
+      transform: translateX(-4px);
+    }
+    
+    .back-to-blog svg {
+      width: 18px;
+      height: 18px;
+      transition: transform var(--transition-fast);
+    }
+    
+    .back-to-blog:hover svg {
+      transform: translateX(-3px);
+    }
+    
+    /* Loading State */
+    .blog-post-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      gap: var(--space-4);
+    }
+    
+    .blog-post-loading .spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--glass-border);
+      border-top-color: var(--color-accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Not Found State */
+    .blog-post-not-found {
+      text-align: center;
+      padding: var(--space-16) var(--space-4);
+    }
+    
+    .blog-post-not-found h1 {
+      font-size: var(--text-4xl);
+      margin-bottom: var(--space-4);
+    }
+    
+    .blog-post-not-found p {
+      color: var(--text-secondary);
+      margin-bottom: var(--space-8);
+    }
+    
+    @media (max-width: 768px) {
+      .blog-post-hero {
+        height: 300px;
+      }
+      
+      .blog-post-header {
+        margin-top: -60px;
+      }
+      
+      .blog-post-content {
+        font-size: var(--text-base);
+      }
+      
+      .blog-post-author {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  
+  <!-- Glow Orb -->
+  <div class="glow-orb-wrapper" aria-hidden="true">
+    <div class="glow-orb"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+          <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <span>IIEC</span>
+        </a>
+        
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <div class="nav-links" role="menu">
+          <a href="index.html" class="nav-link" role="menuitem">Home</a>
+          <a href="about.html" class="nav-link" role="menuitem">About</a>
+          <a href="team.html" class="nav-link" role="menuitem">Team</a>
+          <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
+          <a href="blog.html" class="nav-link active" role="menuitem">Blog</a>
+          <a href="https://join.iiec.in" class="nav-cta" role="menuitem" target="_blank" rel="noopener">Join the Movement</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Blog Post Content (Loaded Dynamically) -->
+    <main id="blog-post-main">
+      <!-- Loading State -->
+      <div class="blog-post-loading" id="loading-state">
+        <div class="spinner"></div>
+        <p>Loading article...</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy">
+              <span>IIEC</span>
+            </div>
+            <p class="footer-desc">
+              IIEC - Innovation, Incubation & Entrepreneurship Cell. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University.
+            </p>
+          </div>
+          
+          <nav class="footer-nav" aria-label="Quick Links">
+            <h4 class="footer-title">Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About Us</a>
+              <a href="team.html">Team</a>
+              <a href="activities.html">Activities</a>
+              <a href="blog.html">Blog</a>
+            </div>
+          </nav>
+          
+          <nav class="footer-nav" aria-label="Contact">
+            <h4 class="footer-title">Contact</h4>
+            <div class="footer-links">
+              <a href="mailto:contact@iiec.in">contact@iiec.in</a>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener">Join the Movement</a>
+            </div>
+          </nav>
+        </div>
+        
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2025 IIEC. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+  
+  <!-- Blog Post Page Script -->
+  <script>
+    (function() {
+      'use strict';
+      
+      const API_URL = 'https://script.google.com/macros/s/AKfycbw0KJk8ObDw-Xpz9TJlPXLCXOEovWx0I3bSUlcTmBLWb_KLoL4AvtAkG5oEnvxMFNvryA/exec';
+      
+      // Get post ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+      const postIndex = urlParams.get('index');
+      
+      // DOM Elements
+      const mainEl = document.getElementById('blog-post-main');
+      const loadingEl = document.getElementById('loading-state');
+      
+      // Store all posts for related posts section
+      let allPosts = [];
+      
+      // Initialize
+      async function init() {
+        // First check localStorage for the post data
+        const storedPost = localStorage.getItem('currentBlogPost');
+        
+        if (storedPost) {
+          const post = JSON.parse(storedPost);
+          // Clear it after reading
+          localStorage.removeItem('currentBlogPost');
+          
+          // Fetch all posts for related posts section
+          fetchAllPosts().then(() => {
+            renderPost(post);
+          });
+          return;
+        }
+        
+        // If no stored post, fetch from API
+        try {
+          const response = await fetch(API_URL, {
+            method: 'GET',
+            redirect: 'follow'
+          });
+          const data = await response.json();
+          
+          if (data.success && data.posts && data.posts.length > 0) {
+            allPosts = data.posts;
+            
+            // Find the post by ID or index
+            let post = null;
+            
+            if (postId) {
+              post = data.posts.find(p => p.id === postId);
+            } else if (postIndex !== null) {
+              post = data.posts[parseInt(postIndex)];
+            }
+            
+            if (post) {
+              renderPost(post);
+            } else {
+              renderNotFound();
+            }
+          } else {
+            renderNotFound();
+          }
+        } catch (error) {
+          console.error('Error loading post:', error);
+          renderNotFound();
+        }
+      }
+      
+      async function fetchAllPosts() {
+        try {
+          const response = await fetch(API_URL, {
+            method: 'GET',
+            redirect: 'follow'
+          });
+          const data = await response.json();
+          if (data.success && data.posts) {
+            allPosts = data.posts;
+          }
+        } catch (error) {
+          console.error('Error fetching posts:', error);
+        }
+      }
+      
+      function renderPost(post) {
+        const imageUrl = post.imageUrl || post.image || './Assests/blog/default.webp';
+        const authorInitials = (post.author || 'IIEC').split(' ').map(n => n[0]).join('').toUpperCase();
+        
+        // Update page title and meta
+        document.title = `${post.title} | IIEC Blog`;
+        document.querySelector('meta[property="og:title"]').setAttribute('content', post.title);
+        document.querySelector('meta[property="og:description"]').setAttribute('content', post.excerpt || '');
+        
+        mainEl.innerHTML = `
+          <!-- Hero Image -->
+          <div class="blog-post-hero">
+            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}" onerror="this.src='./Assests/blog/default.webp'">
+            <div class="blog-post-hero-overlay"></div>
+          </div>
+          
+          <!-- Post Content -->
+          <div class="blog-post-container">
+            <a href="blog.html" class="back-to-blog">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Blog
+            </a>
+            
+            <header class="blog-post-header">
+              <span class="blog-post-category">${escapeHtml(post.category) || 'General'}</span>
+              <h1 class="blog-post-title">${escapeHtml(post.title)}</h1>
+              <div class="blog-post-meta">
+                <span class="blog-post-meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  ${formatDate(post.timestamp)}
+                </span>
+                <span class="blog-post-meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  ${escapeHtml(post.readTime) || '5 min read'}
+                </span>
+                <span class="blog-post-meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  ${escapeHtml(post.author) || 'IIEC Team'}
+                </span>
+              </div>
+            </header>
+            
+            <article class="blog-post-content">
+              ${parseMarkdown(post.content || post.excerpt || '')}
+            </article>
+            
+            <div class="blog-post-author">
+              <div class="blog-post-author-avatar">${authorInitials}</div>
+              <div class="blog-post-author-info">
+                <h4>${escapeHtml(post.author) || 'IIEC Team'}</h4>
+                <p>Innovation, Incubation & Entrepreneurship Cell</p>
+              </div>
+            </div>
+            
+            <!-- Related Posts -->
+            <section class="related-posts" id="related-posts">
+              <h2 class="related-posts-title">More Articles</h2>
+              <div class="related-posts-grid" id="related-posts-grid">
+                ${renderRelatedPosts(post)}
+              </div>
+            </section>
+          </div>
+        `;
+      }
+      
+      function renderRelatedPosts(currentPost) {
+        // Filter out current post and get up to 3 related posts
+        const related = allPosts
+          .filter(p => p.id !== currentPost.id && p.title !== currentPost.title)
+          .slice(0, 3);
+        
+        if (related.length === 0) {
+          return '<p style="text-align: center; color: var(--text-muted);">No other articles available yet.</p>';
+        }
+        
+        return related.map((post, index) => {
+          const imageUrl = post.imageUrl || post.image || './Assests/blog/default.webp';
+          return `
+            <article class="blog-card" data-animate="scale">
+              <div class="blog-card-image">
+                <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}" 
+                     width="400" height="250" loading="lazy"
+                     onerror="this.src='./Assests/blog/default.webp'">
+                <span class="blog-card-category">${escapeHtml(post.category) || 'General'}</span>
+              </div>
+              <div class="blog-card-content">
+                <div class="blog-card-meta">
+                  <span class="blog-card-date">${formatDate(post.timestamp)}</span>
+                  <span class="blog-card-read">${escapeHtml(post.readTime) || '5 min read'}</span>
+                </div>
+                <h2 class="blog-card-title">${escapeHtml(post.title)}</h2>
+                <p class="blog-card-excerpt">${escapeHtml(post.excerpt)}</p>
+                <a href="#" class="blog-card-link" onclick="openPost(${index}); return false;">
+                  Read More
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </a>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+      
+      function renderNotFound() {
+        mainEl.innerHTML = `
+          <div class="blog-post-not-found">
+            <h1>Article Not Found</h1>
+            <p>Sorry, the article you're looking for doesn't exist or has been removed.</p>
+            <a href="blog.html" class="btn btn-primary">
+              <span>Back to Blog</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        `;
+      }
+      
+      function parseMarkdown(text) {
+        if (!text) return '<p>No content available.</p>';
+        
+        let html = escapeHtml(text);
+        
+        // Headers
+        html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
+        html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+        html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+        
+        // Bold
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        
+        // Italic
+        html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+        
+        // Links
+        html = html.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+        
+        // Blockquotes
+        html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
+        
+        // Code blocks
+        html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+        
+        // Inline code
+        html = html.replace(/`(.+?)`/g, '<code>$1</code>');
+        
+        // Unordered lists
+        html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
+        
+        // Ordered lists
+        html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
+        
+        // Wrap consecutive list items
+        html = html.replace(/(<li>.*<\/li>\n?)+/g, function(match) {
+          return '<ul>' + match + '</ul>';
+        });
+        
+        // Paragraphs - split by double newlines
+        const paragraphs = html.split(/\n\n+/);
+        html = paragraphs.map(p => {
+          p = p.trim();
+          if (!p) return '';
+          // Don't wrap if already wrapped in a block element
+          if (p.startsWith('<h') || p.startsWith('<ul') || p.startsWith('<ol') || 
+              p.startsWith('<blockquote') || p.startsWith('<pre')) {
+            return p;
+          }
+          return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+        }).join('\n');
+        
+        return html;
+      }
+      
+      function formatDate(timestamp) {
+        if (!timestamp) return 'Recently';
+        try {
+          return new Date(timestamp).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
+        } catch {
+          return 'Recently';
+        }
+      }
+      
+      function escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+      
+      // Make openPost available globally for related posts
+      window.openPost = function(index) {
+        if (allPosts[index]) {
+          localStorage.setItem('currentBlogPost', JSON.stringify(allPosts[index]));
+          window.location.href = `blog-post.html?index=${index}`;
+        }
+      };
+      
+      // Initialize when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
+</body>
+</html>
