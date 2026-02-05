@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="Read the latest articles, insights, and updates from IIEC on innovation, entrepreneurship, startups, and incubation.">
+  <meta name="keywords" content="IIEC, Innovation, Incubation, Entrepreneurship Cell, CSMU, blog, startups, articles, insights">
+  <meta name="author" content="IIEC">
+  <meta name="theme-color" content="#05070f">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog | IIEC">
+  <meta property="og:description" content="Read the latest articles and insights on innovation, entrepreneurship, and startups.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iiec.in/blog">
+  <meta property="og:image" content="./Assests/og-image.webp">
+  
+  <title>Blog | IIEC</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="./Assests/favicon.png">
+  <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "IIEC Blog",
+    "description": "Articles and insights on innovation, entrepreneurship, and startups",
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": "IIEC"
+    },
+    "blogPost": [
+      {
+        "@type": "BlogPosting",
+        "headline": "Why College is the Best Time to Start a Startup",
+        "description": "The unique advantages of starting your entrepreneurial journey while still in university.",
+        "author": {
+          "@type": "Person",
+          "name": "IIEC"
+        },
+        "datePublished": "2024-05-15"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  
+  <!-- Glow Orb -->
+  <div class="glow-orb-wrapper" aria-hidden="true">
+    <div class="glow-orb"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+          <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <span>IIEC</span>
+        </a>
+        
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <div class="nav-links" role="menu">
+          <a href="index.html" class="nav-link" role="menuitem">Home</a>
+          <a href="about.html" class="nav-link" role="menuitem">About</a>
+          <a href="team.html" class="nav-link" role="menuitem">Team</a>
+          <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
+          <a href="blog.html" class="nav-link active" role="menuitem">Blog</a>
+          <a href="https://join.iiec.in" class="nav-cta" role="menuitem" target="_blank" rel="noopener">Join the Movement</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title" class="page-title" data-animate="fade-up">Our <span class="highlight">Blog</span></h1>
+        <p class="page-subtitle" data-animate="blur" data-animate-delay="1">Insights, stories, and lessons from the entrepreneurship world</p>
+      </div>
+    </section>
+
+    <!-- Blog Grid Section -->
+    <section class="section" aria-labelledby="posts-title">
+      <div class="container">
+        <div class="blog-grid" id="blog-posts">
+          <!-- Blog Post 1 -->
+          <article class="blog-card" data-animate="scale" data-animate-delay="1">
+            <div class="blog-card-image">
+              <img src="./Assests/blog/post-1.webp" alt="College campus with students" width="400" height="250" loading="lazy">
+              <span class="blog-card-category">Insights</span>
+            </div>
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span class="blog-card-date">May 15, 2024</span>
+                <span class="blog-card-read">5 min read</span>
+              </div>
+              <h2 class="blog-card-title">Why College is the Best Time to Start a Startup</h2>
+              <p class="blog-card-excerpt">
+                The unique advantages of starting your entrepreneurial journey while still in university. From low risk to high resources, discover why now is the time.
+              </p>
+              <a href="#" class="blog-card-link">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          
+          <!-- Blog Post 2 -->
+          <article class="blog-card" data-animate="scale" data-animate-delay="2">
+            <div class="blog-card-image">
+              <img src="./Assests/blog/post-2.webp" alt="Idea validation process" width="400" height="250" loading="lazy">
+              <span class="blog-card-category">Tutorial</span>
+            </div>
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span class="blog-card-date">May 10, 2024</span>
+                <span class="blog-card-read">8 min read</span>
+              </div>
+              <h2 class="blog-card-title">How to Validate Your Startup Idea in 48 Hours</h2>
+              <p class="blog-card-excerpt">
+                A step-by-step guide to testing your business idea before investing months of work. Learn the lean validation framework used by successful founders.
+              </p>
+              <a href="#" class="blog-card-link">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+          
+          <!-- Blog Post 3 -->
+          <article class="blog-card" data-animate="scale" data-animate-delay="3">
+            <div class="blog-card-image">
+              <img src="./Assests/blog/post-3.webp" alt="Pitch deck presentation" width="400" height="250" loading="lazy">
+              <span class="blog-card-category">Guide</span>
+            </div>
+            <div class="blog-card-content">
+              <div class="blog-card-meta">
+                <span class="blog-card-date">May 5, 2024</span>
+                <span class="blog-card-read">6 min read</span>
+              </div>
+              <h2 class="blog-card-title">The Anatomy of a Perfect Pitch Deck</h2>
+              <p class="blog-card-excerpt">
+                What investors look for in a pitch deck and how to craft one that gets attention. Includes templates and real examples from funded startups.
+              </p>
+              <a href="#" class="blog-card-link">
+                Read More
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </article>
+        </div>
+        
+        <!-- More Posts Coming Soon -->
+        <div class="coming-soon-banner" data-animate="fade-up">
+          <div class="glass-card">
+            <h3>More Articles Coming Soon</h3>
+            <p>We're working on more content to help you on your entrepreneurial journey. Subscribe to get notified when new posts are published.</p>
+            <a href="index.html#newsletter" class="btn btn-primary">
+              <span>Subscribe</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="section" aria-labelledby="categories-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="categories-title" class="section-title">Explore <span class="highlight">Topics</span></h2>
+          <p class="section-subtitle">Find articles by category</p>
+        </header>
+        
+        <div class="categories-grid" data-animate="scale" data-animate-delay="1">
+          <a href="#" class="category-tag">
+            <span>Insights</span>
+            <span class="category-count">3</span>
+          </a>
+          <a href="#" class="category-tag">
+            <span>Tutorials</span>
+            <span class="category-count">2</span>
+          </a>
+          <a href="#" class="category-tag">
+            <span>Guides</span>
+            <span class="category-count">4</span>
+          </a>
+          <a href="#" class="category-tag">
+            <span>Success Stories</span>
+            <span class="category-count">1</span>
+          </a>
+          <a href="#" class="category-tag">
+            <span>Events</span>
+            <span class="category-count">2</span>
+          </a>
+          <a href="#" class="category-tag">
+            <span>News</span>
+            <span class="category-count">5</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="section" aria-labelledby="newsletter-title">
+      <div class="container">
+        <div class="newsletter-section" data-animate="blur">
+          <h2 id="newsletter-title" class="section-title">Never Miss a <span class="highlight">Post</span></h2>
+          <p class="section-subtitle">Subscribe to get the latest articles and updates delivered to your inbox.</p>
+          
+          <form id="newsletter-form" class="newsletter-form">
+            <input 
+              type="email" 
+              class="newsletter-input" 
+              placeholder="Enter your email address" 
+              required
+              aria-label="Email address"
+            >
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+            <div class="form-message" role="alert"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo" data-animate="fade-up">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy">
+              <span>IIEC</span>
+            </div>
+            <p class="footer-desc">
+              IIEC - Innovation, Incubation & Entrepreneurship Cell. Formerly E-Cell CSMU. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University, one founder at a time.
+            </p>
+            <div class="footer-socials">
+              <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+              <a href="https://instagram.com/iiec.csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+              </a>
+              <a href="https://twitter.com/iiec_csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Twitter/X">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              <a href="mailto:contact@iiec.in" class="footer-social" aria-label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
+                  <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <nav class="footer-nav" aria-label="Quick Links">
+            <h4 class="footer-title">Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About Us</a>
+              <a href="team.html">Team</a>
+              <a href="activities.html">Activities</a>
+              <a href="blog.html">Blog</a>
+            </div>
+          </nav>
+          
+          <nav class="footer-nav" aria-label="Programs">
+            <h4 class="footer-title">Programs</h4>
+            <div class="footer-links">
+              <a href="activities.html#workshops">Workshops</a>
+              <a href="activities.html#bootcamp">Startup Bootcamp</a>
+              <a href="activities.html#talks">Industry Talks</a>
+              <a href="activities.html#events">Events</a>
+            </div>
+          </nav>
+          
+          <nav class="footer-nav" aria-label="Contact">
+            <h4 class="footer-title">Contact</h4>
+            <div class="footer-links">
+              <a href="mailto:contact@iiec.in">contact@iiec.in</a>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener">Join the Movement</a>
+              <a href="index.html#newsletter">Newsletter</a>
+            </div>
+          </nav>
+        </div>
+        
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2025 IIEC. All rights reserved.
+          </p>
+          <a href="admin.html" class="footer-ops">Login to Post →</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>

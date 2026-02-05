@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="Explore IIEC's activities - workshops, bootcamps, speaker series, and events designed to foster innovation and entrepreneurship.">
+  <meta name="keywords" content="IIEC, Innovation, Incubation, Entrepreneurship Cell, CSMU, activities, workshops, bootcamp, events">
+  <meta name="author" content="IIEC">
+  <meta name="theme-color" content="#05070f">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Activities | IIEC">
+  <meta property="og:description" content="Discover our workshops, bootcamps, and events that foster innovation and entrepreneurship.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iiec.in/activities">
+  <meta property="og:image" content="./Assests/og-image.webp">
+  
+  <title>Activities | IIEC</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="./Assests/favicon.png">
+  <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "IIEC Activities",
+    "description": "Innovation, Incubation & Entrepreneurship programs and events at IIEC",
+    "itemListElement": [
+      {
+        "@type": "Event",
+        "name": "Startup Bootcamp",
+        "description": "Intensive program to take your idea from concept to MVP",
+        "organizer": {
+          "@type": "EducationalOrganization",
+          "name": "IIEC"
+        }
+      },
+      {
+        "@type": "Event",
+        "name": "Industry Speaker Series",
+        "description": "Learn from successful entrepreneurs and industry leaders",
+        "organizer": {
+          "@type": "EducationalOrganization",
+          "name": "IIEC"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  
+  <!-- Glow Orb -->
+  <div class="glow-orb-wrapper" aria-hidden="true">
+    <div class="glow-orb"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+          <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <span>IIEC</span>
+        </a>
+        
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <div class="nav-links" role="menu">
+          <a href="index.html" class="nav-link" role="menuitem">Home</a>
+          <a href="about.html" class="nav-link" role="menuitem">About</a>
+          <a href="team.html" class="nav-link" role="menuitem">Team</a>
+          <a href="activities.html" class="nav-link active" role="menuitem">Activities</a>
+          <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+          <a href="https://join.iiec.in" class="nav-cta" role="menuitem" target="_blank" rel="noopener">Join the Movement</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title" class="page-title" data-animate="fade-up">Our <span class="highlight">Activities</span></h1>
+        <p class="page-subtitle" data-animate="blur" data-animate-delay="1">Programs and events designed to ignite your entrepreneurial journey</p>
+      </div>
+    </section>
+
+    <!-- Upcoming Initiatives Section -->
+    <section class="section" id="initiatives" aria-labelledby="initiatives-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="initiatives-title" class="section-title">Upcoming <span class="highlight">Initiatives</span></h2>
+          <p class="section-subtitle">Flagship programs launching soon</p>
+        </header>
+        
+        <div class="grid-2">
+          <!-- Startup Bootcamp -->
+          <article class="glass-card initiative-card" id="bootcamp" data-animate="flip-y" data-animate-delay="1">
+            <div class="initiative-badge">Coming Soon</div>
+            <div class="initiative-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="initiative-title">Startup Bootcamp</h3>
+            <p class="initiative-desc">
+              An intensive 4-week program designed to take your idea from concept to MVP. Work with mentors, validate your idea, and pitch to real investors.
+            </p>
+            <ul class="initiative-features">
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                4-week intensive curriculum
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                1-on-1 mentorship sessions
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                MVP development support
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Demo Day with investors
+              </li>
+            </ul>
+            <a href="https://join.iiec.in" class="btn btn-primary" target="_blank" rel="noopener">
+              <span>Get Notified</span>
+            </a>
+          </article>
+          
+          <!-- Industry Speaker Series -->
+          <article class="glass-card initiative-card" id="talks" data-animate="flip-y" data-animate-delay="2">
+            <div class="initiative-badge">Coming Soon</div>
+            <div class="initiative-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+              </svg>
+            </div>
+            <h3 class="initiative-title">Industry Speaker Series</h3>
+            <p class="initiative-desc">
+              Monthly sessions with successful entrepreneurs, startup founders, and industry leaders sharing insights, failures, and success stories.
+            </p>
+            <ul class="initiative-features">
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Monthly speaker events
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Q&A sessions with founders
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Networking opportunities
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Recorded for on-demand viewing
+              </li>
+            </ul>
+            <a href="https://join.iiec.in" class="btn btn-primary" target="_blank" rel="noopener">
+              <span>Get Notified</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Regular Programs Section -->
+    <section class="section" id="workshops" aria-labelledby="programs-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="programs-title" class="section-title">Regular <span class="highlight">Programs</span></h2>
+          <p class="section-subtitle">Ongoing initiatives to build your entrepreneurial skills</p>
+        </header>
+        
+        <div class="grid-3">
+          <article class="glass-card" data-animate="scale" data-animate-delay="1">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="card-title">Skill Workshops</h3>
+            <p class="card-desc">
+              Weekly hands-on workshops covering essential skills: pitch deck design, financial modeling, product development, marketing strategies, and more.
+            </p>
+          </article>
+          
+          <article class="glass-card" data-animate="scale" data-animate-delay="2">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="card-title">Ideation Sessions</h3>
+            <p class="card-desc">
+              Bi-weekly brainstorming sessions where students pitch ideas, receive feedback, and form teams to work on promising concepts.
+            </p>
+          </article>
+          
+          <article class="glass-card" data-animate="scale" data-animate-delay="3">
+            <div class="card-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <h3 class="card-title">Mentorship Connect</h3>
+            <p class="card-desc">
+              Connect with industry mentors for guidance on your startup journey. Get paired with experienced professionals in your domain.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Timeline Section -->
+    <section class="section" id="events" aria-labelledby="events-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="events-title" class="section-title">Planned <span class="highlight">Events</span></h2>
+          <p class="section-subtitle">Mark your calendars for these upcoming events</p>
+        </header>
+        
+        <div class="timeline">
+          <div class="timeline-item" data-animate="fade-left" data-animate-delay="1">
+            <div class="timeline-marker future"></div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-date">Q3 2024</div>
+              <h3 class="timeline-title">Launch Week</h3>
+              <p class="timeline-desc">Grand inauguration of IIEC with keynote speakers, networking sessions, and the unveiling of our annual roadmap.</p>
+              <span class="event-status upcoming">Upcoming</span>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-animate="fade-right" data-animate-delay="2">
+            <div class="timeline-marker future"></div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-date">Q4 2024</div>
+              <h3 class="timeline-title">Ideathon 1.0</h3>
+              <p class="timeline-desc">36-hour ideation hackathon where teams compete to develop innovative solutions for real-world problems. Prizes worth ₹50,000.</p>
+              <span class="event-status upcoming">Upcoming</span>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-animate="fade-left" data-animate-delay="3">
+            <div class="timeline-marker future"></div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-date">Q1 2025</div>
+              <h3 class="timeline-title">Startup Weekend</h3>
+              <p class="timeline-desc">Weekend-long intensive program where participants form teams, develop business models, and pitch to a panel of investors.</p>
+              <span class="event-status upcoming">Upcoming</span>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-animate="fade-right" data-animate-delay="4">
+            <div class="timeline-marker future"></div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-date">Q2 2025</div>
+              <h3 class="timeline-title">IIEC Summit</h3>
+              <p class="timeline-desc">Our flagship annual innovation and entrepreneurship summit featuring industry leaders, workshops, competitions, and networking opportunities.</p>
+              <span class="event-status upcoming">Upcoming</span>
+            </div>
+          </div>
+          
+          <div class="timeline-item" data-animate="fade-left" data-animate-delay="5">
+            <div class="timeline-marker future"></div>
+            <div class="timeline-content glass-card">
+              <div class="timeline-date">Ongoing</div>
+              <h3 class="timeline-title">Monthly Pitch Nights</h3>
+              <p class="timeline-desc">Monthly sessions where students pitch their startups to a panel of mentors and peers for feedback and guidance.</p>
+              <span class="event-status recurring">Recurring</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get Involved CTA -->
+    <section class="section cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div data-animate="blur">
+          <h2 id="cta-title" class="cta-title">Want to <span class="highlight">Participate</span>?</h2>
+          <p class="cta-subtitle">Subscribe to our newsletter to stay updated on all events and activities. Join the team to help organize them.</p>
+          <div class="cta-buttons">
+            <a href="index.html#newsletter" class="btn btn-primary btn-large">
+              <span>Subscribe</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </a>
+            <a href="https://join.iiec.in" class="btn btn-secondary btn-large" target="_blank" rel="noopener">
+              <span>Join Team</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo" data-animate="fade-up">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy">
+              <span>IIEC</span>
+            </div>
+            <p class="footer-desc">
+              IIEC - Innovation, Incubation & Entrepreneurship Cell. Formerly E-Cell CSMU. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University, one founder at a time.
+            </p>
+            <div class="footer-socials">
+              <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+              <a href="https://instagram.com/iiec.csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+              </a>
+              <a href="https://twitter.com/iiec_csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Twitter/X">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+              </a>
+              <a href="mailto:contact@iiec.in" class="footer-social" aria-label="Email">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
+                  <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <nav class="footer-nav" aria-label="Quick Links">
+            <h4 class="footer-title">Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About Us</a>
+              <a href="team.html">Team</a>
+              <a href="activities.html">Activities</a>
+              <a href="blog.html">Blog</a>
+            </div>
+          </nav>
+          
+          <nav class="footer-nav" aria-label="Programs">
+            <h4 class="footer-title">Programs</h4>
+            <div class="footer-links">
+              <a href="#workshops">Workshops</a>
+              <a href="#bootcamp">Startup Bootcamp</a>
+              <a href="#talks">Industry Talks</a>
+              <a href="#events">Events</a>
+            </div>
+          </nav>
+          
+          <nav class="footer-nav" aria-label="Contact">
+            <h4 class="footer-title">Contact</h4>
+            <div class="footer-links">
+              <a href="mailto:contact@iiec.in">contact@iiec.in</a>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener">Join the Movement</a>
+              <a href="index.html#newsletter">Newsletter</a>
+            </div>
+          </nav>
+        </div>
+        
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2025 IIEC. All rights reserved.
+          </p>
+          <a href="admin.html" class="footer-ops">OPS Portal →</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>

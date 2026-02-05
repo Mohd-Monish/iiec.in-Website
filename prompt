@@ -1,0 +1,407 @@
+```
+The Master Prompt: E-Cell CSMU Multi-Page Website (Complete Production System for Claude)
+
+You are a World-Class Lead Frontend Engineer, UI/UX Specialist, and SEO Architect. Build a **6-PAGE PRODUCTION WEBSITE** for **E-Cell CSMU** using **VANILLA TECH ONLY** (HTML5/CSS3/Modern JS). Target **100/100 Lighthouse** + **Apple-esque minimalism**.
+
+## 🎨 DESIGN SYSTEM (MANDATORY CSS VARIABLES)
+```
+    Reffered to Colours section below for complete list.
+```
+
+## 📂 WEBSITE STRUCTURE (6 Pages + 2 Docs)
+
+### **PAGES TO BUILD (Exact Order):**
+
+**1. HOME PAGE (index.html)**
+```
+NAVBAR (persistent across all pages):
+Home | About | Team | Activities | Blog | Join Us | Contact
+
+SECTIONS (EXACT ORDER):
+1️⃣ HERO: "E-Cell CSMU" + "Student-led entrepreneurship hub" + Buttons: "Join Now" → join.ecellcsmu.in | "Explore ↓"
+2️⃣ WHAT IS E-CELL? (4 Glass cards)
+   - Student-led initiative
+   - University-backed
+   - Skill development  
+   - Startup culture
+3️⃣ WHY JOIN? (3 Benefits cards)
+   - Leadership experience
+   - Industry exposure
+   - Practical learning
+4️⃣ CURRENT STATUS
+   "Founded 2024 | Growth phase | Be part of history"
+5️⃣ FOUNDING TEAM CTA
+   "Join our founding team today" + BIG Join button
+6️⃣ NEWSLETTER
+   Email input + "Subscribe for weekly updates"
+7️⃣ FOOTER
+   Socials | Contact | "OPS Portal" (team login)
+```
+
+**2. ABOUT PAGE (about.html)**
+```
+1️⃣ WHO WE ARE
+   "Student-led + University-backed entrepreneurship cell"
+2️⃣ MISSION: "Encourage entrepreneurial thinking TODAY"
+3️⃣ VISION: "Build sustainable startup ecosystem"
+4️⃣ HISTORY TIMELINE (2024→2026)
+5️⃣ FOOTER
+```
+
+**3. TEAM PAGE (team.html)**
+```
+1️⃣ FACULTY ADVISOR (1 card)
+2️⃣ CORE TEAM (6-8 members)
+   Each: Photo | Name | Role | LinkedIn | Grayscale→color hover
+3️⃣ FOOTER
+```
+
+**4. ACTIVITIES PAGE (activities.html)**
+```
+1️⃣ UPCOMING INITIATIVES (3 cards)
+   - Workshop series
+   - Startup bootcamp  
+   - Industry talks
+2️⃣ PLANNED EVENTS (Timeline)
+   - Feb 2026: Ideation Workshop
+   - Mar 2026: Pitch Competition
+3️⃣ FOOTER
+```
+
+**5. BLOG PAGE (blog.html)**
+```
+1️⃣ FEATURED POSTS (3 sample blogs)
+   - "Why Every Student Should Join E-Cell"
+   - "5 Skills Every Entrepreneur Needs"  
+   - "Our Journey: From Idea to Reality"
+2️⃣ POST PREVIEW CARDS (title/image/excerpt)
+3️⃣ FOOTER
+```
+
+**6. ADMIN POST PAGE (admin.html) - PASSWORD PROTECTED**
+```
+🔐 Password: "ecell2026"
+Form: Title | Featured Image | Content | Publish
+Success: "Posted to blog successfully"
+```
+
+## ✨ TECHNICAL REQUIREMENTS (NON-NEGOTIABLE)
+
+```
+✅ ZERO FRAMEWORKS - Pure Vanilla JS
+✅ 100/100 Lighthouse: WebP lazy-loading, passive scroll
+✅ Mobile-first: 320px→4K flawless (clamp(), container queries)
+✅ Glassmorphism navbar (transparent→frosted on scroll)
+✅ Intersection Observer for ALL animations
+✅ SEO: JSON-LD schema EVERY PAGE
+✅ Newsletter: Email form → Google Sheets (FREE)
+✅ Admin: Password protect + form submission
+```
+
+## 📱 INTERACTIONS (All Mandatory)
+```
+1. Navbar: Sticky glassmorphism + mobile hamburger
+2. Hero: Particle canvas background (60fps)
+3. Cards: Hover lift + scale (0.3s cubic-bezier)
+4. Gallery: Masonry grid + lightbox
+5. Newsletter: Email validation + success message
+6. Scroll: Timeline fill + fade-in animations
+7. Team: Grayscale→color hover transition
+```
+
+## 🔧 GOOGLE WORKSPACE BACKEND (FREE)
+
+### **File 1: SEO-IMPLEMENTATION.md**
+```
+Complete SEO strategy:
+1. JSON-LD EducationalOrganization schema (all pages)
+2. Meta tags: title/description/og:image
+3. Semantic HTML5 structure
+4. Breadcrumbs navigation
+5. hreflang + sitemap.xml stub
+6. Core Web Vitals optimization
+7. Mobile-first indexing
+8. Schema markup for Team/Events
+```
+
+### **File 2: GOOGLE-WORKSPACE-BACKEND.md**
+```
+FREE Backend Solution:
+
+1. NEWSLETTER SUBSCRIPTIONS
+   Google Sheet: "Newsletter Signup"
+   Columns: Timestamp | Email | Name | IP
+   Apps Script: POST /subscribe → append row
+
+2. BLOG POSTS ADMIN
+   Google Sheet: "Blog Posts"  
+   Columns: ID | Title | Image | Content | Date | Author
+   Apps Script: POST /admin → append row
+
+3. FORM IMPLEMENTATION
+```
+fetch('https://script.google.com/macros/YOUR_ID/exec', {
+  method: 'POST',
+  body: new FormData(form)
+})
+
+**Setup Instructions + Apps Script code + Sheet structure**
+```
+
+## 🚀 EXECUTION ORDER (Follow Exactly):
+
+```
+1. styles.css (Global CSS variables + design system)
+2. script.js (Shared across all pages)
+3. index.html (Home page - COMPLETE)
+4. about.html (About page - COMPLETE)
+5. team.html (Team page - COMPLETE)  
+6. activities.html (Activities - COMPLETE)
+7. blog.html (Blog with 3 sample posts - COMPLETE)
+8. admin.html (Password protected - COMPLETE)
+9. SEO-IMPLEMENTATION.md
+10. GOOGLE-WORKSPACE-BACKEND.md
+```
+
+## 📋 DELIVERABLE FORMAT:
+```
+**File 1: styles.css** (complete)
+**File 2: script.js** (shared)
+**File 3-8: [page].html** (each complete)
+**File 9: SEO-IMPLEMENTATION.md**
+**File 10: GOOGLE-WORKSPACE-BACKEND.md**
+
+```
+
+# COLOURS and design FOR WESBITE:
+```
+Primary background colors.
+• Page base background. #05070f
+• Main page gradient. radial gradient using #172042, #070912, #05070f
+• Card background light. rgba(18, 23, 38, 0.72)
+• Card background strong. rgba(14, 20, 34, 0.92)
+• Overlay dark layer. rgba(5, 7, 15, 0.6)
+
+Brand and accent colors.
+• Primary accent gold. #ffb703
+• Strong accent gold. #ffd166
+Use these for buttons, highlights, headings, icons, and focus states.
+
+Text colors.
+• Primary text white. #f5f7ff
+• Muted text gray blue. #c2c9de
+• Footer legal text. rgba(255, 255, 255, 0.55)
+
+Border colors.
+• Subtle border. rgba(255, 255, 255, 0.08)
+• Strong border. rgba(255, 255, 255, 0.18)
+
+Shadows.
+• Soft shadow. rgba(5, 7, 15, 0.55)
+• Subtle shadow. rgba(5, 7, 15, 0.32)
+
+Form and input colors.
+• Input background. rgba(9, 13, 23, 0.78)
+• Input border default. rgba(255, 255, 255, 0.12)
+• Input focus border. rgba(255, 183, 3, 0.65)
+• Input focus glow. rgba(255, 183, 3, 0.18)
+
+Status and feedback colors.
+• Success text. #75f5ae
+• Error text. #ff7b7b
+
+Special UI highlights.
+• Hero badge background. rgba(255, 183, 3, 0.16)
+• Hero badge border. rgba(255, 183, 3, 0.4)
+• Info banner background gradient. rgba(255, 183, 3, 0.18) to rgba(255, 183, 3, 0.05)
+• Info banner border. rgba(255, 183, 3, 0.4)
+
+Recommended reuse rules for your next websites.
+• Keep #05070f as the global background for dark themes.
+• Use #ffb703 only for actions and emphasis.
+• Never use accent gold for long text blocks.
+• Use rgba card backgrounds for glass effect layouts.
+• Keep text contrast high using #f5f7ff and #c2c9de only.
+```
+
+# BACKGROUND PARTICLE EFFECT:```
+What the interactive background is.
+It is a canvas based particle system with a soft glow orb.
+Particles float slowly.
+Particles react to cursor movement.
+Nearby particles connect with animated lines.
+A large radial glow follows the cursor slightly.
+Everything resizes automatically for screen size.
+
+This effect has three layers.
+
+Full screen canvas for particles.
+
+Fixed glow orb for depth.
+
+Website content above both layers.
+
+Layer 1. Particle canvas.
+You add a canvas element as the first element inside body.
+
+canvas id particle-canvas
+
+CSS rules.
+• position fixed
+• top 0 left 0
+• width 100 percent
+• height 100 percent
+• pointer-events none
+• low z-index
+
+Why this matters.
+Canvas stays behind content.
+Mouse clicks pass through.
+Animation never blocks UI.
+
+Layer 2. Particle logic.
+Particles are JavaScript objects.
+
+Each particle stores.
+• x and y position
+• speed in x and y
+• size
+• opacity
+• pulse value
+• hue color
+
+Animation loop.
+• Clear canvas every frame.
+• Update particle position.
+• Apply slow floating movement.
+• Add pulse using sine wave.
+• Push particles away from cursor if close.
+• Wrap particles when they leave screen.
+• Draw particle glow using radial gradient.
+• Draw particle core circle.
+
+Cursor interaction.
+Mouse position is tracked globally.
+If cursor is within 150px of a particle.
+Particle is gently pushed away.
+This creates the responsive feel.
+
+Particle connections.
+Every frame checks distance between particles.
+If distance is under 150px.
+Draw a thin line between them.
+Line opacity depends on distance.
+Line color blends both particle colors.
+
+Performance safety.
+Particle count depends on screen size.
+Large screens get more particles.
+Small screens get fewer particles.
+
+Layer 3. Glow orb.
+This is a pure CSS element.
+
+HTML structure.
+div class glow-orb-wrapper
+div class glow-orb
+
+CSS behavior.
+• Fixed at screen center.
+• Large circular radial gradient.
+• Very low opacity.
+• Infinite pulse animation using scale and opacity.
+
+Cursor effect.
+JavaScript shifts the wrapper slightly.
+Movement range is about 30px.
+This creates parallax depth.
+
+Why orb feels smooth.
+It does not track cursor directly.
+It moves slower and less distance.
+Your eyes see depth, not jitter.
+
+Reduced motion support.
+System checks prefers-reduced-motion.
+If enabled.
+Canvas animation stops.
+Canvas clears.
+This avoids motion issues.
+
+How to reuse this on another website.
+
+Step 1. Copy required files.
+• Copy the canvas element.
+• Copy glow orb HTML.
+• Copy particle JS section only.
+• Copy canvas and glow CSS.
+
+Step 2. Order matters.
+Canvas must be before your content.
+Glow orb must be after canvas.
+Main content must have higher z-index.
+
+Step 3. Minimal CSS setup.
+Body must allow fixed elements.
+Do not set overflow hidden unless needed.
+Content container should use position relative and higher z-index.
+
+Step 4. Customize safely.
+To change density.
+Adjust particleCount formula.
+
+To change color.
+Change particle hue values.
+Change glow orb gradient colors.
+
+To change interaction strength.
+Adjust mouse distance threshold.
+Adjust force multiplier.
+
+To disable connections.
+Remove drawConnections call.
+
+Step 5. Mobile behavior.
+This system already scales particles down.
+Canvas auto resizes on window resize.
+Touch devices still work without cursor force.
+
+Common mistakes to avoid.
+• Forgetting pointer-events none on canvas.
+• Putting canvas inside a container instead of body.
+• Using too many particles on large screens.
+• Not handling prefers-reduced-motion.
+
+
+## 🎯 SUCCESS CRITERIA:
+```
+✅ 6 complete HTML pages
+✅ Newsletter → Google Sheets (working code)
+✅ Admin password protection + blog posting
+✅ 100/100 Lighthouse across all pages
+✅ Glassmorphism + particles + smooth animations
+✅ Full SEO implementation
+✅ Mobile hamburger + responsive everything
+✅ Zero console errors
+✅ Production-ready deployment
+```
+
+**GENERATE ALL 10 FILES NOW. No partial delivery. Every form must submit to Google Apps Script. Every animation must use Intersection Observer. Every page must have complete SEO.**
+```
+
+---
+
+**Copy-paste this EXACT prompt into Claude 3.5 Sonnet.** 
+
+This prompt is **production-engineered** for Claude - constraint-complete, visually structured, and forces complete delivery of all 6 pages + 2 docs. It includes every requirement from your rough structure while maintaining the premium Apple-esque design system. The Google Workspace integration is fully specified with exact implementation paths. 
+
+**Key improvements over previous:**
+✅ 6 complete pages (not just home)
+✅ Newsletter + Google Sheets backend 
+✅ Password-protected admin
+✅ Blog with sample content
+✅ Detailed SEO docs
+✅ Activities page for future planning
+✅ Every interaction specified
+
+Claude will deliver a **complete production website system** ready for deployment.
