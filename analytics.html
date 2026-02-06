@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="IIEC Analytics Dashboard - Website performance metrics">
+  <meta name="theme-color" content="#05070f">
+  
+  <title>Analytics | IIEC</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="./Assests/favicon.png">
+  <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Page Loader Script (inline for immediate execution) -->
+  <script>
+    (function(){var l='<div class="page-loader" id="page-loader"><div class="loader-content"><div class="loader-logo"><img src="./Assests/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80"></div><div class="loader-bar-container"><div class="loader-percentage"><span class="loader-percentage-num" id="loader-percent">0</span><span class="loader-percentage-symbol">%</span></div><div class="loader-bar-wrapper"><div class="loader-bar" id="loader-bar"></div></div><div class="loader-text">Loading<span class="loader-dots"><span></span><span></span><span></span></span></div></div></div></div>';document.write(l);})();
+  </script>
+  
+  <style>
+    .analytics-section {
+      padding: 8rem 0 4rem;
+      min-height: 100vh;
+    }
+    
+    .analytics-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .analytics-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+    
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .analytics-card {
+      padding: 1.5rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      transition: all 0.3s ease;
+    }
+    
+    .analytics-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+    }
+    
+    .card-icon svg {
+      width: 20px;
+      height: 20px;
+      color: white;
+    }
+    
+    .card-value {
+      font-size: 2.5rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-change {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+    }
+    
+    .card-change.positive {
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+    }
+    
+    .card-change.negative {
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.1);
+    }
+    
+    .card-change svg {
+      width: 14px;
+      height: 14px;
+    }
+    
+    .chart-section {
+      margin-top: 2rem;
+    }
+    
+    .chart-card {
+      padding: 2rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      margin-bottom: 2rem;
+    }
+    
+    .chart-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .chart-placeholder {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    
+    .chart-placeholder svg {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    .chart-placeholder-content {
+      text-align: center;
+    }
+    
+    .traffic-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .traffic-table th,
+    .traffic-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    .traffic-table th {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .traffic-table td {
+      color: var(--text-primary);
+    }
+    
+    .traffic-table tbody tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    
+    .page-path {
+      font-family: monospace;
+      font-size: 0.9rem;
+      color: var(--primary);
+    }
+    
+    .progress-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      min-width: 100px;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    
+    .analytics-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .date-filter {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--primary);
+      color: var(--text-primary);
+    }
+    
+    .refresh-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .refresh-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+    
+    .refresh-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .refresh-btn.loading svg {
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .two-col-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .two-col-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .analytics-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .date-filter {
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+      }
+    }
+    
+    .realtime-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    
+    .realtime-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+    
+    .no-data-message {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+    }
+    
+    .connect-analytics {
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  
+  <!-- Glow Orb -->
+  <div class="glow-orb-wrapper" aria-hidden="true">
+    <div class="glow-orb"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+          <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <span>IIEC</span>
+        </a>
+        
+        <div class="nav-links" role="menu">
+          <a href="index.html" class="nav-link" role="menuitem">← Back to Site</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Analytics Section -->
+    <section class="analytics-section" aria-labelledby="analytics-title">
+      <div class="container">
+        <div class="analytics-header" data-animate>
+          <h1 id="analytics-title" class="page-title">Site <span class="highlight">Analytics</span></h1>
+          <p class="analytics-subtitle">Monitor your website performance and visitor insights</p>
+        </div>
+        
+        <div class="analytics-controls" data-animate>
+          <div class="date-filter">
+            <button class="filter-btn active" data-period="today">Today</button>
+            <button class="filter-btn" data-period="7d">7 Days</button>
+            <button class="filter-btn" data-period="30d">30 Days</button>
+            <button class="filter-btn" data-period="90d">90 Days</button>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <span class="realtime-indicator">
+              <span class="realtime-dot"></span>
+              Real-time
+            </span>
+            <button class="refresh-btn" id="refresh-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Refresh
+            </button>
+          </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="analytics-grid" data-animate>
+          <div class="analytics-card">
+            <div class="card-header">
+              <span class="card-title">Total Visitors</span>
+              <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+            </div>
+            <div class="card-value" id="total-visitors">--</div>
+            <span class="card-change positive" id="visitors-change">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+              <span>--%</span>
+            </span>
+          </div>
+          
+          <div class="analytics-card">
+            <div class="card-header">
+              <span class="card-title">Page Views</span>
+              <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+            </div>
+            <div class="card-value" id="page-views">--</div>
+            <span class="card-change positive" id="views-change">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+              <span>--%</span>
+            </span>
+          </div>
+          
+          <div class="analytics-card">
+            <div class="card-header">
+              <span class="card-title">Avg. Session Duration</span>
+              <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <div class="card-value" id="avg-duration">--</div>
+            <span class="card-change positive" id="duration-change">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+              <span>--%</span>
+            </span>
+          </div>
+          
+          <div class="analytics-card">
+            <div class="card-header">
+              <span class="card-title">Bounce Rate</span>
+              <div class="card-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+            </div>
+            <div class="card-value" id="bounce-rate">--%</div>
+            <span class="card-change negative" id="bounce-change">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" />
+              </svg>
+              <span>--%</span>
+            </span>
+          </div>
+        </div>
+        
+        <!-- Charts Section -->
+        <div class="chart-section">
+          <div class="chart-card" data-animate>
+            <h3 class="chart-title">Traffic Overview</h3>
+            <div class="chart-placeholder" id="traffic-chart">
+              <div class="chart-placeholder-content">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <p>Connect Google Analytics to view traffic data</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="two-col-grid">
+            <div class="chart-card" data-animate>
+              <h3 class="chart-title">Top Pages</h3>
+              <table class="traffic-table">
+                <thead>
+                  <tr>
+                    <th>Page</th>
+                    <th>Views</th>
+                    <th>%</th>
+                  </tr>
+                </thead>
+                <tbody id="top-pages-table">
+                  <tr>
+                    <td><span class="page-path">/index.html</span></td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="page-path">/about.html</span></td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="page-path">/team.html</span></td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="page-path">/activities.html</span></td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><span class="page-path">/blog.html</span></td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            
+            <div class="chart-card" data-animate>
+              <h3 class="chart-title">Traffic Sources</h3>
+              <table class="traffic-table">
+                <thead>
+                  <tr>
+                    <th>Source</th>
+                    <th>Users</th>
+                    <th>%</th>
+                  </tr>
+                </thead>
+                <tbody id="traffic-sources-table">
+                  <tr>
+                    <td>Direct</td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Organic Search</td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Social</td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Referral</td>
+                    <td>--</td>
+                    <td>
+                      <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="two-col-grid">
+            <div class="chart-card" data-animate>
+              <h3 class="chart-title">Device Breakdown</h3>
+              <div class="chart-placeholder" id="device-chart">
+                <div class="chart-placeholder-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                  <p>Mobile vs Desktop data</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="chart-card" data-animate>
+              <h3 class="chart-title">Geographic Distribution</h3>
+              <div class="chart-placeholder" id="geo-chart">
+                <div class="chart-placeholder-content">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <p>Visitor locations</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Connect Analytics Notice -->
+        <div class="chart-card no-data-message" data-animate>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width: 64px; height: 64px; margin: 0 auto 1rem; display: block; opacity: 0.5;">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <h3 style="font-size: 1.25rem; color: var(--text-primary); margin-bottom: 0.5rem;">Connect Your Analytics</h3>
+          <p style="max-width: 500px; margin: 0 auto;">
+            To view real analytics data, integrate Google Analytics or another analytics provider. 
+            This dashboard is ready to display your website metrics once connected.
+          </p>
+          <div class="connect-analytics">
+            <a href="https://analytics.google.com" target="_blank" rel="noopener" class="btn btn-primary">
+              <span>Setup Google Analytics</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo" data-animate="fade-up">
+      <div class="container">
+        <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+          <p class="footer-copyright">
+            © 2025 IIEC. All rights reserved.
+          </p>
+          <a href="admin.html" class="footer-ops">OPS Portal →</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+  
+  <script>
+    // Analytics page specific functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Date filter buttons
+      const filterBtns = document.querySelectorAll('.filter-btn');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          // Here you would fetch data for the selected period
+          console.log('Selected period:', this.dataset.period);
+        });
+      });
+      
+      // Refresh button
+      const refreshBtn = document.getElementById('refresh-btn');
+      refreshBtn.addEventListener('click', function() {
+        this.classList.add('loading');
+        // Simulate refresh
+        setTimeout(() => {
+          this.classList.remove('loading');
+        }, 1000);
+      });
+    });
+  </script>
+</body>
+</html>

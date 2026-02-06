@@ -1,8 +1,10 @@
 User-agent: *
 Allow: /
 
-# Disallow admin page from indexing
+# Disallow admin and utility pages from indexing
 Disallow: /admin.html
+Disallow: /404.html
+Disallow: /analytics.html
 
 # Sitemap location
 Sitemap: https://iiec.in/sitemap.xml

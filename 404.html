@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Page not found - IIEC">
+  <meta name="theme-color" content="#05070f">
+  
+  <title>404 - Page Not Found | IIEC</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="./Assests/favicon.png">
+  <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
+  
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    .error-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Floating Elements */
+    .floating-elements {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    
+    .floating-shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.1;
+      filter: blur(40px);
+    }
+    
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--primary);
+      top: 10%;
+      left: -5%;
+      animation: float-1 8s ease-in-out infinite;
+    }
+    
+    .shape-2 {
+      width: 200px;
+      height: 200px;
+      background: var(--secondary);
+      top: 60%;
+      right: -5%;
+      animation: float-2 10s ease-in-out infinite;
+    }
+    
+    .shape-3 {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      bottom: 10%;
+      left: 20%;
+      animation: float-3 7s ease-in-out infinite;
+    }
+    
+    @keyframes float-1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, 30px) scale(1.1); }
+    }
+    
+    @keyframes float-2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-20px, -40px) scale(1.15); }
+    }
+    
+    @keyframes float-3 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -20px) scale(1.05); }
+    }
+    
+    /* Floating Icons */
+    .floating-icons {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    
+    .float-icon {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      opacity: 0.15;
+      animation: icon-float 4s ease-in-out infinite;
+    }
+    
+    .float-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--primary);
+    }
+    
+    @keyframes icon-float {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+      50% { transform: translateY(-15px) rotate(10deg); opacity: 0.25; }
+    }
+    
+    .error-card {
+      text-align: center;
+      max-width: 600px;
+      padding: 3rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Innovation Lightbulb Illustration */
+    .lightbulb-container {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 2rem;
+    }
+    
+    .lightbulb {
+      width: 100%;
+      height: 100%;
+      animation: lightbulb-float 4s ease-in-out infinite;
+    }
+    
+    @keyframes lightbulb-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    .lightbulb-glow {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(255, 200, 50, 0.4) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: glow-pulse 2s ease-in-out infinite;
+      filter: blur(10px);
+    }
+    
+    @keyframes glow-pulse {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+      50% { transform: translateX(-50%) scale(1.3); opacity: 1; }
+    }
+    
+    .lightbulb-shadow {
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 15px;
+      background: radial-gradient(ellipse, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: shadow-pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes shadow-pulse {
+      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+      50% { transform: translateX(-50%) scale(0.7); opacity: 0.3; }
+    }
+    
+    /* Orbiting Elements */
+    .orbit-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: orbit 12s linear infinite;
+    }
+    
+    @keyframes orbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    
+    .orbit-item {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      animation: counter-orbit 12s linear infinite;
+    }
+    
+    .orbit-item svg {
+      width: 100%;
+      height: 100%;
+      fill: var(--primary);
+      opacity: 0.7;
+    }
+    
+    .orbit-item:nth-child(1) { top: -15px; left: 50%; transform: translateX(-50%); }
+    .orbit-item:nth-child(2) { bottom: -15px; left: 50%; transform: translateX(-50%); }
+    .orbit-item:nth-child(3) { top: 50%; left: -15px; transform: translateY(-50%); }
+    
+    @keyframes counter-orbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(-360deg); }
+    }
+    
+    /* Glitch Effect for 404 */
+    .error-code-container {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    
+    .error-code {
+      font-size: clamp(7rem, 20vw, 12rem);
+      font-weight: 900;
+      font-family: var(--font-heading);
+      color: #00d4ff;
+      line-height: 1;
+      position: relative;
+      text-shadow: 
+        0 0 20px rgba(0, 212, 255, 0.8),
+        0 0 40px rgba(0, 212, 255, 0.6),
+        0 0 60px rgba(0, 212, 255, 0.4),
+        0 0 80px rgba(0, 255, 136, 0.3);
+      animation: error-glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes error-glow {
+      0%, 100% { 
+        color: #00d4ff;
+        text-shadow: 
+          0 0 20px rgba(0, 212, 255, 0.8),
+          0 0 40px rgba(0, 212, 255, 0.6),
+          0 0 60px rgba(0, 212, 255, 0.4);
+      }
+      50% { 
+        color: #00ff88;
+        text-shadow: 
+          0 0 20px rgba(0, 255, 136, 0.8),
+          0 0 40px rgba(0, 255, 136, 0.6),
+          0 0 60px rgba(0, 255, 136, 0.4);
+      }
+    }
+    
+    .error-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      animation: fade-in-up 0.6s ease-out 0.2s both;
+    }
+    
+    .error-message {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      animation: fade-in-up 0.6s ease-out 0.4s both;
+    }
+    
+    @keyframes fade-in-up {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      animation: fade-in-up 0.6s ease-out 0.6s both;
+    }
+    
+    .error-actions .btn {
+      min-width: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .error-actions .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .error-actions .btn:hover::before {
+      left: 100%;
+    }
+    
+    .error-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fade-in-up 0.6s ease-out 0.8s both;
+    }
+    
+    .error-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      padding-bottom: 2px;
+    }
+    
+    .error-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transition: width 0.3s ease;
+    }
+    
+    .error-links a:hover {
+      color: var(--text-primary);
+    }
+    
+    .error-links a:hover::after {
+      width: 100%;
+    }
+    
+    /* Growth Arrow Animation */
+    .growth-arrow {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      animation: arrow-rise 8s ease-in-out infinite;
+      opacity: 0.5;
+    }
+    
+    .growth-arrow svg {
+      width: 100%;
+      height: 100%;
+      fill: url(#arrow-gradient);
+    }
+    
+    .growth-arrow-1 {
+      bottom: 30%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+    
+    .growth-arrow-2 {
+      bottom: 40%;
+      right: 8%;
+      animation-delay: 2s;
+    }
+    
+    .growth-arrow-3 {
+      top: 25%;
+      left: 12%;
+      animation-delay: 4s;
+    }
+    
+    @keyframes arrow-rise {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-30px) scale(1.1);
+        opacity: 0.6;
+      }
+    }
+    
+    /* Startup Icons decoration */
+    .startup-icon {
+      position: absolute;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+    
+    .startup-icon svg {
+      width: 50%;
+      height: 50%;
+      fill: var(--primary);
+      opacity: 0.6;
+    }
+    
+    .startup-icon-1 {
+      width: 70px;
+      height: 70px;
+      top: 18%;
+      right: 12%;
+      animation: icon-bob 6s ease-in-out infinite;
+    }
+    
+    .startup-icon-2 {
+      width: 50px;
+      height: 50px;
+      bottom: 25%;
+      left: 10%;
+      animation: icon-bob 5s ease-in-out infinite reverse;
+    }
+    
+    .startup-icon-3 {
+      width: 60px;
+      height: 60px;
+      top: 60%;
+      right: 6%;
+      animation: icon-bob 7s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+    
+    @keyframes icon-bob {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(5deg); }
+    }
+    
+    @media (max-width: 768px) {
+      .error-card {
+        padding: 2rem 1.5rem;
+      }
+      
+      .lightbulb-container {
+        width: 140px;
+        height: 140px;
+      }
+      
+      .startup-icon-1, .startup-icon-2, .startup-icon-3 {
+        display: none;
+      }
+      
+      .growth-arrow {
+        display: none;
+      }
+      
+      .error-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .error-actions .btn {
+        width: 100%;
+        max-width: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  
+  <!-- Glow Orb -->
+  <div class="glow-orb-wrapper" aria-hidden="true">
+    <div class="glow-orb"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+          <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <span>IIEC</span>
+        </a>
+        
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        <div class="nav-links" role="menu">
+          <a href="index.html" class="nav-link" role="menuitem">Home</a>
+          <a href="about.html" class="nav-link" role="menuitem">About</a>
+          <a href="team.html" class="nav-link" role="menuitem">Team</a>
+          <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
+          <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+          <a href="https://join.iiec.in" class="nav-cta" role="menuitem" target="_blank" rel="noopener">Join the Movement</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Error Section -->
+    <section class="error-section" aria-labelledby="error-title">
+      <!-- SVG Gradient Definitions -->
+      <svg style="position: absolute; width: 0; height: 0;">
+        <defs>
+          <linearGradient id="arrow-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" style="stop-color:var(--primary)"/>
+            <stop offset="100%" style="stop-color:var(--secondary)"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      
+      <!-- Floating Shapes -->
+      <div class="floating-elements" aria-hidden="true">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+      </div>
+      
+      <!-- Floating Icons -->
+      <div class="floating-icons" aria-hidden="true" id="floating-icons"></div>
+      
+      <!-- Startup Icons -->
+      <div class="startup-icon startup-icon-1" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+        </svg>
+      </div>
+      <div class="startup-icon startup-icon-2" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+      </div>
+      <div class="startup-icon startup-icon-3" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+        </svg>
+      </div>
+      
+      <!-- Growth Arrows -->
+      <div class="growth-arrow growth-arrow-1" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+        </svg>
+      </div>
+      <div class="growth-arrow growth-arrow-2" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+        </svg>
+      </div>
+      <div class="growth-arrow growth-arrow-3" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+        </svg>
+      </div>
+      
+      <div class="error-card glass-card" data-animate>
+        <!-- Innovation Lightbulb Illustration -->
+        <div class="lightbulb-container">
+          <div class="lightbulb-glow"></div>
+          <svg class="lightbulb" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Main Lightbulb -->
+            <ellipse cx="100" cy="70" rx="50" ry="55" fill="url(#bulb-gradient)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+            
+            <!-- Inner glow -->
+            <ellipse cx="100" cy="65" rx="30" ry="35" fill="url(#inner-glow)"/>
+            
+            <!-- Filament -->
+            <path d="M85 70 Q90 50 100 55 Q110 60 105 70 Q100 80 95 70 Q90 60 100 65" 
+                  stroke="#ffc107" stroke-width="3" fill="none" stroke-linecap="round">
+              <animate attributeName="stroke-opacity" values="0.6;1;0.6" dur="1.5s" repeatCount="indefinite"/>
+            </path>
+            
+            <!-- Light rays -->
+            <g opacity="0.6">
+              <line x1="100" y1="10" x2="100" y2="0" stroke="#ffc107" stroke-width="3" stroke-linecap="round">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+              </line>
+              <line x1="140" y1="30" x2="150" y2="20" stroke="#ffc107" stroke-width="3" stroke-linecap="round">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+              </line>
+              <line x1="60" y1="30" x2="50" y2="20" stroke="#ffc107" stroke-width="3" stroke-linecap="round">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+              </line>
+              <line x1="155" y1="70" x2="165" y2="70" stroke="#ffc107" stroke-width="3" stroke-linecap="round">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.9s"/>
+              </line>
+              <line x1="45" y1="70" x2="35" y2="70" stroke="#ffc107" stroke-width="3" stroke-linecap="round">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+              </line>
+            </g>
+            
+            <!-- Bulb base/screw -->
+            <rect x="80" y="120" width="40" height="10" rx="2" fill="#b8860b"/>
+            <rect x="82" y="130" width="36" height="8" rx="2" fill="#a67c00"/>
+            <rect x="84" y="138" width="32" height="8" rx="2" fill="#8b6914"/>
+            <rect x="86" y="146" width="28" height="8" rx="2" fill="#705812"/>
+            <path d="M86 154 L90 165 L110 165 L114 154" fill="#5a4610"/>
+            
+            <!-- Question mark inside (representing the "not found" idea) -->
+            <text x="100" y="85" font-size="35" font-weight="bold" fill="rgba(255,255,255,0.15)" text-anchor="middle">?</text>
+            
+            <!-- Gradients -->
+            <defs>
+              <radialGradient id="bulb-gradient" cx="40%" cy="30%" r="70%">
+                <stop offset="0%" style="stop-color:#fff8e1"/>
+                <stop offset="50%" style="stop-color:#ffecb3"/>
+                <stop offset="100%" style="stop-color:#ffe082"/>
+              </radialGradient>
+              <radialGradient id="inner-glow" cx="50%" cy="40%" r="50%">
+                <stop offset="0%" style="stop-color:rgba(255, 235, 59, 0.8)"/>
+                <stop offset="100%" style="stop-color:rgba(255, 193, 7, 0)"/>
+              </radialGradient>
+            </defs>
+          </svg>
+          
+          <!-- Orbiting Elements (Gears representing incubation) -->
+          <div class="orbit-container">
+            <div class="orbit-item">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+              </svg>
+            </div>
+            <div class="orbit-item">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div class="orbit-item">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="lightbulb-shadow"></div>
+        </div>
+        
+        <div class="error-code-container">
+          <div class="error-code">404</div>
+        </div>
+        
+        <h1 id="error-title" class="error-title">Idea Not Found</h1>
+        
+        <p class="error-message">
+          This page is still in the incubation phase! The startup idea you're looking for hasn't launched yet. 
+          Let's pivot and get you back to innovating.
+        </p>
+        
+        <div class="error-actions">
+          <a href="index.html" class="btn btn-primary">
+            <span>Back to Innovation Hub</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </a>
+          <a href="about.html" class="btn btn-secondary">
+            <span>Explore IIEC</span>
+          </a>
+        </div>
+        
+        <div class="error-links">
+          <a href="team.html">Meet Our Team</a>
+          <a href="activities.html">Our Programs</a>
+          <a href="blog.html">Latest Updates</a>
+          <a href="mailto:contact@iiec.in">Get in Touch</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+  
+  <!-- Floating Icons Generator -->
+  <script>
+    (function() {
+      const container = document.getElementById('floating-icons');
+      const icons = [
+        // Lightbulb
+        '<svg viewBox="0 0 24 24"><path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg>',
+        // Rocket
+        '<svg viewBox="0 0 24 24"><path d="M12 2.5s4.5 2.04 4.5 10.5c0 2.49-1.04 5.57-1.6 7H9.1c-.56-1.43-1.6-4.51-1.6-7C7.5 4.54 12 2.5 12 2.5zm0 5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM7 22h10v-2H7v2z"/></svg>',
+        // Target
+        '<svg viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3-8c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>',
+        // Chart
+        '<svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>',
+        // Handshake
+        '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>'
+      ];
+      const numberOfIcons = 12;
+      
+      for (let i = 0; i < numberOfIcons; i++) {
+        const icon = document.createElement('div');
+        icon.className = 'float-icon';
+        icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        icon.style.left = Math.random() * 100 + '%';
+        icon.style.top = Math.random() * 100 + '%';
+        icon.style.animationDelay = Math.random() * 4 + 's';
+        icon.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        container.appendChild(icon);
+      }
+    })();
+  </script>
+</body>
+</html>
