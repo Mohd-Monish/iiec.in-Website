@@ -52,9 +52,11 @@
 
   function checkConfig() {
     if (CONFIG.GA4_PROPERTY_ID === 'YOUR_GA4_PROPERTY_ID' || CONFIG.OAUTH_CLIENT_ID === 'YOUR_OAUTH_CLIENT_ID') {
+      setConnectionStatus('offline', 'Not Configured');
       showSetupMessage();
       return;
     }
+    setConnectionStatus('connecting', 'Connecting to Google Analytics...');
     loadGIS();
   }
 
@@ -77,7 +79,24 @@
       scope: CONFIG.SCOPES,
       callback: handleTokenResponse
     });
-    showSignInButton();
+
+    // Restore session — auto-load data if token is still valid
+    const saved = sessionStorage.getItem('ga4_token');
+    const savedAt = parseInt(sessionStorage.getItem('ga4_token_ts') || '0');
+    const elapsed = (Date.now() - savedAt) / 1000;
+    if (saved && elapsed < 3500) {
+      // Token still valid (expires in ~3600s, use 3500s margin)
+      accessToken = saved;
+      setConnectionStatus('connecting', 'Fetching analytics data...');
+      hideNoDataMessage();
+      fetchAllData();
+      renderTrafficChart();
+    } else {
+      sessionStorage.removeItem('ga4_token');
+      sessionStorage.removeItem('ga4_token_ts');
+      setConnectionStatus('offline', 'Offline — Sign in required');
+      showSignInButton();
+    }
   }
 
   function handleTokenResponse(response) {
@@ -86,6 +105,10 @@
       return;
     }
     accessToken = response.access_token;
+    // Persist token for page refreshes (valid ~1 hour)
+    sessionStorage.setItem('ga4_token', accessToken);
+    sessionStorage.setItem('ga4_token_ts', Date.now().toString());
+    setConnectionStatus('connecting', 'Fetching analytics data...');
     hideNoDataMessage();
     fetchAllData();
     renderTrafficChart();
@@ -113,6 +136,9 @@
 
     if (res.status === 401) {
       accessToken = null;
+      sessionStorage.removeItem('ga4_token');
+      sessionStorage.removeItem('ga4_token_ts');
+      setConnectionStatus('offline', 'Session expired — Sign in again');
       showSignInButton();
       throw new Error('Token expired');
     }
@@ -143,9 +169,13 @@
       renderDevices(devices);
       renderGeoData(geo);
       renderRealtime(realtime);
+      setConnectionStatus('connected', 'Connected to Google Analytics');
     } catch (err) {
       console.error('Analytics fetch error:', err);
-      if (err.message !== 'Token expired') {
+      if (err.message === 'Token expired') {
+        setConnectionStatus('offline', 'Session expired — Sign in again');
+      } else {
+        setConnectionStatus('error', 'Connection failed');
         showError('Failed to load analytics: ' + err.message);
       }
     } finally {
@@ -605,6 +635,17 @@
   // ═══════════════════════════════════════════════════════════
   //  UTILITIES
   // ═══════════════════════════════════════════════════════════
+
+  function setConnectionStatus(state, text) {
+    const el = document.getElementById('connection-status');
+    if (!el) return;
+    const dot = el.querySelector('.status-dot');
+    const label = el.querySelector('.status-text');
+    if (dot) {
+      dot.className = 'status-dot ' + state;
+    }
+    if (label) label.textContent = text;
+  }
 
   function setText(id, text) {
     const el = document.getElementById(id);
