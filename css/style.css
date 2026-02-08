@@ -2773,6 +2773,138 @@ p {
   }
 }
 
+/* ----------------------------------------------------------------
+   Explore More Cards & Cross-Navigation
+   ---------------------------------------------------------------- */
+.explore-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.explore-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.1);
+}
+
+.explore-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.explore-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.explore-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.explore-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.explore-arrow {
+  font-size: var(--text-lg);
+  color: var(--accent);
+  transition: transform 0.3s ease;
+  margin-top: auto;
+}
+
+.explore-card:hover .explore-arrow {
+  transform: translateX(6px);
+}
+
+/* Cross-Navigation Banner */
+.explore-banners {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.cross-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: var(--space-6) var(--space-8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.06) 0%, rgba(10, 13, 24, 0.8) 100%);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.cross-banner:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px);
+}
+
+.cross-banner-content {
+  flex: 1;
+}
+
+.cross-banner-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(212, 175, 55, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: var(--space-2);
+}
+
+.cross-banner-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.cross-banner-desc {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .cross-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--space-6) var(--space-4);
+  }
+  .cross-banner .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 .footer-socials {
   display: flex;
   gap: var(--space-3);
