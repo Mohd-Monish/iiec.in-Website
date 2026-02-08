@@ -879,7 +879,7 @@
 
       if (!this.passwordScreen) return;
 
-      this.correctPassword = 'ABCD';
+      this.correctPassword = 'IIEC@CSMU@2026';
       this.init();
     }
 
