@@ -47,8 +47,13 @@
     "itemListElement": [
       {
         "@type": "Event",
-        "name": "Startup Bootcamp",
-        "description": "Intensive program to take your idea from concept to MVP",
+        "name": "IIEC GENESIS",
+        "description": "The grand orientation event by IIEC in collaboration with GeeksforGeeks",
+        "startDate": "2026-02-11",
+        "location": {
+          "@type": "Place",
+          "name": "G.D. Badaya Auditorium, CSMU Campus"
+        },
         "organizer": {
           "@type": "EducationalOrganization",
           "name": "IIEC"
@@ -56,8 +61,35 @@
       },
       {
         "@type": "Event",
-        "name": "Industry Speaker Series",
-        "description": "Learn from successful entrepreneurs and industry leaders",
+        "name": "TechAstra",
+        "description": "Explore the frontiers of technology and innovation",
+        "organizer": {
+          "@type": "EducationalOrganization",
+          "name": "IIEC"
+        }
+      },
+      {
+        "@type": "Event",
+        "name": "IPL Auction",
+        "description": "Experience entrepreneurship through sports management",
+        "organizer": {
+          "@type": "EducationalOrganization",
+          "name": "IIEC"
+        }
+      },
+      {
+        "@type": "Event",
+        "name": "Problem Auction",
+        "description": "Bid on real-world problems and develop innovative solutions",
+        "organizer": {
+          "@type": "EducationalOrganization",
+          "name": "IIEC"
+        }
+      },
+      {
+        "@type": "Event",
+        "name": "National Entrepreneurship Challenge",
+        "description": "Begin your entrepreneurial journey with the National Entrepreneurship Challenge",
         "organizer": {
           "@type": "EducationalOrganization",
           "name": "IIEC"
@@ -139,98 +171,138 @@
       </div>
     </section>
 
-    <!-- Upcoming Initiatives Section -->
+    <!-- Featured Event Section -->
+    <section class="section" id="featured-event" aria-labelledby="featured-event-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="featured-event-title" class="section-title">Featured <span class="highlight">Event</span></h2>
+          <p class="section-subtitle">Our flagship event you don't want to miss</p>
+        </header>
+        
+        <article class="featured-event-card" data-animate="scale" data-animate-delay="1">
+          <div class="featured-event-glow"></div>
+          <div class="featured-event-shimmer"></div>
+          <div class="featured-event-badge">🔥 Featured Event</div>
+          <div class="featured-event-content">
+            <div class="featured-event-collab-label">A Collaboration By</div>
+            <div class="featured-event-logos">
+              <div class="featured-logo-wrapper">
+                <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="70" height="70">
+                <span class="featured-logo-name">IIEC</span>
+              </div>
+              <span class="featured-event-x">×</span>
+              <div class="featured-logo-wrapper">
+                <img src="./assets/Logo/gfg logo 2.png" alt="GeeksforGeeks Logo" width="70" height="70">
+                <span class="featured-logo-name">GeeksforGeeks</span>
+              </div>
+            </div>
+            <h3 class="featured-event-title">
+              <span class="featured-event-title-pre">IIEC</span>
+              GENESIS
+              <span class="featured-event-title-sub">— The Beginning of Innovation</span>
+            </h3>
+            <p class="featured-event-desc">The grand orientation event of IIEC in collaboration with GeeksforGeeks. Kickstart your innovation journey with inspiring talks, networking, and the roadmap to entrepreneurship at CSMU.</p>
+            <div class="featured-event-meta">
+              <span class="featured-event-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                11 February 2026
+              </span>
+              <span class="featured-event-meta-item featured-event-meta-live">
+                <span class="pulse-dot"></span>
+                Upcoming
+              </span>
+              <span class="featured-event-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                G.D. Badaya Auditorium, CSMU
+              </span>
+            </div>
+            <div class="featured-event-actions">
+              <a href="genesis.html" class="btn btn-primary btn-large featured-event-btn">
+                <span>Learn More & Register</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
     <section class="section" id="initiatives" aria-labelledby="initiatives-title">
       <div class="container">
         <header class="section-header" data-animate="fade-up">
-          <h2 id="initiatives-title" class="section-title">Upcoming <span class="highlight">Initiatives</span></h2>
-          <p class="section-subtitle">Flagship programs launching soon</p>
+          <h2 id="initiatives-title" class="section-title">Upcoming <span class="highlight">Events</span></h2>
+          <p class="section-subtitle">Exciting events lined up for you</p>
         </header>
         
         <div class="grid-2">
-          <!-- Startup Bootcamp -->
-          <article class="glass-card initiative-card" id="bootcamp" data-animate="flip-y" data-animate-delay="1">
+          <!-- TechAstra -->
+          <article class="glass-card initiative-card" data-animate="flip-y" data-animate-delay="1">
             <div class="initiative-badge">Coming Soon</div>
             <div class="initiative-icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
-            <h3 class="initiative-title">Startup Bootcamp</h3>
+            <h3 class="initiative-title">TechAstra</h3>
             <p class="initiative-desc">
-              An intensive 4-week program designed to take your idea from concept to MVP. Work with mentors, validate your idea, and pitch to real investors.
+              Explore the frontiers of technology and innovation. A tech fest featuring competitions, workshops, and showcases that push the boundaries of what's possible.
             </p>
-            <ul class="initiative-features">
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                4-week intensive curriculum
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                1-on-1 mentorship sessions
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                MVP development support
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Demo Day with investors
-              </li>
-            </ul>
-            <a href="https://join.ecellcsmu.in" class="btn btn-primary" target="_blank" rel="noopener">
-              <span>Get Notified</span>
+            <a href="#" class="btn btn-secondary">
+              <span>Details Coming Soon</span>
             </a>
           </article>
           
-          <!-- Industry Speaker Series -->
-          <article class="glass-card initiative-card" id="talks" data-animate="flip-y" data-animate-delay="2">
+          <!-- IPL Auction -->
+          <article class="glass-card initiative-card" data-animate="flip-y" data-animate-delay="2">
             <div class="initiative-badge">Coming Soon</div>
             <div class="initiative-icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 class="initiative-title">Industry Speaker Series</h3>
+            <h3 class="initiative-title">IPL Auction</h3>
             <p class="initiative-desc">
-              Monthly sessions with successful entrepreneurs, startup founders, and industry leaders sharing insights, failures, and success stories.
+              Experience entrepreneurship through sports management. Strategize, bid, and build your dream team in this exciting simulated IPL auction event.
             </p>
-            <ul class="initiative-features">
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Monthly speaker events
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Q&A sessions with founders
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Networking opportunities
-              </li>
-              <li>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Recorded for on-demand viewing
-              </li>
-            </ul>
-            <a href="https://join.ecellcsmu.in" class="btn btn-primary" target="_blank" rel="noopener">
-              <span>Get Notified</span>
+            <a href="#" class="btn btn-secondary">
+              <span>Details Coming Soon</span>
+            </a>
+          </article>
+          
+          <!-- Problem Auction -->
+          <article class="glass-card initiative-card" data-animate="flip-y" data-animate-delay="3">
+            <div class="initiative-badge">Coming Soon</div>
+            <div class="initiative-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <h3 class="initiative-title">Problem Auction</h3>
+            <p class="initiative-desc">
+              Bid on real-world problems and develop innovative solutions. A unique event where teams compete to solve challenges from industry partners.
+            </p>
+            <a href="#" class="btn btn-secondary">
+              <span>Details Coming Soon</span>
+            </a>
+          </article>
+          
+          <!-- Starting NEC Journey -->
+          <article class="glass-card initiative-card" data-animate="flip-y" data-animate-delay="4">
+            <div class="initiative-badge">Coming Soon</div>
+            <div class="initiative-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+              </svg>
+            </div>
+            <h3 class="initiative-title">Starting NEC Journey</h3>
+            <p class="initiative-desc">
+              Begin your entrepreneurial journey with the National Entrepreneurship Challenge. Represent CSMU on the national stage and compete with the best minds.
+            </p>
+            <a href="#" class="btn btn-secondary">
+              <span>Details Coming Soon</span>
             </a>
           </article>
         </div>
@@ -297,9 +369,9 @@
           <div class="timeline-item" data-animate="fade-left" data-animate-delay="1">
             <div class="timeline-marker future"></div>
             <div class="timeline-content glass-card">
-              <div class="timeline-date">Q3 2024</div>
-              <h3 class="timeline-title">Launch Week</h3>
-              <p class="timeline-desc">Grand inauguration of IIEC with keynote speakers, networking sessions, and the unveiling of our annual roadmap.</p>
+              <div class="timeline-date">Feb 2026</div>
+              <h3 class="timeline-title">GENESIS — Grand Orientation</h3>
+              <p class="timeline-desc">The grand inauguration event of IIEC in collaboration with GeeksforGeeks. Keynote talks, networking, and the beginning of the innovation journey.</p>
               <span class="event-status upcoming">Upcoming</span>
             </div>
           </div>
@@ -307,9 +379,9 @@
           <div class="timeline-item" data-animate="fade-right" data-animate-delay="2">
             <div class="timeline-marker future"></div>
             <div class="timeline-content glass-card">
-              <div class="timeline-date">Q4 2024</div>
-              <h3 class="timeline-title">Ideathon 1.0</h3>
-              <p class="timeline-desc">36-hour ideation hackathon where teams compete to develop innovative solutions for real-world problems. Prizes worth ₹50,000.</p>
+              <div class="timeline-date">2026</div>
+              <h3 class="timeline-title">TechAstra</h3>
+              <p class="timeline-desc">A tech fest exploring the frontiers of technology and innovation through competitions, workshops, and showcases.</p>
               <span class="event-status upcoming">Upcoming</span>
             </div>
           </div>
@@ -317,9 +389,9 @@
           <div class="timeline-item" data-animate="fade-left" data-animate-delay="3">
             <div class="timeline-marker future"></div>
             <div class="timeline-content glass-card">
-              <div class="timeline-date">Q1 2025</div>
-              <h3 class="timeline-title">Startup Weekend</h3>
-              <p class="timeline-desc">Weekend-long intensive program where participants form teams, develop business models, and pitch to a panel of investors.</p>
+              <div class="timeline-date">2026</div>
+              <h3 class="timeline-title">IPL Auction</h3>
+              <p class="timeline-desc">Simulated IPL auction event blending sports management with entrepreneurial strategy, bidding, and team-building skills.</p>
               <span class="event-status upcoming">Upcoming</span>
             </div>
           </div>
@@ -327,9 +399,9 @@
           <div class="timeline-item" data-animate="fade-right" data-animate-delay="4">
             <div class="timeline-marker future"></div>
             <div class="timeline-content glass-card">
-              <div class="timeline-date">Q2 2025</div>
-              <h3 class="timeline-title">IIEC Summit</h3>
-              <p class="timeline-desc">Our flagship annual innovation and entrepreneurship summit featuring industry leaders, workshops, competitions, and networking opportunities.</p>
+              <div class="timeline-date">2026</div>
+              <h3 class="timeline-title">Problem Auction</h3>
+              <p class="timeline-desc">Teams bid on real-world problem statements and compete to develop the most innovative solutions for industry challenges.</p>
               <span class="event-status upcoming">Upcoming</span>
             </div>
           </div>
@@ -337,10 +409,10 @@
           <div class="timeline-item" data-animate="fade-left" data-animate-delay="5">
             <div class="timeline-marker future"></div>
             <div class="timeline-content glass-card">
-              <div class="timeline-date">Ongoing</div>
-              <h3 class="timeline-title">Monthly Pitch Nights</h3>
-              <p class="timeline-desc">Monthly sessions where students pitch their startups to a panel of mentors and peers for feedback and guidance.</p>
-              <span class="event-status recurring">Recurring</span>
+              <div class="timeline-date">2026</div>
+              <h3 class="timeline-title">National Entrepreneurship Challenge</h3>
+              <p class="timeline-desc">Begin the NEC journey — represent CSMU on the national stage and compete with the brightest entrepreneurial minds across India.</p>
+              <span class="event-status upcoming">Upcoming</span>
             </div>
           </div>
         </div>
