@@ -7,17 +7,17 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="Read the latest articles, insights, and updates from IIEC on innovation, entrepreneurship, startups, and incubation.">
+  <meta name="description" content="Read the latest articles, insights, and updates from IIEC — Where Vision Drives Venture. Innovation, entrepreneurship, startups, and incubation.">
   <meta name="keywords" content="IIEC, Innovation, Incubation, Entrepreneurship Cell, CSMU, blog, startups, articles, insights">
   <meta name="author" content="IIEC">
   <meta name="theme-color" content="#05070f">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Blog | IIEC">
-  <meta property="og:description" content="Read the latest articles and insights on innovation, entrepreneurship, and startups.">
+  <meta property="og:description" content="Where Vision Drives Venture. Read the latest articles and insights on innovation, entrepreneurship, and startups.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://iiec.in/blog">
-  <meta property="og:image" content="./Assests/og-image.webp">
+  <meta property="og:image" content="./assets/og-image.webp">
   
   <title>Blog | IIEC</title>
   
@@ -25,13 +25,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="icon" type="image/png" href="./Assests/favicon.png">
-  <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
   
-  <link rel="stylesheet" href="style.css">
-  <!-- Page Loader Script (inline for immediate execution) -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Page Loader Script -->
   <script>
-    (function(){var l='<div class="page-loader" id="page-loader"><div class="loader-content"><div class="loader-logo"><img src="./Assests/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80"></div><div class="loader-bar-container"><div class="loader-percentage"><span class="loader-percentage-num" id="loader-percent">0</span><span class="loader-percentage-symbol">%</span></div><div class="loader-bar-wrapper"><div class="loader-bar" id="loader-bar"></div></div><div class="loader-text">Loading<span class="loader-dots"><span></span><span></span><span></span></span></div></div></div></div>';document.write(l);})();
+    document.documentElement.classList.add('js-loading');
+    window.addEventListener('load', () => {
+      document.documentElement.classList.remove('js-loading');
+      document.documentElement.classList.add('js-loaded');
+    });
   </script>
   
   <script type="application/ld+json">
@@ -60,6 +64,34 @@
   </script>
 </head>
 <body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="page-loader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="./assets/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80">
+      </div>
+      <div class="loader-bar-container">
+        <div class="loader-dots-wrapper">
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+        </div>
+        <div class="loader-info-row">
+          <div class="loader-percentage">
+            <span class="loader-percentage-num" id="loader-percent">0</span>
+            <span class="loader-percentage-symbol">%</span>
+          </div>
+          <span class="loader-divider">•</span>
+          <div class="loader-text">Where Vision Drives Venture</div>
+        </div>
+        <!-- Hidden element for script compatibility -->
+        <div id="loader-bar" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Particle Canvas -->
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
   
@@ -74,7 +106,7 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
         <a href="index.html" class="nav-logo" aria-label="IIEC Home">
-          <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
           <span>IIEC</span>
         </a>
         
@@ -109,8 +141,36 @@
         <div class="blog-grid" id="blog-posts">
           <!-- Blog posts will be loaded dynamically from API -->
           <div class="blog-loading" id="blog-loading">
-            <div class="loading-spinner"></div>
-            <p>Loading articles...</p>
+            <!-- Skeleton Card 1 -->
+            <div class="skeleton-card">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-content">
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line title"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line medium"></div>
+              </div>
+            </div>
+            <!-- Skeleton Card 2 -->
+            <div class="skeleton-card">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-content">
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line title"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line medium"></div>
+              </div>
+            </div>
+            <!-- Skeleton Card 3 -->
+            <div class="skeleton-card">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-content">
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line title"></div>
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line medium"></div>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -192,11 +252,11 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="footer-logo">
-              <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy">
+              <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy">
               <span>IIEC</span>
             </div>
             <p class="footer-desc">
-              IIEC - Innovation, Incubation & Entrepreneurship Cell. Formerly E-Cell CSMU. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University, one founder at a time.
+              IIEC — Innovation, Incubation & Entrepreneurship Cell. Where Vision Drives Venture. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University.
             </p>
             <div class="footer-socials">
               <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -265,6 +325,6 @@
   </div>
 
   <!-- Main Script -->
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

@@ -17,462 +17,50 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="icon" type="image/png" href="./Assests/favicon.png">
-  <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
   
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/404.css">
   
-  <style>
-    .error-section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    /* Floating Elements */
-    .floating-elements {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    
-    .floating-shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.1;
-      filter: blur(40px);
-    }
-    
-    .shape-1 {
-      width: 300px;
-      height: 300px;
-      background: var(--primary);
-      top: 10%;
-      left: -5%;
-      animation: float-1 8s ease-in-out infinite;
-    }
-    
-    .shape-2 {
-      width: 200px;
-      height: 200px;
-      background: var(--secondary);
-      top: 60%;
-      right: -5%;
-      animation: float-2 10s ease-in-out infinite;
-    }
-    
-    .shape-3 {
-      width: 150px;
-      height: 150px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      bottom: 10%;
-      left: 20%;
-      animation: float-3 7s ease-in-out infinite;
-    }
-    
-    @keyframes float-1 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(30px, 30px) scale(1.1); }
-    }
-    
-    @keyframes float-2 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(-20px, -40px) scale(1.15); }
-    }
-    
-    @keyframes float-3 {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      50% { transform: translate(40px, -20px) scale(1.05); }
-    }
-    
-    /* Floating Icons */
-    .floating-icons {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    
-    .float-icon {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      opacity: 0.15;
-      animation: icon-float 4s ease-in-out infinite;
-    }
-    
-    .float-icon svg {
-      width: 100%;
-      height: 100%;
-      fill: var(--primary);
-    }
-    
-    @keyframes icon-float {
-      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
-      50% { transform: translateY(-15px) rotate(10deg); opacity: 0.25; }
-    }
-    
-    .error-card {
-      text-align: center;
-      max-width: 600px;
-      padding: 3rem;
-      position: relative;
-      z-index: 1;
-    }
-    
-    /* Innovation Lightbulb Illustration */
-    .lightbulb-container {
-      position: relative;
-      width: 180px;
-      height: 180px;
-      margin: 0 auto 2rem;
-    }
-    
-    .lightbulb {
-      width: 100%;
-      height: 100%;
-      animation: lightbulb-float 4s ease-in-out infinite;
-    }
-    
-    @keyframes lightbulb-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-    
-    .lightbulb-glow {
-      position: absolute;
-      top: 10%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle, rgba(255, 200, 50, 0.4) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: glow-pulse 2s ease-in-out infinite;
-      filter: blur(10px);
-    }
-    
-    @keyframes glow-pulse {
-      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
-      50% { transform: translateX(-50%) scale(1.3); opacity: 1; }
-    }
-    
-    .lightbulb-shadow {
-      position: absolute;
-      bottom: -15px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 15px;
-      background: radial-gradient(ellipse, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
-      border-radius: 50%;
-      animation: shadow-pulse 4s ease-in-out infinite;
-    }
-    
-    @keyframes shadow-pulse {
-      0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
-      50% { transform: translateX(-50%) scale(0.7); opacity: 0.3; }
-    }
-    
-    /* Orbiting Elements */
-    .orbit-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      animation: orbit 12s linear infinite;
-    }
-    
-    @keyframes orbit {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    
-    .orbit-item {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      animation: counter-orbit 12s linear infinite;
-    }
-    
-    .orbit-item svg {
-      width: 100%;
-      height: 100%;
-      fill: var(--primary);
-      opacity: 0.7;
-    }
-    
-    .orbit-item:nth-child(1) { top: -15px; left: 50%; transform: translateX(-50%); }
-    .orbit-item:nth-child(2) { bottom: -15px; left: 50%; transform: translateX(-50%); }
-    .orbit-item:nth-child(3) { top: 50%; left: -15px; transform: translateY(-50%); }
-    
-    @keyframes counter-orbit {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(-360deg); }
-    }
-    
-    /* Glitch Effect for 404 */
-    .error-code-container {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-    
-    .error-code {
-      font-size: clamp(7rem, 20vw, 12rem);
-      font-weight: 900;
-      font-family: var(--font-heading);
-      color: #00d4ff;
-      line-height: 1;
-      position: relative;
-      text-shadow: 
-        0 0 20px rgba(0, 212, 255, 0.8),
-        0 0 40px rgba(0, 212, 255, 0.6),
-        0 0 60px rgba(0, 212, 255, 0.4),
-        0 0 80px rgba(0, 255, 136, 0.3);
-      animation: error-glow 3s ease-in-out infinite;
-    }
-    
-    @keyframes error-glow {
-      0%, 100% { 
-        color: #00d4ff;
-        text-shadow: 
-          0 0 20px rgba(0, 212, 255, 0.8),
-          0 0 40px rgba(0, 212, 255, 0.6),
-          0 0 60px rgba(0, 212, 255, 0.4);
-      }
-      50% { 
-        color: #00ff88;
-        text-shadow: 
-          0 0 20px rgba(0, 255, 136, 0.8),
-          0 0 40px rgba(0, 255, 136, 0.6),
-          0 0 60px rgba(0, 255, 136, 0.4);
-      }
-    }
-    
-    .error-title {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 1rem;
-      animation: fade-in-up 0.6s ease-out 0.2s both;
-    }
-    
-    .error-message {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
-      animation: fade-in-up 0.6s ease-out 0.4s both;
-    }
-    
-    @keyframes fade-in-up {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .error-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      justify-content: center;
-      animation: fade-in-up 0.6s ease-out 0.6s both;
-    }
-    
-    .error-actions .btn {
-      min-width: 180px;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .error-actions .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transition: left 0.5s;
-    }
-    
-    .error-actions .btn:hover::before {
-      left: 100%;
-    }
-    
-    .error-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 2.5rem;
-      padding-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      animation: fade-in-up 0.6s ease-out 0.8s both;
-    }
-    
-    .error-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-      position: relative;
-      padding-bottom: 2px;
-    }
-    
-    .error-links a::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      transition: width 0.3s ease;
-    }
-    
-    .error-links a:hover {
-      color: var(--text-primary);
-    }
-    
-    .error-links a:hover::after {
-      width: 100%;
-    }
-    
-    /* Growth Arrow Animation */
-    .growth-arrow {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      animation: arrow-rise 8s ease-in-out infinite;
-      opacity: 0.5;
-    }
-    
-    .growth-arrow svg {
-      width: 100%;
-      height: 100%;
-      fill: url(#arrow-gradient);
-    }
-    
-    .growth-arrow-1 {
-      bottom: 30%;
-      left: 5%;
-      animation-delay: 0s;
-    }
-    
-    .growth-arrow-2 {
-      bottom: 40%;
-      right: 8%;
-      animation-delay: 2s;
-    }
-    
-    .growth-arrow-3 {
-      top: 25%;
-      left: 12%;
-      animation-delay: 4s;
-    }
-    
-    @keyframes arrow-rise {
-      0%, 100% {
-        transform: translateY(0) scale(1);
-        opacity: 0.3;
-      }
-      50% {
-        transform: translateY(-30px) scale(1.1);
-        opacity: 0.6;
-      }
-    }
-    
-    /* Startup Icons decoration */
-    .startup-icon {
-      position: absolute;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(10px);
-    }
-    
-    .startup-icon svg {
-      width: 50%;
-      height: 50%;
-      fill: var(--primary);
-      opacity: 0.6;
-    }
-    
-    .startup-icon-1 {
-      width: 70px;
-      height: 70px;
-      top: 18%;
-      right: 12%;
-      animation: icon-bob 6s ease-in-out infinite;
-    }
-    
-    .startup-icon-2 {
-      width: 50px;
-      height: 50px;
-      bottom: 25%;
-      left: 10%;
-      animation: icon-bob 5s ease-in-out infinite reverse;
-    }
-    
-    .startup-icon-3 {
-      width: 60px;
-      height: 60px;
-      top: 60%;
-      right: 6%;
-      animation: icon-bob 7s ease-in-out infinite;
-      animation-delay: 1s;
-    }
-    
-    @keyframes icon-bob {
-      0%, 100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(5deg); }
-    }
-    
-    @media (max-width: 768px) {
-      .error-card {
-        padding: 2rem 1.5rem;
-      }
-      
-      .lightbulb-container {
-        width: 140px;
-        height: 140px;
-      }
-      
-      .startup-icon-1, .startup-icon-2, .startup-icon-3 {
-        display: none;
-      }
-      
-      .growth-arrow {
-        display: none;
-      }
-      
-      .error-actions {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .error-actions .btn {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
-  </style>
+  <!-- Page Loader Script -->
+  <script>
+    document.documentElement.classList.add('js-loading');
+    window.addEventListener('load', () => {
+      document.documentElement.classList.remove('js-loading');
+      document.documentElement.classList.add('js-loaded');
+    });
+  </script>
 </head>
 <body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="page-loader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="./assets/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80">
+      </div>
+      <div class="loader-bar-container">
+        <div class="loader-dots-wrapper">
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+        </div>
+        <div class="loader-info-row">
+          <div class="loader-percentage">
+            <span class="loader-percentage-num" id="loader-percent">0</span>
+            <span class="loader-percentage-symbol">%</span>
+          </div>
+          <span class="loader-divider">•</span>
+          <div class="loader-text">Where Vision Drives Venture</div>
+        </div>
+        <!-- Hidden element for script compatibility -->
+        <div id="loader-bar" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Particle Canvas -->
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
   
@@ -487,7 +75,7 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
         <a href="index.html" class="nav-logo" aria-label="IIEC Home">
-          <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
           <span>IIEC</span>
         </a>
         
@@ -679,37 +267,9 @@
   </div>
 
   <!-- Main Script -->
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
   
   <!-- Floating Icons Generator -->
-  <script>
-    (function() {
-      const container = document.getElementById('floating-icons');
-      const icons = [
-        // Lightbulb
-        '<svg viewBox="0 0 24 24"><path d="M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z"/></svg>',
-        // Rocket
-        '<svg viewBox="0 0 24 24"><path d="M12 2.5s4.5 2.04 4.5 10.5c0 2.49-1.04 5.57-1.6 7H9.1c-.56-1.43-1.6-4.51-1.6-7C7.5 4.54 12 2.5 12 2.5zm0 5a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM7 22h10v-2H7v2z"/></svg>',
-        // Target
-        '<svg viewBox="0 0 24 24"><path d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10 10-4.49 10-10S17.51 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3-8c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/></svg>',
-        // Chart
-        '<svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg>',
-        // Handshake
-        '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>'
-      ];
-      const numberOfIcons = 12;
-      
-      for (let i = 0; i < numberOfIcons; i++) {
-        const icon = document.createElement('div');
-        icon.className = 'float-icon';
-        icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-        icon.style.left = Math.random() * 100 + '%';
-        icon.style.top = Math.random() * 100 + '%';
-        icon.style.animationDelay = Math.random() * 4 + 's';
-        icon.style.animationDuration = (Math.random() * 3 + 3) + 's';
-        container.appendChild(icon);
-      }
-    })();
-  </script>
+  <script src="js/404.js"></script>
 </body>
 </html>

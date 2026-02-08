@@ -1,0 +1,764 @@
+/* ================================================================
+   GENESIS — IIEC Orientation 2026
+   Registration Page Styles
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   Hero Section
+   ---------------------------------------------------------------- */
+.genesis-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0 80px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.genesis-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(var(--color-accent-rgb), 0.08) 0%, transparent 70%),
+    radial-gradient(circle at 20% 80%, rgba(var(--color-accent-rgb), 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.genesis-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Collaboration Badges */
+.genesis-collab-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.collab-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+  backdrop-filter: blur(12px);
+}
+
+.collab-badge img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.collab-x {
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+  font-weight: var(--font-bold);
+}
+
+/* Overline */
+.genesis-overline {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+/* Title */
+.genesis-title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: var(--font-extrabold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--color-accent) 50%, var(--text-primary) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: genesisShimmer 6s ease-in-out infinite;
+}
+
+@keyframes genesisShimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 200% center; }
+}
+
+/* Subtitle */
+.genesis-subtitle {
+  font-size: var(--text-lg);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+}
+
+/* Meta Grid */
+.genesis-meta-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.genesis-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  text-align: left;
+}
+
+.genesis-meta-item svg {
+  width: 20px;
+  height: 20px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.meta-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: var(--font-semibold);
+}
+
+.meta-value {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+}
+
+/* CTA Button */
+.genesis-cta-btn {
+  display: inline-flex;
+  margin: 0 auto;
+}
+
+/* ----------------------------------------------------------------
+   About GENESIS
+   ---------------------------------------------------------------- */
+.genesis-about-card {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--space-8);
+}
+
+.genesis-about-card p {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.genesis-about-card p:last-child {
+  margin-bottom: 0;
+}
+
+.collab-note {
+  padding-top: 1rem;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-primary) !important;
+  font-size: var(--text-sm) !important;
+}
+
+.collab-note strong {
+  color: var(--color-accent);
+}
+
+/* ----------------------------------------------------------------
+   Why Attend — Reason Cards
+   ---------------------------------------------------------------- */
+.genesis-reasons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .genesis-reasons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .genesis-reasons-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .genesis-reasons-grid .genesis-reason-card:nth-child(4),
+  .genesis-reasons-grid .genesis-reason-card:nth-child(5) {
+    grid-column: span 1;
+  }
+}
+
+.genesis-reason-card {
+  padding: var(--space-6);
+  transition: all var(--transition-base);
+}
+
+.genesis-reason-card:hover {
+  border-color: var(--glass-border-hover);
+  transform: translateY(-4px);
+}
+
+.reason-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-muted);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-4);
+}
+
+.reason-icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-accent);
+}
+
+.genesis-reason-card h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-2);
+  color: var(--text-primary);
+}
+
+.genesis-reason-card p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ----------------------------------------------------------------
+   Event Details
+   ---------------------------------------------------------------- */
+.genesis-details-card {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--space-8);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  font-weight: var(--font-bold);
+}
+
+.detail-value {
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  font-weight: var(--font-medium);
+  line-height: 1.5;
+}
+
+.detail-highlight {
+  grid-column: 1 / -1;
+  padding: var(--space-4);
+  background: rgba(var(--color-accent-rgb), 0.06);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.15);
+  border-radius: var(--radius-lg);
+}
+
+/* ----------------------------------------------------------------
+   What You'll Gain
+   ---------------------------------------------------------------- */
+.genesis-gains-grid {
+  max-width: 780px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.gain-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--glass-border);
+  transition: all var(--transition-base);
+}
+
+.gain-item:last-child {
+  border-bottom: none;
+}
+
+.gain-item:hover {
+  padding-left: var(--space-3);
+}
+
+.gain-number {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-extrabold);
+  color: var(--color-accent);
+  opacity: 0.25;
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 50px;
+}
+
+.gain-text h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.gain-text p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ----------------------------------------------------------------
+   Registration Instructions
+   ---------------------------------------------------------------- */
+.genesis-instructions {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--space-8);
+}
+
+.instructions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.instructions-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.instructions-list li svg {
+  width: 22px;
+  height: 22px;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.instructions-list li strong {
+  color: var(--text-primary);
+}
+
+/* ----------------------------------------------------------------
+   Registration Form
+   ---------------------------------------------------------------- */
+.genesis-form-wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.genesis-form {
+  padding: var(--space-8);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form-group-full {
+    grid-column: 1 / -1;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
+  color: var(--text-primary);
+}
+
+.required {
+  color: #ef4444;
+}
+
+.optional {
+  color: var(--text-muted);
+  font-weight: var(--font-normal);
+  font-size: var(--text-xs);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  outline: none;
+  transition: all var(--transition-fast);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.15);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.form-group input.error,
+.form-group select.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.form-group select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.form-group select option {
+  background: #0a0d18;
+  color: var(--text-primary);
+}
+
+/* Interest Chips */
+.interest-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  cursor: pointer;
+  position: relative;
+}
+
+.chip input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.chip span {
+  display: inline-block;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.chip:hover span {
+  border-color: var(--glass-border-hover);
+  color: var(--text-primary);
+}
+
+.chip input:checked + span {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-base);
+  font-weight: var(--font-semibold);
+  box-shadow: 0 0 15px rgba(var(--color-accent-rgb), 0.3);
+}
+
+/* Consent */
+.form-consent {
+  margin-bottom: var(--space-6);
+}
+
+.consent-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.consent-label input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.consent-checkmark {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border: 2px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.consent-checkmark::after {
+  content: '';
+  display: none;
+  width: 5px;
+  height: 9px;
+  border: solid var(--color-base);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.consent-label input:checked ~ .consent-checkmark {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.consent-label input:checked ~ .consent-checkmark::after {
+  display: block;
+}
+
+/* Submit Button */
+.genesis-submit-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: var(--text-lg);
+  padding: 16px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.genesis-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.genesis-submit-btn.submitting span {
+  opacity: 0;
+}
+
+.genesis-submit-btn.submitting::after {
+  content: '';
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 3px solid transparent;
+  border-top-color: var(--color-base);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ----------------------------------------------------------------
+   Success State
+   ---------------------------------------------------------------- */
+.genesis-success {
+  text-align: center;
+  padding: var(--space-12) var(--space-8);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--space-6);
+  background: rgba(var(--color-accent-rgb), 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-icon svg {
+  width: 40px;
+  height: 40px;
+  color: var(--color-accent);
+}
+
+.genesis-success h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-3);
+  color: var(--text-primary);
+}
+
+.genesis-success p {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto var(--space-3);
+}
+
+.success-note {
+  font-size: var(--text-sm) !important;
+  color: var(--text-muted) !important;
+  margin-bottom: var(--space-6) !important;
+}
+
+/* ----------------------------------------------------------------
+   Bottom CTA
+   ---------------------------------------------------------------- */
+.genesis-bottom-cta {
+  padding-bottom: var(--space-16);
+}
+
+.genesis-cta-card {
+  text-align: center;
+  padding: var(--space-12) var(--space-8);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.genesis-cta-card h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-3);
+}
+
+.genesis-cta-card p {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----------------------------------------------------------------
+   Responsive Adjustments
+   ---------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .genesis-hero {
+    padding: 100px 0 60px;
+  }
+
+  .genesis-meta-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .genesis-meta-item {
+    justify-content: flex-start;
+  }
+
+  .genesis-collab-badges {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .genesis-form {
+    padding: var(--space-6);
+  }
+
+  .gain-number {
+    font-size: var(--text-2xl);
+    min-width: 36px;
+  }
+
+  .genesis-cta-card {
+    padding: var(--space-8) var(--space-6);
+  }
+
+  .genesis-cta-card h2 {
+    font-size: var(--text-2xl);
+  }
+}

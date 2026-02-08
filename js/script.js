@@ -683,7 +683,7 @@
     }
 
     addCounterAnimations() {
-      const counters = document.querySelectorAll('.status-value');
+      const counters = document.querySelectorAll('.status-value, .stat-number');
 
       counters.forEach(counter => {
         const text = counter.textContent;

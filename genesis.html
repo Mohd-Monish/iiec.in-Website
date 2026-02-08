@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="GENESIS — Official IIEC Orientation Program 2026. Where Vision Drives Venture. Register now for the entry point to Innovation, Incubation & Entrepreneurship at CSMU.">
+  <meta name="keywords" content="GENESIS, IIEC, Orientation, 2026, CSMU, entrepreneurship, innovation, registration, GeeksforGeeks">
+  <meta name="author" content="IIEC">
+  <meta name="theme-color" content="#05070f">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GENESIS | IIEC Orientation Program 2026">
+  <meta property="og:description" content="Where Vision Drives Venture. Official orientation of IIEC. Register now to begin your entrepreneurship journey.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://iiec.in/genesis">
+  <meta property="og:image" content="./assets/og-image.webp">
+
+  <title>GENESIS | IIEC Orientation 2026</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/genesis.css">
+
+  <!-- Page Loader Script -->
+  <script>
+    document.documentElement.classList.add('js-loading');
+    window.addEventListener('load', () => {
+      document.documentElement.classList.remove('js-loading');
+      document.documentElement.classList.add('js-loaded');
+    });
+  </script>
+</head>
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="page-loader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="./assets/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80">
+      </div>
+      <div class="loader-bar-container">
+        <div class="loader-dots-wrapper">
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+        </div>
+        <div class="loader-info-row">
+          <div class="loader-percentage">
+            <span class="loader-percentage-num" id="loader-percent">0</span>
+            <span class="loader-percentage-symbol">%</span>
+          </div>
+          <span class="loader-divider">•</span>
+          <div class="loader-text">Where Vision Drives Venture</div>
+        </div>
+        <div id="loader-bar" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+  <!-- Glow Orb -->
+  <div class="glow-orb-wrapper" aria-hidden="true">
+    <div class="glow-orb"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container">
+        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+          <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <span>IIEC</span>
+        </a>
+
+        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" role="menu">
+          <a href="index.html" class="nav-link" role="menuitem">Home</a>
+          <a href="about.html" class="nav-link" role="menuitem">About</a>
+          <a href="team.html" class="nav-link" role="menuitem">Team</a>
+          <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
+          <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+          <a href="genesis.html" class="nav-cta" role="menuitem">Register — GENESIS</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+         SECTION 1: HERO / HEADER
+         ============================================================ -->
+    <section class="genesis-hero" aria-labelledby="genesis-title">
+      <div class="container">
+        <div class="genesis-hero-content">
+          <div class="genesis-collab-badges">
+            <div class="collab-badge">
+              <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="36" height="36">
+              <span>IIEC</span>
+            </div>
+            <span class="collab-x">×</span>
+            <div class="collab-badge">
+              <img src="./assets/Logo/gfg-logo.svg" alt="GeeksforGeeks Logo" width="36" height="36" onerror="this.style.display='none'">
+              <span>GeeksforGeeks</span>
+            </div>
+          </div>
+
+          <p class="genesis-overline">IIEC Orientation Program 2026</p>
+
+          <h1 id="genesis-title" class="genesis-title">GENESIS</h1>
+
+          <p class="genesis-subtitle">Official Orientation of the Innovation, Incubation &amp; Entrepreneurship Cell</p>
+
+          <div class="genesis-meta-grid">
+            <div class="genesis-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+              <div>
+                <span class="meta-label">Date</span>
+                <span class="meta-value">To Be Announced</span>
+              </div>
+            </div>
+            <div class="genesis-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <span class="meta-label">Time</span>
+                <span class="meta-value">To Be Announced</span>
+              </div>
+            </div>
+            <div class="genesis-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div>
+                <span class="meta-label">Venue</span>
+                <span class="meta-value">University Auditorium, CSMU</span>
+              </div>
+            </div>
+          </div>
+
+          <a href="#register" class="btn btn-primary btn-large genesis-cta-btn">
+            <span>Register Now</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2: ABOUT GENESIS
+         ============================================================ -->
+    <section class="section" id="about-genesis" aria-labelledby="about-genesis-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="about-genesis-title" class="section-title">What is <span class="highlight">GENESIS</span></h2>
+        </header>
+        <div class="genesis-about-card glass-card" data-animate="fade-up" data-animate-delay="1">
+          <p>
+            GENESIS is the official orientation program of IIEC — the Innovation, Incubation &amp; Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. It serves as the entry point for students who want to explore innovation, entrepreneurship, and skill development beyond the traditional classroom.
+          </p>
+          <p>
+            The event introduces IIEC's vision, team structure, upcoming initiatives, and the opportunities available for students across all departments. Whether you want to build a startup, develop technical skills, or contribute to campus growth — GENESIS is where it begins.
+          </p>
+          <p class="collab-note">
+            <strong>In collaboration with GeeksforGeeks</strong> — bringing additional learning resources and technical opportunities to attendees.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: WHY ATTEND
+         ============================================================ -->
+    <section class="section" id="why-attend" aria-labelledby="why-attend-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="why-attend-title" class="section-title">Why Attend <span class="highlight">GENESIS</span></h2>
+          <p class="section-subtitle">What you take away from this event</p>
+        </header>
+
+        <div class="genesis-reasons-grid">
+          <div class="genesis-reason-card glass-card" data-animate="fade-up" data-animate-delay="1">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            </div>
+            <h3>Understand IIEC's Roadmap</h3>
+            <p>Learn what IIEC does, its plans for 2026, and how you can be part of it.</p>
+          </div>
+
+          <div class="genesis-reason-card glass-card" data-animate="fade-up" data-animate-delay="2">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <h3>Learn Beyond Classrooms</h3>
+            <p>Discover skills and experiences that go beyond your academic curriculum.</p>
+          </div>
+
+          <div class="genesis-reason-card glass-card" data-animate="fade-up" data-animate-delay="3">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            </div>
+            <h3>Real-World Skill Exposure</h3>
+            <p>Get introduced to startup thinking, product development, and professional skills.</p>
+          </div>
+
+          <div class="genesis-reason-card glass-card" data-animate="fade-up" data-animate-delay="4">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/></svg>
+            </div>
+            <h3>Know How to Join IIEC</h3>
+            <p>Understand the recruitment process, team roles, and how to apply.</p>
+          </div>
+
+          <div class="genesis-reason-card glass-card" data-animate="fade-up" data-animate-delay="5">
+            <div class="reason-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <h3>GeeksforGeeks Opportunities</h3>
+            <p>Access exclusive learning paths, resources, and community opportunities through GfG.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4: EVENT DETAILS
+         ============================================================ -->
+    <section class="section" id="event-details" aria-labelledby="details-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="details-title" class="section-title">Event <span class="highlight">Details</span></h2>
+        </header>
+
+        <div class="genesis-details-card glass-card" data-animate="fade-up" data-animate-delay="1">
+          <div class="details-grid">
+            <div class="detail-item">
+              <span class="detail-label">Date</span>
+              <span class="detail-value">To Be Announced</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Duration</span>
+              <span class="detail-value">2 – 3 Hours</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Venue</span>
+              <span class="detail-value">University Auditorium, CSMU</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Seating</span>
+              <span class="detail-value">Limited — based on auditorium capacity</span>
+            </div>
+            <div class="detail-item detail-highlight">
+              <span class="detail-label">Entry Rule</span>
+              <span class="detail-value">Pre-registration is required. Entry allowed only after verification.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5: WHAT STUDENTS WILL GAIN
+         ============================================================ -->
+    <section class="section" id="gains" aria-labelledby="gains-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="gains-title" class="section-title">What You'll <span class="highlight">Gain</span></h2>
+          <p class="section-subtitle">The value you walk away with after GENESIS</p>
+        </header>
+
+        <div class="genesis-gains-grid" data-animate="fade-up" data-animate-delay="1">
+          <div class="gain-item">
+            <div class="gain-number">01</div>
+            <div class="gain-text">
+              <h3>Entrepreneurship Mindset</h3>
+              <p>Exposure to how entrepreneurs think, plan, and execute ideas.</p>
+            </div>
+          </div>
+          <div class="gain-item">
+            <div class="gain-number">02</div>
+            <div class="gain-text">
+              <h3>Campus Opportunities</h3>
+              <p>Clarity on what's available — events, programs, teams, and projects.</p>
+            </div>
+          </div>
+          <div class="gain-item">
+            <div class="gain-number">03</div>
+            <div class="gain-text">
+              <h3>Skill Development Paths</h3>
+              <p>Understand which skills to build and how to get started.</p>
+            </div>
+          </div>
+          <div class="gain-item">
+            <div class="gain-number">04</div>
+            <div class="gain-text">
+              <h3>Mentorship &amp; Guidance</h3>
+              <p>Learn how to access mentors, learning resources, and community support.</p>
+            </div>
+          </div>
+          <div class="gain-item">
+            <div class="gain-number">05</div>
+            <div class="gain-text">
+              <h3>Recruitment Information</h3>
+              <p>Structured details on IIEC's recruitment process and team positions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6: REGISTRATION INSTRUCTIONS
+         ============================================================ -->
+    <section class="section" id="instructions" aria-labelledby="instructions-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="instructions-title" class="section-title">Registration <span class="highlight">Guidelines</span></h2>
+        </header>
+
+        <div class="genesis-instructions glass-card" data-animate="fade-up" data-animate-delay="1">
+          <ul class="instructions-list">
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Pre-registration is <strong>mandatory</strong>. Walk-ins will not be entertained without prior registration.</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Seats are <strong>limited</strong> based on auditorium capacity. Early registration is recommended.</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Entry will be allowed <strong>only after verification</strong> at the venue.</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>On-spot registration is <strong>subject to availability</strong> and not guaranteed.</span>
+            </li>
+            <li>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>Carry your <strong>college ID card</strong> on the day of the event.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 7 & 8: REGISTRATION FORM
+         ============================================================ -->
+    <section class="section" id="register" aria-labelledby="register-title">
+      <div class="container">
+        <header class="section-header" data-animate="fade-up">
+          <h2 id="register-title" class="section-title">Register for <span class="highlight">GENESIS</span></h2>
+          <p class="section-subtitle">Secure your seat. Fill in the details below.</p>
+        </header>
+
+        <div class="genesis-form-wrapper" data-animate="fade-up" data-animate-delay="1">
+          <form class="genesis-form glass-card" id="genesis-form" novalidate>
+            <div class="form-grid">
+              <!-- Full Name -->
+              <div class="form-group">
+                <label for="fullName">Full Name <span class="required">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required autocomplete="name">
+              </div>
+
+              <!-- Department -->
+              <div class="form-group">
+                <label for="department">Department <span class="required">*</span></label>
+                <input type="text" id="department" name="department" placeholder="e.g. Computer Science" required>
+              </div>
+
+              <!-- Academic Year -->
+              <div class="form-group">
+                <label for="academicYear">Academic Year <span class="required">*</span></label>
+                <select id="academicYear" name="academicYear" required>
+                  <option value="" disabled selected>Select your year</option>
+                  <option value="FY">First Year</option>
+                  <option value="SY">Second Year</option>
+                  <option value="TY">Third Year</option>
+                  <option value="Final">Final Year</option>
+                </select>
+              </div>
+
+              <!-- College Roll Number -->
+              <div class="form-group">
+                <label for="rollNumber">College Roll Number <span class="required">*</span></label>
+                <input type="text" id="rollNumber" name="rollNumber" placeholder="Enter your roll number" required>
+              </div>
+
+              <!-- Mobile Number -->
+              <div class="form-group">
+                <label for="mobile">Mobile Number <span class="required">*</span></label>
+                <input type="tel" id="mobile" name="mobile" placeholder="10-digit mobile number" pattern="[0-9]{10}" required autocomplete="tel">
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required autocomplete="email">
+              </div>
+
+              <!-- Area of Interest -->
+              <div class="form-group form-group-full">
+                <label>Area of Interest <span class="required">*</span></label>
+                <div class="interest-chips">
+                  <label class="chip">
+                    <input type="checkbox" name="interest" value="Entrepreneurship">
+                    <span>Entrepreneurship</span>
+                  </label>
+                  <label class="chip">
+                    <input type="checkbox" name="interest" value="Technology">
+                    <span>Technology</span>
+                  </label>
+                  <label class="chip">
+                    <input type="checkbox" name="interest" value="Management">
+                    <span>Management</span>
+                  </label>
+                  <label class="chip">
+                    <input type="checkbox" name="interest" value="Design">
+                    <span>Design</span>
+                  </label>
+                  <label class="chip">
+                    <input type="checkbox" name="interest" value="Marketing">
+                    <span>Marketing</span>
+                  </label>
+                  <label class="chip">
+                    <input type="checkbox" name="interest" value="Content & Media">
+                    <span>Content &amp; Media</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Other Interest -->
+              <div class="form-group form-group-full">
+                <label for="otherInterest">Other Interest <span class="optional">(optional)</span></label>
+                <input type="text" id="otherInterest" name="otherInterest" placeholder="If not listed above, mention here">
+              </div>
+            </div>
+
+            <!-- Consent -->
+            <div class="form-consent">
+              <label class="consent-label">
+                <input type="checkbox" id="consent" name="consent" required>
+                <span class="consent-checkmark"></span>
+                <span>I agree to follow the event rules and maintain discipline during the program. I understand that my registration is subject to seat availability and verification. <span class="required">*</span></span>
+              </label>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary btn-large genesis-submit-btn" id="submit-btn">
+              <span>Submit Registration</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            </button>
+          </form>
+
+          <!-- Success State -->
+          <div class="genesis-success glass-card" id="genesis-success" hidden>
+            <div class="success-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3>Registration Submitted</h3>
+            <p>Thank you for registering for GENESIS. Your details have been recorded successfully.</p>
+            <p class="success-note">Updates regarding the event will be shared via WhatsApp or email. Keep your college ID ready for the event day.</p>
+            <a href="index.html" class="btn btn-secondary">← Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 9: CALL TO ACTION
+         ============================================================ -->
+    <section class="section genesis-bottom-cta" aria-labelledby="cta-final-title">
+      <div class="container">
+        <div class="genesis-cta-card glass-card" data-animate="scale">
+          <h2 id="cta-final-title">Be Part of Campus <span class="highlight">Growth</span></h2>
+          <p>Entrepreneurship is a mindset. GENESIS is the first step. Register now and start your journey with IIEC.</p>
+          <a href="#register" class="btn btn-primary btn-large">
+            <span>Register Now</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy">
+              <span>IIEC</span>
+            </div>
+            <p class="footer-desc">
+              IIEC — Innovation, Incubation & Entrepreneurship Cell. Where Vision Drives Venture. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University.
+            </p>
+          </div>
+
+          <nav class="footer-nav" aria-label="Quick Links">
+            <h4 class="footer-title">Quick Links</h4>
+            <div class="footer-links">
+              <a href="index.html">Home</a>
+              <a href="about.html">About</a>
+              <a href="team.html">Team</a>
+              <a href="activities.html">Activities</a>
+              <a href="blog.html">Blog</a>
+            </div>
+          </nav>
+
+          <nav class="footer-nav" aria-label="Programs">
+            <h4 class="footer-title">Programs</h4>
+            <div class="footer-links">
+              <a href="activities.html#workshops">Workshops</a>
+              <a href="activities.html#bootcamp">Startup Bootcamp</a>
+              <a href="activities.html#talks">Industry Talks</a>
+              <a href="activities.html#events">Events</a>
+            </div>
+          </nav>
+
+          <nav class="footer-nav" aria-label="Contact">
+            <h4 class="footer-title">Contact</h4>
+            <div class="footer-links">
+              <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
+              <a href="https://instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://twitter.com/iiec_csmu" target="_blank" rel="noopener">Twitter / X</a>
+            </div>
+          </nav>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">© 2025 IIEC — Chhatrapati Shivaji Maharaj University. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Main Script -->
+  <script src="js/script.js"></script>
+  <script src="js/genesis.js"></script>
+</body>
+</html>

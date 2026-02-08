@@ -1,0 +1,188 @@
+/* ================================================================
+   GENESIS — Registration Form Logic
+   ================================================================ */
+
+(function () {
+  'use strict';
+
+  const form = document.getElementById('genesis-form');
+  const successEl = document.getElementById('genesis-success');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (!form) return;
+
+  // ── Validation helpers ───────────────────────────────────────
+  function showError(field, message) {
+    field.classList.add('error');
+    // Remove existing error message if any
+    const existing = field.parentElement.querySelector('.error-msg');
+    if (existing) existing.remove();
+
+    const msg = document.createElement('span');
+    msg.className = 'error-msg';
+    msg.textContent = message;
+    msg.style.cssText = 'color:#ef4444;font-size:12px;margin-top:2px;display:block;';
+    field.parentElement.appendChild(msg);
+  }
+
+  function clearError(field) {
+    field.classList.remove('error');
+    const msg = field.parentElement.querySelector('.error-msg');
+    if (msg) msg.remove();
+  }
+
+  // Clear errors on input
+  form.querySelectorAll('input, select').forEach(field => {
+    field.addEventListener('input', () => clearError(field));
+    field.addEventListener('change', () => clearError(field));
+  });
+
+  // ── Form submission ──────────────────────────────────────────
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Collect data
+    const fullName = form.fullName.value.trim();
+    const department = form.department.value.trim();
+    const academicYear = form.academicYear.value;
+    const rollNumber = form.rollNumber.value.trim();
+    const mobile = form.mobile.value.trim();
+    const email = form.email.value.trim();
+    const consent = form.consent.checked;
+
+    // Interests
+    const interests = [];
+    form.querySelectorAll('input[name="interest"]:checked').forEach(cb => {
+      interests.push(cb.value);
+    });
+    const otherInterest = form.otherInterest.value.trim();
+
+    // ── Validate ─────────────────────────────────────────────
+    let isValid = true;
+
+    if (!fullName) {
+      showError(form.fullName, 'Full name is required.');
+      isValid = false;
+    }
+
+    if (!department) {
+      showError(form.department, 'Department is required.');
+      isValid = false;
+    }
+
+    if (!academicYear) {
+      showError(form.academicYear, 'Please select your academic year.');
+      isValid = false;
+    }
+
+    if (!rollNumber) {
+      showError(form.rollNumber, 'Roll number is required.');
+      isValid = false;
+    }
+
+    if (!mobile || !/^[0-9]{10}$/.test(mobile)) {
+      showError(form.mobile, 'Enter a valid 10-digit mobile number.');
+      isValid = false;
+    }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showError(form.email, 'Enter a valid email address.');
+      isValid = false;
+    }
+
+    if (interests.length === 0 && !otherInterest) {
+      // Highlight the interest section
+      const chipsWrapper = form.querySelector('.interest-chips');
+      if (chipsWrapper) {
+        chipsWrapper.style.outline = '2px solid #ef4444';
+        chipsWrapper.style.outlineOffset = '4px';
+        chipsWrapper.style.borderRadius = '8px';
+        setTimeout(() => {
+          chipsWrapper.style.outline = '';
+          chipsWrapper.style.outlineOffset = '';
+        }, 3000);
+      }
+      isValid = false;
+    }
+
+    if (!consent) {
+      const consentCheckmark = form.querySelector('.consent-checkmark');
+      if (consentCheckmark) {
+        consentCheckmark.style.borderColor = '#ef4444';
+        consentCheckmark.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.15)';
+        setTimeout(() => {
+          consentCheckmark.style.borderColor = '';
+          consentCheckmark.style.boxShadow = '';
+        }, 3000);
+      }
+      isValid = false;
+    }
+
+    if (!isValid) {
+      // Scroll to first error
+      const firstError = form.querySelector('.error, [style*="outline"]');
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    // ── Submit ───────────────────────────────────────────────
+    submitBtn.disabled = true;
+    submitBtn.classList.add('submitting');
+
+    const formData = {
+      fullName,
+      department,
+      academicYear,
+      rollNumber,
+      mobile,
+      email,
+      interests: interests.join(', '),
+      otherInterest,
+      timestamp: new Date().toISOString()
+    };
+
+    // Store locally as fallback
+    try {
+      const existing = JSON.parse(localStorage.getItem('genesis_registrations') || '[]');
+      existing.push(formData);
+      localStorage.setItem('genesis_registrations', JSON.stringify(existing));
+    } catch (err) {
+      // Silent fail
+    }
+
+    // Simulate submission delay (replace with actual API call)
+    setTimeout(() => {
+      form.hidden = true;
+      successEl.hidden = false;
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('submitting');
+    }, 1200);
+
+    /*
+    // ── Uncomment for Google Apps Script / real API ──────────
+    fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    })
+    .then(() => {
+      form.hidden = true;
+      successEl.hidden = false;
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    })
+    .catch(() => {
+      alert('Something went wrong. Please try again.');
+    })
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('submitting');
+    });
+    */
+  });
+
+})();

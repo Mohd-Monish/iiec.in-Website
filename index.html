@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <meta name="description" content="IIEC - Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Formerly E-Cell CSMU. Official student-led startup engine.">
+  <meta name="description" content="IIEC - Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Where Vision Drives Venture. Formerly E-Cell CSMU.">
   <meta name="keywords" content="IIEC, E-Cell, CSMU, innovation, incubation, entrepreneurship, startups, students, university">
   <meta name="author" content="IIEC CSMU">
   <meta name="theme-color" content="#05070f">
@@ -14,15 +14,15 @@
   
   <!-- Open Graph -->
   <meta property="og:title" content="IIEC - Innovation, Incubation & Entrepreneurship Cell">
-  <meta property="og:description" content="Formerly E-Cell CSMU. Official student-led startup engine at Chhatrapati Shivaji Maharaj University.">
+  <meta property="og:description" content="Where Vision Drives Venture. Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://iiec.in">
-  <meta property="og:image" content="./Assests/og-image.webp">
+  <meta property="og:image" content="./assets/og-image.webp">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="IIEC - Innovation, Incubation & Entrepreneurship Cell">
-  <meta name="twitter:description" content="Formerly E-Cell CSMU. Official student-led startup engine at Chhatrapati Shivaji Maharaj University.">
+  <meta name="twitter:description" content="Where Vision Drives Venture. Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University.">
   
   <title>IIEC | Innovation. Incubation. Entrepreneurship.</title>
   
@@ -32,15 +32,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="./Assests/favicon.png">
-  <link rel="apple-touch-icon" href="./Assests/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="./assets/favicon.png">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   
-  <!-- Page Loader Script (inline for immediate execution) -->
+  <!-- Page Loader Script -->
   <script>
-    (function(){var l='<div class="page-loader" id="page-loader"><div class="loader-content"><div class="loader-logo"><img src="./Assests/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80"></div><div class="loader-bar-container"><div class="loader-percentage"><span class="loader-percentage-num" id="loader-percent">0</span><span class="loader-percentage-symbol">%</span></div><div class="loader-bar-wrapper"><div class="loader-bar" id="loader-bar"></div></div><div class="loader-text">Loading<span class="loader-dots"><span></span><span></span><span></span></span></div></div></div></div>';document.write(l);})();
+    document.documentElement.classList.add('js-loading');
+    window.addEventListener('load', () => {
+      document.documentElement.classList.remove('js-loading');
+      document.documentElement.classList.add('js-loaded');
+    });
   </script>
   
   <!-- JSON-LD Schema -->
@@ -51,8 +55,8 @@
     "name": "IIEC",
     "alternateName": "Innovation, Incubation & Entrepreneurship Cell",
     "url": "https://iiec.in",
-    "logo": "./Assests/Logo/IIEC Logo.png",
-    "description": "Official student-led startup engine at Chhatrapati Shivaji Maharaj University. Formerly E-Cell CSMU.",
+    "logo": "./assets/Logo/IIEC Logo.png",
+    "description": "Where Vision Drives Venture. Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Formerly E-Cell CSMU.",
     "parentOrganization": {
       "@type": "CollegeOrUniversity",
       "name": "Chhatrapati Shivaji Maharaj University"
@@ -68,6 +72,34 @@
   </script>
 </head>
 <body>
+  <!-- Page Loader -->
+  <div class="page-loader" id="page-loader" aria-hidden="true">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="./assets/Logo/IIEC Logo.png" alt="IIEC" width="80" height="80">
+      </div>
+      <div class="loader-bar-container">
+        <div class="loader-dots-wrapper">
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+          <div class="loader-dot"></div>
+        </div>
+        <div class="loader-info-row">
+          <div class="loader-percentage">
+            <span class="loader-percentage-num" id="loader-percent">0</span>
+            <span class="loader-percentage-symbol">%</span>
+          </div>
+          <span class="loader-divider">•</span>
+          <div class="loader-text">Where Vision Drives Venture</div>
+        </div>
+        <!-- Hidden element for script compatibility -->
+        <div id="loader-bar" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Particle Canvas -->
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
   
@@ -82,7 +114,7 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
         <a href="index.html" class="nav-logo" aria-label="IIEC Home">
-          <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
+          <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="eager">
           <span>IIEC</span>
         </a>
         
@@ -112,14 +144,14 @@
           <span>Rebranded 2025</span>
         </div>
         
-        <p class="hero-tagline">Evolution</p>
+        <p class="hero-tagline">Where Vision Drives Venture</p>
         
         <h1 id="hero-title" class="hero-title">
           Innovation. Incubation.<br><span class="highlight">Entrepreneurship.</span>
         </h1>
         
         <p class="hero-subtitle">
-          Official student-led startup engine at Chhatrapati Shivaji Maharaj University.
+          Where Vision Drives Venture — Official student-led startup engine at Chhatrapati Shivaji Maharaj University.
           <span class="formerly">Formerly E-Cell CSMU</span>
         </p>
         
@@ -197,6 +229,9 @@
         
         <div class="pillars-grid">
           <article class="glass-card pillar-card" data-animate="scale" data-animate-delay="1" data-animate-easing="bounce">
+            <div class="pillar-card-image">
+              <img src="./assets/Img/Incubation.jpg" alt="Incubation" loading="lazy">
+            </div>
             <div class="pillar-number">01</div>
             <div class="card-icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -208,6 +243,9 @@
           </article>
           
           <article class="glass-card pillar-card" data-animate="scale" data-animate-delay="2" data-animate-easing="bounce">
+            <div class="pillar-card-image">
+              <img src="./assets/Img/Innovation.jpg" alt="Innovation" loading="lazy">
+            </div>
             <div class="pillar-number">02</div>
             <div class="card-icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -219,6 +257,9 @@
           </article>
           
           <article class="glass-card pillar-card" data-animate="scale" data-animate-delay="3" data-animate-easing="bounce">
+            <div class="pillar-card-image">
+              <img src="./assets/Img/Leadership.jpg" alt="Leadership" loading="lazy">
+            </div>
             <div class="pillar-number">03</div>
             <div class="card-icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -230,6 +271,9 @@
           </article>
           
           <article class="glass-card pillar-card" data-animate="scale" data-animate-delay="4" data-animate-easing="bounce">
+            <div class="pillar-card-image">
+              <img src="./assets/Img/National Reach.jpg" alt="National Reach" loading="lazy">
+            </div>
             <div class="pillar-number">04</div>
             <div class="card-icon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -357,11 +401,11 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="footer-logo">
-              <img src="./Assests/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy">
+              <img src="./assets/Logo/IIEC Logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy">
               <span>IIEC</span>
             </div>
             <p class="footer-desc">
-              Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Formerly E-Cell CSMU. Building the future, one startup at a time.
+              IIEC — Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Where Vision Drives Venture.
             </p>
             <div class="footer-socials">
               <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
@@ -442,6 +486,6 @@
   </div>
 
   <!-- Main Script -->
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
