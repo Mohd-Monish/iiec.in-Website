@@ -21,7 +21,8 @@
     GA4_PROPERTY_ID: '523722289',
     OAUTH_CLIENT_ID: '146875268755-d86b6d97g3lhdd8t43ulb7s8l1lskfva.apps.googleusercontent.com',
     SCOPES: 'https://www.googleapis.com/auth/analytics.readonly',
-    API_BASE: 'https://analyticsdata.googleapis.com/v1beta'
+    API_BASE: 'https://analyticsdata.googleapis.com/v1beta',
+    REDIRECT_URI: 'https://iiec.in/analytics.html'
   };
 
   // ═══════════════════════════════════════════════════════════
@@ -47,7 +48,34 @@
   function init() {
     setupFilterButtons();
     setupRefreshButton();
+
+    // Check if returning from OAuth redirect (mobile flow)
+    const hashToken = parseTokenFromHash();
+    if (hashToken) {
+      accessToken = hashToken;
+      sessionStorage.setItem('ga4_token', accessToken);
+      sessionStorage.setItem('ga4_token_ts', Date.now().toString());
+      // Clean URL hash
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+      setConnectionStatus('connecting', 'Fetching analytics data...');
+      hideNoDataMessage();
+      checkConfig();
+      return;
+    }
+
     checkConfig();
+  }
+
+  function parseTokenFromHash() {
+    const hash = window.location.hash.substring(1);
+    if (!hash) return null;
+    const params = new URLSearchParams(hash);
+    return params.get('access_token') || null;
+  }
+
+  function isMobile() {
+    return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      || ('ontouchstart' in window && window.innerWidth < 1024);
   }
 
   function checkConfig() {
@@ -74,18 +102,33 @@
   }
 
   function initializeGIS() {
-    tokenClient = google.accounts.oauth2.initTokenClient({
+    const mobile = isMobile();
+    const clientConfig = {
       client_id: CONFIG.OAUTH_CLIENT_ID,
       scope: CONFIG.SCOPES,
       callback: handleTokenResponse
-    });
+    };
+
+    if (mobile) {
+      clientConfig.ux_mode = 'redirect';
+      clientConfig.redirect_uri = CONFIG.REDIRECT_URI;
+    }
+
+    tokenClient = google.accounts.oauth2.initTokenClient(clientConfig);
+
+    // If we already have a token from redirect or session, load data
+    if (accessToken) {
+      hideNoDataMessage();
+      fetchAllData();
+      renderTrafficChart();
+      return;
+    }
 
     // Restore session — auto-load data if token is still valid
     const saved = sessionStorage.getItem('ga4_token');
     const savedAt = parseInt(sessionStorage.getItem('ga4_token_ts') || '0');
     const elapsed = (Date.now() - savedAt) / 1000;
     if (saved && elapsed < 3500) {
-      // Token still valid (expires in ~3600s, use 3500s margin)
       accessToken = saved;
       setConnectionStatus('connecting', 'Fetching analytics data...');
       hideNoDataMessage();
