@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N75CFCW014"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-N75CFCW014');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta name="theme-color" content="#05070f">
@@ -13,12 +22,24 @@
   <title>Our Team | IIEC - Innovation, Incubation & Entrepreneurship Cell</title>
   <meta name="description" content="Meet the passionate team behind IIEC. Where Vision Drives Venture — driving innovation, fostering startups, and building entrepreneurs at Chhatrapati Shivaji Maharaj University.">
   <meta name="keywords" content="IIEC team, CSMU E-Cell team, student leaders, entrepreneurship team, innovation cell members">
+  <meta name="author" content="IIEC CSMU">
   
   <!-- Open Graph -->
   <meta property="og:title" content="Meet Our Team | IIEC - CSMU">
   <meta property="og:description" content="Where Vision Drives Venture. Meet the passionate team driving innovation and entrepreneurship at CSMU.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://iiec.in/team">
+  <meta property="og:image" content="https://iiec.in/assets/og-image.webp">
+  <meta property="og:site_name" content="IIEC">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Meet Our Team | IIEC - CSMU">
+  <meta name="twitter:description" content="Where Vision Drives Venture. Meet the passionate team driving innovation and entrepreneurship at CSMU.">
+  <meta name="twitter:image" content="https://iiec.in/assets/og-image.webp">
+  
+  <!-- Canonical -->
+  <link rel="canonical" href="https://iiec.in/team">
   
   <!-- Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -34,6 +55,27 @@
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/team.css">
+  
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "IIEC - Innovation, Incubation & Entrepreneurship Cell",
+    "url": "https://iiec.in",
+    "logo": "https://iiec.in/assets/logos/iiec-logo.png",
+    "description": "Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University",
+    "parentOrganization": {
+      "@type": "CollegeOrUniversity",
+      "name": "Chhatrapati Shivaji Maharaj University"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/iiec-csmu",
+      "https://instagram.com/iiec.csmu",
+      "https://twitter.com/iiec_csmu"
+    ]
+  }
+  </script>
   
   <!-- Page Loader Script -->
   <script>
@@ -635,8 +677,12 @@
               <span>IIEC</span>
             </div>
             <p class="footer-desc">
-              IIEC — Innovation, Incubation & Entrepreneurship Cell. Where Vision Drives Venture. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University.
+              IIEC — Innovation, Incubation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Where Vision Drives Venture.
             </p>
+            <div class="footer-collaboration">
+              <span>In collaboration with</span>
+              <img src="./assets/logos/gfg-logo.png" alt="GeeksforGeeks" width="24" height="24" style="margin-left: 8px;" loading="lazy" decoding="async">
+            </div>
             <div class="footer-socials">
               <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -688,6 +734,7 @@
             <div class="footer-links">
               <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
               <a href="https://join.ecellcsmu.in" target="_blank" rel="noopener">Join Us</a>
+              <a href="index.html#newsletter">Newsletter</a>
             </div>
           </nav>
         </div>
