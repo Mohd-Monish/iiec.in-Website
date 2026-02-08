@@ -1,9 +1,14 @@
 /* ================================================================
    GENESIS — Registration Form Logic
+   Connected to Google Apps Script (Spreadsheet + Auto-Email)
    ================================================================ */
 
 (function () {
   'use strict';
+
+  // ── Google Apps Script Web App URL ───────────────────────────
+  // Replace this with your deployed Apps Script URL
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyetfB8njJhNm_e0f2WaY7MzIyP688EBAEx7NOx_wq2C3ARLJHCyLa37Dn12SwRR8Aqsw/exec';
 
   const form = document.getElementById('genesis-form');
   const successEl = document.getElementById('genesis-success');
@@ -14,7 +19,6 @@
   // ── Validation helpers ───────────────────────────────────────
   function showError(field, message) {
     field.classList.add('error');
-    // Remove existing error message if any
     const existing = field.parentElement.querySelector('.error-msg');
     if (existing) existing.remove();
 
@@ -91,7 +95,6 @@
     }
 
     if (interests.length === 0 && !otherInterest) {
-      // Highlight the interest section
       const chipsWrapper = form.querySelector('.interest-chips');
       if (chipsWrapper) {
         chipsWrapper.style.outline = '2px solid #ef4444';
@@ -119,7 +122,6 @@
     }
 
     if (!isValid) {
-      // Scroll to first error
       const firstError = form.querySelector('.error, [style*="outline"]');
       if (firstError) {
         firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -152,37 +154,64 @@
       // Silent fail
     }
 
-    // Simulate submission delay (replace with actual API call)
-    setTimeout(() => {
-      form.hidden = true;
-      successEl.hidden = false;
-      successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('submitting');
-    }, 1200);
-
-    /*
-    // ── Uncomment for Google Apps Script / real API ──────────
-    fetch('YOUR_GOOGLE_APPS_SCRIPT_URL', {
+    // ── Send to Google Apps Script ───────────────────────────
+    // no-cors mode: browser sends the request but gets an opaque response (CORS blocks reading it)
+    // text/plain: CORS-safelisted header, so the browser won't strip it (unlike application/json)
+    // The server still processes the request and saves data even though we can't read the response
+    fetch(APPS_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(formData)
     })
     .then(() => {
+      // no-cors returns opaque response (status 0), but server has processed the data
       form.hidden = true;
       successEl.hidden = false;
       successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     })
     .catch(() => {
-      alert('Something went wrong. Please try again.');
+      // Network error — data is saved in localStorage
+      showSubmitError('Network error. Your registration was saved locally. Please check your connection and try again.');
     })
     .finally(() => {
       submitBtn.disabled = false;
       submitBtn.classList.remove('submitting');
     });
-    */
   });
+
+  // ── Submit error toast ────────────────────────────────────────
+  function showSubmitError(message) {
+    let toast = document.getElementById('submit-error-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'submit-error-toast';
+      toast.style.cssText = `
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(239, 68, 68, 0.95);
+        color: #fff;
+        padding: 14px 24px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 500;
+        z-index: 10000;
+        max-width: 90vw;
+        text-align: center;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 32px rgba(239, 68, 68, 0.3);
+        animation: toastSlideUp 0.3s ease-out;
+      `;
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.style.display = 'block';
+
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 6000);
+  }
 
 })();
