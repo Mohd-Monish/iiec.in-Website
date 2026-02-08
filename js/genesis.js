@@ -8,7 +8,7 @@
 
   // ── Google Apps Script Web App URL ───────────────────────────
   // Replace this with your deployed Apps Script URL
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyetfB8njJhNm_e0f2WaY7MzIyP688EBAEx7NOx_wq2C3ARLJHCyLa37Dn12SwRR8Aqsw/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyk3EjpvUbQC2Z0s2fGWdfYV5SVHOuBN34yqynlsHl8nVffFwXd_F4LV2PbrYoJgmBr9Q/exec';
 
   const form = document.getElementById('genesis-form');
   const successEl = document.getElementById('genesis-success');

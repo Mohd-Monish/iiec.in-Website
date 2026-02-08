@@ -548,8 +548,12 @@ function getEmailHTML(data) {
           <!-- Header -->
           <tr>
             <td class="email-header" style="background:linear-gradient(135deg,#0a0e1a 0%,#111827 50%,#0a0e1a 100%);padding:40px 24px 32px;text-align:center;border-bottom:1px solid rgba(255,183,3,0.15);">
-              <img src="https://iiec.in/assets/Logo/IIEC%20Logo.png" alt="IIEC" class="email-logo" width="56" height="56" style="width:56px;height:56px;margin-bottom:16px;display:inline-block;">
-              <div class="email-brand" style="font-size:14px;color:#ffb703;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:8px;">IIEC PRESENTS</div>
+              <div style="margin-bottom:16px;">
+                <img src="https://join.ecellcsmu.in/E-Cell%20Logo.png" alt="IIEC" width="56" height="56" style="width:56px;height:56px;display:inline-block;vertical-align:middle;">
+                <span style="font-size:20px;color:rgba(255,255,255,0.4);font-weight:700;vertical-align:middle;margin:0 10px;">×</span>
+                <img src="https://join.ecellcsmu.in/gfg%20logo.png" alt="GeeksforGeeks" width="56" height="56" style="width:56px;height:56px;display:inline-block;vertical-align:middle;">
+              </div>
+              <div class="email-brand" style="font-size:14px;color:#ffb703;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-bottom:8px;">IIEC × GeeksforGeeks PRESENTS</div>
               <!--[if mso]>
               <div class="email-event-name-fallback" style="font-size:36px;font-weight:800;color:#ffb703;letter-spacing:6px;line-height:1.2;">GENESIS</div>
               <![endif]-->
@@ -623,7 +627,7 @@ function getEmailHTML(data) {
                       <span style="font-size:16px;">📅</span>
                     </td>
                     <td style="padding:6px 0;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;">
-                      <strong style="color:#ffffff;">Date:</strong> To Be Announced (March 2026)
+                      <strong style="color:#ffffff;">Date:</strong> 11 February 2026 (Wednesday)
                     </td>
                   </tr>
                   <tr>
@@ -631,7 +635,7 @@ function getEmailHTML(data) {
                       <span style="font-size:16px;">🕐</span>
                     </td>
                     <td style="padding:6px 0;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;">
-                      <strong style="color:#ffffff;">Duration:</strong> 2 – 3 Hours
+                      <strong style="color:#ffffff;">Time:</strong> 10:00 AM Onwards
                     </td>
                   </tr>
                   <tr>
@@ -639,7 +643,7 @@ function getEmailHTML(data) {
                       <span style="font-size:16px;">📍</span>
                     </td>
                     <td style="padding:6px 0;font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;">
-                      <strong style="color:#ffffff;">Venue:</strong> University Auditorium, CSMU
+                      <strong style="color:#ffffff;">Venue:</strong> G.D. Badaya Auditorium, CSMU Campus
                     </td>
                   </tr>
                   <tr>
@@ -659,15 +663,19 @@ function getEmailHTML(data) {
 
                 <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;padding:6px 0 6px 20px;position:relative;">
                   <span style="position:absolute;left:0;color:#ffb703;font-weight:700;">→</span>
-                  Carry your <strong style="color:#ffffff;">College ID Card</strong> on the event day
+                  Carry your <strong style="color:#ffffff;">College ID Card</strong> or show your <strong style="color:#ffffff;">CAMU App profile</strong> for verification
                 </div>
                 <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;padding:6px 0 6px 20px;position:relative;">
                   <span style="position:absolute;left:0;color:#ffb703;font-weight:700;">→</span>
-                  Entry is <strong style="color:#ffffff;">only after verification</strong> at the venue
+                  Entry closes at <strong style="color:#ffffff;">10:30 AM</strong> — no late entry permitted
                 </div>
                 <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;padding:6px 0 6px 20px;position:relative;">
                   <span style="position:absolute;left:0;color:#ffb703;font-weight:700;">→</span>
-                  Arrive <strong style="color:#ffffff;">10–15 minutes early</strong> for a smooth check-in
+                  <strong style="color:#ffffff;">Food and beverages</strong> are not allowed inside the auditorium
+                </div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;padding:6px 0 6px 20px;position:relative;">
+                  <span style="position:absolute;left:0;color:#ffb703;font-weight:700;">→</span>
+                  Seating is on a <strong style="color:#ffffff;">first come, first served</strong> basis
                 </div>
                 <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.6;padding:6px 0 6px 20px;position:relative;">
                   <span style="position:absolute;left:0;color:#ffb703;font-weight:700;">→</span>
