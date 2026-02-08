@@ -86,7 +86,7 @@
   }
   
   function renderPost(post) {
-    const imageUrl = post.imageUrl || post.image || './assets/blog/default.webp';
+    const imageUrl = post.imageUrl || post.image || './assets/images/default-blog.webp';
     const authorInitials = (post.author || 'IIEC').split(' ').map(n => n[0]).join('').toUpperCase();
     
     // Update page title and meta
@@ -97,7 +97,7 @@
     mainEl.innerHTML = `
       <!-- Hero Image -->
       <div class="blog-post-hero">
-        <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}" onerror="this.src='./assets/blog/default.webp'">
+        <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}" onerror="this.src='./assets/images/default-blog.webp'">
         <div class="blog-post-hero-overlay"></div>
       </div>
       
@@ -169,13 +169,13 @@
     }
     
     return related.map((post, index) => {
-      const imageUrl = post.imageUrl || post.image || './assets/blog/default.webp';
+      const imageUrl = post.imageUrl || post.image || './assets/images/default-blog.webp';
       return `
         <article class="blog-card" data-animate="scale">
           <div class="blog-card-image">
             <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}" 
                  width="400" height="250" loading="lazy"
-                 onerror="this.src='./assets/blog/default.webp'">
+                 onerror="this.src='./assets/images/default-blog.webp'">
             <span class="blog-card-category">${escapeHtml(post.category) || 'General'}</span>
           </div>
           <div class="blog-card-content">

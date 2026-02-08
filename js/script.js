@@ -683,17 +683,19 @@
     }
 
     addCounterAnimations() {
-      const counters = document.querySelectorAll('.status-value, .stat-number');
+      const counters = document.querySelectorAll('.status-value, .stat-number, .highlight-stat');
 
       counters.forEach(counter => {
         const text = counter.textContent;
         const hasPlus = text.includes('+');
-        const numMatch = text.match(/\d+/);
+        const numMatch = text.match(/(\d[\d,]*)/); 
 
         if (numMatch) {
-          const target = parseInt(numMatch[0]);
+          const target = parseInt(numMatch[0].replace(/,/g, ''));
+          const prefix = text.substring(0, text.indexOf(numMatch[0]));
           counter.dataset.target = target;
           counter.dataset.suffix = hasPlus ? '+' : '';
+          counter.dataset.prefix = prefix || '';
 
           // Check if it's a text like "NEC" - don't animate
           if (isNaN(target)) return;
@@ -716,6 +718,7 @@
 
     countUp(element, target, suffix = '') {
       let current = 0;
+      const prefix = element.dataset.prefix || '';
       const duration = 2000;
       const stepTime = 50;
       const steps = duration / stepTime;
@@ -727,7 +730,7 @@
           current = target;
           clearInterval(timer);
         }
-        element.textContent = Math.floor(current) + suffix;
+        element.textContent = prefix + Math.floor(current).toLocaleString() + suffix;
       }, stepTime);
     }
 

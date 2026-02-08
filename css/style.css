@@ -374,6 +374,13 @@ img, picture, video, canvas, svg {
 
 img {
   height: auto;
+  content-visibility: auto;
+}
+
+/* Performance: Skip rendering off-screen sections */
+.section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 input, button, textarea, select {
@@ -1681,6 +1688,8 @@ p {
   font-weight: var(--font-extrabold);
   color: var(--color-accent);
   margin-bottom: var(--space-2);
+  font-variant-numeric: tabular-nums;
+  min-width: 3ch;
 }
 
 .highlight-label {
