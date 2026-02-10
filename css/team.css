@@ -151,6 +151,19 @@
   background: linear-gradient(180deg, transparent, var(--color-border), transparent);
 }
 
+@media (max-width: 600px) {
+  .team-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 1rem;
+    justify-items: center;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+}
+
 /* ========================================
    PRESIDENT SPOTLIGHT SECTION - ROYAL
 ======================================== */
