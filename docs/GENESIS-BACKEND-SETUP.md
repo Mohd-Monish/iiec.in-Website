@@ -41,7 +41,7 @@ This guide sets up:
 // ── Configuration ──────────────────────────────────────────────
 const SHEET_NAME = 'Registrations';
 const EMAIL_SUBJECT = 'GENESIS Registration Confirmed — IIEC';
-const SENDER_NAME = 'IIEC — Innovation, Incubation & Entrepreneurship Cell';
+const SENDER_NAME = 'IIEC — Incubation, Innovation & Entrepreneurship Cell';
 
 // ── Web App Entry Point ────────────────────────────────────────
 function doPost(e) {
@@ -712,7 +712,7 @@ function getEmailHTML(data) {
               </div>
 
               <div class="footer-copy" style="font-size:11px;color:rgba(255,255,255,0.25);line-height:1.5;">
-                Innovation, Incubation & Entrepreneurship Cell<br>
+                Incubation, Innovation & Entrepreneurship Cell<br>
                 Chhatrapati Shivaji Maharaj University<br><br>
                 © 2025 IIEC. All rights reserved.
               </div>

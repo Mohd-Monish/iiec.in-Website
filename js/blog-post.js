@@ -143,7 +143,7 @@
           <div class="blog-post-author-avatar">${authorInitials}</div>
           <div class="blog-post-author-info">
             <h4>${escapeHtml(post.author) || 'IIEC Team'}</h4>
-            <p>Innovation, Incubation & Entrepreneurship Cell</p>
+            <p>Incubation, Innovation & Entrepreneurship Cell</p>
           </div>
         </div>
         

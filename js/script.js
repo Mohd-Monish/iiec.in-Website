@@ -1,6 +1,6 @@
 /**
  * IIEC Website - Main JavaScript
- * Innovation, Incubation & Entrepreneurship Cell
+ * Incubation, Innovation & Entrepreneurship Cell
  * Particle System + Animations + Interactions
  * Vanilla JS Only - Zero Dependencies
  */

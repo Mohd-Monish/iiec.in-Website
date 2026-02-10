@@ -44,7 +44,7 @@ Every page includes:
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "IIEC",
-  "alternateName": "Innovation, Incubation & Entrepreneurship Cell (Formerly E-Cell CSMU)",
+  "alternateName": "Incubation, Innovation & Entrepreneurship Cell (Formerly E-Cell CSMU)",
   "url": "https://iiec.in",
   "logo": "./Assests/logo.png",
   "description": "Student-led entrepreneurship hub at Chhatrapati Shivaji Maharaj University",
