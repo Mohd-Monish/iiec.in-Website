@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
@@ -38,6 +38,7 @@
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
   
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
   <!-- Page Loader Script -->
   <script>
     document.documentElement.classList.add('js-loading');
@@ -72,10 +73,9 @@
             <span class="loader-percentage-num" id="loader-percent">0</span>
             <span class="loader-percentage-symbol">%</span>
           </div>
-          <span class="loader-divider">•</span>
+          <span class="loader-divider">-</span>
           <div class="loader-text">Where Vision Drives Venture</div>
         </div>
-        <!-- Hidden element for script compatibility -->
         <div id="loader-bar" style="display:none;"></div>
       </div>
     </div>
@@ -98,14 +98,13 @@
           <img src="./assets/logos/iiec-logo.png" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
           <span>IIEC</span>
         </a>
-        
         <div class="nav-links" role="menu">
-          <a href="index.html" class="nav-link" role="menuitem">← Back to Site</a>
+          <a href="index.html" class="nav-link" role="menuitem">Back to Site</a>
         </div>
       </div>
     </nav>
 
-    <!-- Password Screen -->
+    <!-- PASSWORD SCREEN -->
     <section class="admin-section" id="password-screen" aria-labelledby="password-title">
       <div class="container">
         <div class="admin-card glass-card" data-animate>
@@ -122,14 +121,7 @@
           <form id="password-form" class="admin-form">
             <div class="form-group">
               <label for="admin-password" class="form-label">Password</label>
-              <input 
-                type="password" 
-                id="admin-password" 
-                class="form-input" 
-                placeholder="Enter admin password" 
-                required
-                autocomplete="current-password"
-              >
+              <input type="password" id="admin-password" class="form-input" placeholder="Enter admin password" required autocomplete="current-password">
             </div>
             <button type="submit" class="btn btn-primary btn-full">
               <span>Access Portal</span>
@@ -145,282 +137,83 @@
       </div>
     </section>
 
-    <!-- Admin Dashboard (Hidden by default) -->
-    <section class="admin-section admin-dashboard" id="admin-dashboard" aria-labelledby="dashboard-title" style="display: none;">
-      <div class="container">
-        <div class="dashboard-header" data-animate>
-          <h1 id="dashboard-title" class="page-title">Admin <span class="highlight">Dashboard</span></h1>
-          <button id="logout-btn" class="btn btn-secondary">
-            <span>Logout</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
-          </button>
+    <!-- ADMIN DASHBOARD (Hidden by default) -->
+    <div id="admin-dashboard" style="display: none;">
+
+      <!-- Sidebar -->
+      <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-header">
+          <h2>OPS <span class="highlight">Portal</span></h2>
+          <div class="admin-role">Administrator</div>
         </div>
 
-        <div class="dashboard-grid">
-          <!-- Blog Post Form -->
-          <div class="dashboard-card glass-card" data-animate data-animate-delay="1">
-            <h2 class="dashboard-card-title">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-              Create Blog Post
-            </h2>
-            
-            <form id="blog-post-form" class="admin-form">
-              <div class="form-group">
-                <label for="post-title" class="form-label">Post Title *</label>
-                <input 
-                  type="text" 
-                  id="post-title" 
-                  class="form-input" 
-                  placeholder="Enter post title" 
-                  required
-                  maxlength="100"
-                >
-              </div>
-              
-              <div class="form-group">
-                <label for="post-category" class="form-label">Category *</label>
-                <select id="post-category" class="form-input" required>
-                  <option value="">Select category</option>
-                  <option value="insights">Insights</option>
-                  <option value="tutorial">Tutorial</option>
-                  <option value="guide">Guide</option>
-                  <option value="success-story">Success Story</option>
-                  <option value="event">Event</option>
-                  <option value="news">News</option>
-                </select>
-              </div>
-              
-              <div class="form-group">
-                <label for="post-excerpt" class="form-label">Excerpt *</label>
-                <textarea 
-                  id="post-excerpt" 
-                  class="form-input form-textarea" 
-                  placeholder="Brief description (shown in blog cards)" 
-                  required
-                  maxlength="200"
-                  rows="2"
-                ></textarea>
-                <span class="form-hint">Max 200 characters</span>
-              </div>
-              
-              <div class="form-group">
-                <label for="post-content" class="form-label">Content *</label>
-                
-                <!-- Text Formatter Toolbar -->
-                <div class="formatter-toolbar">
-                  <button type="button" class="formatter-btn" data-format="bold" title="Bold (Ctrl+B)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/><path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
-                    </svg>
-                  </button>
-                  <button type="button" class="formatter-btn" data-format="italic" title="Italic (Ctrl+I)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="19" y1="4" x2="10" y2="4"/><line x1="14" y1="20" x2="5" y2="20"/><line x1="15" y1="4" x2="9" y2="20"/>
-                    </svg>
-                  </button>
-                  <button type="button" class="formatter-btn" data-format="underline" title="Underline (Ctrl+U)">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><line x1="4" y1="21" x2="20" y2="21"/>
-                    </svg>
-                  </button>
-                  <span class="formatter-divider"></span>
-                  <button type="button" class="formatter-btn" data-format="h1" title="Heading 1">
-                    H1
-                  </button>
-                  <button type="button" class="formatter-btn" data-format="h2" title="Heading 2">
-                    H2
-                  </button>
-                  <button type="button" class="formatter-btn" data-format="h3" title="Heading 3">
-                    H3
-                  </button>
-                  <span class="formatter-divider"></span>
-                  <button type="button" class="formatter-btn" data-format="ul" title="Bullet List">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/>
-                      <circle cx="4" cy="6" r="1" fill="currentColor"/><circle cx="4" cy="12" r="1" fill="currentColor"/><circle cx="4" cy="18" r="1" fill="currentColor"/>
-                    </svg>
-                  </button>
-                  <button type="button" class="formatter-btn" data-format="ol" title="Numbered List">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/><line x1="10" y1="18" x2="21" y2="18"/>
-                      <text x="3" y="8" font-size="8" fill="currentColor" stroke="none">1</text>
-                      <text x="3" y="14" font-size="8" fill="currentColor" stroke="none">2</text>
-                      <text x="3" y="20" font-size="8" fill="currentColor" stroke="none">3</text>
-                    </svg>
-                  </button>
-                  <span class="formatter-divider"></span>
-                  <button type="button" class="formatter-btn" data-format="link" title="Insert Link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                    </svg>
-                  </button>
-                  <button type="button" class="formatter-btn" data-format="quote" title="Blockquote">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21"/>
-                      <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3"/>
-                    </svg>
-                  </button>
-                  <button type="button" class="formatter-btn" data-format="code" title="Code Block">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-                    </svg>
-                  </button>
-                  <span class="formatter-divider"></span>
-                  <button type="button" class="formatter-btn preview-toggle" id="toggle-preview" title="Toggle Preview">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-                    </svg>
-                    Preview
-                  </button>
-                </div>
-                
-                <!-- Editor Container with Side-by-Side View -->
-                <div class="editor-container">
-                  <div class="editor-pane" id="editor-pane">
-                    <textarea 
-                      id="post-content" 
-                      class="form-input form-textarea form-textarea-large" 
-                      placeholder="Write your blog post content here. Use the toolbar above for formatting." 
-                      required
-                      rows="10"
-                    ></textarea>
-                  </div>
-                  <div class="preview-pane" id="preview-pane">
-                    <div class="preview-header">
-                      <span>Live Preview</span>
-                    </div>
-                    <div class="preview-content" id="preview-content">
-                      <p class="preview-placeholder">Start typing to see preview...</p>
-                    </div>
-                  </div>
-                </div>
-                <span class="form-hint">Use toolbar for formatting. Click Preview to see how your post will look.</span>
-              </div>
-              
-              <div class="form-group">
-                <label for="post-image" class="form-label">Featured Image URL</label>
-                <input 
-                  type="url" 
-                  id="post-image" 
-                  class="form-input" 
-                  placeholder="https://example.com/image.jpg"
-                >
-              </div>
-              
-              <div class="form-group">
-                <label for="post-author" class="form-label">Author *</label>
-                <input 
-                  type="text" 
-                  id="post-author" 
-                  class="form-input" 
-                  placeholder="Author name" 
-                  required
-                >
-              </div>
-              
-              <div class="form-group">
-                <label for="post-read-time" class="form-label">Estimated Read Time *</label>
-                <input 
-                  type="text" 
-                  id="post-read-time" 
-                  class="form-input" 
-                  placeholder="e.g., 5 min read" 
-                  required
-                >
-              </div>
-              
-              <button type="submit" class="btn btn-primary btn-full">
-                <span>Publish Post</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
-              </button>
-              <div class="form-message" role="alert"></div>
-            </form>
-          </div>
-          
-          <!-- Quick Actions -->
-          <div class="dashboard-sidebar">
-            <div class="dashboard-card glass-card" data-animate data-animate-delay="2">
-              <h2 class="dashboard-card-title">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                Quick Actions
-              </h2>
-              
-              <div class="quick-actions">
-                <a href="https://docs.google.com/spreadsheets/d/15KjAHXT8Xa9d7AX1exiBKGlBHS6NeqKP_SM5gFpoZcg/edit?usp=sharing" target="_blank" rel="noopener" class="quick-action">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <span>View Newsletter Subscribers</span>
-                </a>
-                
-                <a href="https://docs.google.com/spreadsheets/d/1ZU5cXtSoMzkFQvLwnuP9-GQQGJHna2WruiyeykD5XRE/edit?usp=sharing" target="_blank" rel="noopener" class="quick-action">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15" />
-                  </svg>
-                  <span>View Blog Posts</span>
-                </a>
-                
-                <a href="analytics.html" target="_blank" rel="noopener" class="quick-action">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                  <span>Site Analytics</span>
-                </a>
-                
-                <a href="mailto:ecell-student-rep@csmu.ac.in" class="quick-action">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  <span>Contact Support</span>
-                </a>
-              </div>
-            </div>
-            
-            <div class="dashboard-card glass-card" data-animate data-animate-delay="3">
-              <h2 class="dashboard-card-title">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Help
-              </h2>
-              
-              <div class="help-content">
-                <p>Need help with the admin portal? Check our documentation or contact the tech team.</p>
-                <ul class="help-list">
-                  <li>Blog posts will appear after moderation</li>
-                  <li>Images should be hosted externally</li>
-                  <li>Use Markdown for formatting content</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        <nav class="sidebar-nav">
+          <span class="sidebar-nav-label">Main</span>
 
-    <!-- Minimal Footer for Admin -->
-    <footer class="footer footer-minimal" role="contentinfo">
-      <div class="container">
-        <div class="footer-bottom">
-          <p class="footer-copyright">
-            © 2025 IIEC. All rights reserved.
-          </p>
-          <a href="index.html" class="footer-link">Back to Website</a>
-        </div>
-      </div>
-    </footer>
-  </div>
+          <a class="sidebar-link active" data-panel="dashboard">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            Dashboard
+          </a>
 
-  <!-- Main Script -->
-  <script src="js/script.js" defer></script>
-</body>
-</html>
+          <a class="sidebar-link" data-panel="applications">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Applications
+            <span class="badge" id="pending-count">0</span>
+          </a>
+
+          <a class="sidebar-link" data-panel="domains">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+            Domains
+          </a>
+
+          <span class="sidebar-nav-label">Management</span>
+
+          <a class="sidebar-link" data-panel="communication">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            Communication
+          </a>
+
+          <a class="sidebar-link" data-panel="certificates">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            Certificates
+          </a>
+
+          <a class="sidebar-link" data-panel="blog">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+            Blog Posts
+          </a>
+
+          <span class="sidebar-nav-label">System</span>
+
+          <a class="sidebar-link" data-panel="settings">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Settings
+          </a>
+
+          <a class="sidebar-link" data-panel="reports">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            Reports
+          </a>
+
+          <a class="sidebar-link" data-panel="logs">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Activity Logs
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <a class="sidebar-link" id="logout-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+            Logout
+          </a>
+        </div>
+      </aside>
+
+      <!-- Mobile sidebar toggle -->
+      <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle sidebar">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+      <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+      <!-- Main Content Area -->
+      <main class="admin-main">
