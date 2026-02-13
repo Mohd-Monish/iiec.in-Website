@@ -54,8 +54,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="./assets/favicon.png">
-  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+  <link rel="icon" type="image/webp" href="./assets/favicon.webp">
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
@@ -77,7 +77,7 @@
     "name": "IIEC",
     "alternateName": "Incubation, Innovation & Entrepreneurship Cell",
     "url": "https://iiec.in",
-    "logo": "https://iiec.in/assets/logos/iiec-logo.png",
+    "logo": "https://iiec.in/assets/logos/iiec-logo.webp",
     "description": "Where Vision Drives Venture. Incubation, Innovation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Formerly E-Cell CSMU.",
     "parentOrganization": {
       "@type": "CollegeOrUniversity",
@@ -103,7 +103,7 @@
   <div class="page-loader" id="page-loader" aria-hidden="true">
     <div class="loader-content">
       <div class="loader-logo">
-        <img src="./assets/logos/iiec-logo.png" alt="IIEC" width="80" height="80">
+        <img src="./assets/logos/iiec-logo.webp" alt="IIEC" width="80" height="80" loading="eager" decoding="async">
       </div>
       <div class="loader-bar-container">
         <div class="loader-dots-wrapper">
@@ -141,7 +141,7 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
         <a href="index.html" class="nav-logo" aria-label="IIEC Home">
-          <img src="./assets/logos/iiec-logo.png" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
+          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
           <span>IIEC</span>
         </a>
         
@@ -257,7 +257,10 @@
         <div class="pillars-grid">
           <article class="glass-card pillar-card" data-animate="scale" data-animate-delay="1" data-animate-easing="bounce">
             <div class="pillar-card-image">
-              <img src="./assets/images/incubation.jpg" alt="Incubation" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="./assets/images/incubation.webp" type="image/webp">
+                <img src="./assets/images/incubation.webp" alt="Incubation" width="400" height="250" loading="lazy" decoding="async">
+              </picture>
             </div>
             <div class="pillar-number">01</div>
             <div class="card-icon">
@@ -271,7 +274,10 @@
           
           <article class="glass-card pillar-card" data-animate="scale" data-animate-delay="2" data-animate-easing="bounce">
             <div class="pillar-card-image">
-              <img src="./assets/images/innovation.jpg" alt="Innovation" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="./assets/images/innovation.webp" type="image/webp">
+                <img src="./assets/images/innovation.webp" alt="Innovation" width="400" height="250" loading="lazy" decoding="async">
+              </picture>
             </div>
             <div class="pillar-number">02</div>
             <div class="card-icon">
@@ -285,7 +291,10 @@
           
           <article class="glass-card pillar-card" data-animate="scale" data-animate-delay="3" data-animate-easing="bounce">
             <div class="pillar-card-image">
-              <img src="./assets/images/leadership.jpg" alt="Leadership" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="./assets/images/leadership.webp" type="image/webp">
+                <img src="./assets/images/leadership.webp" alt="Leadership" width="400" height="250" loading="lazy" decoding="async">
+              </picture>
             </div>
             <div class="pillar-number">03</div>
             <div class="card-icon">
@@ -299,7 +308,10 @@
           
           <article class="glass-card pillar-card" data-animate="scale" data-animate-delay="4" data-animate-easing="bounce">
             <div class="pillar-card-image">
-              <img src="./assets/images/national-reach.jpg" alt="National Reach" loading="lazy" decoding="async">
+              <picture>
+                <source srcset="./assets/images/national-reach.webp" type="image/webp">
+                <img src="./assets/images/national-reach.webp" alt="National Reach" width="400" height="250" loading="lazy" decoding="async">
+              </picture>
             </div>
             <div class="pillar-number">04</div>
             <div class="card-icon">
@@ -490,7 +502,7 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <div class="footer-logo">
-              <img src="./assets/logos/iiec-logo.png" alt="IIEC Logo" width="40" height="40" loading="lazy" decoding="async">
+              <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="lazy" decoding="async">
               <span>IIEC</span>
             </div>
             <p class="footer-desc">
@@ -498,7 +510,7 @@
             </p>
             <div class="footer-collaboration">
               <span>In collaboration with</span>
-              <img src="./assets/logos/gfg-logo.png" alt="GeeksforGeeks" width="24" height="24" style="margin-left: 8px;" loading="lazy" decoding="async">
+              <img src="./assets/logos/gfg-logo.webp" alt="GeeksforGeeks" width="24" height="24" style="margin-left: 8px;" loading="lazy" decoding="async">
             </div>
             <div class="footer-socials">
               <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">

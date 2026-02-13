@@ -1,0 +1,11 @@
+# Original images (pre-WebP conversion backups)
+assets/originals/
+
+# OS files
+desktop.ini
+Thumbs.db
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
