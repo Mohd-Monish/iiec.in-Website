@@ -153,7 +153,7 @@ function setupSheet() {
   summarySheet.setColumnWidth(1, 200);
   summarySheet.setColumnWidth(2, 100);
   
-  SpreadsheetApp.getUi().alert('✅ Setup complete! Sheet is ready to receive TechAstra volunteer registrations.');
+  SpreadsheetApp.getUi().alert('Setup complete! Sheet is ready to receive TechAstra volunteer registrations.');
 }
 
 // ── Handle POST requests from the website form ──────────────────
@@ -222,78 +222,94 @@ function doGet(e) {
 function sendConfirmationEmail(data) {
   if (!data.email) return;
   
-  const subject = '🚀 TechAstra Volunteer Application Received!';
+  const subject = 'TechAstra — Volunteer Application Received';
   
   const htmlBody = `
-    <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0a0d18; color: #f5f7ff; border-radius: 16px; overflow: hidden; border: 1px solid rgba(0,212,255,0.15);">
+    <div style="font-family: 'Courier New', Consolas, monospace; max-width: 600px; margin: 0 auto; background: #05070f; color: #c0caf0; overflow: hidden; border: 1px solid #00d4ff33;">
       
-      <!-- Header with gradient -->
-      <div style="background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #00d4ff 100%); padding: 40px 32px; text-align: center;">
-        <div style="font-size: 14px; color: rgba(255,255,255,0.85); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 8px;">🚀 Welcome to the Team</div>
-        <h1 style="color: #fff; margin: 0; font-size: 36px; letter-spacing: -1px; font-weight: 800;">TECHASTRA</h1>
-        <p style="color: rgba(255,255,255,0.9); margin: 8px 0 0; font-size: 15px;">The Largest Annual Tech Fest of CSMU</p>
+      <!-- Terminal Header Bar -->
+      <div style="background: #0a0e1a; border-bottom: 1px solid #00d4ff33; padding: 10px 16px; display: flex; align-items: center;">
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #ff5f57; margin-right: 6px;"></span>
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #ffbd2e; margin-right: 6px;"></span>
+        <span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #28c840; margin-right: 12px;"></span>
+        <span style="color: #00d4ff88; font-size: 11px; letter-spacing: 1px;">techastra@csmu:~$ volunteer --status</span>
+      </div>
+
+      <!-- Hero Section -->
+      <div style="background: linear-gradient(180deg, #0a1628 0%, #05070f 100%); padding: 40px 32px 32px; text-align: center; border-bottom: 1px solid #00d4ff22;">
+        <div style="font-size: 11px; color: #00d4ff; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 12px; font-family: 'Courier New', monospace;">[[ SYSTEM NOTIFICATION ]]</div>
+        <h1 style="color: #fff; margin: 0; font-size: 38px; letter-spacing: 3px; font-weight: 800; font-family: 'Segoe UI', Arial, sans-serif;">TECH<span style="color: #00d4ff;">ASTRA</span></h1>
+        <div style="width: 60px; height: 2px; background: linear-gradient(90deg, transparent, #00d4ff, transparent); margin: 14px auto 10px;"></div>
+        <p style="color: #7c8bb8; margin: 0; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">The Largest Annual Tech Fest of CSMU</p>
       </div>
       
       <!-- Body -->
-      <div style="padding: 36px 32px;">
-        <h2 style="color: #00d4ff; margin: 0 0 16px; font-size: 22px;">Hey ${data.fullName || 'there'}! 👋</h2>
-        <p style="color: #b0b8d0; line-height: 1.8; font-size: 15px;">
-          Thank you for registering as a volunteer for <strong style="color: #00d4ff;">TechAstra</strong>! 🎉 Your application has been <strong style="color: #4ade80;">successfully received</strong> and recorded.
+      <div style="padding: 32px 28px;">
+
+        <!-- Status Log -->
+        <div style="background: #0a0e1a; border: 1px solid #00d4ff22; padding: 16px 18px; margin-bottom: 24px;">
+          <p style="color: #00d4ff88; font-size: 11px; margin: 0 0 8px; font-family: 'Courier New', monospace;">// volunteer_registration.log</p>
+          <p style="color: #4ade80; font-size: 13px; margin: 0 0 4px; font-family: 'Courier New', monospace;">[SUCCESS] Application received</p>
+          <p style="color: #7c8bb8; font-size: 12px; margin: 0; font-family: 'Courier New', monospace;">[TIMESTAMP] ${new Date().toLocaleString('en-IN', {timeZone: 'Asia/Kolkata'})}</p>
+        </div>
+
+        <p style="color: #c0caf0; line-height: 1.8; font-size: 15px; font-family: 'Segoe UI', Arial, sans-serif;">
+          Hey <strong style="color: #00d4ff;">${data.fullName || 'there'}</strong>,
         </p>
-        <p style="color: #b0b8d0; line-height: 1.8; font-size: 15px;">
-          You're now one step closer to being part of the biggest tech fest on campus!
+        <p style="color: #8892b0; line-height: 1.8; font-size: 14px; font-family: 'Segoe UI', Arial, sans-serif;">
+          Your volunteer application for <strong style="color: #00d4ff;">TechAstra</strong> has been <strong style="color: #4ade80;">successfully transmitted</strong> to our systems. Welcome aboard.
         </p>
         
-        <!-- Application Summary Card -->
-        <div style="background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(124,58,237,0.08)); border: 1px solid rgba(0,212,255,0.2); border-radius: 14px; padding: 24px; margin: 28px 0;">
-          <h3 style="color: #f5f7ff; margin: 0 0 16px; font-size: 17px;">📋 Your Application Summary</h3>
-          <table style="width: 100%; font-size: 14px; color: #b0b8d0; border-collapse: collapse;">
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 10px 0; color: #00d4ff; font-weight: 600; width: 40%;">👤 Name</td><td style="padding: 10px 0;">${data.fullName || '-'}</td></tr>
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 10px 0; color: #00d4ff; font-weight: 600;">🏛️ Department</td><td style="padding: 10px 0;">${data.department || '-'}</td></tr>
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 10px 0; color: #00d4ff; font-weight: 600;">📅 Year</td><td style="padding: 10px 0;">${data.academicYear || '-'}</td></tr>
-            <tr style="border-bottom: 1px solid rgba(255,255,255,0.06);"><td style="padding: 10px 0; color: #00d4ff; font-weight: 600;">🆔 Roll Number</td><td style="padding: 10px 0;">${data.rollNumber || '-'}</td></tr>
-            <tr><td style="padding: 10px 0; color: #00d4ff; font-weight: 600;">🎯 Preferred Roles</td><td style="padding: 10px 0;">${data.volunteerRoles || '-'}</td></tr>
+        <!-- Application Data Block -->
+        <div style="background: #0a0e1a; border: 1px solid #00d4ff22; padding: 20px; margin: 24px 0;">
+          <div style="color: #00d4ff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; font-family: 'Courier New', monospace; border-bottom: 1px solid #00d4ff22; padding-bottom: 10px;">▸ APPLICATION DATA</div>
+          <table style="width: 100%; font-size: 13px; color: #8892b0; border-collapse: collapse; font-family: 'Courier New', monospace;">
+            <tr style="border-bottom: 1px solid #ffffff08;"><td style="padding: 8px 0; color: #00d4ff99; width: 42%;">name</td><td style="padding: 8px 0; color: #c0caf0;">${data.fullName || '-'}</td></tr>
+            <tr style="border-bottom: 1px solid #ffffff08;"><td style="padding: 8px 0; color: #00d4ff99;">dept</td><td style="padding: 8px 0; color: #c0caf0;">${data.department || '-'}</td></tr>
+            <tr style="border-bottom: 1px solid #ffffff08;"><td style="padding: 8px 0; color: #00d4ff99;">year</td><td style="padding: 8px 0; color: #c0caf0;">${data.academicYear || '-'}</td></tr>
+            <tr style="border-bottom: 1px solid #ffffff08;"><td style="padding: 8px 0; color: #00d4ff99;">roll_no</td><td style="padding: 8px 0; color: #c0caf0;">${data.rollNumber || '-'}</td></tr>
+            <tr><td style="padding: 8px 0; color: #00d4ff99;">roles[]</td><td style="padding: 8px 0; color: #c0caf0;">${data.volunteerRoles || '-'}</td></tr>
           </table>
         </div>
         
         <!-- WhatsApp CTA -->
-        <div style="background: linear-gradient(135deg, rgba(37,211,102,0.12), rgba(37,211,102,0.04)); border: 1px solid rgba(37,211,102,0.3); border-radius: 14px; padding: 24px; margin: 28px 0; text-align: center;">
-          <div style="font-size: 32px; margin-bottom: 8px;">💬</div>
-          <h3 style="color: #25D366; margin: 0 0 8px; font-size: 18px;">Join the Volunteer WhatsApp Group</h3>
-          <p style="color: #b0b8d0; font-size: 14px; margin: 0 0 18px; line-height: 1.6;">Stay connected with the team for updates, task assignments, meetings, and all the behind-the-scenes action!</p>
-          <a href="https://chat.whatsapp.com/LKfRXSRsxfmFho4sQ8XhwF" target="_blank" style="display: inline-block; background: #25D366; color: #fff; text-decoration: none; padding: 14px 32px; border-radius: 50px; font-weight: 700; font-size: 15px; letter-spacing: 0.3px;">✅ Join WhatsApp Group</a>
+        <div style="background: #0a1a12; border: 1px solid #25D36644; padding: 24px; margin: 24px 0; text-align: center;">
+          <div style="color: #25D366; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; font-family: 'Courier New', monospace;">▸ PRIORITY ACTION REQUIRED</div>
+          <p style="color: #c0caf0; font-size: 15px; margin: 0 0 6px; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif;">Join the Volunteer WhatsApp Group</p>
+          <p style="color: #7c8bb8; font-size: 13px; margin: 0 0 18px; line-height: 1.6; font-family: 'Segoe UI', Arial, sans-serif;">Updates, task assignments, meetings & behind-the-scenes access.</p>
+          <a href="https://chat.whatsapp.com/LKfRXSRsxfmFho4sQ8XhwF" target="_blank" style="display: inline-block; background: #25D366; color: #fff; text-decoration: none; padding: 13px 30px; font-weight: 700; font-size: 14px; letter-spacing: 1px; font-family: 'Courier New', monospace; border: none;">[ JOIN GROUP → ]</a>
         </div>
 
-        <!-- What's Next -->
-        <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 24px; margin: 28px 0;">
-          <h3 style="color: #f5f7ff; margin: 0 0 16px; font-size: 17px;">⚡ What's Next?</h3>
-          <table style="width: 100%; font-size: 14px; color: #b0b8d0; border-collapse: collapse;">
-            <tr><td style="padding: 8px 12px 8px 0; vertical-align: top; width: 30px; font-size: 18px;">1️⃣</td><td style="padding: 8px 0;"><strong style="color: #f5f7ff;">Join the WhatsApp Group</strong> — Click the green button above</td></tr>
-            <tr><td style="padding: 8px 12px 8px 0; vertical-align: top; font-size: 18px;">2️⃣</td><td style="padding: 8px 0;"><strong style="color: #f5f7ff;">Follow us on Instagram</strong> — Stay updated with all announcements</td></tr>
-            <tr><td style="padding: 8px 12px 8px 0; vertical-align: top; font-size: 18px;">3️⃣</td><td style="padding: 8px 0;"><strong style="color: #f5f7ff;">Wait for confirmation</strong> — Our team will review and reach out soon</td></tr>
+        <!-- Next Steps -->
+        <div style="background: #0a0e1a; border: 1px solid #00d4ff22; padding: 20px; margin: 24px 0;">
+          <div style="color: #00d4ff; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; font-family: 'Courier New', monospace; border-bottom: 1px solid #00d4ff22; padding-bottom: 10px;">▸ NEXT STEPS</div>
+          <table style="width: 100%; font-size: 13px; color: #8892b0; border-collapse: collapse; font-family: 'Segoe UI', Arial, sans-serif;">
+            <tr><td style="padding: 8px 0; width: 24px; vertical-align: top; color: #00d4ff; font-family: 'Courier New', monospace;">01</td><td style="padding: 8px 0 8px 10px;"><strong style="color: #c0caf0;">Join WhatsApp Group</strong> <span style="color: #7c8bb8;">— tap the green button above</span></td></tr>
+            <tr><td style="padding: 8px 0; vertical-align: top; color: #00d4ff; font-family: 'Courier New', monospace;">02</td><td style="padding: 8px 0 8px 10px;"><strong style="color: #c0caf0;">Follow on Instagram</strong> <span style="color: #7c8bb8;">— get real-time announcements</span></td></tr>
+            <tr><td style="padding: 8px 0; vertical-align: top; color: #00d4ff; font-family: 'Courier New', monospace;">03</td><td style="padding: 8px 0 8px 10px;"><strong style="color: #c0caf0;">Await confirmation</strong> <span style="color: #7c8bb8;">— our team will reach out soon</span></td></tr>
           </table>
         </div>
         
         <!-- Social Follow -->
-        <div style="text-align: center; margin: 28px 0;">
-          <p style="color: #b0b8d0; font-size: 14px; margin: 0 0 14px;">Follow us for latest updates & announcements:</p>
-          <a href="https://instagram.com/techastra.csmu" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 14px; margin: 0 6px 8px;">📸 @techastra.csmu</a>
-          <a href="https://instagram.com/iiec.csmu" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 50px; font-weight: 700; font-size: 14px; margin: 0 6px 8px;">📸 @iiec.csmu</a>
+        <div style="text-align: center; margin: 24px 0;">
+          <p style="color: #7c8bb8; font-size: 12px; margin: 0 0 14px; letter-spacing: 1px; text-transform: uppercase; font-family: 'Courier New', monospace;">// follow for updates</p>
+          <a href="https://www.instagram.com/techastra.csmu" target="_blank" style="display: inline-block; background: transparent; color: #00d4ff; text-decoration: none; padding: 10px 22px; font-weight: 700; font-size: 13px; margin: 0 4px 8px; border: 1px solid #00d4ff44; font-family: 'Courier New', monospace; letter-spacing: 0.5px;">@techastra.csmu</a>
+          <a href="https://www.instagram.com/iiec.csmu" target="_blank" style="display: inline-block; background: transparent; color: #7c3aed; text-decoration: none; padding: 10px 22px; font-weight: 700; font-size: 13px; margin: 0 4px 8px; border: 1px solid #7c3aed44; font-family: 'Courier New', monospace; letter-spacing: 0.5px;">@iiec.csmu</a>
         </div>
         
         <!-- Spam Warning -->
-        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 16px 20px; margin: 24px 0; text-align: center;">
-          <p style="color: #ff6b6b; font-weight: 700; font-size: 14px; margin: 0 0 6px;">⚠️ Can't find this email?</p>
-          <p style="color: rgba(176,184,208,0.7); font-size: 13px; margin: 0; line-height: 1.5;">Check your <strong style="color:#f5f7ff;">Spam / Junk</strong> folder and mark this email as <strong style="color:#f5f7ff;">"Not Spam"</strong> to receive future updates from TechAstra.</p>
+        <div style="background: #1a0a0a; border: 1px solid #ff5f5733; padding: 14px 18px; margin: 24px 0; text-align: center;">
+          <p style="color: #ff5f57; font-weight: 700; font-size: 12px; margin: 0 0 4px; font-family: 'Courier New', monospace; letter-spacing: 1px;">[WARNING] EMAIL DELIVERY</p>
+          <p style="color: #7c8bb8; font-size: 12px; margin: 0; line-height: 1.5; font-family: 'Segoe UI', Arial, sans-serif;">Can't find this email? Check <strong style="color:#c0caf0;">Spam / Junk</strong> and mark as <strong style="color:#c0caf0;">"Not Spam"</strong> for future updates.</p>
         </div>
       </div>
       
       <!-- Footer -->
-      <div style="background: rgba(255,255,255,0.03); border-top: 1px solid rgba(255,255,255,0.08); padding: 24px 32px; text-align: center;">
-        <p style="color: #888; font-size: 13px; margin: 0 0 4px; font-weight: 600;">TECHASTRA — The Largest Annual Tech Fest</p>
-        <p style="color: #666; font-size: 12px; margin: 0;">
-          Organized by IIEC — Incubation, Innovation & Entrepreneurship Cell | CSMU<br>
-          <a href="https://iiec.in" style="color: #00d4ff; text-decoration: none;">iiec.in</a>
+      <div style="background: #0a0e1a; border-top: 1px solid #00d4ff22; padding: 20px 28px; text-align: center;">
+        <p style="color: #00d4ff66; font-size: 11px; margin: 0 0 4px; font-weight: 600; font-family: 'Courier New', monospace; letter-spacing: 2px;">TECHASTRA × IIEC</p>
+        <p style="color: #4a5578; font-size: 11px; margin: 0; font-family: 'Segoe UI', Arial, sans-serif;">
+          Incubation, Innovation & Entrepreneurship Cell | CSMU<br>
+          <a href="https://iiec.in" style="color: #00d4ff88; text-decoration: none; font-family: 'Courier New', monospace;">iiec.in</a>
         </p>
       </div>
     </div>

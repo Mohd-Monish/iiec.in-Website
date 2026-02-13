@@ -838,7 +838,7 @@
         });
 
         // With no-cors mode, we can't read the response, so assume success
-        this.showMessage('Thank you for subscribing! 🎉', 'success');
+        this.showMessage('Thank you for subscribing!', 'success');
         this.emailInput.value = '';
 
       } catch (error) {
@@ -1159,7 +1159,7 @@
         });
 
         // With no-cors mode, we can't read the response, so assume success
-        this.showBlogMessage('Blog post published successfully! 🎉', 'success');
+        this.showBlogMessage('Blog post published successfully!', 'success');
         this.blogForm.reset();
 
       } catch (error) {

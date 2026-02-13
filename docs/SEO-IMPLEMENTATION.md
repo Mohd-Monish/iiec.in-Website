@@ -56,7 +56,7 @@ Every page includes:
   "areaServed": "India",
   "sameAs": [
     "https://linkedin.com/company/iiec-csmu",
-    "https://instagram.com/iiec.csmu",
+    "https://www.instagram.com/iiec.csmu",
     "https://twitter.com/iiec_csmu"
   ]
 }

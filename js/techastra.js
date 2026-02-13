@@ -8,7 +8,7 @@
 
   // ── Google Apps Script Web App URL ───────────────────────────
   // Replace this with your deployed TechAstra Apps Script URL
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby7bJsa2Ex6xx9cSBCo_8aGXl_TiBHir0ICT-U4WIwEdTIGcmkmh-6ILS1lS5ljazdKLg/exec';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzWuXwGZH4iVfz4YYMUVTn4gRISN5yam_RkJ96rzyMzJVJJN_6aktb-FMYZMit9RoqwiQ/exec';
 
   const form = document.getElementById('techastra-form');
   const successEl = document.getElementById('techastra-success');

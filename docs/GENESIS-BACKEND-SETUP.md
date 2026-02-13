@@ -706,7 +706,7 @@ function getEmailHTML(data) {
 
               <div class="footer-links" style="margin-bottom:16px;">
                 <a href="https://iiec.in" style="display:inline-block;color:#ffb703;text-decoration:none;font-size:12px;font-weight:500;margin:0 8px;">Website</a>
-                <a href="https://instagram.com/iiec.csmu" style="display:inline-block;color:#ffb703;text-decoration:none;font-size:12px;font-weight:500;margin:0 8px;">Instagram</a>
+                <a href="https://www.instagram.com/iiec.csmu" style="display:inline-block;color:#ffb703;text-decoration:none;font-size:12px;font-weight:500;margin:0 8px;">Instagram</a>
                 <a href="https://linkedin.com/company/iiec-csmu" style="display:inline-block;color:#ffb703;text-decoration:none;font-size:12px;font-weight:500;margin:0 8px;">LinkedIn</a>
                 <a href="https://twitter.com/iiec_csmu" style="display:inline-block;color:#ffb703;text-decoration:none;font-size:12px;font-weight:500;margin:0 8px;">Twitter / X</a>
               </div>
