@@ -880,7 +880,11 @@
 
       if (!this.passwordScreen) return;
 
-      this.correctPassword = 'IIEC@CSMU@2026';
+      // SHA-256 hash of the admin password (plaintext never stored in code)
+      // To change password: run in PowerShell →
+      // $p = "NewPassword"; $h = [System.Security.Cryptography.SHA256]::Create().ComputeHash([System.Text.Encoding]::UTF8.GetBytes($p)); ($h | ForEach-Object { $_.ToString("x2") }) -join ''
+      // Then replace the hash below with the new one.
+      this.passwordHash = '45633008362597186697373ed89c7494567905a240b782987ad2bc03bd1a6e05';
       this.init();
     }
 
@@ -1094,11 +1098,20 @@
       textarea.focus();
     }
 
-    checkPassword() {
+    async hashPassword(password) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(password);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async checkPassword() {
       const entered = this.passwordInput?.value.trim();
       const messageEl = this.passwordScreen?.querySelector('.form-message');
+      const enteredHash = await this.hashPassword(entered);
 
-      if (entered === this.correctPassword) {
+      if (enteredHash === this.passwordHash) {
         this.passwordScreen.style.display = 'none';
         if (this.adminNavbar) this.adminNavbar.style.display = 'none';
         this.adminDashboard.style.display = 'flex';
