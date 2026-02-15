@@ -1,0 +1,866 @@
+# IIEC — Incubation, Innovation & Entrepreneurship Cell
+
+> Where Vision Drives Venture
+
+IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entrepreneurship cell of Chhatrapati Shivaji Maharaj University (CSMU), located in Navi Mumbai, Maharashtra, India. Formerly known as E-Cell CSMU, the organization was founded in 2020 and rebranded as IIEC in 2025. It is a student-led organization that fosters entrepreneurship, innovation, and startup culture on campus through hackathons, tech fests, workshops, startup bootcamps, mentorship programs, industry connect sessions, and national-level competitions. IIEC ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC), organized by E-Cell IIT Bombay, making it one of the best entrepreneurship cells in Maharashtra. The cell bridges the gap between ideas and execution, helping students build real startups from campus.
+
+---
+
+## Table of Contents
+
+- Key Facts
+- Mission
+- Vision
+- Core Values
+- Four Core Pillars
+- History & Timeline
+- Complete Team Roster
+- Flagship Events (Detailed)
+- Regular Programs
+- What IIEC Offers
+- Impact & Achievements
+- Blog
+- Collaboration Partners
+- Social Links & Contact
+- Technical Infrastructure
+- Structured Data (JSON-LD Schemas)
+- Full Page Content: Home
+- Full Page Content: About
+- Full Page Content: Team
+- Full Page Content: Activities
+- Full Page Content: GENESIS
+- Full Page Content: TechAstra
+- Full Page Content: Blog
+- Full Page Content: Blog Post
+
+---
+
+## Pages
+
+- [Home](https://iiec.in/): Main landing page with hero tagline "Where Vision Drives Venture", badge "Est. 2020 • Rebranded 2025". Features a timeline (2020 E-Cell Launch → 2025 NEC Top 23 → 2025 Rebranded as IIEC), 4 core pillars (Incubation, Innovation, Leadership, National Reach), offerings (Workshops & Startup Bootcamps, Mentorship & Industry Network, Startup Launchpad), impact stats (Top 23 NEC rank, 4000+ teams competed against, NEC IIT Bombay Finals), TechAstra volunteer banner, newsletter subscription form, and footer with GeeksforGeeks collaboration. JSON-LD: EducationalOrganization, foundingDate: 2020, parentOrganization: CollegeOrUniversity (CSMU).
+
+- [About](https://iiec.in/about.html): Comprehensive page covering who IIEC is, mission statement, vision statement, core values, and historical timeline. Describes IIEC as "one of the best entrepreneurship cells in Maharashtra" that "bridges the gap between ideas and execution." Includes detailed mission and vision sections, 3 core values (Innovation First, Community Driven, Action Oriented), and a 5-stage timeline (2020 Founded → 2020-2024 Building Foundations → 2025 NEC Top 23 → 2025 Evolution to IIEC → Feb 2026 GENESIS & Beyond). JSON-LD: AboutPage with EducationalOrganization schema including mission and vision statements.
+
+- [Team](https://iiec.in/team.html): Full team roster page with stats banner (4 Core Leaders, 7 Portfolios, 15 Portfolio Heads, 30+ Members). Lists all core leadership (President, Vice President, Secretary, Treasurer) and all 7 portfolio departments with their respective heads and junior heads, including LinkedIn profile URLs. JSON-LD: Organization with member array.
+
+- [Activities](https://iiec.in/activities.html): Complete events and programs page. Features TechAstra as the current featured event with "Volunteers Open" status. Lists all 5 flagship events (GENESIS — Completed, TechAstra — Volunteers Open, IPL Auction — Coming Soon, Problem Auction — Coming Soon, Starting NEC Journey — Coming Soon). Includes 3 regular programs section and a planned events timeline for 2026. JSON-LD: ItemList with 5 Event entries.
+
+- [Blog](https://iiec.in/blog.html): Blog listing page for articles on innovation, entrepreneurship, startups, and technology. Blog posts are loaded dynamically from an API with skeleton loading cards. Features topic categories (Insights, Tutorials, Guides, Success Stories, Events, News) and newsletter subscription. JSON-LD: Blog with publisher EducationalOrganization/IIEC, sample post: "Why College is the Best Time to Start a Startup" (2024-05-15).
+
+- [Blog Post](https://iiec.in/blog-post.html): Template page for individual blog articles with dynamic content loading. JSON-LD: BlogPosting with publisher Organization/IIEC.
+
+- [GENESIS](https://iiec.in/genesis.html): Dedicated page for the GENESIS orientation event. In collaboration with GeeksforGeeks. Successfully held on 11 February 2026 (Wednesday) at 10:00 AM at G.D. Badaya Auditorium, CSMU Campus, Navi Mumbai. Duration: 2-3 hours. Seating: limited based on auditorium capacity. Status: Event Completed. Page includes 5 reasons to attend, event details grid, 5 student gains (Entrepreneurship Mindset, Campus Opportunities, Skill Development Paths, Mentorship & Guidance, Recruitment Information), and explore/CTA sections. JSON-LD: Event, eventStatus: EventCompleted, isAccessibleForFree: true.
+
+- [TechAstra](https://iiec.in/techastra.html): Dedicated page for the annual tech fest. Described as "The Largest Annual Technical Fest of Chhatrapati Shivaji Maharaj University." Headline stats: 10+ Events, 1000+ Expected Footfall, Prize Pool TBA, 2 Epic Days. Features 6 event tracks, 3 reasons to volunteer, volunteer registration form (collects: Full Name, Department, Academic Year, College Roll Number, Mobile Number, Email, Preferred Volunteer Roles, Skills, Why Volunteer, Previous Experience), and post-submission flow with WhatsApp group link and Instagram follow prompts. Volunteer roles: Event Management, Technical Support, Registration Desk, Design & Creatives, Social Media & Content, Logistics & Venue, Photography & Videography, Sponsorship & Outreach. JSON-LD: Event, eventStatus: EventScheduled.
+
+---
+
+## Key Facts
+
+- **Full Name**: Incubation, Innovation & Entrepreneurship Cell (IIEC)
+- **Abbreviation**: IIEC
+- **Former Name**: E-Cell CSMU (Entrepreneurship Cell)
+- **University**: Chhatrapati Shivaji Maharaj University (CSMU)
+- **Location**: Navi Mumbai, Maharashtra, India
+- **Founded**: 2020 (as E-Cell CSMU)
+- **Rebranded**: 2025 (from E-Cell CSMU to IIEC)
+- **Type**: Student-led educational organization / Entrepreneurship cell
+- **Top Achievement**: Ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC), organized by E-Cell IIT Bombay — reached NEC Finals
+- **Recognition**: One of the best entrepreneurship cells in Maharashtra
+- **Tagline**: Where Vision Drives Venture
+- **Website**: https://iiec.in
+- **Domain**: iiec.in
+- **Email**: ecell-student-rep@csmu.ac.in
+- **Join URL**: https://join.ecellcsmu.in
+- **Collaboration Partner**: GeeksforGeeks (for GENESIS orientation event and learning resources)
+- **Copyright Year**: 2025
+
+---
+
+## Mission
+
+To ignite the entrepreneurial spirit in every student at CSMU through hands-on startup experiences, real-world industry exposure, and a community that transforms ideas into ventures.
+
+**Mission Pillars:**
+- Foster innovation and design thinking among students
+- Compete at and prepare students for NEC IIT Bombay and other national competitions
+- Connect students with angel investors, mentors, and industry professionals
+- Serve as a launchpad for student startups from CSMU campus
+
+---
+
+## Vision
+
+To become India's most recognized college entrepreneurship cell, known for producing successful student founders, award-winning teams, and building a self-sustaining innovation ecosystem at CSMU, Navi Mumbai.
+
+**Vision Goals:**
+- Build a thriving community of student entrepreneurs and innovators
+- Incubate and launch startups directly from CSMU campus
+- Consistently compete and win at national-level entrepreneurship competitions
+- Establish venture capital and industry partnerships for student founders
+
+---
+
+## Core Values
+
+1. **Innovation First**: Embracing design thinking and lean startup methodology to solve real problems with creative, scalable solutions.
+2. **Community Driven**: Building a culture of peer learning, collaboration, and a supportive student founder network where every member grows together.
+3. **Action Oriented**: Moving beyond theory through hackathons, real project building, startup bootcamps, and hands-on execution.
+
+---
+
+## Four Core Pillars
+
+1. **Incubation**: Providing mentorship, funding guidance, and resources to help student startups grow from idea to launch. Nurturing early-stage student startup ideas with mentorship, funding guidance, and a supportive incubation ecosystem to transform concepts into viable ventures and real businesses in college.
+2. **Innovation**: Driving creative problem-solving through hackathons, coding competitions, and innovation challenges. Fostering a culture of creativity and experimentation through hackathons, coding competitions, tech fests, innovation labs, and hands-on problem-solving workshops for students.
+3. **Leadership**: Developing team management, communication, and community-building skills in student leaders. Developing future student leaders through hands-on experience, team management, community building, and real-world project execution at CSMU.
+4. **National Reach**: Competing at NEC IIT Bombay and other national platforms, building industry partnerships that put CSMU on the national map. Top 23 at NEC, IIT Bombay out of 4,000+ teams. Connecting with India's national startup ecosystem through premier entrepreneurship competitions, industry partnerships, and innovation challenges.
+
+---
+
+## History & Timeline
+
+1. **2020 — E-Cell Founded**: The Entrepreneurship Cell (E-Cell) was established at Chhatrapati Shivaji Maharaj University, Navi Mumbai, to foster startup culture on campus. A group of passionate students recognized the need for an entrepreneurship platform at CSMU. E-Cell CSMU was born with a vision to build startup culture from the ground up.
+2. **2020–2024 — Building Foundations**: Years of building the entrepreneurship community, organizing workshops, bootcamps, speaker sessions, and internal events to develop the startup ecosystem at CSMU. E-Cell CSMU grew steadily — organizing events, workshops, and building a strong entrepreneurial community on campus.
+3. **2025 — NEC Top 23**: E-Cell CSMU competed at the National Entrepreneurship Challenge (NEC) by E-Cell IIT Bombay and ranked Top 23 out of 4,000+ teams across India, reaching the NEC Finals. This became the cell's biggest milestone and put CSMU on the national map. Achieved Top 23 rank out of 4,000+ teams at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay — qualifying for the national finals.
+4. **2025 — Rebranded as IIEC**: E-Cell CSMU was officially rebranded to IIEC (Incubation, Innovation & Entrepreneurship Cell) to reflect the expanded scope beyond entrepreneurship into incubation and innovation. Evolved into IIEC with incubation support, national outreach, and industry collaborations including GeeksforGeeks.
+5. **February 2026 — GENESIS & Beyond**: IIEC held its grand orientation program "GENESIS" on 11 February 2026 in collaboration with GeeksforGeeks at G.D. Badaya Auditorium, CSMU Campus. This marked the beginning of a new chapter with upcoming events like TechAstra, IPL Auction, Problem Auction, and the next NEC journey. Successfully conducted GENESIS — flagship orientation event. Building the team, hosting events, and scaling national presence.
+
+---
+
+## Complete Team Roster
+
+### Core Leadership (4 Members)
+
+- **President**: Mohd Monish — Leading IIEC's mission to foster innovation, incubation, and entrepreneurship at CSMU. Dedicated to creating startup opportunities, building a thriving student founder network, and developing India's next generation of entrepreneurs at Navi Mumbai. LinkedIn: https://www.linkedin.com/in/mrmonish
+- **Vice President**: Geet Sharma — Supporting leadership, driving strategic initiatives, and building the innovation ecosystem. LinkedIn: https://www.linkedin.com/in/geetsharrma
+- **Secretary**: Shivansh Mishra — Managing operations, communications, and organizational coordination. LinkedIn: https://www.linkedin.com/in/shivansh-mishra-476455381/
+- **Treasurer**: Abu Hujaifa — Overseeing finances, budgets, and resource allocation for all IIEC events and operations.
+
+### 7 Portfolio Departments (15 Portfolio Heads)
+
+1. **Events & Operations**
+   - Head: Shivam Sah — Planning and executing impactful college events, hackathons, workshops, and operational excellence for the entrepreneurship community. LinkedIn: https://www.linkedin.com/in/shivamsah26
+   - Junior Head: Swayam Kumar — LinkedIn: https://www.linkedin.com/in/swayam-kumar-swain-6ab052296
+   - Junior Head: Sumit Karkun — LinkedIn: https://www.linkedin.com/in/sumeet-karkun-11660a3a5
+
+2. **Production & Social Media**
+   - Head: Bhumika Chavan — Creating compelling digital content, social media marketing, and managing IIEC's online presence across platforms.
+   - Junior Head: Mahak Saini
+
+3. **PR & Sponsorship**
+   - Head: Pallavi Patil — Building industry partnerships, securing sponsorships, and connecting with angel investors for IIEC initiatives. LinkedIn: https://www.linkedin.com/in/pallavi-patil-741506396
+   - Junior Head: Aayush Kumar Singh
+
+4. **Research & Content**
+   - Head: Sarah Farooqui — Curating insights, startup knowledge resources, and entrepreneurship content for the student community. LinkedIn: https://www.linkedin.com/in/sarahfarooquii
+
+5. **Creative Design**
+   - Head: Sampada Gawde — Crafting the visual identity, branding, and stunning designs for all IIEC assets.
+   - Junior Head: Vaishnavi Bodke
+
+6. **Technical Team**
+   - Head: Samaira Kurlekar — Building IIEC's digital solutions, website, tech infrastructure, and innovation tools using modern web technologies.
+
+7. **HR & Documentation**
+   - Head: Divy Jagetiya — Managing human resources, recruitment processes, and creating comprehensive documentation. LinkedIn: https://www.linkedin.com/in/divy-jagetiya
+
+### Team Stats
+- 4 Core Leaders
+- 7 Portfolio Departments
+- 15 Portfolio Heads (Heads + Junior Heads)
+- 30+ Total Members
+
+---
+
+## Flagship Events (Detailed)
+
+### 1. GENESIS — Grand Orientation Program
+- **Status**: Successfully Completed
+- **Date**: 11 February 2026 (Wednesday)
+- **Time**: 10:00 AM Onwards
+- **Duration**: 2–3 Hours
+- **Venue**: G.D. Badaya Auditorium, CSMU Campus, Navi Mumbai
+- **Seating**: Limited — based on auditorium capacity
+- **Entry**: Free (isAccessibleForFree: true)
+- **Collaboration**: GeeksforGeeks (GfG)
+- **Description**: The official orientation program of IIEC. Serves as the entry point for students across all departments who want to explore innovation, entrepreneurship, startup development, and skill building. Introduced IIEC's vision, team structure, upcoming initiatives (TechAstra, NEC), and startup opportunities. Whether you want to build a tech startup, develop coding skills, learn digital marketing, or contribute to campus growth — GENESIS is where the entrepreneurial journey begins.
+- **5 Reasons to Attend**: (1) Understand IIEC's Startup Roadmap and 2026 plans — learn what IIEC does and how you can be part of the startup ecosystem at CSMU, (2) Learn Beyond Classrooms with coding workshops and real-world experiences that go beyond academic curriculum, (3) Real-World Startup Skill Exposure including lean startup thinking, product development, pitch deck building, design thinking, and professional skills essential for every student founder, (4) Know How to Join IIEC across 7 portfolios — understand the recruitment process, team roles, campus entrepreneurship opportunities, and how to apply, (5) GeeksforGeeks Learning Opportunities including exclusive coding courses, data structures & algorithms resources, web development paths, and tech community opportunities through GfG collaboration.
+- **5 Student Gains**: (1) Entrepreneurship Mindset — exposure to how entrepreneurs think, plan, and execute ideas, (2) Campus Opportunities — clarity on what's available: events, programs, teams, and projects, (3) Skill Development Paths — understand which skills to build and how to get started, (4) Mentorship & Guidance — learn how to access mentors, learning resources, and community support, (5) Recruitment Information — structured details on IIEC's recruitment process and team positions.
+- **Event Completion Notice**: GENESIS was successfully conducted on 11 February 2026 at the G.D. Badaya Auditorium, CSMU Campus. Registration for this event is now closed. Stay connected with IIEC for future events and opportunities.
+
+### 2. TechAstra — Annual Technical Fest
+- **Status**: Upcoming (Volunteer Registrations Open)
+- **Year**: 2026 — Date TBA
+- **Location**: CSMU Campus, Navi Mumbai
+- **Duration**: 2 Epic Days
+- **Expected Footfall**: 1000+ attendees
+- **Events**: 10+ events planned
+- **Prize Pool**: TBA
+- **Organizer**: IIEC
+- **Description**: The largest annual technical fest of Chhatrapati Shivaji Maharaj University (CSMU), Navi Mumbai — a celebration of technology, innovation, startup culture, and creativity. From hackathons and coding battles to robotics, AI/ML workshops, tech quizzes, and gaming tournaments — TechAstra brings together the brightest student minds on campus for one power-packed festival of technology and entrepreneurship. Organized by IIEC (Incubation, Innovation & Entrepreneurship Cell), TechAstra is designed to push boundaries, spark startup ideas, develop technical skills, and give students a platform to showcase their brilliance in coding, development, design, and innovation.
+- **6 Event Tracks**: (1) Hackathons & Coding Competitions — build, code, and compete in intense coding challenges, hackathons, and programming battles with real-world problem statements and industry mentors, (2) Tech Workshops & Bootcamps — hands-on workshops and bootcamps on AI/ML, web development, Python programming, cybersecurity, cloud computing, and emerging technologies led by industry experts, (3) Innovation & Project Showcase — present tech projects, startup prototypes, and innovations to a panel of industry judges, mentors, and peers; win prizes and get noticed, (4) Tech Quiz & Knowledge Battle — test your knowledge in fast-paced tech quizzes covering data structures, algorithms, CS fundamentals, current tech trends, and more, (5) Gaming Arena & E-Sports — competitive gaming tournaments, e-sports battles, and virtual challenges; show off your reflexes, strategy, and team coordination, (6) & Much More — surprise events, guest speaker sessions, networking opportunities, startup exhibitions, and much more to be announced.
+- **8 Volunteer Roles**: Event Management, Technical Support, Registration Desk, Design & Creatives, Social Media & Content, Logistics & Venue, Photography & Videography, Sponsorship & Outreach.
+- **Volunteer Registration Form Fields**: Full Name (required), Department (required), Academic Year (required — First Year/Second Year/Third Year/Final Year), College Roll Number (required), Mobile Number (required — 10-digit), Email Address (required), Preferred Volunteer Roles (required — checkboxes from 8 roles), Your Key Skills (optional), Why do you want to volunteer? (optional), Any Previous Event Experience? (optional), Consent checkbox (required).
+- **Why Volunteer**: (1) Leadership & Team Management Experience — take ownership of real tech events, manage cross-functional teams, and build leadership skills that matter for your career beyond the classroom, (2) Networking — connect with like-minded peers, tech enthusiasts, seniors, and industry professionals, (3) Certificate & Recognition — get an official volunteer certificate from IIEC and recognition for your contribution.
+- **Post-Submission Flow**: After form submission, volunteers see a success screen with 3 action items: (1) Check inbox for confirmation email (also check spam/junk), (2) Join the Volunteer WhatsApp Group for all updates, tasks & coordination, (3) Follow on Instagram for announcements, reveals & behind-the-scenes.
+- **TechAstra Instagram**: https://www.instagram.com/techastra.csmu
+- **Volunteer WhatsApp Group**: https://chat.whatsapp.com/LKfRXSRsxfmFho4sQ8XhwF
+- **Full TechAstra Website**: Under construction — dedicated website with event details, schedules, registrations, and more coming soon.
+
+### 3. IPL Auction
+- **Status**: Coming Soon (2026)
+- **Description**: Experience entrepreneurship through sports management and strategic thinking. A simulated IPL auction event where students strategize, bid, and build their dream team, developing entrepreneurial skills through cricket-themed auction dynamics, team-building, and strategic decision-making.
+
+### 4. Problem Auction
+- **Status**: Coming Soon (2026)
+- **Description**: Bid on real-world problems and develop innovative solutions using design thinking and lean startup methodology. A unique competitive event where teams bid on actual problem statements from industry partners and compete to develop the most innovative, scalable startup solutions.
+
+### 5. National Entrepreneurship Challenge (NEC) Journey
+- **Status**: Coming Soon (2026)
+- **Organizer**: E-Cell IIT Bombay
+- **Description**: Begin the NEC journey — represent CSMU on the national stage and compete with the brightest entrepreneurial minds across India. NEC is India's largest inter-college entrepreneurship competition. IIEC previously ranked Top 23 out of 4,000+ teams and reached the NEC Finals at IIT Bombay.
+
+---
+
+## Regular Programs
+
+1. **Skill Development Workshops**: Weekly hands-on workshops covering essential startup and technical skills — pitch deck design, financial modeling, product development, digital marketing strategies, web development, AI/ML, Python programming, data structures, and more.
+
+2. **Ideation & Brainstorming Sessions**: Bi-weekly design thinking and brainstorming sessions where students pitch innovative startup ideas, receive mentorship feedback, explore business model canvas frameworks, practice customer development, and form teams to work on promising business concepts.
+
+3. **Mentorship & Industry Connect**: Connect with industry mentors, angel investors, startup founders, and venture capital professionals for guidance on the entrepreneurial journey. Get paired with experienced professionals in relevant domains for ongoing mentorship.
+
+4. **Startup Bootcamps & Hackathons**: Intensive programs that take students from ideation to prototype, covering lean startup methodology, MVP development, market validation, and pitch preparation.
+
+5. **Speaker Series & Guest Lectures**: Sessions featuring entrepreneurs, industry professionals, and subject matter experts sharing insights on building startups, technology trends, and career growth.
+
+---
+
+## What IIEC Offers
+
+1. **Workshops & Startup Bootcamps**: Intensive training sessions covering business planning, product development, pitch deck design, financial modeling, marketing strategies, and the essential skills every student founder needs to succeed.
+2. **Mentorship & Industry Network**: Access to a growing network of entrepreneurs, angel investors, industry experts, and experienced mentors who provide real guidance on the college startup journey.
+3. **Startup Launchpad**: From ideation to launch — resources, venture capital connections, national-level exposure through NEC IIT Bombay, and end-to-end incubation support to turn student startup visions into reality.
+
+---
+
+## Impact & Achievements
+
+- **NEC Rank**: Top 23 All India at the National Entrepreneurship Challenge by E-Cell IIT Bombay
+- **Teams Competed Against**: 4,000+ teams from colleges across India
+- **NEC Stage Reached**: Finals at IIT Bombay
+- **State Recognition**: One of the best entrepreneurship cells in Maharashtra
+- **Team Size**: 30+ active members across 7 portfolio departments
+- **Events Planned for 2026**: 5+ major events (GENESIS completed, TechAstra upcoming, IPL Auction, Problem Auction, NEC Journey)
+- **TechAstra Scale**: 10+ events, 1000+ expected footfall, 2-day fest
+
+---
+
+## Blog
+
+The IIEC Blog publishes articles and insights on innovation, entrepreneurship, startups, technology, and student success stories. Blog posts are loaded dynamically from an API.
+
+**Blog Categories**: Insights, Tutorials, Guides, Success Stories, Events, News
+
+**Sample Articles**:
+- "Why College is the Best Time to Start a Startup" (Published: May 15, 2024) — The unique advantages of starting your entrepreneurial journey while still in university.
+
+---
+
+## Collaboration Partners
+
+- **GeeksforGeeks (GfG)**: Official collaboration partner for the GENESIS orientation event. Provides additional learning resources, coding courses, data structures & algorithms content, web development paths, and technical community opportunities to IIEC members and event attendees.
+
+---
+
+## Social Links & Contact
+
+- **LinkedIn**: https://www.linkedin.com/company/iiec-csmu
+- **Instagram**: https://www.instagram.com/iiec.csmu
+- **Twitter/X**: https://twitter.com/iiec_csmu
+- **TechAstra Instagram**: https://www.instagram.com/techastra.csmu
+- **Email**: ecell-student-rep@csmu.ac.in
+- **Join IIEC**: https://join.ecellcsmu.in
+- **Newsletter**: Available on the homepage at https://iiec.in/#newsletter
+- **TechAstra Volunteer WhatsApp**: https://chat.whatsapp.com/LKfRXSRsxfmFho4sQ8XhwF
+
+---
+
+## Technical Infrastructure
+
+- **Stack**: Static HTML, CSS, JavaScript website
+- **Hosting**: GitHub Pages
+- **Repository**: Mohd-Monish/iiec.in-Website (branch: main)
+- **Domain**: iiec.in (custom domain via CNAME)
+- **Total Pages**: 11 HTML pages (8 public, 3 non-indexed)
+- **Public Pages**: index.html, about.html, team.html, activities.html, blog.html, blog-post.html, genesis.html, techastra.html
+- **Non-Indexed Pages**: admin.html (OPS Portal), 404.html (error page), analytics.html
+- **Google Analytics**: G-N75CFCW014
+- **Google Tag Manager**: GTM-58G63L54
+- **Microsoft Clarity**: vecnkdfxty
+- **Sitemap**: https://iiec.in/sitemap.xml (7 URLs listed)
+- **Robots.txt**: https://iiec.in/robots.txt (allows all crawlers, disallows admin/404/analytics)
+- **LLMs.txt**: https://iiec.in/llms.txt (summary version)
+- **LLMs-full.txt**: https://iiec.in/llms-full.txt (this file — full detailed version)
+- **Fonts**: Inter (400-800), Montserrat (400-800) via Google Fonts
+- **Image Format**: WebP (optimized)
+- **Favicon**: WebP format
+- **Accessibility**: ARIA roles, labels, and landmarks on all pages
+- **SEO**: Canonical URLs, Open Graph tags, Twitter Cards, JSON-LD structured data on every page
+- **CSS Files**: style.css (shared), 404.css, admin.css, analytics.css, blog-post.css, genesis.css, team.css, techastra.css
+- **JS Files**: script.js (shared), 404.js, analytics.js, blog-post.js, genesis.js, team.js, techastra.js
+
+---
+
+## Structured Data (JSON-LD Schemas)
+
+- **index.html**: EducationalOrganization (name: IIEC, foundingDate: 2020, parentOrganization: CollegeOrUniversity/CSMU)
+- **about.html**: AboutPage → EducationalOrganization with mission and vision statements
+- **team.html**: Organization with member array
+- **activities.html**: ItemList containing 5 Event entries (GENESIS, TechAstra, IPL Auction, Problem Auction, NEC)
+- **blog.html**: Blog with publisher EducationalOrganization/IIEC, includes BlogPosting entries
+- **blog-post.html**: BlogPosting with publisher Organization/IIEC
+- **genesis.html**: Event (eventStatus: EventCompleted, isAccessibleForFree: true)
+- **techastra.html**: Event (eventStatus: EventScheduled)
+
+---
+---
+
+## Full Page Content: Home (index.html)
+
+**URL**: https://iiec.in/
+**Title**: IIEC | Innovation. Incubation. Entrepreneurship.
+**Meta Description**: IIEC - Incubation, Innovation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University (CSMU), Navi Mumbai. Where Vision Drives Venture. Top 23 All India at NEC, IIT Bombay. Student-led startup incubator, hackathons, tech fests, and entrepreneurship programs. Formerly E-Cell CSMU.
+**Canonical**: https://iiec.in/
+
+### Navigation
+Home | About | Team | Activities | Blog | TechAstra (CTA)
+
+### Hero Section
+- Badge: Est. 2020 • Rebranded 2025
+- Tagline: Where Vision Drives Venture
+- Title: Innovation. Incubation. Entrepreneurship.
+- Subtitle: Where Vision Drives Venture — The student-led innovation, incubation, and entrepreneurship hub at Chhatrapati Shivaji Maharaj University, Navi Mumbai. Ranked Top 23 All India at the National Entrepreneurship Challenge (NEC), IIT Bombay. Building India's next generation of student founders and startup leaders. Formerly E-Cell CSMU.
+- CTA Buttons: "Join the Movement" (→ https://join.ecellcsmu.in) | "Our Journey" (→ #timeline)
+
+### History of Growth Timeline
+From a student initiative to a nationally recognized entrepreneurship powerhouse.
+
+1. **2020 — E-Cell Launch**: Founded as E-Cell CSMU — a passionate student-led initiative to foster entrepreneurial mindset and build startup culture within the university.
+2. **2025 — NEC — Top 23 All India**: Ranked Top 23 out of 4,000+ teams at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay. Made it to the national finals, earning recognition among the best in the country.
+3. **2025 — Rebranded as IIEC**: Evolved into IIEC — Incubation, Innovation & Entrepreneurship Cell. Expanded scope with incubation support, national outreach, and industry collaborations including GeeksforGeeks. [Current]
+
+### Core Pillars
+The four foundations that drive our mission forward.
+
+1. **Incubation (01)**: Nurturing early-stage student startup ideas with mentorship, funding guidance, and a supportive incubation ecosystem to transform concepts into viable ventures and real businesses in college.
+2. **Innovation (02)**: Fostering a culture of creativity and experimentation through hackathons, coding competitions, tech fests, innovation labs, and hands-on problem-solving workshops for students.
+3. **Leadership (03)**: Developing future student leaders through hands-on experience, team management, community building, and real-world project execution at CSMU.
+4. **National Reach (04)**: Competing at the highest level — Top 23 at NEC, IIT Bombay out of 4,000+ teams. Connecting with India's national startup ecosystem through premier entrepreneurship competitions, industry partnerships, and innovation challenges.
+
+### What We Offer
+Comprehensive support for every stage of your entrepreneurial journey.
+
+1. **Workshops & Startup Bootcamps**: Intensive training sessions covering business planning, product development, pitch deck design, financial modeling, marketing strategies, and the essential skills every student founder needs to succeed.
+2. **Mentorship & Industry Network**: Access to a growing network of entrepreneurs, angel investors, industry experts, and experienced mentors who provide real guidance on your college startup journey.
+3. **Startup Launchpad**: From ideation to launch — resources, venture capital connections, national-level exposure through NEC IIT Bombay, and end-to-end incubation support to turn your student startup vision into reality.
+
+### Our Impact (Stats)
+- Top 23 — NEC All India Rank
+- 4000+ — Teams Competed Against
+- NEC — IIT Bombay Finals
+
+### TechAstra Event Banner
+[Volunteers Open] TechAstra — Annual Tech Fest. The largest tech fest of CSMU. Hackathons, coding battles, workshops, and more. Volunteer registrations are now open! → Volunteer Now
+
+### Join the Movement CTA
+Be part of the next generation of innovators, builders, and changemakers. Your entrepreneurial journey starts here. → Apply Now | Learn More
+
+### Explore More
+1. About IIEC — Our story, mission, vision, and the NEC Top 23 journey that put CSMU on the national map.
+2. Meet the Team — The passionate minds driving IIEC forward — from leadership to every portfolio head.
+3. Activities & Events — GENESIS, TechAstra, IPL Auction, and more — see what's happening at IIEC.
+
+### Newsletter Section
+Stay Updated. Subscribe for weekly updates on events, opportunities, and startup insights. [Email subscription form]
+
+### Footer
+- Brand: IIEC — Incubation, Innovation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Where Vision Drives Venture.
+- In collaboration with GeeksforGeeks
+- Socials: LinkedIn | Instagram | Twitter/X | Email
+- Quick Links: Home, About Us, Team, Activities, Blog
+- Programs: Workshops, Startup Bootcamp, Industry Talks, Events
+- Contact: ecell-student-rep@csmu.ac.in, Join Us, Newsletter
+- © 2025 IIEC. All rights reserved.
+- OPS Portal →
+
+---
+
+## Full Page Content: About (about.html)
+
+**URL**: https://iiec.in/about.html
+**Title**: About | IIEC
+**Meta Description**: About IIEC - Incubation, Innovation & Entrepreneurship Cell at CSMU, Navi Mumbai. Our mission, vision, and journey building Maharashtra's leading student entrepreneurship ecosystem. Top 23 at NEC IIT Bombay. Where Vision Drives Venture.
+**Canonical**: https://iiec.in/about
+
+### Page Header
+About IIEC — Our mission, vision, and the journey ahead
+
+### Who We Are
+IIEC — Incubation, Innovation & Entrepreneurship Cell is the official student-led entrepreneurship hub of Chhatrapati Shivaji Maharaj University, Navi Mumbai. What started as a small group of passionate students at E-Cell CSMU has grown into a nationally recognized movement — ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay. We are one of the best entrepreneurship cells in Maharashtra.
+
+We exist to bridge the gap between ideas and execution. Through skill development workshops, startup mentorship, national competitions, hackathons, coding bootcamps, and industry connections, IIEC provides the platform where raw ambition transforms into real ventures. We don't just study entrepreneurship — we practice it. From business plan competitions to startup incubation, our community of student founders is building the future.
+
+Every member who joins IIEC becomes part of a legacy of innovation and entrepreneurship. We're building a culture where innovation is second nature, failures are celebrated as lessons, and every student at CSMU is empowered to think like a startup founder and leader.
+
+- Top 23 — NEC All India Rank
+- 4,000+ — Teams Competed Against
+
+### Our Mission
+To ignite the entrepreneurial spirit in every student at Chhatrapati Shivaji Maharaj University by providing hands-on startup experiences, real-world industry exposure, and a community that turns bold ideas into impactful ventures.
+
+Mission Points:
+- Foster innovation, design thinking, and creative problem-solving
+- Compete and excel at national-level entrepreneurship challenges like NEC IIT Bombay
+- Connect students with industry leaders, angel investors, and mentors
+- Build a launchpad for student-led startups and innovation projects
+
+### Our Vision
+To establish IIEC as India's most recognized college entrepreneurship cell that produces successful student founders, award-winning teams, and a self-sustaining innovation ecosystem at CSMU, Navi Mumbai.
+
+Vision Points:
+- Grow a thriving community of student entrepreneurs and innovators
+- Incubate and launch student-led startups from CSMU campus
+- Achieve excellence at national competitions like NEC IIT Bombay and beyond
+- Build strategic partnerships with industry, incubators, and venture capital firms
+
+### Our Journey (Timeline)
+Milestones we've achieved and the road ahead.
+
+1. **2020 — E-Cell Founded**: A group of passionate students recognized the need for an entrepreneurship platform at CSMU. E-Cell CSMU was born with a vision to build startup culture from the ground up.
+2. **2020–2024 — Building Foundations**: E-Cell CSMU grew steadily — organizing events, workshops, and building a strong entrepreneurial community on campus.
+3. **2025 — NEC — Top 23 All India**: Achieved Top 23 rank out of 4,000+ teams at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay — qualifying for the national finals and putting CSMU on the map. [Milestone]
+4. **2025 — Evolution to IIEC**: E-Cell CSMU transforms into IIEC — Incubation, Innovation & Entrepreneurship Cell, expanding scope to cover incubation, innovation labs, and national outreach.
+5. **Feb 2026 — GENESIS & Beyond**: Successfully conducted GENESIS — our flagship orientation event in collaboration with GeeksforGeeks. Building the team, hosting events, and scaling our national presence. [Completed]
+
+### Our Values
+The principles that guide everything we do.
+
+1. **Innovation First**: We encourage thinking differently, challenging norms, and finding creative startup solutions to real-world problems through design thinking and lean methodology.
+2. **Community Driven**: Success is collective. Our student founder network builds each other up, shares knowledge through peer learning, and celebrates every startup milestone together.
+3. **Action Oriented**: Ideas are great, execution is everything. We believe in learning by doing — through hackathons, startup bootcamps, and real project building — and failing forward fast.
+
+### Continue Exploring
+1. GENESIS — The Beginning of Innovation [Event Completed] — Our flagship orientation event in collaboration with GeeksforGeeks — successfully held on 11 Feb 2026.
+2. Meet the Team [Our People] — The people behind the mission — leadership, core team, and every portfolio head.
+3. Activities & Events [What's Coming] — Upcoming events, workshops, and programs — there's always something happening at IIEC.
+
+### CTA
+Ready to Write History? Join the team at IIEC and be part of something extraordinary. → Join the Team
+
+---
+
+## Full Page Content: Team (team.html)
+
+**URL**: https://iiec.in/team.html
+**Title**: Our Team | IIEC - Incubation, Innovation & Entrepreneurship Cell
+**Meta Description**: Meet the passionate team behind IIEC. Where Vision Drives Venture — driving innovation, fostering startups, and building entrepreneurs at Chhatrapati Shivaji Maharaj University.
+**Canonical**: https://iiec.in/team
+
+### Hero Section
+THE FORCE BEHIND IIEC
+Meet the Innovators
+Where Vision Drives Venture — Passionate student leaders, innovators, and startup founders building the future of entrepreneurship at Chhatrapati Shivaji Maharaj University, Navi Mumbai
+
+Stats:
+- 4 Core Leaders
+- 7 Portfolios
+- 15 Portfolio Heads
+- 30+ Members
+
+### President Spotlight
+**Mohd Monish** — President, IIEC
+Leading IIEC's mission to foster innovation, incubation, and entrepreneurship among students at CSMU. Dedicated to creating startup opportunities, building a thriving student founder network, and developing India's next generation of entrepreneurs at Navi Mumbai.
+LinkedIn: https://linkedin.com/in/mrmonish
+
+### Core Team (Leadership)
+
+**Vice President**: Geet Sharma
+Supporting leadership, driving strategic initiatives, and building the innovation ecosystem.
+LinkedIn: https://linkedin.com/in/geetsharrma
+
+**Secretary**: Shivansh Mishra
+Managing operations and communications.
+LinkedIn: https://www.linkedin.com/in/shivansh-mishra-476455381/
+
+**Treasurer**: Abu Hujaifa
+Overseeing finances and resource allocation.
+
+### Portfolio Heads (7 Departments)
+
+**1. Events & Operations** (accent: #FF6B6B)
+Planning and executing impactful college events, hackathons, workshops, and operational excellence for the entrepreneurship community.
+- Head: Shivam Sah — LinkedIn: https://linkedin.com/in/shivamsah26
+- Joint Head: Swayam Kumar — LinkedIn: https://linkedin.com/in/swayam-kumar-swain-6ab052296
+- Joint Head: Sumit Karkun — LinkedIn: https://www.linkedin.com/in/sumeet-karkun-11660a3a5
+
+**2. Production & Social Media** (accent: #4ECDC4)
+Creating compelling digital content, social media marketing, and managing IIEC's online presence across platforms.
+- Head: Bhumika Chavan
+- Joint Head: Mahak Saini
+
+**3. PR & Sponsorship** (accent: #FFE66D)
+Building industry partnerships, securing sponsorships, and connecting with angel investors for IIEC initiatives.
+- Head: Pallavi Patil — LinkedIn: https://www.linkedin.com/in/pallavi-patil-741506396
+- Joint Head: Aayush Kumar Singh
+
+**4. Research & Content** (accent: #95E1D3)
+Curating insights, startup knowledge resources, and entrepreneurship content for the student community.
+- Head: Sarah Farooqui — LinkedIn: https://linkedin.com/in/sarahfarooquii
+
+**5. Creative Design** (accent: #DDA0DD)
+Crafting visual identity and stunning designs for all IIEC assets.
+- Head: Sampada Gawde
+- Joint Head: Vaishnavi Bodke
+
+**6. Technical Team** (accent: #7B68EE)
+Building IIEC's digital solutions, website, tech infrastructure, and innovation tools using modern web technologies.
+- Head: Samaira Kurlekar
+
+**7. HR & Documentation** (accent: #F0A500)
+Managing human resources and creating comprehensive documentation.
+- Head: Divy Jagetiya — LinkedIn: https://linkedin.com/in/divy-jagetiya
+
+### CTA
+JOIN THE MOVEMENT — Ready to Make an Impact? We're always looking for passionate individuals to join our team. Be part of the innovation revolution at CSMU. → Apply Now
+
+### Explore More
+1. GENESIS — The Beginning of Innovation [Event Completed]
+2. About IIEC — Our journey from E-Cell to NEC Top 23 All India
+3. Activities & Events — All upcoming events, workshops, and programs
+
+---
+
+## Full Page Content: Activities (activities.html)
+
+**URL**: https://iiec.in/activities.html
+**Title**: Activities | IIEC
+**Meta Description**: Explore IIEC activities — workshops, hackathons, bootcamps, tech fests, speaker sessions, and entrepreneurship events at CSMU, Navi Mumbai. GENESIS orientation, TechAstra tech fest, IPL Auction, Problem Auction, and more. Where Vision Drives Venture.
+**Canonical**: https://iiec.in/activities
+
+### Page Header
+Our Activities — Hackathons, workshops, tech fests, startup bootcamps, and entrepreneurship programs designed to ignite your journey
+
+### Featured Event
+TechAstra — The Largest Annual Tech Fest of CSMU [Volunteers Open]
+Organized By: IIEC
+Hackathons, coding battles, robotics, tech quizzes, workshops, gaming arena, and more — TechAstra brings together the brightest minds on campus for 2 epic days of technology and innovation. Volunteer registrations are now open!
+- Date: 2026 — Date TBA
+- Status: Volunteers Open
+- Location: CSMU Campus
+→ Become a Volunteer
+
+### All Events
+
+1. **IIEC GENESIS** [Completed]
+The grand orientation event of IIEC in collaboration with GeeksforGeeks. Successfully held on 11 Feb 2026 at G.D. Badaya Auditorium, CSMU Campus, Navi Mumbai. The beginning of every student's innovation and entrepreneurship journey.
+→ View Event
+
+2. **TechAstra** [Volunteers Open]
+The largest annual tech fest of CSMU, Navi Mumbai. Hackathons, coding battles, AI/ML workshops, robotics competitions, and more. Volunteer registrations are now open!
+→ Become a Volunteer
+
+3. **IPL Auction** [Coming Soon]
+Experience entrepreneurship through sports management and strategic thinking. Strategize, bid, and build your dream team in this exciting simulated IPL auction event at CSMU.
+
+4. **Problem Auction** [Coming Soon]
+Bid on real-world problems and develop innovative solutions using design thinking and lean startup methodology. A unique event where teams compete to solve challenges from industry partners.
+
+5. **Starting NEC Journey** [Coming Soon]
+Begin your entrepreneurial journey with the National Entrepreneurship Challenge by E-Cell IIT Bombay. Represent CSMU on the national stage and compete with the brightest startup minds across India.
+
+### Regular Programs
+Ongoing initiatives to build your entrepreneurial skills.
+
+1. **Skill Development Workshops**: Weekly hands-on workshops covering essential startup skills: pitch deck design, financial modeling, product development, digital marketing strategies, web development, and more.
+2. **Ideation & Brainstorming Sessions**: Bi-weekly brainstorming and design thinking sessions where students pitch innovative startup ideas, receive mentorship feedback, and form teams to work on promising business concepts.
+3. **Mentorship & Industry Connect**: Connect with industry mentors, angel investors, and startup founders for guidance on your entrepreneurial journey. Get paired with experienced professionals in your domain.
+
+### Planned Events Timeline
+1. 11 Feb 2026 — GENESIS — Grand Orientation [Completed]. Successfully held with keynote talks, networking, and the beginning of the innovation journey.
+2. 2026 — TechAstra — Annual Tech Fest [Volunteers Open]. The largest annual tech fest of CSMU. Hackathons, coding battles, robotics, workshops, and more.
+3. 2026 — IPL Auction [Upcoming]. Simulated IPL auction event blending sports management with entrepreneurial strategy, bidding, and team-building skills.
+4. 2026 — Problem Auction [Upcoming]. Teams bid on real-world problem statements and compete to develop the most innovative solutions for industry challenges.
+5. 2026 — National Entrepreneurship Challenge [Upcoming]. Begin the NEC journey — represent CSMU on the national stage and compete with the brightest entrepreneurial minds across India.
+
+### CTA
+Want to Participate? Subscribe to our newsletter to stay updated on all events and activities. Join the team to help organize them. → Subscribe | Join Team
+
+---
+
+## Full Page Content: GENESIS (genesis.html)
+
+**URL**: https://iiec.in/genesis.html
+**Title**: GENESIS | IIEC Orientation 2026
+**Meta Description**: GENESIS — Official IIEC Orientation Program 2026. The grand entry to Incubation, Innovation & Entrepreneurship at CSMU, Navi Mumbai. In collaboration with GeeksforGeeks. Successfully held on 11 February 2026 at G.D. Badaya Auditorium. Where Vision Drives Venture.
+**Canonical**: https://iiec.in/genesis
+
+### Hero Section
+- Collaboration: IIEC × GeeksforGeeks
+- Overline: IIEC Orientation Program 2026
+- Title: GENESIS
+- Subtitle: Official Orientation of the Incubation, Innovation & Entrepreneurship Cell
+- Event Details:
+  - Date: 11 February 2026
+  - Time: 10:00 AM Onwards
+  - Venue: G.D. Badaya Auditorium, CSMU Campus
+- Status: Event Completed
+
+### What is GENESIS
+GENESIS is the official orientation program of IIEC — the Incubation, Innovation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University, Navi Mumbai. It serves as the entry point for students across all departments who want to explore innovation, entrepreneurship, startup development, and skill building beyond the traditional classroom.
+
+The event introduces IIEC's vision, team structure, upcoming initiatives like TechAstra and NEC IIT Bombay, and the startup opportunities available for every student. Whether you want to build a tech startup, develop coding skills, learn digital marketing, or contribute to campus growth — GENESIS is where your entrepreneurial journey begins.
+
+In collaboration with GeeksforGeeks — bringing additional learning resources and technical opportunities to attendees.
+
+### Why Attend GENESIS
+What you take away from this event:
+
+1. **Understand IIEC's Startup Roadmap**: Learn what IIEC does, its innovation and entrepreneurship plans for 2026, and how you can be part of the startup ecosystem at CSMU.
+2. **Learn Beyond Classrooms**: Discover startup skills, coding workshops, and real-world experiences that go beyond your academic curriculum and prepare you for the industry.
+3. **Real-World Startup Skill Exposure**: Get introduced to lean startup thinking, product development, pitch deck building, design thinking, and professional skills essential for every student founder.
+4. **Know How to Join IIEC**: Understand the recruitment process, team roles across 7 portfolios, campus entrepreneurship opportunities, and how to apply to be part of the innovation cell.
+5. **GeeksforGeeks Learning Opportunities**: Access exclusive coding courses, data structures & algorithms resources, web development paths, and tech community opportunities through GfG collaboration.
+
+### Event Details
+- Date: 11 February 2026 (Wednesday)
+- Time: 10:00 AM Onwards
+- Duration: 2 – 3 Hours
+- Venue: G.D. Badaya Auditorium, CSMU Campus
+- Seating: Limited — based on auditorium capacity
+- Status: Successfully Completed
+
+### What You'll Gain
+The value you walk away with after GENESIS:
+
+1. **Entrepreneurship Mindset (01)**: Exposure to how entrepreneurs think, plan, and execute ideas.
+2. **Campus Opportunities (02)**: Clarity on what's available — events, programs, teams, and projects.
+3. **Skill Development Paths (03)**: Understand which skills to build and how to get started.
+4. **Mentorship & Guidance (04)**: Learn how to access mentors, learning resources, and community support.
+5. **Recruitment Information (05)**: Structured details on IIEC's recruitment process and team positions.
+
+### Event Completed Notice
+GENESIS Was Successfully Held. GENESIS — the official IIEC Orientation Program 2026 — was successfully conducted on 11 February 2026 at the G.D. Badaya Auditorium, CSMU Campus. Thank you to all attendees for making it a grand success! Registration for this event is now closed. Stay connected with IIEC for future events and opportunities. → Explore More Events
+
+### Explore IIEC
+1. About IIEC — Our story, mission, and the NEC Top 23 achievement that put CSMU on the national map.
+2. Meet the Team — The leaders and members driving innovation at IIEC — meet every portfolio head.
+3. All Events & Activities — TechAstra, IPL Auction, NEC and more — see everything happening at IIEC.
+
+### CTA
+Be Part of Campus Growth. Entrepreneurship is a mindset. GENESIS was just the beginning. Stay connected with IIEC for upcoming events and opportunities. → Explore Events
+
+---
+
+## Full Page Content: TechAstra (techastra.html)
+
+**URL**: https://iiec.in/techastra.html
+**Title**: TechAstra | CSMU's Largest Tech Fest — IIEC
+**Meta Description**: TechAstra — The Largest Annual Technical Fest of Chhatrapati Shivaji Maharaj University (CSMU), Navi Mumbai. Organized by IIEC. Hackathons, coding battles, robotics, workshops, and tech competitions. Volunteer registrations open. Be part of something massive.
+**Canonical**: https://iiec.in/techastra
+
+### Hero Section
+- Overline: [pulse] Something Big is Coming
+- Title: TECHASTRA
+- Subtitle: The Largest Annual Technical Fest of Chhatrapati Shivaji Maharaj University
+- Tagline: Organized by IIEC — Incubation, Innovation & Entrepreneurship Cell
+- Badge: Volunteer Registrations Now Open
+- CTA: Become a Volunteer | Learn More
+
+### Hype Stats
+- 10+ Events
+- 1000+ Expected Footfall
+- ₹__K+ Prize Pool
+- 2 Epic Days
+
+### What is TechAstra?
+TechAstra is the largest annual technical fest of Chhatrapati Shivaji Maharaj University (CSMU), Navi Mumbai — a celebration of technology, innovation, startup culture, and creativity. From hackathons and coding battles to robotics, AI/ML workshops, tech quizzes, and gaming tournaments — TechAstra brings together the brightest student minds on campus for one power-packed festival of technology and entrepreneurship.
+
+Organized by IIEC (Incubation, Innovation & Entrepreneurship Cell), TechAstra is designed to push boundaries, spark startup ideas, develop technical skills, and give students a platform to showcase their brilliance in coding, development, design, and innovation.
+
+This year, we're going bigger than ever. And we need YOU to make it happen.
+
+### Event Tracks
+Here's a glimpse of what's being planned:
+
+1. **Hackathons & Coding Competitions** [Competitions]: Build, code, and compete in intense coding challenges, hackathons, and programming battles with real-world problem statements and industry mentors.
+2. **Tech Workshops & Bootcamps** [Learning]: Hands-on workshops and bootcamps on AI/ML, web development, Python programming, cybersecurity, cloud computing, and emerging technologies led by industry experts.
+3. **Innovation & Project Showcase** [Exhibition]: Present your tech projects, startup prototypes, and innovations to a panel of industry judges, mentors, and peers. Win prizes and get noticed.
+4. **Tech Quiz & Knowledge Battle** [Brain Battle]: Test your knowledge in fast-paced tech quizzes covering data structures, algorithms, CS fundamentals, current tech trends, and more.
+5. **Gaming Arena & E-Sports** [E-Sports]: Competitive gaming tournaments, e-sports battles, and virtual challenges — show off your reflexes, strategy, and team coordination.
+6. **& Much More...** [Stay Tuned]: Surprise events, guest speaker sessions, networking opportunities, startup exhibitions, and much more to be announced! Follow IIEC on social media for updates.
+
+### Why Volunteer?
+Be the backbone of the biggest tech fest on campus.
+
+1. **Leadership & Team Management Experience**: Take ownership of real tech events, manage cross-functional teams, and build leadership skills that matter for your career beyond the classroom.
+2. **Networking**: Connect with like-minded peers, tech enthusiasts, seniors, and industry professionals.
+3. **Certificate & Recognition**: Get an official volunteer certificate from IIEC and recognition for your contribution.
+
+### Full TechAstra Website Dropping Soon
+The dedicated TechAstra website with event details, schedules, registrations, and more is under construction. Stay tuned for the big reveal! Till then, follow us on Instagram for all updates and announcements.
+- @iiec.csmu — https://www.instagram.com/iiec.csmu
+- @techastra.csmu — https://www.instagram.com/techastra.csmu
+
+### Volunteer Registration Form
+Help us make the biggest tech fest a reality. Fill the form below.
+
+Form fields:
+- Full Name (required)
+- Department (required) — e.g. Computer Science
+- Academic Year (required) — First Year / Second Year / Third Year / Final Year
+- College Roll Number (required)
+- Mobile Number (required) — 10-digit
+- Email Address (required)
+- Preferred Volunteer Roles (required — checkboxes):
+  - Event Management
+  - Technical Support
+  - Registration Desk
+  - Design & Creatives
+  - Social Media & Content
+  - Logistics & Venue
+  - Photography & Videography
+  - Sponsorship & Outreach
+- Your Key Skills (optional) — e.g. Video Editing, Python, Public Speaking, Canva
+- Why do you want to volunteer? (optional) — free text
+- Any Previous Event Experience? (optional) — e.g. Organized college event, volunteered at XYZ
+- Consent checkbox (required): I confirm that the above details are correct and I am willing to volunteer for TechAstra. I understand that my selection is subject to review by the organizing team.
+- Submit: >_ Submit Application
+
+### Post-Submission Success Screen
+SYSTEM: ACCESS GRANTED
+>_ Volunteer application for TechAstra initialized successfully.
+
+Status log:
+✓ Application data encrypted & transmitted
+✓ Registration ID generated
+✓ Confirmation email dispatched
+
+MISSION BRIEF [PRIORITY]:
+
+01 — EMAIL CHECK: Check your inbox now. Confirmation email with all details has been dispatched. Can't find it? Check Spam / Junk folder → Mark as "Not Spam"
+
+02 — JOIN HQ: Join the Volunteer WhatsApp Group — All updates, tasks & coordination happens here. Don't miss out! → https://chat.whatsapp.com/LKfRXSRsxfmFho4sQ8XhwF
+
+03 — FOLLOW INTEL: Follow for Event Intel — Announcements, reveals & behind-the-scenes drops here.
+→ @techastra.csmu (https://www.instagram.com/techastra.csmu)
+→ @iiec.csmu (https://www.instagram.com/iiec.csmu)
+
+>_ Standby for review. Get ready for something legendary.
+
+### CTA
+Be Part of TechAstra. The biggest tech fest on campus needs the best volunteers. Step up, stand out, and be part of something legendary. → Volunteer Now
+
+### Explore IIEC
+1. About IIEC — Our story, mission, and the NEC Top 23 achievement that put CSMU on the national map.
+2. Meet the Team — The leaders and members driving innovation at IIEC — meet the team behind it all.
+3. Activities & Events — TechAstra, IPL Auction, NEC and more — see everything happening at IIEC.
+
+---
+
+## Full Page Content: Blog (blog.html)
+
+**URL**: https://iiec.in/blog.html
+**Title**: Blog | IIEC
+**Canonical**: https://iiec.in/blog
+**Description**: Blog posts on innovation, entrepreneurship, startups, and technology by IIEC — Incubation, Innovation & Entrepreneurship Cell at CSMU.
+
+### Page Header
+Blog — Insights, stories, and updates from the world of innovation and entrepreneurship
+
+### Content
+Blog posts are loaded dynamically from an API. The page features skeleton loading cards while content loads.
+
+**Topic Categories**: Insights, Tutorials, Guides, Success Stories, Events, News
+
+### Newsletter
+Stay Updated. Subscribe to our newsletter for updates on events, opportunities, and insights. [Email subscription form]
+
+---
+
+## Full Page Content: Blog Post (blog-post.html)
+
+**URL**: https://iiec.in/blog-post.html
+**Title**: Blog Post | IIEC
+**Canonical**: https://iiec.in/blog-post
+**Description**: Individual blog post template page for IIEC blog articles.
+
+### Content
+Individual blog post content is loaded dynamically based on URL parameters. The page serves as a template for all blog articles with:
+- Article title, author, date, read time
+- Full article content
+- Related posts section
+- Newsletter subscription
+- Share buttons
+
+---
+
+## Navigation Structure (All Pages)
+
+All public pages share the same navigation:
+- Home (index.html)
+- About (about.html)
+- Team (team.html)
+- Activities (activities.html)
+- Blog (blog.html)
+- TechAstra (techastra.html) — highlighted as CTA button
+
+---
+
+## Footer Structure (All Pages)
+
+All pages share a consistent footer with:
+- Brand: IIEC — Incubation, Innovation & Entrepreneurship Cell. Where Vision Drives Venture.
+- Collaboration: In collaboration with GeeksforGeeks (some pages)
+- Social Links: LinkedIn, Instagram, Twitter/X, Email
+- Quick Links: Home, About Us, Team, Activities, Blog
+- Programs: Workshops, Startup Bootcamp, Industry Talks, Events
+- Contact: ecell-student-rep@csmu.ac.in, Join the Movement / Join Us, Newsletter
+- Copyright: © 2025 IIEC. All rights reserved.
+- Some pages include: OPS Portal → (link to admin.html)
+
+---
+
+## SEO Keywords (Comprehensive)
+
+IIEC, E-Cell, CSMU, Chhatrapati Shivaji Maharaj University, Navi Mumbai, incubation cell, innovation cell, entrepreneurship cell, student startup, college startup India, startup incubator university, NEC IIT Bombay, National Entrepreneurship Challenge, hackathon, tech fest, coding competition, student entrepreneur, startup ecosystem Maharashtra, E-Cell CSMU, college entrepreneurship club, innovation hub, student organization, Where Vision Drives Venture, TechAstra, GENESIS, business incubation, startup community India, student founder network, campus entrepreneurship, youth innovation India, startup funding India, startup India scheme, iiec.in, IIEC club CSMU, college innovation cell India, student led startup cell, entrepreneurship development program, best entrepreneurship cell India, top college clubs India, student entrepreneurship cell website, join E-Cell, Panvel, Maharashtra university events, venture capital college, startup bootcamp India, best college clubs Mumbai, tech community Mumbai, college tech fest Maharashtra, hackathon CSMU, coding competition Navi Mumbai, robotics competition, free startup workshop, certificate course college, guest lecture technology, career fair university, mentorship program free, startup pitch practice, design thinking workshop, campus recruitment event, college cultural fest, ideation sessions, skill development workshop, student hackathon India, GeeksforGeeks CSMU, college orientation Navi Mumbai, TechAstra CSMU tech fest, IPL Auction, Problem Auction, annual technical festival
+
+---
+
+## Accessibility Features
+
+- ARIA roles on navigation (role="navigation"), menu items (role="menuitem"), and content sections
+- ARIA labels on all interactive elements (buttons, links, forms)
+- ARIA landmarks: main navigation, footer (role="contentinfo"), sections with aria-labelledby
+- Skip to main content link (team.html)
+- Alt text on all images
+- Semantic HTML structure (header, nav, main, section, article, footer)
+- Form labels with required field indicators
+- Focus management and keyboard navigation support
+- High contrast text on dark backgrounds
+- Responsive design with viewport meta tag (maximum-scale=5.0)
+
+---
+
+## Performance & Optimization
+
+- WebP image format throughout for optimized loading
+- Lazy loading on below-fold images (loading="lazy")
+- Eager loading on critical images like logos (loading="eager")
+- Async decoding on images (decoding="async")
+- Preconnect to Google Fonts
+- Deferred JavaScript loading (defer attribute)
+- CSS split into page-specific files to reduce unused CSS
+- Minimal external dependencies (no CSS/JS frameworks)
+- Static site on GitHub Pages CDN
