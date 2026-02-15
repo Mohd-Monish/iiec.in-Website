@@ -870,6 +870,7 @@
     constructor() {
       this.passwordScreen = document.getElementById('password-screen');
       this.adminDashboard = document.getElementById('admin-dashboard');
+      this.adminNavbar = document.getElementById('admin-navbar');
       this.passwordForm = document.getElementById('password-form');
       this.passwordInput = document.getElementById('admin-password');
       this.blogForm = document.getElementById('blog-post-form');
@@ -1099,7 +1100,8 @@
 
       if (entered === this.correctPassword) {
         this.passwordScreen.style.display = 'none';
-        this.adminDashboard.style.display = 'block';
+        if (this.adminNavbar) this.adminNavbar.style.display = 'none';
+        this.adminDashboard.style.display = 'flex';
       } else {
         this.passwordInput.classList.add('error');
         this.passwordInput.value = '';
@@ -1117,6 +1119,7 @@
 
     logout() {
       this.passwordScreen.style.display = 'block';
+      if (this.adminNavbar) this.adminNavbar.style.display = '';
       this.adminDashboard.style.display = 'none';
       this.passwordInput.value = '';
     }
