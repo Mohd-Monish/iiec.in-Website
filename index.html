@@ -147,6 +147,16 @@
 
   <!-- Main Content -->
   <div class="main-content">
+    <!-- Announcement Bar -->
+    <a href="https://techastra.iiec.in" target="_blank" rel="noopener" class="announcement-bar" id="announcement-bar">
+      <div class="announcement-bar-content">
+        <span class="announcement-pulse"></span>
+        <span class="announcement-text">🔥 <strong>TechAstra Registrations are LIVE!</strong> &mdash; Register now for CSMU's largest tech fest 🚀</span>
+        <span class="announcement-cta">Register Now &rarr;</span>
+      </div>
+      <div class="announcement-shimmer"></div>
+    </a>
+
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
@@ -167,7 +177,7 @@
           <a href="team.html" class="nav-link" role="menuitem">Team</a>
           <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
           <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
-          <a href="techastra.html" class="nav-cta" role="menuitem">TechAstra</a>
+          <a href="https://techastra.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem">TechAstra</a>
         </div>
       </div>
     </nav>
@@ -406,12 +416,12 @@
       <div class="container">
         <div class="cross-banner glass-card" data-animate="fade-up">
           <div class="cross-banner-content">
-            <span class="cross-banner-badge" style="background: rgba(0,212,255,0.15); color: #00d4ff; border-color: rgba(0,212,255,0.3);">Volunteers Open</span>
+            <span class="cross-banner-badge" style="background: rgba(0,212,255,0.15); color: #00d4ff; border-color: rgba(0,212,255,0.3);">Website Live</span>
             <h3 class="cross-banner-title">TechAstra — Annual Tech Fest</h3>
-            <p class="cross-banner-desc">The largest tech fest of CSMU. Hackathons, coding battles, workshops, and more. Volunteer registrations are now open!</p>
+            <p class="cross-banner-desc">The largest tech fest of CSMU is here! Hackathons, coding battles, workshops, and more. Visit the official TechAstra website now!</p>
           </div>
-          <a href="techastra.html" class="btn btn-primary">
-            <span>Volunteer Now</span>
+          <a href="https://techastra.iiec.in" target="_blank" rel="noopener" class="btn btn-primary">
+            <span>Visit TechAstra</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
           </a>
         </div>
@@ -602,5 +612,25 @@
 
   <!-- Main Script -->
   <script src="js/script.js" defer></script>
+  <script>
+    // Announcement bar: push navbar and content down
+    (function() {
+      function adjustForAnnouncement() {
+        var bar = document.getElementById('announcement-bar');
+        var navbar = document.querySelector('.navbar');
+        if (bar && navbar) {
+          var h = bar.offsetHeight;
+          navbar.style.top = h + 'px';
+          document.body.style.paddingTop = h + 'px';
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', adjustForAnnouncement);
+      } else {
+        adjustForAnnouncement();
+      }
+      window.addEventListener('resize', adjustForAnnouncement);
+    })();
+  </script>
 </body>
 </html>

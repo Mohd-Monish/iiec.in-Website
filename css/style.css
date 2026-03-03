@@ -507,6 +507,130 @@ p {
 }
 
 /* ----------------------------------------------------------------
+   Announcement Bar
+   ---------------------------------------------------------------- */
+.announcement-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: calc(var(--z-fixed) + 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 1.5rem;
+  background: linear-gradient(90deg, #ff0844, #ffb199, #7b2ff7, #00d4ff, #ff0844);
+  background-size: 300% 100%;
+  animation: announceGradient 6s linear infinite;
+  text-decoration: none;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 2px 20px rgba(255, 8, 68, 0.4), 0 4px 30px rgba(123, 47, 247, 0.3);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.announcement-bar:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 2px 30px rgba(255, 8, 68, 0.6), 0 4px 40px rgba(123, 47, 247, 0.5);
+  transform: scale(1.01);
+}
+
+@keyframes announceGradient {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.announcement-shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+  animation: announceShimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes announceShimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+.announcement-bar-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1;
+}
+
+.announcement-pulse {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  animation: announcePulse 1s ease-in-out infinite;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(255,255,255,0.8);
+}
+
+@keyframes announcePulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 8px rgba(255,255,255,0.8); }
+  50% { opacity: 0.6; transform: scale(1.5); box-shadow: 0 0 16px rgba(255,255,255,1); }
+}
+
+.announcement-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(4px);
+  padding: 5px 16px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.announcement-bar:hover .announcement-cta {
+  background: rgba(255,255,255,0.35);
+  border-color: rgba(255,255,255,0.7);
+  transform: translateX(3px);
+}
+
+@media (max-width: 479px) {
+  .announcement-bar {
+    font-size: 0.8rem;
+    padding: 10px 0.75rem;
+  }
+  .announcement-text {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .announcement-bar-content {
+    white-space: normal;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .announcement-cta {
+    font-size: 0.7rem;
+    padding: 4px 12px;
+  }
+}
+
+/* ----------------------------------------------------------------
    5. Navigation
    ---------------------------------------------------------------- */
 .navbar {
