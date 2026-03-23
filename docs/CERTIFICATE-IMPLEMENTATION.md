@@ -174,113 +174,68 @@ Examples:
 
 ### Google Apps Script API
 
-Your API endpoint needs TWO actions:
+Your API endpoint handles TWO modes:
 
-#### Action 1: Search by Email
+#### Mode 1: Search by Email (For Certificates Page)
 Endpoint: `?action=search&email=john@example.com`
 
 ```javascript
-// Example response format
+// Example response format (array of certificates)
 [
   {
-    "email": "john@example.com",
-    "docTitle": "Winner Certificate - Hackathon",
-    "event": "TechAstra Hackathon 2026",
-    "role": "1st Place Winner",
-    "date": "March 25, 2026",
-    "uid": "TA26-HC-001"
+    "uid": "EC-LOR-001",
+    "name": "John Doe",
+    "docType": "LOR",
+    "docTitle": "Letter of Recommendation",
+    "event": "TechAstra 2026",
+    "role": "Participant",
+    "date": "25 Mar 2026"
   }
 ]
 ```
 
-#### Action 2: Verify by UID
-Endpoint: `?action=verify&uid=TA26-HC-001`
+#### Mode 2: Verify by ID (For QR Code / Verify Page)
+Endpoint: `?id=EC-LOR-001`
 
 ```javascript
 // Example response for VALID certificate
 {
   "valid": true,
-  "certificate": {
-    "name": "John Doe",
-    "email": "john@example.com",
-    "docTitle": "Winner Certificate - Hackathon",
-    "event": "TechAstra Hackathon 2026",
-    "role": "1st Place Winner",
-    "date": "March 25, 2026",
-    "uid": "TA26-HC-001"
-  }
+  "uid": "EC-LOR-001",
+  "name": "John Doe",
+  "docType": "LOR",
+  "docTitle": "Letter of Recommendation",
+  "event": "TechAstra 2026",
+  "role": "Participant",
+  "date": "25 Mar 2026"
 }
 
 // Example response for INVALID certificate
 {
   "valid": false,
-  "certificate": null
+  "reason": "ID not found"
+}
+
+// Example response for REVOKED certificate
+{
+  "valid": false,
+  "reason": "This certificate has been revoked."
 }
 ```
 
-#### Sample Google Apps Script Code
+#### Google Sheet Column Structure
 
-```javascript
-function doGet(e) {
-  const action = e.parameter.action;
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Certificates');
-  const data = sheet.getDataRange().getValues();
-  const headers = data[0];
-
-  if (action === 'search') {
-    const email = (e.parameter.email || '').toLowerCase().trim();
-    const results = [];
-
-    for (let i = 1; i < data.length; i++) {
-      const row = data[i];
-      if (row[0].toLowerCase().trim() === email) {
-        results.push({
-          email: row[0],
-          name: row[1],
-          event: row[2],
-          docTitle: row[3],
-          role: row[4],
-          date: row[5],
-          uid: row[6]
-        });
-      }
-    }
-
-    return ContentService.createTextOutput(JSON.stringify(results))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-
-  if (action === 'verify') {
-    const uid = (e.parameter.uid || '').toUpperCase().trim();
-
-    for (let i = 1; i < data.length; i++) {
-      const row = data[i];
-      if (row[6].toUpperCase().trim() === uid) {
-        return ContentService.createTextOutput(JSON.stringify({
-          valid: true,
-          certificate: {
-            email: row[0],
-            name: row[1],
-            event: row[2],
-            docTitle: row[3],
-            role: row[4],
-            date: row[5],
-            uid: row[6]
-          }
-        })).setMimeType(ContentService.MimeType.JSON);
-      }
-    }
-
-    return ContentService.createTextOutput(JSON.stringify({
-      valid: false,
-      certificate: null
-    })).setMimeType(ContentService.MimeType.JSON);
-  }
-
-  return ContentService.createTextOutput(JSON.stringify({ error: 'Invalid action' }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-```
+| Column | Field | Description |
+|--------|-------|-------------|
+| A | UID | Certificate ID (e.g., EC-LOR-001) |
+| B | NAME | Student Name |
+| C | DOC_TYPE | Type (LOR, Certificate, etc.) |
+| D | DOC_TITLE | Full Title |
+| E | EVENT | Event Name |
+| F | ROLE | Role/Position |
+| G | DATE | Date of Issue |
+| H | EMAIL | Email Address |
+| I | STATUS | Active/Revoked |
 
 ---
 
@@ -380,30 +335,36 @@ The verification page (`verify.html`) is already created and ready to use.
 
 ### How It Works
 
-1. User enters Certificate ID (UID) manually, OR
-2. User scans QR code on certificate which auto-fills the UID
-3. Page queries the API with `?action=verify&uid=XXX`
+1. User enters Certificate ID manually, OR
+2. User scans QR code on certificate which auto-fills the ID
+3. Page queries the API with `?id=XXX`
 4. Displays verification result with certificate details
 
 ### URL Format
 
 ```
-https://iiec.in/verify.html?uid=TA26-HC-001
+https://iiec.in/verify.html?id=EC-LOR-001
+```
+
+**Note:** The page also supports `?uid=` for backwards compatibility:
+```
+https://iiec.in/verify.html?uid=EC-LOR-001
 ```
 
 ### Adding QR Codes to Certificates (Canva)
 
 1. In your Canva template, go to **Apps** → **QR Code**
-2. Set the URL to: `https://iiec.in/verify.html?uid={{uid}}`
+2. Set the URL to: `https://iiec.in/verify.html?id={{uid}}`
 3. Position the QR code on your certificate
 4. When using Bulk Create, Canva auto-generates unique QR codes for each certificate
 
 ### Verification Features
 
 - **Auto-verify from URL:** When accessed via QR code, automatically verifies
-- **Manual entry:** Users can type UID manually
+- **Manual entry:** Users can type ID manually
 - **Valid certificates:** Shows green checkmark with all details
-- **Invalid certificates:** Shows red X with helpful message
+- **Revoked certificates:** Shows red X with "Certificate Revoked" message
+- **Invalid certificates:** Shows red X with "Certificate Not Found" message
 - **Download button:** Direct link to download the PDF
 - **Responsive:** Works on mobile and desktop
 

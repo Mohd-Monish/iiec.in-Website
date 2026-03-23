@@ -67,6 +67,13 @@
 
   <!-- Page-specific styles -->
   <style>
+    /* CSS Variable aliases for page-specific styles */
+    :root {
+      --gold: var(--color-accent, #ffb703);
+      --gold-hover: var(--color-accent-hover, #ffd166);
+      --white: var(--text-primary, #f5f7ff);
+    }
+
     /* Certificate Page Specific Styles */
     .certificate-hero {
       min-height: 50vh;
@@ -152,7 +159,7 @@
       padding: 40px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
+      border-radius: 16px;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
@@ -180,8 +187,8 @@
       width: 100%;
       padding: 16px 20px;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
       color: var(--white);
       font-size: 1rem;
       font-family: inherit;
@@ -205,10 +212,10 @@
       justify-content: center;
       gap: 10px;
       padding: 16px 32px;
-      background: linear-gradient(135deg, var(--gold) 0%, #e5a503 100%);
-      border: none;
-      border-radius: 12px;
-      color: #000;
+      background: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      color: var(--color-base, #05070f);
       font-size: 1rem;
       font-weight: 700;
       font-family: inherit;
@@ -219,14 +226,21 @@
     }
 
     .search-btn:hover {
+      background: var(--gold-hover);
+      border-color: var(--gold-hover);
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(255, 183, 3, 0.3);
+      box-shadow: 0 8px 24px rgba(255, 183, 3, 0.35);
+    }
+
+    .search-btn:active {
+      transform: translateY(0);
     }
 
     .search-btn:disabled {
-      opacity: 0.7;
+      opacity: 0.6;
       cursor: not-allowed;
       transform: none;
+      box-shadow: none;
     }
 
     .search-btn svg {
@@ -307,7 +321,7 @@
     .certificate-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
+      border-radius: 12px;
       padding: 28px;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
@@ -410,10 +424,10 @@
       justify-content: center;
       gap: 8px;
       padding: 14px 20px;
-      background: linear-gradient(135deg, var(--gold) 0%, #e5a503 100%);
-      border: none;
-      border-radius: 10px;
-      color: #000;
+      background: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      color: var(--color-base, #05070f);
       font-size: 0.9rem;
       font-weight: 700;
       font-family: inherit;
@@ -423,14 +437,23 @@
     }
 
     .download-btn:hover {
+      background: var(--gold-hover);
+      border-color: var(--gold-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.3);
+      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.35);
+    }
+
+    .download-btn:active {
+      transform: translateY(0);
     }
 
     .download-btn.disabled {
       opacity: 0.5;
       cursor: not-allowed;
       pointer-events: none;
+      background: rgba(255, 183, 3, 0.3);
+      border-color: rgba(255, 183, 3, 0.3);
+      color: rgba(255, 255, 255, 0.6);
     }
 
     .download-btn svg {

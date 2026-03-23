@@ -63,6 +63,13 @@
 
   <!-- Page-specific styles -->
   <style>
+    /* CSS Variable aliases for page-specific styles */
+    :root {
+      --gold: var(--color-accent, #ffb703);
+      --gold-hover: var(--color-accent-hover, #ffd166);
+      --white: var(--text-primary, #f5f7ff);
+    }
+
     /* Verify Page Specific Styles */
     .verify-hero {
       min-height: 45vh;
@@ -148,7 +155,7 @@
       padding: 40px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
+      border-radius: 16px;
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
@@ -176,8 +183,8 @@
       width: 100%;
       padding: 16px 20px;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
       color: var(--white);
       font-size: 1rem;
       font-family: 'Courier New', monospace;
@@ -206,10 +213,10 @@
       justify-content: center;
       gap: 10px;
       padding: 16px 32px;
-      background: linear-gradient(135deg, var(--gold) 0%, #e5a503 100%);
-      border: none;
-      border-radius: 12px;
-      color: #000;
+      background: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      color: var(--color-base, #05070f);
       font-size: 1rem;
       font-weight: 700;
       font-family: inherit;
@@ -220,14 +227,21 @@
     }
 
     .verify-btn:hover {
+      background: var(--gold-hover);
+      border-color: var(--gold-hover);
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(255, 183, 3, 0.3);
+      box-shadow: 0 8px 24px rgba(255, 183, 3, 0.35);
+    }
+
+    .verify-btn:active {
+      transform: translateY(0);
     }
 
     .verify-btn:disabled {
-      opacity: 0.7;
+      opacity: 0.6;
       cursor: not-allowed;
       transform: none;
+      box-shadow: none;
     }
 
     .verify-btn svg {
@@ -286,7 +300,7 @@
     .result-card {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
+      border-radius: 16px;
       padding: 40px;
       text-align: center;
       position: relative;
@@ -437,9 +451,9 @@
       justify-content: center;
       gap: 8px;
       padding: 14px 24px;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       font-family: inherit;
       cursor: pointer;
       transition: all 0.3s ease;
@@ -447,25 +461,36 @@
     }
 
     .action-btn.primary {
-      background: linear-gradient(135deg, var(--gold) 0%, #e5a503 100%);
-      border: none;
-      color: #000;
+      background: var(--gold);
+      border: 2px solid var(--gold);
+      color: var(--color-base, #05070f);
     }
 
     .action-btn.primary:hover {
+      background: var(--gold-hover);
+      border-color: var(--gold-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.3);
+      box-shadow: 0 8px 20px rgba(255, 183, 3, 0.35);
+    }
+
+    .action-btn.primary:active {
+      transform: translateY(0);
     }
 
     .action-btn.secondary {
       background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.15);
       color: var(--white);
     }
 
     .action-btn.secondary:hover {
       border-color: var(--gold);
       color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.secondary:active {
+      transform: translateY(0);
     }
 
     .action-btn svg {
@@ -744,14 +769,15 @@
       });
     }
 
-    // Check if UID is in URL params (for QR code scans)
+    // Check if ID is in URL params (for QR code scans)
+    // Supports both ?id= and ?uid= for flexibility
     function checkURLParams() {
       const params = new URLSearchParams(window.location.search);
-      const uid = params.get('uid');
+      const id = params.get('id') || params.get('uid');
 
-      if (uid) {
+      if (id) {
         const input = document.getElementById('uidInput');
-        input.value = uid.toUpperCase();
+        input.value = id.trim();
         verifyCertificate();
       }
     }
@@ -759,15 +785,14 @@
     async function verifyCertificate() {
       const uidInput = document.getElementById('uidInput');
       const loader = document.getElementById('loader');
-      const verifySection = document.getElementById('verifySection');
       const resultSection = document.getElementById('resultSection');
       const resultCard = document.getElementById('resultCard');
       const form = document.getElementById('verifyForm');
 
-      const uid = uidInput.value.trim().toUpperCase();
-      uidInput.value = uid;
+      const id = uidInput.value.trim();
+      uidInput.value = id;
 
-      if (!uid) {
+      if (!id) {
         uidInput.focus();
         return;
       }
@@ -778,31 +803,32 @@
       resultSection.classList.remove('active');
 
       try {
-        const response = await fetch(`${API_URL}?action=verify&uid=${encodeURIComponent(uid)}`);
+        // API uses ?id= parameter for verification
+        const response = await fetch(`${API_URL}?id=${encodeURIComponent(id)}`);
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
         }
 
         const data = await response.json();
-        renderResult(data, uid);
+        renderResult(data, id);
       } catch (error) {
         console.error('Verification failed:', error);
-        renderError(uid);
+        renderError(id);
       } finally {
         loader.classList.remove('active');
         form.style.display = 'flex';
       }
     }
 
-    function renderResult(data, uid) {
+    function renderResult(data, id) {
       const resultSection = document.getElementById('resultSection');
       const resultCard = document.getElementById('resultCard');
 
       resultSection.classList.add('active');
 
       // Check if certificate is valid
-      if (data && data.valid && data.certificate) {
-        const cert = data.certificate;
+      // API returns { valid: true, uid, name, docTitle, event, role, date } directly
+      if (data && data.valid === true) {
         resultCard.className = 'result-card valid';
         resultCard.innerHTML = `
           <div class="result-icon valid">
@@ -816,38 +842,38 @@
           <div class="certificate-details">
             <div class="detail-row">
               <span class="detail-label">Certificate ID</span>
-              <span class="detail-value uid-value">${escapeHtml(uid)}</span>
+              <span class="detail-value uid-value">${escapeHtml(data.uid || id)}</span>
             </div>
             <div class="detail-row">
               <span class="detail-label">Recipient Name</span>
-              <span class="detail-value">${escapeHtml(cert.name || 'N/A')}</span>
+              <span class="detail-value">${escapeHtml(data.name || 'N/A')}</span>
             </div>
             <div class="detail-row">
               <span class="detail-label">Certificate Type</span>
-              <span class="detail-value">${escapeHtml(cert.docTitle || 'Certificate')}</span>
+              <span class="detail-value">${escapeHtml(data.docTitle || 'Certificate')}</span>
             </div>
             <div class="detail-row">
               <span class="detail-label">Event</span>
-              <span class="detail-value">${escapeHtml(cert.event || 'TechAstra')}</span>
+              <span class="detail-value">${escapeHtml(data.event || 'E-Cell Event')}</span>
             </div>
-            ${cert.role ? `
+            ${data.role ? `
             <div class="detail-row">
               <span class="detail-label">Position/Role</span>
-              <span class="detail-value">${escapeHtml(cert.role)}</span>
+              <span class="detail-value">${escapeHtml(data.role)}</span>
             </div>
             ` : ''}
             <div class="detail-row">
               <span class="detail-label">Date Issued</span>
-              <span class="detail-value">${escapeHtml(cert.date || 'N/A')}</span>
+              <span class="detail-value">${escapeHtml(data.date || 'N/A')}</span>
             </div>
           </div>
 
           <div class="result-actions">
-            <a href="certificates/${encodeURIComponent(uid)}.pdf" target="_blank" class="action-btn primary">
+            <a href="mailto:ecell-student-rep@csmu.ac.in?subject=Certificate%20Query%20-%20${encodeURIComponent(data.uid || id)}&body=Hi%20Team,%0A%0AI%20have%20a%20query%20regarding%20my%20certificate.%0A%0ACertificate%20ID:%20${encodeURIComponent(data.uid || id)}%0AName:%20${encodeURIComponent(data.name || '')}%0A%0APlease%20assist.%0A%0AThank%20you." class="action-btn primary">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              Download Certificate
+              Contact Support
             </a>
             <button onclick="verifyAnother()" class="action-btn secondary">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -858,16 +884,26 @@
           </div>
         `;
       } else {
-        renderInvalid(uid);
+        // Handle invalid/revoked certificates
+        renderInvalid(id, data.reason);
       }
 
       // Smooth scroll to result
       resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function renderInvalid(uid) {
+    function renderInvalid(id, reason) {
       const resultSection = document.getElementById('resultSection');
       const resultCard = document.getElementById('resultCard');
+
+      // Determine message based on reason
+      let message = `We couldn't find a certificate with ID <strong>${escapeHtml(id)}</strong> in our records. Please check the ID and try again.`;
+      let title = 'Certificate Not Found';
+
+      if (reason && reason.toLowerCase().includes('revoked')) {
+        title = 'Certificate Revoked';
+        message = `The certificate with ID <strong>${escapeHtml(id)}</strong> has been revoked and is no longer valid.`;
+      }
 
       resultSection.classList.add('active');
       resultCard.className = 'result-card invalid';
@@ -877,8 +913,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         </div>
-        <h2 class="result-status invalid">Certificate Not Found</h2>
-        <p class="result-message">We couldn't find a certificate with ID <strong>${escapeHtml(uid)}</strong> in our records. Please check the ID and try again.</p>
+        <h2 class="result-status invalid">${title}</h2>
+        <p class="result-message">${message}</p>
 
         <div class="result-actions">
           <button onclick="verifyAnother()" class="action-btn primary">
@@ -899,7 +935,7 @@
       resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    function renderError(uid) {
+    function renderError(id) {
       const resultSection = document.getElementById('resultSection');
       const resultCard = document.getElementById('resultCard');
 
@@ -933,8 +969,9 @@
       uidInput.value = '';
       uidInput.focus();
 
-      // Update URL to remove uid param
+      // Update URL to remove id/uid params
       const url = new URL(window.location);
+      url.searchParams.delete('id');
       url.searchParams.delete('uid');
       window.history.replaceState({}, '', url);
 
