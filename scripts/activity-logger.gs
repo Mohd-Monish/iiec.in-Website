@@ -492,7 +492,32 @@ function handleStats() {
   // Process each row (skip header)
   for (var i = 1; i < data.length; i++) {
     var row = data[i];
-    var dateStr = row[1] ? row[1].toString() : '';
+
+    // Properly format the date from column B (handles both Date objects and strings)
+    var dateStr = '';
+    if (row[1]) {
+      if (row[1] instanceof Date) {
+        dateStr = Utilities.formatDate(row[1], CONFIG.TIMEZONE, 'yyyy-MM-dd');
+      } else {
+        // If it's already a string like "2026-03-24", use it directly
+        var dateVal = row[1].toString().trim();
+        // Check if it matches yyyy-MM-dd format
+        if (/^\d{4}-\d{2}-\d{2}$/.test(dateVal)) {
+          dateStr = dateVal;
+        } else {
+          // Try to parse and reformat
+          try {
+            var parsedDate = new Date(dateVal);
+            if (!isNaN(parsedDate.getTime())) {
+              dateStr = Utilities.formatDate(parsedDate, CONFIG.TIMEZONE, 'yyyy-MM-dd');
+            }
+          } catch(e) {
+            dateStr = '';
+          }
+        }
+      }
+    }
+
     var action = (row[3] || '').toString().toLowerCase();
     var identifier = (row[4] || '').toString();
     var status = (row[8] || '').toString().toLowerCase();

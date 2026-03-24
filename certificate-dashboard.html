@@ -295,51 +295,117 @@
 
     .chart-container {
       display: flex;
-      align-items: flex-end;
+      align-items: stretch;
+      justify-content: space-around;
       gap: 12px;
-      height: 200px;
-      padding: 20px 0;
+      min-height: 280px;
+      padding: 20px 15px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+      border-radius: 12px;
+      position: relative;
     }
 
-    .chart-bar-wrapper {
+    /* Grid lines */
+    .chart-container::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      top: 25%;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+
+    .chart-container::after {
+      content: '';
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      top: 50%;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    }
+
+    .chart-day {
       flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      height: 100%;
+      max-width: 100px;
     }
 
-    .chart-bar-group {
+    .chart-bars {
       flex: 1;
       display: flex;
       align-items: flex-end;
+      justify-content: center;
       gap: 4px;
       width: 100%;
+      padding-bottom: 8px;
     }
 
     .chart-bar {
-      flex: 1;
-      border-radius: 4px 4px 0 0;
-      min-height: 4px;
-      transition: height 0.5s ease;
+      width: 22px;
+      border-radius: 6px 6px 2px 2px;
+      min-height: 6px;
+      position: relative;
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
-    .chart-bar--searches { background: var(--blue); }
-    .chart-bar--downloads { background: var(--green); }
-    .chart-bar--verifications { background: var(--purple); }
+    .chart-bar:hover {
+      filter: brightness(1.3);
+      transform: scaleX(1.1);
+    }
 
-    .chart-label {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      text-align: center;
+    /* Bar value labels */
+    .chart-bar .bar-value {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--white);
+      background: rgba(0,0,0,0.6);
+      padding: 2px 5px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .chart-bar--searches {
+      background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+    }
+    .chart-bar--downloads {
+      background: linear-gradient(180deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+    }
+    .chart-bar--verifications {
+      background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    }
+
+    .chart-day-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--white);
+      padding: 8px 12px;
+      background: rgba(255, 183, 3, 0.1);
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+
+    .chart-day-total {
+      font-size: 0.7rem;
+      color: var(--gold);
+      margin-top: 4px;
+      font-weight: 600;
     }
 
     .chart-legend {
       display: flex;
       justify-content: center;
       gap: 24px;
-      margin-top: 16px;
+      margin-top: 20px;
       flex-wrap: wrap;
     }
 
@@ -579,7 +645,18 @@
       }
 
       .chart-container {
-        height: 150px;
+        min-height: 220px;
+        gap: 6px;
+        padding: 15px 8px;
+      }
+
+      .chart-bar {
+        width: 16px;
+      }
+
+      .chart-day-label {
+        font-size: 0.7rem;
+        padding: 6px 8px;
       }
 
       .activity-table {
@@ -969,22 +1046,50 @@
     function renderChart(days) {
       const container = document.getElementById('chartContainer');
 
-      // Find max value for scaling
-      let maxValue = 1;
+      if (!days || days.length === 0) {
+        container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary); font-size: 1rem;">No activity data yet</div>';
+        return;
+      }
+
+      // Find max value for scaling (minimum 3 for visibility)
+      let maxValue = 3;
       days.forEach(day => {
-        maxValue = Math.max(maxValue, day.searches, day.downloads, day.verifications);
+        maxValue = Math.max(maxValue, day.searches || 0, day.downloads || 0, day.verifications || 0);
       });
 
-      container.innerHTML = days.map(day => `
-        <div class="chart-bar-wrapper">
-          <div class="chart-bar-group">
-            <div class="chart-bar chart-bar--searches" style="height: ${(day.searches / maxValue) * 100}%" title="Searches: ${day.searches}"></div>
-            <div class="chart-bar chart-bar--downloads" style="height: ${(day.downloads / maxValue) * 100}%" title="Downloads: ${day.downloads}"></div>
-            <div class="chart-bar chart-bar--verifications" style="height: ${(day.verifications / maxValue) * 100}%" title="Verifications: ${day.verifications}"></div>
+      // Add 30% padding to max for labels
+      maxValue = Math.ceil(maxValue * 1.3);
+
+      container.innerHTML = days.map(day => {
+        const searches = day.searches || 0;
+        const downloads = day.downloads || 0;
+        const verifications = day.verifications || 0;
+        const total = searches + downloads + verifications;
+
+        // Calculate heights in pixels (max container height ~200px for bars)
+        const maxHeight = 180;
+        const searchHeight = Math.max(6, (searches / maxValue) * maxHeight);
+        const downloadHeight = Math.max(6, (downloads / maxValue) * maxHeight);
+        const verifyHeight = Math.max(6, (verifications / maxValue) * maxHeight);
+
+        return `
+          <div class="chart-day">
+            <div class="chart-bars">
+              <div class="chart-bar chart-bar--searches" style="height: ${searchHeight}px" title="Searches: ${searches}">
+                ${searches > 0 ? `<span class="bar-value">${searches}</span>` : ''}
+              </div>
+              <div class="chart-bar chart-bar--downloads" style="height: ${downloadHeight}px" title="Downloads: ${downloads}">
+                ${downloads > 0 ? `<span class="bar-value">${downloads}</span>` : ''}
+              </div>
+              <div class="chart-bar chart-bar--verifications" style="height: ${verifyHeight}px" title="Verifications: ${verifications}">
+                ${verifications > 0 ? `<span class="bar-value">${verifications}</span>` : ''}
+              </div>
+            </div>
+            <div class="chart-day-label">${day.day}</div>
+            <div class="chart-day-total">${total} total</div>
           </div>
-          <div class="chart-label">${day.day}</div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     function renderLogs(logs, append = false) {
