@@ -805,7 +805,7 @@
     // CONFIGURATION
     // ==========================================
     const API_URL = "https://script.google.com/macros/s/AKfycbzxX77FgLmHWHmTXivB1-TeIHIrg57PmnreOeEJpM4OPDix0TsoHchqcd7tsLSBils/exec"; // Certificate Data API
-    const LOGGER_API_URL = "https://script.google.com/macros/s/AKfycbxsP-LZCbvYo7uLD5wdL5tSYhp-Gt_Q7IFiOl3J42JBmv2yE_foIKCxDufxucSv4PSUWQ/exec"; // Activity Logger API
+    const LOGGER_API_URL = "https://script.google.com/macros/s/AKfycbwtazPVGOh42Pb4WAeOuNH88Ecgb1kDYss3JkCKKc06_LyCiq6DytL5yD25PDHepuzaxw/exec"; // Activity Logger API
 
     document.addEventListener('DOMContentLoaded', () => {
       initializeCertificateSearch();
@@ -1012,12 +1012,16 @@
         const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
         const url = `${LOGGER_API_URL}?action=logDownload&uid=${encodeURIComponent(uid)}&name=${encodeURIComponent(name)}&event=${encodeURIComponent(event)}&type=${encodeURIComponent(certType)}&ua=${ua}`;
 
-        // Use sendBeacon for reliability (doesn't block navigation)
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon(url);
-        } else {
-          fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
-        }
+        // Use fetch with no-cors mode for cross-origin requests to Google Apps Script
+        fetch(url, {
+          method: 'GET',
+          mode: 'no-cors',
+          cache: 'no-cache'
+        }).catch(() => {});
+
+        // Also try creating an image beacon as backup (most reliable for logging)
+        const img = new Image();
+        img.src = url;
       } catch (e) {
         // Silent fail - don't interrupt download
       }
@@ -1028,7 +1032,12 @@
         const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
         const url = `${LOGGER_API_URL}?action=logSearch&email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&event=${encodeURIComponent(event)}&status=${encodeURIComponent(status)}&ua=${ua}`;
 
-        fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
+        // Use fetch for logging
+        fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-cache' }).catch(() => {});
+
+        // Image beacon as backup
+        const img = new Image();
+        img.src = url;
       } catch (e) {
         // Silent fail
       }

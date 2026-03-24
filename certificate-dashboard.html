@@ -268,7 +268,7 @@
       margin-top: 8px;
     }
 
-    /* Chart Section */
+    /* Chart Section - LINE CHART */
     .chart-section {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -293,112 +293,139 @@
       color: var(--gold);
     }
 
-    .chart-container {
-      display: flex;
-      align-items: stretch;
-      justify-content: space-around;
-      gap: 12px;
-      min-height: 280px;
-      padding: 20px 15px;
-      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
+    .chart-wrapper {
+      position: relative;
+      background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 100%);
       border-radius: 12px;
+      padding: 20px;
+    }
+
+    .chart-container {
       position: relative;
-    }
-
-    /* Grid lines */
-    .chart-container::before {
-      content: '';
-      position: absolute;
-      left: 15px;
-      right: 15px;
-      top: 25%;
-      border-top: 1px dashed rgba(255, 255, 255, 0.08);
-    }
-
-    .chart-container::after {
-      content: '';
-      position: absolute;
-      left: 15px;
-      right: 15px;
-      top: 50%;
-      border-top: 1px dashed rgba(255, 255, 255, 0.08);
-    }
-
-    .chart-day {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 100px;
-    }
-
-    .chart-bars {
-      flex: 1;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 4px;
       width: 100%;
-      padding-bottom: 8px;
+      height: 250px;
     }
 
-    .chart-bar {
-      width: 22px;
-      border-radius: 6px 6px 2px 2px;
-      min-height: 6px;
-      position: relative;
-      transition: all 0.3s ease;
+    .chart-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .chart-grid-line {
+      stroke: rgba(255, 255, 255, 0.08);
+      stroke-dasharray: 4, 4;
+    }
+
+    .chart-line {
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .chart-line--searches {
+      stroke: #3b82f6;
+      filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.5));
+    }
+
+    .chart-line--downloads {
+      stroke: #22c55e;
+      filter: drop-shadow(0 0 6px rgba(34, 197, 94, 0.5));
+    }
+
+    .chart-line--verifications {
+      stroke: #8b5cf6;
+      filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.5));
+    }
+
+    .chart-area {
+      opacity: 0.15;
+    }
+
+    .chart-area--searches { fill: #3b82f6; }
+    .chart-area--downloads { fill: #22c55e; }
+    .chart-area--verifications { fill: #8b5cf6; }
+
+    .chart-point {
+      stroke-width: 2;
       cursor: pointer;
+      transition: r 0.2s ease;
     }
 
-    .chart-bar:hover {
-      filter: brightness(1.3);
-      transform: scaleX(1.1);
+    .chart-point:hover {
+      r: 7;
     }
 
-    /* Bar value labels */
-    .chart-bar .bar-value {
+    .chart-point--searches {
+      fill: #3b82f6;
+      stroke: #fff;
+    }
+
+    .chart-point--downloads {
+      fill: #22c55e;
+      stroke: #fff;
+    }
+
+    .chart-point--verifications {
+      fill: #8b5cf6;
+      stroke: #fff;
+    }
+
+    .chart-label {
+      fill: var(--text-secondary);
+      font-size: 12px;
+      text-anchor: middle;
+    }
+
+    .chart-value-label {
+      fill: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      text-anchor: middle;
+    }
+
+    .chart-y-label {
+      fill: rgba(255, 255, 255, 0.4);
+      font-size: 10px;
+      text-anchor: end;
+    }
+
+    .chart-tooltip {
       position: absolute;
-      top: -22px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--white);
-      background: rgba(0,0,0,0.6);
-      padding: 2px 5px;
-      border-radius: 4px;
-      white-space: nowrap;
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid rgba(255, 183, 3, 0.3);
+      border-radius: 8px;
+      padding: 10px 14px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 100;
     }
 
-    .chart-bar--searches {
-      background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
-      box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
-    }
-    .chart-bar--downloads {
-      background: linear-gradient(180deg, #4ade80 0%, #22c55e 50%, #16a34a 100%);
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
-    }
-    .chart-bar--verifications {
-      background: linear-gradient(180deg, #a78bfa 0%, #8b5cf6 50%, #7c3aed 100%);
-      box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    .chart-tooltip.active {
+      opacity: 1;
     }
 
-    .chart-day-label {
+    .chart-tooltip-title {
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--white);
-      padding: 8px 12px;
-      background: rgba(255, 183, 3, 0.1);
-      border-radius: 6px;
-      margin-top: 8px;
+      color: var(--gold);
+      margin-bottom: 6px;
     }
 
-    .chart-day-total {
-      font-size: 0.7rem;
-      color: var(--gold);
-      margin-top: 4px;
-      font-weight: 600;
+    .chart-tooltip-item {
+      font-size: 0.75rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 4px 0;
+    }
+
+    .chart-tooltip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
     }
 
     .chart-legend {
@@ -645,18 +672,19 @@
       }
 
       .chart-container {
-        min-height: 220px;
-        gap: 6px;
-        padding: 15px 8px;
+        height: 200px;
       }
 
-      .chart-bar {
-        width: 16px;
+      .chart-wrapper {
+        padding: 15px 10px;
       }
 
-      .chart-day-label {
-        font-size: 0.7rem;
-        padding: 6px 8px;
+      .chart-value-label {
+        font-size: 9px;
+      }
+
+      .chart-label {
+        font-size: 10px;
       }
 
       .activity-table {
@@ -804,12 +832,18 @@
         <section class="chart-section">
           <h2 class="section-title">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
             </svg>
             Last 7 Days Activity
           </h2>
-          <div class="chart-container" id="chartContainer">
-            <!-- Chart bars will be rendered here -->
+          <div class="chart-wrapper">
+            <div class="chart-container" id="chartContainer">
+              <!-- Line chart SVG will be rendered here -->
+            </div>
+            <div class="chart-tooltip" id="chartTooltip">
+              <div class="chart-tooltip-title"></div>
+              <div class="chart-tooltip-content"></div>
+            </div>
           </div>
           <div class="chart-legend">
             <div class="legend-item">
@@ -888,7 +922,7 @@
     // ==========================================
     // CONFIGURATION - UPDATE THIS
     // ==========================================
-    const API_URL = "https://script.google.com/macros/s/AKfycbzbdu1LvJ7rnZdrO0nqS0mnDs16JQXWQ6zXJ2C8_CBaEyucAfEvKuHK4j7y1tp9BW9J3g/exec"; // Activity Logger API (NOT the certificate API)
+    const API_URL = "https://script.google.com/macros/s/AKfycbwtazPVGOh42Pb4WAeOuNH88Ecgb1kDYss3JkCKKc06_LyCiq6DytL5yD25PDHepuzaxw/exec"; // Activity Logger API (NOT the certificate API)
 
     // ==========================================
     // STATE
@@ -1045,51 +1079,110 @@
 
     function renderChart(days) {
       const container = document.getElementById('chartContainer');
+      const tooltip = document.getElementById('chartTooltip');
 
       if (!days || days.length === 0) {
-        container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: var(--text-secondary); font-size: 1rem;">No activity data yet</div>';
+        container.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 250px; color: var(--text-secondary); font-size: 1rem;">No activity data yet</div>';
         return;
       }
 
-      // Find max value for scaling (minimum 3 for visibility)
-      let maxValue = 3;
+      // Chart dimensions
+      const width = container.offsetWidth || 600;
+      const height = 250;
+      const padding = { top: 30, right: 20, bottom: 40, left: 40 };
+      const chartWidth = width - padding.left - padding.right;
+      const chartHeight = height - padding.top - padding.bottom;
+
+      // Find max value for scaling
+      let maxValue = 1;
       days.forEach(day => {
         maxValue = Math.max(maxValue, day.searches || 0, day.downloads || 0, day.verifications || 0);
       });
+      maxValue = Math.ceil(maxValue * 1.2) || 5;
 
-      // Add 30% padding to max for labels
-      maxValue = Math.ceil(maxValue * 1.3);
+      // Calculate point positions
+      const xStep = chartWidth / (days.length - 1 || 1);
+      const getY = (val) => chartHeight - (val / maxValue) * chartHeight;
 
-      container.innerHTML = days.map(day => {
-        const searches = day.searches || 0;
-        const downloads = day.downloads || 0;
-        const verifications = day.verifications || 0;
-        const total = searches + downloads + verifications;
+      // Build paths for each line
+      const searchPoints = days.map((d, i) => ({ x: i * xStep, y: getY(d.searches || 0), val: d.searches || 0 }));
+      const downloadPoints = days.map((d, i) => ({ x: i * xStep, y: getY(d.downloads || 0), val: d.downloads || 0 }));
+      const verifyPoints = days.map((d, i) => ({ x: i * xStep, y: getY(d.verifications || 0), val: d.verifications || 0 }));
 
-        // Calculate heights in pixels (max container height ~200px for bars)
-        const maxHeight = 180;
-        const searchHeight = Math.max(6, (searches / maxValue) * maxHeight);
-        const downloadHeight = Math.max(6, (downloads / maxValue) * maxHeight);
-        const verifyHeight = Math.max(6, (verifications / maxValue) * maxHeight);
+      const createPath = (points) => points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+      const createArea = (points) => {
+        const path = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+        return `${path} L ${points[points.length-1].x} ${chartHeight} L 0 ${chartHeight} Z`;
+      };
 
-        return `
-          <div class="chart-day">
-            <div class="chart-bars">
-              <div class="chart-bar chart-bar--searches" style="height: ${searchHeight}px" title="Searches: ${searches}">
-                ${searches > 0 ? `<span class="bar-value">${searches}</span>` : ''}
-              </div>
-              <div class="chart-bar chart-bar--downloads" style="height: ${downloadHeight}px" title="Downloads: ${downloads}">
-                ${downloads > 0 ? `<span class="bar-value">${downloads}</span>` : ''}
-              </div>
-              <div class="chart-bar chart-bar--verifications" style="height: ${verifyHeight}px" title="Verifications: ${verifications}">
-                ${verifications > 0 ? `<span class="bar-value">${verifications}</span>` : ''}
-              </div>
-            </div>
-            <div class="chart-day-label">${day.day}</div>
-            <div class="chart-day-total">${total} total</div>
-          </div>
-        `;
+      // Grid lines
+      const gridLines = [0, 0.25, 0.5, 0.75, 1].map(ratio => {
+        const y = chartHeight * (1 - ratio);
+        const val = Math.round(maxValue * ratio);
+        return `<line x1="0" y1="${y}" x2="${chartWidth}" y2="${y}" class="chart-grid-line"/>
+                <text x="-8" y="${y + 4}" class="chart-y-label">${val}</text>`;
       }).join('');
+
+      // X-axis labels
+      const xLabels = days.map((d, i) =>
+        `<text x="${i * xStep}" y="${chartHeight + 25}" class="chart-label">${d.day}</text>`
+      ).join('');
+
+      // Points with values
+      const createPoints = (points, className) => points.map((p, i) =>
+        `<circle cx="${p.x}" cy="${p.y}" r="5" class="chart-point chart-point--${className}" data-day="${days[i].day}" data-type="${className}" data-value="${p.val}"/>
+         ${p.val > 0 ? `<text x="${p.x}" y="${p.y - 12}" class="chart-value-label">${p.val}</text>` : ''}`
+      ).join('');
+
+      container.innerHTML = `
+        <svg class="chart-svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="xMidYMid meet">
+          <g transform="translate(${padding.left}, ${padding.top})">
+            <!-- Grid -->
+            ${gridLines}
+
+            <!-- Areas (gradient fills) -->
+            <path d="${createArea(searchPoints)}" class="chart-area chart-area--searches"/>
+            <path d="${createArea(downloadPoints)}" class="chart-area chart-area--downloads"/>
+            <path d="${createArea(verifyPoints)}" class="chart-area chart-area--verifications"/>
+
+            <!-- Lines -->
+            <path d="${createPath(searchPoints)}" class="chart-line chart-line--searches"/>
+            <path d="${createPath(downloadPoints)}" class="chart-line chart-line--downloads"/>
+            <path d="${createPath(verifyPoints)}" class="chart-line chart-line--verifications"/>
+
+            <!-- Points -->
+            ${createPoints(searchPoints, 'searches')}
+            ${createPoints(downloadPoints, 'downloads')}
+            ${createPoints(verifyPoints, 'verifications')}
+
+            <!-- X Labels -->
+            ${xLabels}
+          </g>
+        </svg>
+      `;
+
+      // Tooltip interaction
+      container.querySelectorAll('.chart-point').forEach(point => {
+        point.addEventListener('mouseenter', (e) => {
+          const day = e.target.dataset.day;
+          const dayData = days.find(d => d.day === day);
+          if (!dayData) return;
+
+          tooltip.querySelector('.chart-tooltip-title').textContent = dayData.date || day;
+          tooltip.querySelector('.chart-tooltip-content').innerHTML = `
+            <div class="chart-tooltip-item"><span class="chart-tooltip-dot" style="background:#3b82f6"></span>Searches: ${dayData.searches || 0}</div>
+            <div class="chart-tooltip-item"><span class="chart-tooltip-dot" style="background:#22c55e"></span>Downloads: ${dayData.downloads || 0}</div>
+            <div class="chart-tooltip-item"><span class="chart-tooltip-dot" style="background:#8b5cf6"></span>Verifications: ${dayData.verifications || 0}</div>
+          `;
+          tooltip.classList.add('active');
+          tooltip.style.left = `${e.clientX - container.getBoundingClientRect().left + 10}px`;
+          tooltip.style.top = `${e.clientY - container.getBoundingClientRect().top - 60}px`;
+        });
+
+        point.addEventListener('mouseleave', () => {
+          tooltip.classList.remove('active');
+        });
+      });
     }
 
     function renderLogs(logs, append = false) {

@@ -753,7 +753,7 @@
     // CONFIGURATION
     // ==========================================
     const API_URL = "https://script.google.com/macros/s/AKfycbzxX77FgLmHWHmTXivB1-TeIHIrg57PmnreOeEJpM4OPDix0TsoHchqcd7tsLSBils/exec";
-    const LOGGER_API_URL = "https://script.google.com/macros/s/AKfycbxsP-LZCbvYo7uLD5wdL5tSYhp-Gt_Q7IFiOl3J42JBmv2yE_foIKCxDufxucSv4PSUWQ/exec"; // Activity Logger API
+    const LOGGER_API_URL = "https://script.google.com/macros/s/AKfycbwtazPVGOh42Pb4WAeOuNH88Ecgb1kDYss3JkCKKc06_LyCiq6DytL5yD25PDHepuzaxw/exec"; // Activity Logger API
 
     document.addEventListener('DOMContentLoaded', () => {
       initializeVerification();
@@ -1000,7 +1000,12 @@
         const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
         const url = `${LOGGER_API_URL}?action=logVerify&id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}&event=${encodeURIComponent(event)}&status=${encodeURIComponent(status)}&source=${encodeURIComponent(source)}&ua=${ua}`;
 
-        fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
+        // Use fetch for logging
+        fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-cache' }).catch(() => {});
+
+        // Image beacon as backup (most reliable)
+        const img = new Image();
+        img.src = url;
       } catch (e) {
         // Silent fail
       }
