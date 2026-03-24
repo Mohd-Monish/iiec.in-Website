@@ -354,6 +354,12 @@
   border: 1px solid rgba(var(--adm-accent-rgb), 0.2);
 }
 
+.admin-card-icon--gold {
+  background: linear-gradient(135deg, rgba(255, 183, 3, 0.18), rgba(255, 183, 3, 0.06));
+  color: #FFB703;
+  border: 1px solid rgba(255, 183, 3, 0.2);
+}
+
 /* Card Link List */
 .admin-card-links {
   display: flex;
