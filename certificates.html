@@ -849,15 +849,30 @@
       resultsArea.innerHTML = '';
 
       try {
+        trackEvent('certificate_search_submitted', {
+          page_name: 'certificates',
+          email_domain: getEmailDomain(email)
+        });
+
         const response = await fetch(`${API_URL}?action=search&email=${encodeURIComponent(email)}`);
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
         }
 
         const data = await response.json();
+        trackEvent('certificate_search_result', {
+          page_name: 'certificates',
+          results_count: Array.isArray(data) ? data.length : 0,
+          status: Array.isArray(data) && data.length > 0 ? 'found' : 'not_found',
+          email_domain: getEmailDomain(email)
+        });
         renderResults(data, email);
       } catch (error) {
         console.error('Certificate lookup failed:', error);
+        trackEvent('certificate_search_error', {
+          page_name: 'certificates',
+          error_message: error?.message ? String(error.message).slice(0, 120) : 'unknown_error'
+        });
         resultsSection.style.display = 'block';
         resultsArea.innerHTML = `
           <div class="error-state">
@@ -939,7 +954,7 @@
               </div>
             </div>
             <div class="certificate-actions">
-              <a href="${downloadLink}" ${hasFile ? 'target="_blank" rel="noopener"' : ''} class="download-btn ${!hasFile ? 'disabled' : ''}" ${!hasFile ? 'aria-disabled="true"' : ''}>
+              <a href="${downloadLink}" ${hasFile ? 'target="_blank" rel="noopener"' : ''} class="download-btn ${!hasFile ? 'disabled' : ''}" ${!hasFile ? 'aria-disabled="true"' : ''} ${hasFile ? `data-track-download="1" data-cert-uid="${escapeHtml(uid)}" data-cert-title="${title}" data-cert-event="${eventName}" data-cert-type="${escapeHtml(typeName)}"` : ''}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
@@ -951,9 +966,46 @@
       });
 
       resultsArea.innerHTML = cards.join('');
+      bindDownloadTracking(resultsArea);
 
       // Smooth scroll to results
       resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function bindDownloadTracking(container) {
+      const links = container.querySelectorAll('a[data-track-download="1"]');
+      links.forEach(link => {
+        if (link.dataset.trackingBound === '1') return;
+
+        link.dataset.trackingBound = '1';
+        link.addEventListener('click', () => {
+          trackEvent('certificate_download_click', {
+            page_name: 'certificates',
+            certificate_uid: link.dataset.certUid || 'unknown',
+            certificate_title: link.dataset.certTitle || 'unknown',
+            certificate_event: link.dataset.certEvent || 'unknown',
+            certificate_type: link.dataset.certType || 'unknown'
+          });
+        });
+      });
+    }
+
+    function trackEvent(eventName, eventData = {}) {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, eventData);
+      }
+
+      if (Array.isArray(window.dataLayer)) {
+        window.dataLayer.push({
+          event: eventName,
+          ...eventData
+        });
+      }
+    }
+
+    function getEmailDomain(email) {
+      const parts = String(email || '').split('@');
+      return parts.length === 2 ? parts[1].toLowerCase() : 'unknown';
     }
 
     function escapeHtml(value) {
