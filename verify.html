@@ -752,12 +752,15 @@
     // ==========================================
     // CONFIGURATION
     // ==========================================
-    const API_URL = "https://script.google.com/macros/s/AKfycbw0Hk7O1sDlQ7lPJvNSLzTEzz4lAUmJJ95bpIKepn4wB80S7pw7wfkAvmNnD4pUe9xK/exec";
+    const API_URL = "https://script.google.com/macros/s/AKfycbyA5fG-hYcvFpxstiPSbYTezA3-pLFKcdrwSN5pss-MHM05nfrFTmOT9kiB-IFD2-4yxA/exec";
 
     document.addEventListener('DOMContentLoaded', () => {
       initializeVerification();
       checkURLParams();
     });
+
+    // Track verification source (qr vs manual)
+    let verificationSource = 'manual';
 
     function initializeVerification() {
       const form = document.getElementById('verifyForm');
@@ -765,6 +768,7 @@
 
       form.addEventListener('submit', event => {
         event.preventDefault();
+        verificationSource = 'manual'; // User typed and submitted
         verifyCertificate();
       });
     }
@@ -778,6 +782,7 @@
       if (id) {
         const input = document.getElementById('uidInput');
         input.value = id.trim();
+        verificationSource = 'qr'; // Arrived via URL = QR scan
         verifyCertificate();
       }
     }
@@ -803,8 +808,9 @@
       resultSection.classList.remove('active');
 
       try {
-        // API uses ?id= parameter for verification
-        const response = await fetch(`${API_URL}?id=${encodeURIComponent(id)}`);
+        // API uses ?id= parameter for verification, include source for tracking
+        const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
+        const response = await fetch(`${API_URL}?id=${encodeURIComponent(id)}&source=${verificationSource}&ua=${ua}`);
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
         }

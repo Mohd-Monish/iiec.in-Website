@@ -804,7 +804,7 @@
     // ==========================================
     // CONFIGURATION
     // ==========================================
-    const API_URL = "https://script.google.com/macros/s/AKfycbw0Hk7O1sDlQ7lPJvNSLzTEzz4lAUmJJ95bpIKepn4wB80S7pw7wfkAvmNnD4pUe9xK/exec";
+    const API_URL = "https://script.google.com/macros/s/AKfycbyA5fG-hYcvFpxstiPSbYTezA3-pLFKcdrwSN5pss-MHM05nfrFTmOT9kiB-IFD2-4yxA/exec";
 
     document.addEventListener('DOMContentLoaded', () => {
       initializeCertificateSearch();
@@ -979,15 +979,40 @@
 
         link.dataset.trackingBound = '1';
         link.addEventListener('click', () => {
+          const uid = link.dataset.certUid || 'unknown';
+          const title = link.dataset.certTitle || 'unknown';
+          const event = link.dataset.certEvent || 'unknown';
+          const certType = link.dataset.certType || 'unknown';
+
+          // Track in Google Analytics
           trackEvent('certificate_download_click', {
             page_name: 'certificates',
-            certificate_uid: link.dataset.certUid || 'unknown',
-            certificate_title: link.dataset.certTitle || 'unknown',
-            certificate_event: link.dataset.certEvent || 'unknown',
-            certificate_type: link.dataset.certType || 'unknown'
+            certificate_uid: uid,
+            certificate_title: title,
+            certificate_event: event,
+            certificate_type: certType
           });
+
+          // Log to our dashboard (fire and forget)
+          logDownloadToAPI(uid, title, event, certType);
         });
       });
+    }
+
+    function logDownloadToAPI(uid, name, event, certType) {
+      try {
+        const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
+        const url = `${API_URL}?action=logDownload&uid=${encodeURIComponent(uid)}&name=${encodeURIComponent(name)}&event=${encodeURIComponent(event)}&type=${encodeURIComponent(certType)}&ua=${ua}`;
+
+        // Use sendBeacon for reliability (doesn't block navigation)
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(url);
+        } else {
+          fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
+        }
+      } catch (e) {
+        // Silent fail - don't interrupt download
+      }
     }
 
     function trackEvent(eventName, eventData = {}) {
