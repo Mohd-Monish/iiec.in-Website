@@ -1,242 +1,157 @@
-/**
- * ==============================================
- * IIEC Certificate API with Activity Logging
- * ==============================================
- *
- * SETUP INSTRUCTIONS:
- * 1. Open Google Apps Script (script.google.com)
- * 2. Create a new project or open your existing one
- * 3. Replace all code with this file
- * 4. Update SPREADSHEET_ID with your Google Sheet ID
- * 5. Create an "ActivityLog" sheet in your spreadsheet with headers:
- *    Timestamp | Action | Identifier | Name | Event | Status | Source | UserAgent
- * 6. Deploy > New deployment > Web app
- *    - Execute as: Me
- *    - Who has access: Anyone
- * 7. Copy the deployment URL and update your HTML files
- *
- * API ENDPOINTS:
- * - Search:   ?action=search&email=xxx
- * - Verify:   ?id=xxx (or ?id=xxx&source=qr)
- * - Download: ?action=logDownload&uid=xxx&name=xxx&event=xxx
- * - Stats:    ?action=stats&key=YOUR_ADMIN_KEY
- * - Logs:     ?action=logs&key=YOUR_ADMIN_KEY&limit=100
- */
+// ===============================================
+// IIEC CERTIFICATE API WITH ACTIVITY LOGGING
+// ===============================================
 
-// ============================================
-// CONFIGURATION - UPDATE THESE VALUES
-// ============================================
-const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; // Replace with your Sheet ID
-const CERTIFICATES_SHEET = 'Certificates';          // Your certificates data sheet
-const LOG_SHEET = 'ActivityLog';                    // Activity log sheet name
-const ADMIN_KEY = 'YOUR_SECRET_ADMIN_KEY_123';      // Secret key for dashboard access
+// ⚙️ COLUMN CONFIGURATION (A=0, B=1, C=2, etc.)
+// Make sure your Google Sheet matches this order!
+var COLUMN_MAP = {
+  UID:       0,  // Column A: The Certificate ID (e.g. EC-LOR...)
+  NAME:      1,  // Column B: Student Name
+  DOC_TYPE:  2,  // Column C: Type (e.g. LOR, Certificate)
+  DOC_TITLE: 3,  // Column D: Full Title (e.g. Letter of Recommendation)
+  EVENT:     4,  // Column E: Event Name
+  ROLE:      5,  // Column F: Role
+  DATE:      6,  // Column G: Date
+  EMAIL:     7,  // Column H: Email Address
+  STATUS:    8   // Column I: Status (Active/Revoked)
+};
 
-// ============================================
+// ⚙️ CONFIGURATION
+var LOG_SHEET_NAME = 'ActivityLog';           // Activity log sheet name
+var ADMIN_KEY = 'iiec-admin-2026';            // Secret key for dashboard access (CHANGE THIS!)
+
+// ===============================================
 // MAIN ENTRY POINT
-// ============================================
+// ===============================================
 function doGet(e) {
-  // Set up CORS headers for cross-origin requests
-  const output = handleRequest(e);
-  return output;
-}
-
-function handleRequest(e) {
-  const params = e.parameter || {};
-  const userAgent = getUserAgent(e);
-
-  try {
-    // Verification by ID (for verify.html and QR codes)
-    if (params.id) {
-      return handleVerification(params.id, params.source || 'manual', userAgent);
-    }
-
-    // Search by email (for certificates.html)
-    if (params.action === 'search' && params.email) {
-      return handleSearch(params.email, userAgent);
-    }
-
-    // Log download click (called from certificates.html)
-    if (params.action === 'logDownload' && params.uid) {
-      return handleDownloadLog(params.uid, params.name, params.event, params.type, userAgent);
-    }
-
-    // Dashboard: Get statistics (protected by admin key)
-    if (params.action === 'stats' && params.key === ADMIN_KEY) {
-      return handleStats();
-    }
-
-    // Dashboard: Get activity logs (protected by admin key)
-    if (params.action === 'logs' && params.key === ADMIN_KEY) {
-      const limit = parseInt(params.limit) || 100;
-      const offset = parseInt(params.offset) || 0;
-      const filter = params.filter || 'all';
-      return handleLogs(limit, offset, filter);
-    }
-
-    // Invalid request
-    return jsonResponse({ error: 'Invalid request parameters' });
-
-  } catch (error) {
-    console.error('API Error:', error);
-    return jsonResponse({ error: 'Internal server error', message: error.toString() });
-  }
-}
-
-// ============================================
-// VERIFICATION HANDLER
-// ============================================
-function handleVerification(id, source, userAgent) {
-  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  const sheet = ss.getSheetByName(CERTIFICATES_SHEET);
-
-  if (!sheet) {
-    return jsonResponse({ valid: false, reason: 'Configuration error' });
+  // 1. CONNECTION TEST (If you open the URL without parameters)
+  if (!e || !e.parameter || Object.keys(e.parameter).length === 0) {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var firstRow = sheet.getRange(2, 1, 1, 2).getValues()[0];
+    return ContentService.createTextOutput(
+      "✅ API IS ONLINE.\n\n" +
+      "DEBUG INFO:\n" +
+      "First ID in Sheet (Col A): '" + firstRow[0] + "'\n" +
+      "First Name in Sheet (Col B): '" + firstRow[1] + "'\n\n" +
+      "To test, add ?id=" + firstRow[0] + " to this URL."
+    );
   }
 
-  const data = sheet.getDataRange().getValues();
-  const headers = data[0].map(h => String(h).toLowerCase().trim());
+  var action = e.parameter.action;
+  var idToVerify = e.parameter.id;
+  var emailQuery = e.parameter.email;
+  var source = e.parameter.source || 'manual';
+  var userAgent = e.parameter.ua ? decodeURIComponent(e.parameter.ua).substring(0, 200) : 'Unknown';
 
-  // Find column indices
-  const uidCol = headers.indexOf('uid');
-  const nameCol = headers.indexOf('name');
-  const docTitleCol = headers.indexOf('doctitle') !== -1 ? headers.indexOf('doctitle') : headers.indexOf('doc_title');
-  const eventCol = headers.indexOf('event');
-  const roleCol = headers.indexOf('role');
-  const dateCol = headers.indexOf('date');
-  const statusCol = headers.indexOf('status');
-
-  if (uidCol === -1) {
-    return jsonResponse({ valid: false, reason: 'Configuration error: UID column not found' });
+  // ----------------------------------------------------
+  // DASHBOARD: GET STATISTICS (Protected)
+  // ----------------------------------------------------
+  if (action === 'stats' && e.parameter.key === ADMIN_KEY) {
+    return handleStats();
   }
 
-  // Search for the certificate
-  const normalizedId = String(id).trim().toUpperCase();
+  // ----------------------------------------------------
+  // DASHBOARD: GET ACTIVITY LOGS (Protected)
+  // ----------------------------------------------------
+  if (action === 'logs' && e.parameter.key === ADMIN_KEY) {
+    var limit = parseInt(e.parameter.limit) || 100;
+    var offset = parseInt(e.parameter.offset) || 0;
+    var filter = e.parameter.filter || 'all';
+    return handleLogs(limit, offset, filter);
+  }
 
-  for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    const rowUid = String(row[uidCol] || '').trim().toUpperCase();
+  // ----------------------------------------------------
+  // LOG DOWNLOAD CLICK
+  // ----------------------------------------------------
+  if (action === 'logDownload' && e.parameter.uid) {
+    logActivity('download', e.parameter.uid, e.parameter.name || '-', e.parameter.event || '-', 'clicked', 'certificates', userAgent, e.parameter.type || '');
+    return createJSON({ success: true });
+  }
 
-    if (rowUid === normalizedId) {
-      // Check if revoked
-      const status = statusCol !== -1 ? String(row[statusCol] || '').toLowerCase() : 'active';
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
 
-      if (status === 'revoked' || status === 'cancelled' || status === 'invalid') {
-        logActivity('verify', id, row[nameCol], row[eventCol], 'revoked', source, userAgent);
-        return jsonResponse({
-          valid: false,
-          reason: 'This certificate has been revoked.'
-        });
+  // ----------------------------------------------------
+  // MODE 1: SEARCH BY EMAIL (For Certificates Page)
+  // ----------------------------------------------------
+  if (action === "search") {
+    var foundCerts = [];
+    var queryEmail = (emailQuery || "").toString().toLowerCase().trim();
+    var firstName = '-';
+
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var rowEmail = (row[COLUMN_MAP.EMAIL] || "").toString().toLowerCase().trim();
+      var status = (row[COLUMN_MAP.STATUS] || "").toString();
+
+      if (rowEmail && rowEmail === queryEmail && status !== "Revoked") {
+        if (firstName === '-') {
+          firstName = (row[COLUMN_MAP.NAME] || '-').toString();
+        }
+        foundCerts.push(formatResponse(row));
       }
-
-      // Valid certificate found
-      const result = {
-        valid: true,
-        uid: row[uidCol],
-        name: row[nameCol] || '',
-        docTitle: docTitleCol !== -1 ? row[docTitleCol] : 'Certificate',
-        event: row[eventCol] || 'IIEC Event',
-        role: roleCol !== -1 ? row[roleCol] : '',
-        date: formatDate(dateCol !== -1 ? row[dateCol] : '')
-      };
-
-      logActivity('verify', id, result.name, result.event, 'valid', source, userAgent);
-      return jsonResponse(result);
     }
+
+    // Log the search
+    var searchStatus = foundCerts.length > 0 ? 'found:' + foundCerts.length : 'not_found';
+    var eventName = foundCerts.length > 0 ? foundCerts[0].event : '-';
+    logActivity('search', emailQuery, firstName, eventName, searchStatus, 'certificates', userAgent);
+
+    return createJSON(foundCerts);
   }
 
-  // Not found
-  logActivity('verify', id, '-', '-', 'not_found', source, userAgent);
-  return jsonResponse({ valid: false, reason: 'Certificate not found' });
-}
+  // ----------------------------------------------------
+  // MODE 2: VERIFY BY ID (For QR Code / Verify Page)
+  // ----------------------------------------------------
+  else if (idToVerify) {
+    var cleanID = (idToVerify || "").toString().trim();
 
-// ============================================
-// SEARCH HANDLER
-// ============================================
-function handleSearch(email, userAgent) {
-  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  const sheet = ss.getSheetByName(CERTIFICATES_SHEET);
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var rowID = (row[COLUMN_MAP.UID] || "").toString().trim();
 
-  if (!sheet) {
-    return jsonResponse([]);
-  }
+      if (rowID === cleanID) {
+        var certName = (row[COLUMN_MAP.NAME] || '').toString();
+        var certEvent = (row[COLUMN_MAP.EVENT] || 'IIEC Event').toString();
 
-  const data = sheet.getDataRange().getValues();
-  const headers = data[0].map(h => String(h).toLowerCase().trim());
+        // Check if revoked
+        if (row[COLUMN_MAP.STATUS] === "Revoked") {
+          logActivity('verify', cleanID, certName, certEvent, 'revoked', source, userAgent);
+          return createJSON({ "valid": false, "reason": "This certificate has been revoked." });
+        }
 
-  // Find column indices
-  const emailCol = headers.indexOf('email');
-  const uidCol = headers.indexOf('uid');
-  const nameCol = headers.indexOf('name');
-  const docTitleCol = headers.indexOf('doctitle') !== -1 ? headers.indexOf('doctitle') : headers.indexOf('doc_title');
-  const eventCol = headers.indexOf('event');
-  const roleCol = headers.indexOf('role');
-  const dateCol = headers.indexOf('date');
-  const statusCol = headers.indexOf('status');
+        // Success!
+        var response = formatResponse(row);
+        response.valid = true;
 
-  if (emailCol === -1) {
-    return jsonResponse([]);
-  }
-
-  const normalizedEmail = String(email).trim().toLowerCase();
-  const results = [];
-  let firstName = '-';
-
-  for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    const rowEmail = String(row[emailCol] || '').trim().toLowerCase();
-
-    if (rowEmail === normalizedEmail) {
-      // Skip revoked certificates
-      const status = statusCol !== -1 ? String(row[statusCol] || '').toLowerCase() : 'active';
-      if (status === 'revoked' || status === 'cancelled' || status === 'invalid') {
-        continue;
+        logActivity('verify', cleanID, certName, certEvent, 'valid', source, userAgent);
+        return createJSON(response);
       }
-
-      if (firstName === '-' && nameCol !== -1) {
-        firstName = row[nameCol] || '-';
-      }
-
-      results.push({
-        uid: row[uidCol] || '',
-        name: nameCol !== -1 ? row[nameCol] : '',
-        docTitle: docTitleCol !== -1 ? row[docTitleCol] : 'Certificate',
-        event: eventCol !== -1 ? row[eventCol] : 'IIEC Event',
-        role: roleCol !== -1 ? row[roleCol] : '',
-        date: formatDate(dateCol !== -1 ? row[dateCol] : '')
-      });
     }
+
+    // Not found
+    logActivity('verify', cleanID, '-', '-', 'not_found', source, userAgent);
+    return createJSON({ "valid": false, "reason": "ID not found" });
   }
 
-  // Log the search
-  const status = results.length > 0 ? `found:${results.length}` : 'not_found';
-  const eventName = results.length > 0 ? results[0].event : '-';
-  logActivity('search', email, firstName, eventName, status, 'certificates', userAgent);
-
-  return jsonResponse(results);
+  return createJSON({ error: 'Invalid request' });
 }
 
-// ============================================
-// DOWNLOAD LOG HANDLER
-// ============================================
-function handleDownloadLog(uid, name, event, certType, userAgent) {
-  logActivity('download', uid, name || '-', event || '-', 'clicked', 'certificates', userAgent, certType);
-  return jsonResponse({ success: true });
-}
+// ===============================================
+// DASHBOARD HANDLERS
+// ===============================================
 
-// ============================================
-// DASHBOARD STATS HANDLER
-// ============================================
 function handleStats() {
-  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  const logSheet = ss.getSheetByName(LOG_SHEET);
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var logSheet = ss.getSheetByName(LOG_SHEET_NAME);
 
   if (!logSheet) {
-    return jsonResponse({ error: 'ActivityLog sheet not found' });
+    return createJSON({ error: 'ActivityLog sheet not found. Run setupActivityLog() first.' });
   }
 
-  const data = logSheet.getDataRange().getValues();
+  var data = logSheet.getDataRange().getValues();
   if (data.length <= 1) {
-    return jsonResponse({
+    return createJSON({
       totalSearches: 0,
       totalVerifications: 0,
       totalDownloads: 0,
@@ -249,102 +164,94 @@ function handleStats() {
     });
   }
 
-  const today = new Date();
+  var today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const stats = {
+  var stats = {
     totalSearches: 0,
     totalVerifications: 0,
     totalDownloads: 0,
-    uniqueEmails: new Set(),
-    uniqueCertificates: new Set(),
+    uniqueEmails: {},
+    uniqueCertificates: {},
     verificationsBySource: { qr: 0, manual: 0 },
     searchResults: { found: 0, notFound: 0 },
     todayStats: { searches: 0, verifications: 0, downloads: 0 },
     dailyActivity: {}
   };
 
-  // Process each log entry (skip header row)
-  for (let i = 1; i < data.length; i++) {
-    const row = data[i];
-    const timestamp = new Date(row[0]);
-    const action = String(row[1] || '').toLowerCase();
-    const identifier = String(row[2] || '');
-    const status = String(row[4] || '').toLowerCase();
-    const source = String(row[5] || '').toLowerCase();
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    var timestamp = new Date(row[0]);
+    var action = (row[1] || '').toString().toLowerCase();
+    var identifier = (row[2] || '').toString();
+    var status = (row[5] || '').toString().toLowerCase();
+    var source = (row[6] || '').toString().toLowerCase();
 
-    // Get date key for daily tracking
-    const dateKey = Utilities.formatDate(timestamp, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+    var dateKey = Utilities.formatDate(timestamp, Session.getScriptTimeZone(), 'yyyy-MM-dd');
 
     if (!stats.dailyActivity[dateKey]) {
       stats.dailyActivity[dateKey] = { searches: 0, verifications: 0, downloads: 0 };
     }
 
-    // Check if today
-    const isToday = timestamp >= today;
+    var isToday = timestamp >= today;
 
-    switch (action) {
-      case 'search':
-        stats.totalSearches++;
-        stats.dailyActivity[dateKey].searches++;
-        if (isToday) stats.todayStats.searches++;
+    if (action === 'search') {
+      stats.totalSearches++;
+      stats.dailyActivity[dateKey].searches++;
+      if (isToday) stats.todayStats.searches++;
 
-        if (identifier.includes('@')) {
-          stats.uniqueEmails.add(identifier.toLowerCase());
-        }
+      if (identifier.indexOf('@') !== -1) {
+        stats.uniqueEmails[identifier.toLowerCase()] = true;
+      }
 
-        if (status.startsWith('found')) {
-          stats.searchResults.found++;
-        } else {
-          stats.searchResults.notFound++;
-        }
-        break;
+      if (status.indexOf('found') === 0) {
+        stats.searchResults.found++;
+      } else {
+        stats.searchResults.notFound++;
+      }
+    } else if (action === 'verify') {
+      stats.totalVerifications++;
+      stats.dailyActivity[dateKey].verifications++;
+      if (isToday) stats.todayStats.verifications++;
 
-      case 'verify':
-        stats.totalVerifications++;
-        stats.dailyActivity[dateKey].verifications++;
-        if (isToday) stats.todayStats.verifications++;
+      stats.uniqueCertificates[identifier.toUpperCase()] = true;
 
-        stats.uniqueCertificates.add(identifier.toUpperCase());
-
-        if (source === 'qr' || source === 'qr_scan') {
-          stats.verificationsBySource.qr++;
-        } else {
-          stats.verificationsBySource.manual++;
-        }
-        break;
-
-      case 'download':
-        stats.totalDownloads++;
-        stats.dailyActivity[dateKey].downloads++;
-        if (isToday) stats.todayStats.downloads++;
-        break;
+      if (source === 'qr' || source === 'qr_scan') {
+        stats.verificationsBySource.qr++;
+      } else {
+        stats.verificationsBySource.manual++;
+      }
+    } else if (action === 'download') {
+      stats.totalDownloads++;
+      stats.dailyActivity[dateKey].downloads++;
+      if (isToday) stats.todayStats.downloads++;
     }
   }
 
   // Get last 7 days activity
-  const last7Days = [];
-  for (let i = 6; i >= 0; i--) {
-    const d = new Date();
-    d.setDate(d.getDate() - i);
-    const dateKey = Utilities.formatDate(d, Session.getScriptTimeZone(), 'yyyy-MM-dd');
-    const dayName = Utilities.formatDate(d, Session.getScriptTimeZone(), 'EEE');
+  var last7Days = [];
+  for (var j = 6; j >= 0; j--) {
+    var d = new Date();
+    d.setDate(d.getDate() - j);
+    var dateKey = Utilities.formatDate(d, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+    var dayName = Utilities.formatDate(d, Session.getScriptTimeZone(), 'EEE');
 
+    var dayData = stats.dailyActivity[dateKey] || { searches: 0, verifications: 0, downloads: 0 };
     last7Days.push({
       date: dateKey,
       day: dayName,
-      searches: stats.dailyActivity[dateKey]?.searches || 0,
-      verifications: stats.dailyActivity[dateKey]?.verifications || 0,
-      downloads: stats.dailyActivity[dateKey]?.downloads || 0
+      searches: dayData.searches,
+      verifications: dayData.verifications,
+      downloads: dayData.downloads
     });
   }
 
-  return jsonResponse({
+  return createJSON({
     totalSearches: stats.totalSearches,
     totalVerifications: stats.totalVerifications,
     totalDownloads: stats.totalDownloads,
-    uniqueEmails: stats.uniqueEmails.size,
-    uniqueCertificates: stats.uniqueCertificates.size,
+    uniqueEmails: Object.keys(stats.uniqueEmails).length,
+    uniqueCertificates: Object.keys(stats.uniqueCertificates).length,
     verificationsBySource: stats.verificationsBySource,
     searchResults: stats.searchResults,
     todayStats: stats.todayStats,
@@ -353,29 +260,24 @@ function handleStats() {
   });
 }
 
-// ============================================
-// DASHBOARD LOGS HANDLER
-// ============================================
 function handleLogs(limit, offset, filter) {
-  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  const logSheet = ss.getSheetByName(LOG_SHEET);
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var logSheet = ss.getSheetByName(LOG_SHEET_NAME);
 
   if (!logSheet) {
-    return jsonResponse({ error: 'ActivityLog sheet not found', logs: [] });
+    return createJSON({ error: 'ActivityLog sheet not found', logs: [] });
   }
 
-  const data = logSheet.getDataRange().getValues();
+  var data = logSheet.getDataRange().getValues();
   if (data.length <= 1) {
-    return jsonResponse({ logs: [], total: 0 });
+    return createJSON({ logs: [], total: 0 });
   }
 
-  // Convert to objects and reverse (newest first)
-  const logs = [];
-  for (let i = data.length - 1; i >= 1; i--) {
-    const row = data[i];
-    const action = String(row[1] || '').toLowerCase();
+  var logs = [];
+  for (var i = data.length - 1; i >= 1; i--) {
+    var row = data[i];
+    var action = (row[1] || '').toString().toLowerCase();
 
-    // Apply filter
     if (filter !== 'all' && action !== filter) {
       continue;
     }
@@ -393,10 +295,10 @@ function handleLogs(limit, offset, filter) {
     });
   }
 
-  const total = logs.length;
-  const paginatedLogs = logs.slice(offset, offset + limit);
+  var total = logs.length;
+  var paginatedLogs = logs.slice(offset, offset + limit);
 
-  return jsonResponse({
+  return createJSON({
     logs: paginatedLogs,
     total: total,
     limit: limit,
@@ -405,31 +307,63 @@ function handleLogs(limit, offset, filter) {
   });
 }
 
-// ============================================
-// UTILITY FUNCTIONS
-// ============================================
+// ===============================================
+// HELPER FUNCTIONS
+// ===============================================
 
-/**
- * Log activity to the ActivityLog sheet
- */
+// Formats a row into a nice JSON object
+function formatResponse(row) {
+  return {
+    "uid":      (row[COLUMN_MAP.UID] || '').toString(),
+    "name":     (row[COLUMN_MAP.NAME] || '').toString(),
+    "docType":  (row[COLUMN_MAP.DOC_TYPE] || '').toString(),
+    "docTitle": (row[COLUMN_MAP.DOC_TITLE] || "Certificate").toString(),
+    "event":    (row[COLUMN_MAP.EVENT] || "IIEC Event").toString(),
+    "role":     (row[COLUMN_MAP.ROLE] || "Participant").toString(),
+    "date":     formatDate(row[COLUMN_MAP.DATE])
+  };
+}
+
+// Sends JSON response to browser
+function createJSON(data) {
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+// Formats Date objects to strings
+function formatDate(dateObj) {
+  if (!dateObj) return "";
+  try {
+    var d = new Date(dateObj);
+    if (isNaN(d.getTime())) return dateObj.toString();
+
+    var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    return d.getDate() + " " + months[d.getMonth()] + " " + d.getFullYear();
+  } catch (e) {
+    return dateObj.toString();
+  }
+}
+
+// Log activity to the ActivityLog sheet
 function logActivity(action, identifier, name, event, status, source, userAgent, certType) {
   try {
-    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-    let logSheet = ss.getSheetByName(LOG_SHEET);
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var logSheet = ss.getSheetByName(LOG_SHEET_NAME);
 
     // Create sheet if it doesn't exist
     if (!logSheet) {
-      logSheet = ss.insertSheet(LOG_SHEET);
+      logSheet = ss.insertSheet(LOG_SHEET_NAME);
       logSheet.appendRow([
         'Timestamp', 'Action', 'Identifier', 'Name', 'Event',
         'Status', 'Source', 'UserAgent', 'CertType'
       ]);
       logSheet.getRange(1, 1, 1, 9).setFontWeight('bold');
+      logSheet.setFrozenRows(1);
     }
 
     logSheet.appendRow([
       new Date(),
-      action,
+      action || '',
       identifier || '',
       name || '-',
       event || '-',
@@ -440,65 +374,19 @@ function logActivity(action, identifier, name, event, status, source, userAgent,
     ]);
 
   } catch (e) {
-    console.error('Failed to log activity:', e);
+    Logger.log('Failed to log activity: ' + e.toString());
   }
 }
 
-/**
- * Format date for display
- */
-function formatDate(value) {
-  if (!value) return '';
-
-  try {
-    if (value instanceof Date) {
-      return Utilities.formatDate(value, Session.getScriptTimeZone(), 'dd MMM yyyy');
-    }
-
-    const date = new Date(value);
-    if (!isNaN(date.getTime())) {
-      return Utilities.formatDate(date, Session.getScriptTimeZone(), 'dd MMM yyyy');
-    }
-
-    return String(value);
-  } catch (e) {
-    return String(value);
-  }
-}
-
-/**
- * Get user agent from request
- */
-function getUserAgent(e) {
-  try {
-    // Try to get from parameter (set by frontend)
-    if (e.parameter && e.parameter.ua) {
-      return decodeURIComponent(e.parameter.ua).substring(0, 200);
-    }
-    return 'Unknown';
-  } catch (e) {
-    return 'Unknown';
-  }
-}
-
-/**
- * Create JSON response with CORS headers
- */
-function jsonResponse(data) {
-  return ContentService
-    .createTextOutput(JSON.stringify(data))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-// ============================================
-// SETUP FUNCTION - Run this once to initialize
-// ============================================
+// ===============================================
+// SETUP FUNCTION - Run this once to create ActivityLog sheet
+// ===============================================
 function setupActivityLog() {
-  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  let logSheet = ss.getSheetByName(LOG_SHEET);
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var logSheet = ss.getSheetByName(LOG_SHEET_NAME);
 
   if (!logSheet) {
-    logSheet = ss.insertSheet(LOG_SHEET);
+    logSheet = ss.insertSheet(LOG_SHEET_NAME);
     logSheet.appendRow([
       'Timestamp', 'Action', 'Identifier', 'Name', 'Event',
       'Status', 'Source', 'UserAgent', 'CertType'
@@ -517,7 +405,7 @@ function setupActivityLog() {
     logSheet.setColumnWidth(8, 200); // UserAgent
     logSheet.setColumnWidth(9, 120); // CertType
 
-    Logger.log('ActivityLog sheet created successfully!');
+    Logger.log('✅ ActivityLog sheet created successfully!');
   } else {
     Logger.log('ActivityLog sheet already exists.');
   }

@@ -753,6 +753,7 @@
     // CONFIGURATION
     // ==========================================
     const API_URL = "https://script.google.com/macros/s/AKfycbyA5fG-hYcvFpxstiPSbYTezA3-pLFKcdrwSN5pss-MHM05nfrFTmOT9kiB-IFD2-4yxA/exec";
+    const LOGGER_API_URL = "https://script.google.com/macros/s/AKfycbxsP-LZCbvYo7uLD5wdL5tSYhp-Gt_Q7IFiOl3J42JBmv2yE_foIKCxDufxucSv4PSUWQ/exec"; // Activity Logger API
 
     document.addEventListener('DOMContentLoaded', () => {
       initializeVerification();
@@ -808,14 +809,23 @@
       resultSection.classList.remove('active');
 
       try {
-        // API uses ?id= parameter for verification, include source for tracking
-        const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
-        const response = await fetch(`${API_URL}?id=${encodeURIComponent(id)}&source=${verificationSource}&ua=${ua}`);
+        // API uses ?id= parameter for verification
+        const response = await fetch(`${API_URL}?id=${encodeURIComponent(id)}`);
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
         }
 
         const data = await response.json();
+
+        // Log verification to activity dashboard
+        logVerifyToAPI(
+          id,
+          data.name || '-',
+          data.event || '-',
+          data.valid ? 'valid' : (data.reason || 'not_found'),
+          verificationSource
+        );
+
         renderResult(data, id);
       } catch (error) {
         console.error('Verification failed:', error);
@@ -983,6 +993,17 @@
 
       // Scroll to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function logVerifyToAPI(id, name, event, status, source) {
+      try {
+        const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
+        const url = `${LOGGER_API_URL}?action=logVerify&id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}&event=${encodeURIComponent(event)}&status=${encodeURIComponent(status)}&source=${encodeURIComponent(source)}&ua=${ua}`;
+
+        fetch(url, { mode: 'no-cors', keepalive: true }).catch(() => {});
+      } catch (e) {
+        // Silent fail
+      }
     }
 
     function escapeHtml(value) {
