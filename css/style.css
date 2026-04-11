@@ -4633,3 +4633,111 @@ img {
 .navbar {
   position: fixed;
 }
+
+/* ================================================================
+   Active Event Styling - IPL Auction Highlight
+   ================================================================ */
+.active-event {
+  position: relative;
+  border: 2px solid rgba(245, 179, 53, 0.5) !important;
+  background: linear-gradient(135deg, rgba(245, 179, 53, 0.08), rgba(245, 179, 53, 0.04)) !important;
+  box-shadow: 0 0 30px rgba(245, 179, 53, 0.3), 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+  transform: scale(1.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.active-event:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 40px rgba(245, 179, 53, 0.4), 0 12px 40px rgba(0, 0, 0, 0.3) !important;
+}
+
+.badge-active {
+  background: linear-gradient(135deg, #ffd56a 0%, #f5b335 100%) !important;
+  color: #101521 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 16px rgba(245, 179, 53, 0.4) !important;
+  animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(245, 179, 53, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 4px 24px rgba(245, 179, 53, 0.6);
+    transform: scale(1.05);
+  }
+}
+
+.active-event .initiative-icon {
+  color: #ffd56a;
+  animation: icon-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes icon-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(245, 179, 53, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(245, 179, 53, 0.6));
+  }
+}
+
+.active-event .btn-primary {
+  background: linear-gradient(135deg, #ffd56a 0%, #f5b335 100%);
+  color: #101521;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(245, 179, 53, 0.4);
+}
+
+/* ================================================================
+   Active Timeline Item Styling
+   ================================================================ */
+.active-timeline-item .timeline-marker {
+  background: linear-gradient(135deg, #ffd56a 0%, #f5b335 100%);
+  box-shadow: 0 0 20px rgba(245, 179, 53, 0.6);
+  animation: marker-pulse 2s ease-in-out infinite;
+}
+
+@keyframes marker-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(245, 179, 53, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(245, 179, 53, 0.8);
+    transform: scale(1.2);
+  }
+}
+
+.timeline-active {
+  border: 2px solid rgba(245, 179, 53, 0.4) !important;
+  background: linear-gradient(135deg, rgba(245, 179, 53, 0.08), rgba(245, 179, 53, 0.03)) !important;
+  box-shadow: 0 0 25px rgba(245, 179, 53, 0.3), 0 8px 32px rgba(0, 0, 0, 0.2) !important;
+}
+
+.timeline-active .timeline-title {
+  color: #ffd56a;
+}
+
+.event-status.active {
+  background: linear-gradient(135deg, rgba(245, 179, 53, 0.3), rgba(239, 93, 60, 0.2));
+  color: #ffd56a;
+  border: 1px solid rgba(245, 179, 53, 0.4);
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
