@@ -322,6 +322,40 @@
 			margin-top: 24px;
 		}
 
+		.hero-action-full {
+			width: 100%;
+		}
+
+		.hero-actions-row {
+			display: flex;
+			gap: 14px;
+			width: 100%;
+		}
+
+		.hero-actions-row .btn {
+			flex: 1 1 50%;
+		}
+
+		@media (max-width: 420px) {
+			.hero-actions {
+				flex-direction: column;
+				gap: 12px;
+			}
+
+			.hero-action-full {
+				width: 100%;
+			}
+
+			.hero-actions-row {
+				width: 100%;
+				gap: 12px;
+			}
+
+			.hero-actions-row .btn {
+				flex: 1 1 calc(50% - 6px);
+			}
+		}
+
 		.btn {
 			display: inline-flex;
 			align-items: center;
@@ -1178,6 +1212,11 @@
 				width: 100%;
 			}
 
+			.hero-actions-row .btn {
+				width: auto;
+				flex: 1 1 calc(50% - 6px);
+			}
+
 			h1 {
 				font-size: clamp(3.4rem, 16vw, 5rem);
 				line-height: 0.92;
@@ -1206,12 +1245,107 @@
 			}
 		}
 
-		@media (max-width: 560px) {
-			.section-title {
-				font-size: clamp(2.1rem, 11vw, 3rem);
-				line-height: 1;
+		.teams-container {
+			display: grid;
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			gap: 16px;
+		}
+
+		@media (max-width: 1200px) {
+			.teams-container {
+				grid-template-columns: repeat(3, minmax(0, 1fr));
+				gap: 14px;
+			}
+		}
+
+		@media (max-width: 920px) {
+			.teams-container {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 14px;
+			}
+		}
+
+		@media (max-width: 640px) {
+			.teams-container {
+				grid-template-columns: 1fr;
+				gap: 12px;
 			}
 
+			.team-card {
+				display: flex;
+				align-items: center;
+				gap: 14px;
+				padding: 12px !important;
+			}
+
+			.team-card h3 {
+				font-size: 1.2rem !important;
+			}
+
+			.team-head {
+				display: flex;
+				align-items: center;
+				gap: 12px;
+				flex: 0 0 auto;
+				order: 2;
+			}
+
+			.team-meta {
+				display: none;
+			}
+
+			.team-logo {
+				width: 48px !important;
+				height: 48px !important;
+				flex: 0 0 auto;
+			}
+
+			.team-fallback {
+				width: 40px !important;
+				height: 40px !important;
+				flex: 0 0 auto;
+			}
+
+			.team-card p.meta {
+				display: none;
+			}
+
+			.tag-list {
+				gap: 4px;
+				margin-top: 8px;
+			}
+
+			.tag {
+				padding: 4px 8px !important;
+				font-size: 0.7rem !important;
+			}
+		}
+
+		@media (max-width: 420px) {
+			.team-card {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 10px;
+			}
+
+			.team-head {
+				width: 100%;
+				flex-direction: column;
+				align-items: flex-start;
+				order: 1;
+			}
+
+			.team-logo-row {
+				align-items: center;
+				gap: 8px;
+			}
+
+			.tag-list {
+				margin-top: 6px;
+			}
+		}
+
+		@media (max-width: 560px) {
 			.hero-copy p,
 			.section-head p,
 			.form-note,
@@ -1332,6 +1466,13 @@
 			text-align: center;
 		}
 
+		dotlottie-wc {
+			display: block;
+			width: 220px !important;
+			height: 220px !important;
+			margin: 0 auto !important;
+		}
+
 		.loader-title {
 			margin: 0;
 			font-family: "Bebas Neue", sans-serif;
@@ -1358,9 +1499,23 @@
 			height: 100%;
 			width: 40%;
 			border-radius: inherit;
-			background: linear-gradient(90deg, #f5b335, #ef5d3c, #f5b335);
-			background-size: 220% 100%;
-			animation: auctionBar 1.2s linear infinite;
+			background: linear-gradient(90deg, #ffd56a 0%, #f5b335 50%, #ef5d3c 100%);
+			background-size: 200% 100%;
+			animation: auctionBar 2s ease-in-out infinite;
+			box-shadow: 0 0 20px rgba(245, 179, 53, 0.6), inset 0 0 10px rgba(255, 255, 255, 0.3);
+			position: relative;
+		}
+
+		.loader-fill::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+			animation: shimmer 1.5s ease-in-out infinite;
+			border-radius: inherit;
 		}
 
 		.loader-pitch {
@@ -1457,12 +1612,36 @@
 
 		@keyframes auctionBar {
 			0% {
-				transform: translateX(-120%);
+				transform: translateX(-150%) scaleX(0.3);
 				background-position: 0% 50%;
+				opacity: 0.7;
+			}
+			25% {
+				transform: translateX(-50%) scaleX(0.6);
+				background-position: 25% 50%;
+			}
+			50% {
+				transform: translateX(0%) scaleX(1);
+				background-position: 50% 50%;
+				opacity: 1;
+			}
+			75% {
+				transform: translateX(50%) scaleX(0.8);
+				background-position: 75% 50%;
 			}
 			100% {
-				transform: translateX(280%);
+				transform: translateX(300%) scaleX(0.3);
 				background-position: 100% 50%;
+				opacity: 0.7;
+			}
+		}
+
+		@keyframes shimmer {
+			0% {
+				transform: translateX(-100%);
+			}
+			100% {
+				transform: translateX(100%);
 			}
 		}
 
@@ -1481,11 +1660,30 @@
 			}
 		}
 
-		@media (prefers-reduced-motion: reduce) {
-			.loader-fill,
-			.loader-ball,
-			.loader-dot {
-				animation: none;
+		@media (max-width: 768px) {
+			.points-grid {
+				grid-template-columns: 1fr !important;
+			}
+		}
+
+		@media (max-width: 560px) {
+			.points-grid {
+				grid-template-columns: 1fr !important;
+				gap: 14px !important;
+			}
+
+			.points-grid > div {
+				padding: 16px !important;
+			}
+
+			.points-grid h4 {
+				font-size: 1.1rem !important;
+				margin-bottom: 10px !important;
+			}
+
+			.points-grid ul {
+				font-size: 0.85rem !important;
+				line-height: 1.6 !important;
 			}
 		}
 
@@ -1760,19 +1958,18 @@
 			}
 		}
 	</style>
+	<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.9.10/dist/dotlottie-wc.js" type="module"></script>
 </head>
 <body>
 	<div class="loader" id="pageLoader" role="status" aria-live="polite" aria-label="Loading IPL Auction page">
 		<div class="loader-card">
 			<p class="loader-title">Auction Loading</p>
 			<p class="loader-sub">Setting the pitch, warming up the crowd, and opening the bidding table.</p>
-			<div class="loader-pitch" aria-hidden="true">
-				<div class="loader-ball"></div>
-			</div>
+			<dotlottie-wc src="https://lottie.host/e2b92e11-785a-4d28-be4b-a1a3c49e83d2/jBeCl0J1RE.lottie" style="width: 220px; height: 220px; margin: 0 auto; display: block;" autoplay loop></dotlottie-wc>
 			<div class="loader-track" aria-hidden="true">
 				<div class="loader-fill"></div>
 			</div>
-			<div class="loader-status"><span class="loader-dot" aria-hidden="true"></span> Finalizing team sheets</div>
+			<div class="loader-status"><span class="loader-dot" aria-hidden="true"></span> Setting up the bidding table</div>
 		</div>
 	</div>
 
@@ -1792,10 +1989,9 @@
 
 				<div class="nav-links" role="menu" id="primaryNavLinks">
 					<a href="index.html" class="nav-link" role="menuitem">Home</a>
-					<a href="about.html" class="nav-link" role="menuitem">About</a>
-					<a href="team.html" class="nav-link" role="menuitem">Team</a>
-					<a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-					<a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+					<a href="#teams" class="nav-link" role="menuitem">Teams</a>
+					<a href="#register" class="nav-link" role="menuitem">Register</a>
+					<a href="#rules" class="nav-link" role="menuitem">Rules</a>
 					<a href="https://join.ecellcsmu.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem">Join Us</a>
 				</div>
 			</div>
@@ -1813,8 +2009,11 @@
 						If you love cricket, competition, and leadership, this is your stage to prove it on 22 April 2026 at IIEC.
 					</p>
 					<div class="hero-actions">
-						<a class="btn btn-primary" href="#register">Register Now</a>
-						<a class="btn btn-secondary" href="#teams">Explore Teams</a>
+						<a class="btn btn-primary hero-action-full" href="#register">Register Now</a>
+						<div class="hero-actions-row">
+							<a class="btn btn-secondary" href="#teams">View Teams</a>
+							<a class="btn btn-secondary" href="#rules">Learn More</a>
+						</div>
 					</div>
 
 					<div class="stats" aria-label="Event highlights">
@@ -1882,6 +2081,58 @@
 			</div>
 		</header>
 
+		<section style="padding: 16px 0 24px;">
+			<div class="wrap">
+				<div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(245, 179, 53, 0.15) 0%, rgba(239, 93, 60, 0.12) 100%); border: 2px solid rgba(245, 179, 53, 0.35); padding: 32px 24px; position: relative; overflow: hidden;">
+					<!-- Decorative elements -->
+					<div style="position: absolute; top: -80px; right: -80px; width: 200px; height: 200px; border-radius: 50%; background: rgba(245, 179, 53, 0.08); pointer-events: none;"></div>
+					<div style="position: absolute; bottom: -60px; left: -60px; width: 150px; height: 150px; border-radius: 50%; background: rgba(239, 93, 60, 0.08); pointer-events: none;"></div>
+
+					<div style="position: relative; z-index: 1;">
+						<div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(245, 179, 53, 0.2); border: 1px solid rgba(245, 179, 53, 0.4); margin-bottom: 18px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #ffd778;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+							<span style="font-size: 0.85rem; font-weight: 700; color: #ffd778; text-transform: uppercase; letter-spacing: 0.08em;">Important Detail</span>
+						</div>
+
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; margin: 0 0 20px; color: #ffd778; line-height: 1.2; letter-spacing: 0.05em; text-transform: uppercase;">
+							5 Rounds • 1 Grand Finale
+						</h3>
+
+						<p style="margin: 0 0 28px; font-size: 1.05rem; line-height: 1.8; max-width: 90ch; color: var(--text);">
+							This is the <strong style="color: #ffd56a;">first round</strong> of the IPL Auction series. There will be a <strong style="color: #ffd56a;">total of 5 rounds</strong> held throughout the year. Winners and Runner-ups from each round will be selected and moved to the prestigious <strong style="color: #ffd56a;">Grand Finale</strong>.
+						</p>
+
+						<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+							<div style="padding: 18px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(245, 179, 53, 0.25);">
+								<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 8px; color: #ffd778;"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+								<h4 style="margin: 0 0 6px; font-weight: 700; color: #ffd778;">5 Rounds</h4>
+								<p style="margin: 0; font-size: 0.9rem; color: var(--muted);">Competitive auctions held throughout the year</p>
+							</div>
+
+							<div style="padding: 18px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(245, 179, 53, 0.25);">
+								<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 8px; color: #ffd778;"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+								<h4 style="margin: 0 0 6px; font-weight: 700; color: #ffd778;">Winners & Runners-up</h4>
+								<p style="margin: 0; font-size: 0.9rem; color: var(--muted);">Advance to the grand finale</p>
+							</div>
+
+							<div style="padding: 18px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(239, 93, 60, 0.25);">
+								<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" style="margin-bottom: 8px; color: #ff9b8a;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+								<h4 style="margin: 0 0 6px; font-weight: 700; color: #ff9b8a;">Grand Finale</h4>
+								<p style="margin: 0; font-size: 0.9rem; color: var(--muted);">E-Summit 2026 Edition at CSMU</p>
+							</div>
+						</div>
+
+						<div style="padding: 16px 20px; border-radius: var(--radius-md); background: linear-gradient(135deg, rgba(76, 201, 176, 0.12), rgba(76, 201, 176, 0.04)); border: 1px solid rgba(76, 201, 176, 0.3);">
+							<div style="display: flex; align-items: center; gap: 12px; color: #8de2d2;">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+								<span style="font-size: 0.95rem; line-height: 1.6;"><strong>The ultimate championship awaits!</strong> Compete through all 5 rounds to earn your spot in the Grand Finale at E-Summit 2026 Edition Presented by IIEC, CSMU.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<section class="section" id="teams">
 			<div class="section-card">
 				<div class="section-head section-head-stacked">
@@ -1894,7 +2145,7 @@
 					</p>
 				</div>
 
-				<div class="grid-3">
+				<div class="teams-container">
 							<article class="team-card" style="--accent:#005da0; background: linear-gradient(180deg, rgba(0,93,160,0.28), rgba(255,255,255,0.03));">
 								<div class="team-head">
 									<div class="team-meta"><h3>Mumbai Indians</h3><span class="team-city">Mumbai</span></div>
@@ -2072,29 +2323,243 @@
 						<h3>Event Flow</h3>
 						<p class="form-note">Keep the auction fast, dramatic, and easy to follow with this simple schedule.</p>
 
-						<div class="timeline">
-							<div class="timeline-item">
-								<strong>4:00 PM</strong>
-								<span>Check-in, team cards, and entry music.</span>
-							</div>
-							<div class="timeline-item">
-								<strong>4:30 PM</strong>
-								<span>Rules briefing, budgets, and bidding order reveal.</span>
-							</div>
-							<div class="timeline-item">
-								<strong>5:00 PM</strong>
-								<span>Main auction begins with marquee players and strategic bidding rounds.</span>
-							</div>
-							<div class="timeline-item">
-								<strong>6:30 PM</strong>
-								<span>Squad finalization, team photos, and award announcement.</span>
-							</div>
+						<div style="margin-bottom:18px; padding:16px; border-radius:16px; background: rgba(76, 201, 176, 0.08); border:1px solid rgba(76, 201, 176, 0.18);">
+							<div style="font-weight:700; color:#8de2d2; margin-bottom:6px;">📋 Detailed Event Flow</div>
+							<div style="color: var(--muted); line-height:1.7; font-size: 0.9rem;">A detailed event flow agenda will be available soon. Stay tuned for the complete schedule and timings!</div>
 						</div>
+
 
 						<div style="margin-top:18px; padding:16px; border-radius:16px; background: rgba(245, 179, 53, 0.08); border:1px solid rgba(245, 179, 53, 0.18);">
 							<div style="font-weight:700; color:#ffd778; margin-bottom:6px;">Pro tip</div>
 							<div style="color: var(--muted); line-height:1.7;">Use team colors, dynamic player cards, and a live counter for bids to make the page feel like a real auction broadcast.</div>
 						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="rating-system">
+			<div class="section-card">
+				<div class="section-head section-head-stacked">
+					<div>
+						<div class="eyebrow">Scoring</div>
+						<h2 class="section-title">How Player Ratings Are Calculated</h2>
+					</div>
+					<p>
+						Each player's performance points are calculated based on their real IPL 2025 statistics. Your team's total score depends on how well your selected players perform throughout the tournament.
+					</p>
+				</div>
+
+				<div style="display: grid; gap: 20px; margin-top: 24px;">
+					<!-- Batters Scoring -->
+					<div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(245, 179, 53, 0.1), rgba(245, 179, 53, 0.04)); border: 1px solid rgba(245, 179, 53, 0.2); padding: 28px; overflow: hidden; position: relative;">
+						<div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; background: rgba(245, 179, 53, 0.1); pointer-events: none;"></div>
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin: 0 0 20px; color: #ffd778; letter-spacing: 0.06em; position: relative; z-index: 1;">⚡ Batters</h3>
+						<p style="color: var(--muted); margin: 0 0 18px; font-size: 0.95rem; position: relative; z-index: 1;">Points awarded based on batting performance in IPL 2025:</p>
+						<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; position: relative; z-index: 1;">
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(245, 179, 53, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">Per Run</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ffd778;">+1</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">Each run scored</span>
+							</div>
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(245, 179, 53, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">Four Bonus</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ffd778;">+1</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">Per four hit</span>
+							</div>
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(245, 179, 53, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">Six Bonus</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ffd778;">+2</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">Per six hit</span>
+							</div>
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(245, 179, 53, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">Half Century</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ffd778;">+8</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">50+ runs in match</span>
+							</div>
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(245, 179, 53, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">Century</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ffd778;">+16</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">100+ runs in match</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Bowlers Scoring -->
+					<div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(239, 93, 60, 0.1), rgba(239, 93, 60, 0.04)); border: 1px solid rgba(239, 93, 60, 0.2); padding: 28px; overflow: hidden; position: relative;">
+						<div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; background: rgba(239, 93, 60, 0.1); pointer-events: none;"></div>
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin: 0 0 20px; color: #ff9b8a; letter-spacing: 0.06em; position: relative; z-index: 1;">🎯 Bowlers</h3>
+						<p style="color: var(--muted); margin: 0 0 18px; font-size: 0.95rem; position: relative; z-index: 1;">Points awarded based on bowling performance in IPL 2025:</p>
+						<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; position: relative; z-index: 1;">
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(239, 93, 60, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">Wicket</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ff9b8a;">+25</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">Per wicket (except runout)</span>
+							</div>
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(239, 93, 60, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">4 Wicket Haul</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ff9b8a;">+8</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">4 wickets in match</span>
+							</div>
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(239, 93, 60, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">5 Wicket Haul</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ff9b8a;">+16</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">5 wickets in match</span>
+							</div>
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(239, 93, 60, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">Maiden Over</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #ff9b8a;">+12</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">Bonus maiden over</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Wicket Keepers Scoring -->
+					<div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(76, 201, 176, 0.1), rgba(76, 201, 176, 0.04)); border: 1px solid rgba(76, 201, 176, 0.2); padding: 28px; overflow: hidden; position: relative;">
+						<div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; background: rgba(76, 201, 176, 0.1); pointer-events: none;"></div>
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin: 0 0 20px; color: #8de2d2; letter-spacing: 0.06em; position: relative; z-index: 1;">🧤 Wicket Keepers</h3>
+						<p style="color: var(--muted); margin: 0 0 18px; font-size: 0.95rem; position: relative; z-index: 1;">Wicket Keepers earn points through fielding performance in addition to batting and bowling (if applicable):</p>
+						<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; position: relative; z-index: 1;">
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(76, 201, 176, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">Dismissals</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #8de2d2;">+8</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">Per catch or stumping</span>
+							</div>
+							<div style="padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(76, 201, 176, 0.3);">
+								<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+									<span style="color: var(--muted); font-size: 0.85rem; font-weight: 600;">+ Batting Points</span>
+									<span style="font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: #8de2d2;">+X</span>
+								</div>
+								<span style="color: var(--muted); font-size: 0.8rem;">Same as batters scoring</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- Key Points -->
+					<div style="border-radius: var(--radius-lg); background: rgba(76, 201, 176, 0.08); border: 1px solid rgba(76, 201, 176, 0.2); padding: 24px;">
+						<h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin: 0 0 16px; color: #8de2d2; letter-spacing: 0.05em;">💡 Key Points to Remember</h4>
+						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8; font-size: 0.95rem;">
+							<li style="margin-bottom: 10px;">All ratings are calculated based on <strong style="color: var(--text);">real IPL 2025 tournament performance</strong></li>
+							<li style="margin-bottom: 10px;">Your selected <strong style="color: var(--text);">Ace Captain's</strong> points are <strong style="color: var(--text);">doubled</strong></li>
+							<li style="margin-bottom: 10px;">Stats are referred from the <strong style="color: var(--text);">official IPL website</strong></li>
+							<li style="margin-bottom: 0;">Smart bidding on undervalued players with high performance can give you a competitive edge</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="rules">
+			<div class="section-card">
+				<div class="section-head section-head-stacked">
+					<div>
+						<div class="eyebrow">Guidelines</div>
+						<h2 class="section-title">Rules & Guidelines</h2>
+					</div>
+					<p>
+						Read the complete ruleset, game instructions, and scoring system to prepare for the auction.
+					</p>
+				</div>
+
+				<div style="display: grid; gap: 24px; margin-top: 24px;">
+					<!-- General Instructions -->
+					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">General Instructions</h3>
+						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
+							<li style="margin-bottom: 12px;">Proper decorum must be maintained. Usage of any foul language will result in straight disqualification.</li>
+							<li style="margin-bottom: 12px;">This is a solo/group event.</li>
+							<li style="margin-bottom: 12px;">Usage of any third-party applications that give you an unfair advantage will result in immediate disqualification and potential ban from future tournaments.</li>
+							<li style="margin-bottom: 12px;">Each participating team is given <strong style="color: var(--text);">120 Crores</strong> as budget.</li>
+							<li style="margin-bottom: 12px;">Players must bid for IPL franchises (10 total) and get the privilege of having an <strong style="color: var(--text);">RTM card</strong>.</li>
+							<li style="margin-bottom: 12px;">Failure to comply with limitations leads to immediate disqualification.</li>
+							<li style="margin-bottom: 12px;">Unsold players will NOT be looped again.</li>
+							<li style="margin-bottom: 12px;">It is mandatory to form a squad of exactly <strong style="color: var(--text);">11 players</strong>.</li>
+							<li style="margin-bottom: 0;">Required squad composition: <strong style="color: var(--text);">1 Wicket-keeper, 4 Batters, 4 Bowlers, 2 All-rounders</strong></li>
+						</ul>
+					</div>
+
+					<!-- Game Rules -->
+					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">Game Rules</h3>
+						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
+							<li style="margin-bottom: 12px;">Auction starts with bidding on IPL Franchises. Base price: <strong style="color: var(--text);">10 CR</strong> each. No team can go unsold; the last team sells at <strong style="color: var(--text);">15 CR</strong>.</li>
+							<li style="margin-bottom: 12px;">One player from each team raises the baton and bids; the rest discuss internally.</li>
+							<li style="margin-bottom: 12px;">Players' bidding order is declared on the spot.</li>
+							<li style="margin-bottom: 12px;">Blind bids occur during the game—teams privately pass chits with prices to auctioneers.</li>
+							<li style="margin-bottom: 12px;">Riddle bids require teams to write the answer with a bidding amount; the team with the correct answer and highest bid wins.</li>
+							<li style="margin-bottom: 12px;">Winners of blind bids and riddles can block a team for the next player's bid.</li>
+							<li style="margin-bottom: 0;">Teams with more/less than 11 players or out of cash before team formation are disqualified.</li>
+						</ul>
+					</div>
+
+					<!-- RTM Rules -->
+					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">RTM (Right-to-Match) Rules</h3>
+						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
+							<li style="margin-bottom: 12px;">An RTM card is given to every franchise holder in this auction.</li>
+							<li style="margin-bottom: 12px;">RTM gives a franchise the option to match another franchise's bid for a player that belonged to them in IPL 2025.</li>
+							<li style="margin-bottom: 12px;"><strong style="color: var(--text);">Example:</strong> If Franchise A bids X for a player, Franchise B (original owner) can secure the player at that exact amount.</li>
+							<li style="margin-bottom: 0;">When RTM is used, the original bidder gets the bid amount refunded.</li>
+						</ul>
+					</div>
+
+					<!-- Points Table -->
+					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">Points Table</h3>
+						<p style="color: var(--muted); margin: 0 0 18px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Based on IPL 2025 Tournament</p>
+
+							<div style="padding: 16px; border-radius: var(--radius-md); background: rgba(76, 201, 176, 0.08); border: 1px solid rgba(76, 201, 176, 0.2);">
+								<h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; margin: 0 0 12px; color: #8de2d2; letter-spacing: 0.05em;">Leftover Money</h4>
+								<ul style="margin: 0; padding-left: 18px; font-size: 0.9rem; line-height: 1.8; color: var(--muted);">
+									<li>1 CR - 4 CR <span style="float: right; color: var(--text);">50 Pts</span></li>
+									<li>5 CR - 9 CR <span style="float: right; color: var(--text);">100 Pts</span></li>
+									<li>10 CR+ <span style="float: right; color: var(--text);">150 Pts</span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- Scoring Instructions -->
+					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">Scoring Instructions</h3>
+						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
+							<li style="margin-bottom: 12px;">Points based on IPL 2025 tournament stats from official IPL website.</li>
+							<li style="margin-bottom: 12px;">Teams earn points based on franchise auction positioning: 1st = 100 pts, 2nd = 90 pts, ..., Last = 10 pts.</li>
+							<li style="margin-bottom: 12px;">Each team gets assigned a volunteer for tracking.</li>
+							<li style="margin-bottom: 12px;">Players must track purse money usage and note all players and amounts.</li>
+							<li style="margin-bottom: 0;">After team formation, appoint one player as <strong style="color: var(--text);">Ace Captain</strong>—their points are <strong style="color: var(--text);">doubled</strong>.</li>
+						</ul>
+					</div>
+
+					<!-- Important Notes -->
+					<div style="border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(245, 179, 53, 0.12), rgba(245, 179, 53, 0.04)); border: 1px solid rgba(245, 179, 53, 0.25); padding: 24px;">
+						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; color: #ffd778; letter-spacing: 0.06em;">Important Notes</h3>
+						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
+							<li style="margin-bottom: 12px;"><strong style="color: var(--text);">Organizers' decision is FINAL</strong></li>
+							<li style="margin-bottom: 12px;">Teams must compulsorily carry laptops to maintain stats. Charging plugs will be provided.</li>
+							<li style="margin-bottom: 12px;">Time and classroom updates will be shared in the WhatsApp group.</li>
+							<li style="margin-bottom: 0;">Organizers are not responsible for any loss of personal items.</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -2172,7 +2637,6 @@
 
 				<div class="footer-bottom">
 					<p class="footer-copyright">© 2025 IIEC. All rights reserved.</p>
-					<a href="admin.html" class="footer-ops">OPS Portal -></a>
 				</div>
 			</div>
 		</footer>
@@ -2182,7 +2646,7 @@
 		const APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxZ1RzQwMM5Ghu1SUULqVRDuRUmZ0b7kMraPjvtolnb6dDAPexFErSByUQZdfYiRwxG/exec";
 		const pageLoader = document.getElementById("pageLoader");
 		const loaderStart = Date.now();
-		const MIN_LOADER_TIME = 900;
+		const MIN_LOADER_TIME = 3500;
 		const form = document.getElementById("registrationForm");
 		const successMessage = document.getElementById("successMessage");
 		const submitButton = form.querySelector('button[type="submit"]');
@@ -2205,7 +2669,7 @@
 		}
 
 		window.addEventListener("load", hideLoader);
-		window.setTimeout(hideLoader, 2400);
+		window.setTimeout(hideLoader, 3700);
 
 		const menuToggle = document.querySelector(".menu-toggle");
 		const primaryNavLinks = document.getElementById("primaryNavLinks");
