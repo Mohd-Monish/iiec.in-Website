@@ -70,6 +70,7 @@
 		html {
 			scroll-behavior: smooth;
 			-webkit-text-size-adjust: 100%;
+			max-width: 100%;
 		}
 
 		body {
@@ -84,6 +85,7 @@
 			min-height: 100vh;
 			overflow-x: hidden;
 			width: 100%;
+			max-width: 100%;
 		}
 
 		body::before,
@@ -1713,6 +1715,86 @@
 			}
 		}
 
+		.points-table-wrap {
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			max-width: 100%;
+		}
+
+		.points-table {
+			width: 100%;
+			border-collapse: collapse;
+			min-width: 0;
+			table-layout: fixed;
+			font-size: 0.85rem;
+			color: var(--muted);
+		}
+
+		.points-table th,
+		.points-table td {
+			padding: 8px 6px;
+			white-space: normal;
+			word-break: break-word;
+			overflow-wrap: anywhere;
+			vertical-align: top;
+			line-height: 1.45;
+		}
+
+		.score-list {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			display: grid;
+			gap: 8px;
+		}
+
+		.score-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 14px;
+			line-height: 1.5;
+			flex-wrap: wrap;
+		}
+
+		.score-value {
+			color: var(--text);
+			font-weight: 700;
+			white-space: normal;
+			word-break: break-word;
+			overflow-wrap: anywhere;
+		}
+
+		.info-note-box {
+			overflow-wrap: anywhere;
+			word-break: break-word;
+		}
+
+		@media (max-width: 560px) {
+			.points-table-wrap {
+				padding: 10px !important;
+			}
+
+			.points-table {
+				min-width: 0;
+				font-size: 0.78rem;
+			}
+
+			.points-table th,
+			.points-table td {
+				padding: 6px 4px !important;
+			}
+
+			.score-row {
+				font-size: 0.88rem;
+			}
+
+			.info-note-box {
+				padding: 14px !important;
+				border-radius: 14px !important;
+			}
+		}
+
 		/* Index-style navbar and footer overrides */
 		.navbar {
 			position: sticky;
@@ -1729,6 +1811,7 @@
 		.container {
 			width: min(1200px, calc(100% - clamp(20px, 4vw, 32px)));
 			margin: 0 auto;
+			max-width: 100%;
 		}
 
 		.navbar .container {
@@ -1736,6 +1819,7 @@
 			align-items: center;
 			justify-content: space-between;
 			gap: 16px;
+			min-width: 0;
 		}
 
 		.nav-logo {
@@ -1779,6 +1863,104 @@
 			display: flex;
 			align-items: center;
 			gap: 10px;
+			min-width: 0;
+			flex-wrap: wrap;
+		}
+
+		.hero-grid,
+		.registration-grid,
+		.footer-grid,
+		.section-head {
+			min-width: 0;
+		}
+
+		.hero-copy,
+		.hero-card,
+		.section-card,
+		.form-panel,
+		.info-panel,
+		.footer-brand,
+		.footer-nav {
+			min-width: 0;
+		}
+
+		.rounds-highlight {
+			border-radius: var(--radius-lg);
+			background: linear-gradient(135deg, rgba(245, 179, 53, 0.15) 0%, rgba(239, 93, 60, 0.12) 100%);
+			border: 2px solid rgba(245, 179, 53, 0.35);
+			padding: 32px 24px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.rounds-highlight__orb {
+			position: absolute;
+			border-radius: 50%;
+			pointer-events: none;
+		}
+
+		.rounds-highlight__orb--top {
+			top: -80px;
+			right: -80px;
+			width: 200px;
+			height: 200px;
+			background: rgba(245, 179, 53, 0.08);
+		}
+
+		.rounds-highlight__orb--bottom {
+			bottom: -60px;
+			left: -60px;
+			width: 150px;
+			height: 150px;
+			background: rgba(239, 93, 60, 0.08);
+		}
+
+		.rounds-highlight__content {
+			position: relative;
+			z-index: 1;
+		}
+
+		.rounds-highlight__badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			padding: 8px 14px;
+			border-radius: 999px;
+			background: rgba(245, 179, 53, 0.2);
+			border: 1px solid rgba(245, 179, 53, 0.4);
+			margin-bottom: 18px;
+		}
+
+		.rounds-highlight__title {
+			font-family: "Bebas Neue", sans-serif;
+			font-size: clamp(2rem, 6vw, 2.8rem);
+			margin: 0 0 20px;
+			color: #ffd778;
+			line-height: 1.1;
+			letter-spacing: 0.05em;
+			text-transform: uppercase;
+		}
+
+		.rounds-highlight__desc {
+			margin: 0 0 28px;
+			font-size: 1.05rem;
+			line-height: 1.8;
+			max-width: 90ch;
+			color: var(--text);
+		}
+
+		.rounds-highlight__grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 16px;
+			margin-bottom: 24px;
+		}
+
+		.rounds-highlight__callout {
+			padding: 16px 20px;
+			border-radius: var(--radius-md);
+			background: linear-gradient(135deg, rgba(76, 201, 176, 0.12), rgba(76, 201, 176, 0.04));
+			border: 1px solid rgba(76, 201, 176, 0.3);
 		}
 
 		.navbar .nav-link,
@@ -1961,6 +2143,8 @@
 				display: none;
 				flex-direction: column;
 				align-items: stretch;
+				max-height: calc(100vh - 120px);
+				overflow-y: auto;
 			}
 
 			.navbar .nav-links.is-open {
@@ -1974,6 +2158,45 @@
 		}
 
 		@media (max-width: 560px) {
+			.rounds-highlight {
+				padding: 20px 16px;
+			}
+
+			.rounds-highlight__title {
+				margin-bottom: 14px;
+				letter-spacing: 0.04em;
+			}
+
+			.rounds-highlight__desc {
+				font-size: 0.95rem;
+				line-height: 1.65;
+				margin-bottom: 18px;
+			}
+
+			.rounds-highlight__grid {
+				grid-template-columns: 1fr;
+				gap: 12px;
+				margin-bottom: 16px;
+			}
+
+			.rounds-highlight__orb--top {
+				top: -52px;
+				right: -52px;
+				width: 140px;
+				height: 140px;
+			}
+
+			.rounds-highlight__orb--bottom {
+				bottom: -42px;
+				left: -42px;
+				width: 100px;
+				height: 100px;
+			}
+
+			.rounds-highlight__callout {
+				padding: 14px;
+			}
+
 			.footer-grid {
 				grid-template-columns: 1fr;
 			}
@@ -2035,7 +2258,7 @@
 						If you love cricket, competition, and leadership, this is your stage to prove it on 22 April 2026 at IIEC.
 					</p>
 					<div class="hero-actions">
-						<a class="btn btn-primary hero-action-full" href="#register">Register Now</a>
+						<a class="btn btn-primary hero-action-full" href="#register" aria-disabled="true">Registrations Closed</a>
 						<div class="hero-actions-row">
 							<a class="btn btn-secondary" href="#teams">View Teams</a>
 							<a class="btn btn-secondary" href="#rules">Learn More</a>
@@ -2109,26 +2332,26 @@
 
 		<section style="padding: 16px 0 24px;">
 			<div class="wrap">
-				<div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(245, 179, 53, 0.15) 0%, rgba(239, 93, 60, 0.12) 100%); border: 2px solid rgba(245, 179, 53, 0.35); padding: 32px 24px; position: relative; overflow: hidden;">
+				<div class="rounds-highlight">
 					<!-- Decorative elements -->
-					<div style="position: absolute; top: -80px; right: -80px; width: 200px; height: 200px; border-radius: 50%; background: rgba(245, 179, 53, 0.08); pointer-events: none;"></div>
-					<div style="position: absolute; bottom: -60px; left: -60px; width: 150px; height: 150px; border-radius: 50%; background: rgba(239, 93, 60, 0.08); pointer-events: none;"></div>
+					<div class="rounds-highlight__orb rounds-highlight__orb--top"></div>
+					<div class="rounds-highlight__orb rounds-highlight__orb--bottom"></div>
 
-					<div style="position: relative; z-index: 1;">
-						<div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: rgba(245, 179, 53, 0.2); border: 1px solid rgba(245, 179, 53, 0.4); margin-bottom: 18px;">
+					<div class="rounds-highlight__content">
+						<div class="rounds-highlight__badge">
 							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color: #ffd778;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
 							<span style="font-size: 0.85rem; font-weight: 700; color: #ffd778; text-transform: uppercase; letter-spacing: 0.08em;">Important Detail</span>
 						</div>
 
-						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; margin: 0 0 20px; color: #ffd778; line-height: 1.2; letter-spacing: 0.05em; text-transform: uppercase;">
+						<h3 class="rounds-highlight__title">
 							5 Rounds • 1 Grand Finale
 						</h3>
 
-						<p style="margin: 0 0 28px; font-size: 1.05rem; line-height: 1.8; max-width: 90ch; color: var(--text);">
+						<p class="rounds-highlight__desc">
 							This is the <strong style="color: #ffd56a;">first round</strong> of the IPL Auction series. There will be a <strong style="color: #ffd56a;">total of 5 rounds</strong> held throughout the year. Winners and Runner-ups from each round will be selected and moved to the prestigious <strong style="color: #ffd56a;">Grand Finale</strong>.
 						</p>
 
-						<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px;">
+						<div class="rounds-highlight__grid">
 							<div style="padding: 18px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(245, 179, 53, 0.25);">
 								<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 8px; color: #ffd778;"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
 								<h4 style="margin: 0 0 6px; font-weight: 700; color: #ffd778;">5 Rounds</h4>
@@ -2148,7 +2371,7 @@
 							</div>
 						</div>
 
-						<div style="padding: 16px 20px; border-radius: var(--radius-md); background: linear-gradient(135deg, rgba(76, 201, 176, 0.12), rgba(76, 201, 176, 0.04)); border: 1px solid rgba(76, 201, 176, 0.3);">
+						<div class="rounds-highlight__callout">
 							<div style="display: flex; align-items: center; gap: 12px; color: #8de2d2;">
 								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink: 0;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
 								<span style="font-size: 0.95rem; line-height: 1.6;"><strong>The ultimate championship awaits!</strong> Compete through all 5 rounds to earn your spot in the Grand Finale at E-Summit 2026 Edition Presented by IIEC, CSMU.</span>
@@ -2282,19 +2505,20 @@
 				<div class="section-head">
 					<div>
 						<div class="eyebrow">Registration</div>
-						<h2 class="section-title">Join the Auction</h2>
+						<h2 class="section-title">Registrations Closed</h2>
 					</div>
 					<p>
-						Registrations are now open. Join the auction, represent your team with pride, and experience the thrill of building a title-winning squad in real time.
+						Registrations are now closed. Event briefing session and franchise bidding and purchasing will be held on 21 April at 10:00 AM in Seminar Hall, Pratapgarh Building.
 					</p>
 				</div>
 
 				<div class="registration-grid">
 					<div class="form-panel">
-						<h3>Sign Up</h3>
-						<p class="form-note">Fill in your details to reserve your seat at the auction table.</p>
+						<h3>Registration Closed</h3>
+						<p class="form-note">The registration window has ended. Event briefing session and franchise bidding and purchasing: <strong>21 April, 10:00 AM, Seminar Hall, Pratapgarh Building</strong>.</p>
 
 						<form id="registrationForm">
+							<fieldset disabled aria-disabled="true" style="border: 0; margin: 0; padding: 0; opacity: 0.7; pointer-events: none;">
 							<div class="form-row">
 								<div class="field">
 									<label for="fullName">Full Name</label>
@@ -2335,25 +2559,26 @@
 							</div>
 
 							<div class="form-footer">
-								<button class="btn btn-primary" type="submit">Confirm Registration</button>
-								<span class="tag">Limited seats | First come, first served</span>
+								<button class="btn btn-primary" type="submit" disabled>Registrations Closed</button>
+								<span class="tag">Registration window closed</span>
 							</div>
+							</fieldset>
 
-							<div class="success" id="successMessage" role="status" aria-live="polite">
-								Submit the form to save your registration in Google Sheets.
+							<div class="success" id="successMessage" role="status" aria-live="polite" style="display: block;">
+								Registrations are closed. Attend the event briefing session and franchise bidding and purchasing on 21 April at 10:00 AM in Seminar Hall, Pratapgarh Building.
 							</div>
 						</form>
 					</div>
 
 					<div class="info-panel" id="schedule">
 						<h3>Event Flow</h3>
-						<p class="form-note">Keep the auction fast, dramatic, and easy to follow with this simple schedule.</p>
+						<p class="form-note">Important update: briefing session and franchise bidding and purchasing will take place on 21 April at 10:00 AM in Seminar Hall, Pratapgarh Building.</p>
 
-						<div style="margin-bottom:18px; padding:16px; border-radius:16px; background: rgba(76, 201, 176, 0.08); border:1px solid rgba(76, 201, 176, 0.18);">
+						<div class="info-note-box" style="margin-bottom:18px; padding:16px; border-radius:16px; background: rgba(76, 201, 176, 0.08); border:1px solid rgba(76, 201, 176, 0.18);">
 							<div style="font-weight:700; color:#8de2d2; margin-bottom:6px;">📋 Detailed Event Flow</div>
 							<div style="color: var(--muted); line-height:1.7; font-size: 0.9rem;">A detailed event flow agenda will be available soon. Stay tuned for the complete schedule and timings!</div>
 						</div>
-						<div style="padding:16px; border-radius:16px; background: rgba(255, 138, 0, 0.08); border:1px solid rgba(255, 138, 0, 0.18);">
+						<div class="info-note-box" style="padding:16px; border-radius:16px; background: rgba(255, 138, 0, 0.08); border:1px solid rgba(255, 138, 0, 0.18);">
 							<div style="font-weight:700; color:#ff8a00; margin-bottom:6px;">⏰ Time Management</div>
 							<div style="color: var(--muted); line-height:1.7; font-size: 0.9rem;">Each team will have a fixed time limit for their bids to keep the auction moving at an exciting pace.</div>
 						</div>
@@ -2364,13 +2589,13 @@
 
 		<section style="padding: 0 0 24px;">
 			<div class="wrap" style="display: grid; gap: 12px;">
-				<div style="padding: 14px 16px; border-radius: 12px; background: linear-gradient(135deg, rgba(76, 201, 176, 0.16), rgba(76, 201, 176, 0.05)); border: 1px solid rgba(76, 201, 176, 0.4);">
+				<div class="info-note-box" style="padding: 14px 16px; border-radius: 12px; background: linear-gradient(135deg, rgba(76, 201, 176, 0.16), rgba(76, 201, 176, 0.05)); border: 1px solid rgba(76, 201, 176, 0.4);">
 					<p style="margin: 0; color: var(--text); line-height: 1.8;">
 						<strong style="color: #8de2d2; text-transform: uppercase; letter-spacing: 0.04em;">Announcement:</strong>
-						A mandatory participant briefing session will be held on <strong>21 April</strong> (one day before the event). The complete format and gameplay process for the IPL Auction event will be explained during this session.
+						Registrations are closed. Event briefing session and franchise bidding and purchasing will be held on <strong>21 April</strong> at <strong>10:00 AM</strong> in <strong>Seminar Hall, Pratapgarh Building</strong>.
 					</p>
 				</div>
-				<div style="padding: 14px 16px; border-radius: 12px; background: linear-gradient(135deg, rgba(255, 155, 138, 0.14), rgba(255, 155, 138, 0.05)); border: 1px solid rgba(255, 155, 138, 0.38);">
+				<div class="info-note-box" style="padding: 14px 16px; border-radius: 12px; background: linear-gradient(135deg, rgba(255, 155, 138, 0.14), rgba(255, 155, 138, 0.05)); border: 1px solid rgba(255, 155, 138, 0.38);">
 					<p style="margin: 0; color: var(--text); line-height: 1.8;">
 						<strong style="color: #ffb3a6; text-transform: uppercase; letter-spacing: 0.04em;">Disclaimer:</strong>
 						IPL, Indian Premier League, franchise names, team identities, player references, logos, and all related intellectual property belong to their respective owners. This event is an independent educational simulation conducted for learning and engagement purposes only, with no official affiliation, sponsorship, or endorsement implied.
@@ -2378,7 +2603,7 @@
 				</div>
 			</div>
 		</section>
-
+<!-- 
 		<section class="section" id="rating-system">
 			<div class="section-card">
 				<div class="section-head section-head-stacked">
@@ -2393,7 +2618,7 @@
 
 				<div style="display: grid; gap: 20px; margin-top: 24px;">
 					<!-- Batters Scoring -->
-					<div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(245, 179, 53, 0.1), rgba(245, 179, 53, 0.04)); border: 1px solid rgba(245, 179, 53, 0.2); padding: 28px; overflow: hidden; position: relative;">
+					<!-- <div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(245, 179, 53, 0.1), rgba(245, 179, 53, 0.04)); border: 1px solid rgba(245, 179, 53, 0.2); padding: 28px; overflow: hidden; position: relative;">
 						<div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; background: rgba(245, 179, 53, 0.1); pointer-events: none;"></div>
 						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin: 0 0 20px; color: #ffd778; letter-spacing: 0.06em; position: relative; z-index: 1;">⚡ Batters</h3>
 						<p style="color: var(--muted); margin: 0 0 18px; font-size: 0.95rem; position: relative; z-index: 1;">Points awarded based on batting performance in IPL 2025:</p>
@@ -2434,10 +2659,10 @@
 								<span style="color: var(--muted); font-size: 0.8rem;">100+ runs in match</span>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- Bowlers Scoring -->
-					<div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(239, 93, 60, 0.1), rgba(239, 93, 60, 0.04)); border: 1px solid rgba(239, 93, 60, 0.2); padding: 28px; overflow: hidden; position: relative;">
+					<!-- <div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(239, 93, 60, 0.1), rgba(239, 93, 60, 0.04)); border: 1px solid rgba(239, 93, 60, 0.2); padding: 28px; overflow: hidden; position: relative;">
 						<div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; background: rgba(239, 93, 60, 0.1); pointer-events: none;"></div>
 						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin: 0 0 20px; color: #ff9b8a; letter-spacing: 0.06em; position: relative; z-index: 1;">🎯 Bowlers</h3>
 						<p style="color: var(--muted); margin: 0 0 18px; font-size: 0.95rem; position: relative; z-index: 1;">Points awarded based on bowling performance in IPL 2025:</p>
@@ -2471,10 +2696,10 @@
 								<span style="color: var(--muted); font-size: 0.8rem;">Bonus maiden over</span>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- Wicket Keepers Scoring -->
-					<div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(76, 201, 176, 0.1), rgba(76, 201, 176, 0.04)); border: 1px solid rgba(76, 201, 176, 0.2); padding: 28px; overflow: hidden; position: relative;">
+					<!-- <div style="border-radius: var(--radius-lg); background: linear-gradient(135deg, rgba(76, 201, 176, 0.1), rgba(76, 201, 176, 0.04)); border: 1px solid rgba(76, 201, 176, 0.2); padding: 28px; overflow: hidden; position: relative;">
 						<div style="position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; background: rgba(76, 201, 176, 0.1); pointer-events: none;"></div>
 						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin: 0 0 20px; color: #8de2d2; letter-spacing: 0.06em; position: relative; z-index: 1;">🧤 Wicket Keepers</h3>
 						<p style="color: var(--muted); margin: 0 0 18px; font-size: 0.95rem; position: relative; z-index: 1;">Wicket Keepers earn points through fielding performance in addition to batting and bowling (if applicable):</p>
@@ -2494,10 +2719,10 @@
 								<span style="color: var(--muted); font-size: 0.8rem;">Same as batters scoring</span>
 							</div>
 						</div>
-					</div>
+					</div> --> 
 
 					<!-- Key Points -->
-					<div style="border-radius: var(--radius-lg); background: rgba(76, 201, 176, 0.08); border: 1px solid rgba(76, 201, 176, 0.2); padding: 24px;">
+					<!-- <div style="border-radius: var(--radius-lg); background: rgba(76, 201, 176, 0.08); border: 1px solid rgba(76, 201, 176, 0.2); padding: 24px;">
 						<h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin: 0 0 16px; color: #8de2d2; letter-spacing: 0.05em;">💡 Key Points to Remember</h4>
 						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8; font-size: 0.95rem;">
 							<li style="margin-bottom: 10px;">All ratings are calculated based on <strong style="color: var(--text);">real IPL 2025 tournament performance</strong></li>
@@ -2505,7 +2730,7 @@
 							<li style="margin-bottom: 10px;">Stats are referred from the <strong style="color: var(--text);">official IPL website</strong></li>
 							<li style="margin-bottom: 0;">Smart bidding on undervalued players with high performance can give you a competitive edge</li>
 						</ul>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</section>
@@ -2528,12 +2753,11 @@
 						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">General Instructions</h3>
 						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
 							<li style="margin-bottom: 12px;">Proper decorum must be maintained. Usage of any foul language will result in straight disqualification.</li>
-							<li style="margin-bottom: 12px;">This is a solo/group event.</li>
+							<li style="margin-bottom: 12px;">This is a group event.</li>
 							<li style="margin-bottom: 12px;">Usage of any third-party applications that give you an unfair advantage will result in immediate disqualification and potential ban from future tournaments.</li>
 							<li style="margin-bottom: 12px;">Each participating team is given <strong style="color: var(--text);">120 Crores</strong> as budget.</li>
-							<li style="margin-bottom: 12px;">Players must bid for IPL franchises (10 total) and get the privilege of having an <strong style="color: var(--text);">RTM card</strong>.</li>
+							<li style="margin-bottom: 12px;">Players must bid for IPL franchises (10 total).</li>
 							<li style="margin-bottom: 12px;">Failure to comply with limitations leads to immediate disqualification.</li>
-							<li style="margin-bottom: 12px;">Unsold players will NOT be looped again.</li>
 							<li style="margin-bottom: 12px;">It is mandatory to form a squad of exactly <strong style="color: var(--text);">11 players</strong>.</li>
 							<li style="margin-bottom: 0;">Required squad composition: <strong style="color: var(--text);">1 Wicket-keeper, 4 Batters, 4 Bowlers, 2 All-rounders</strong></li>
 						</ul>
@@ -2543,18 +2767,17 @@
 					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
 						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">Game Rules</h3>
 						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
-							<li style="margin-bottom: 12px;">Auction starts with bidding on IPL Franchises. Base price: <strong style="color: var(--text);">10 CR</strong> each. No team can go unsold; the last team sells at <strong style="color: var(--text);">15 CR</strong>.</li>
+							<li style="margin-bottom: 12px;">Auction starts with bidding on IPL Franchises. Base price: <strong style="color: var(--text);">5 CR</strong> each. No team can go unsold; the last team sells at <strong style="color: var(--text);">15 CR</strong>.</li>
 							<li style="margin-bottom: 12px;">One player from each team raises the baton and bids; the rest discuss internally.</li>
-							<li style="margin-bottom: 12px;">Players' bidding order is declared on the spot.</li>
+							<li style="margin-bottom: 12px;">Players bidding order is declared on the spot.</li>
 							<li style="margin-bottom: 12px;">Blind bids occur during the game—teams privately pass chits with prices to auctioneers.</li>
-							<li style="margin-bottom: 12px;">Riddle bids require teams to write the answer with a bidding amount; the team with the correct answer and highest bid wins.</li>
-							<li style="margin-bottom: 12px;">Winners of blind bids and riddles can block a team for the next player's bid.</li>
+							<li style="margin-bottom: 12px;">Winners of blind bids can block a team for the next player's bid.</li>
 							<li style="margin-bottom: 0;">Teams with more/less than 11 players or out of cash before team formation are disqualified.</li>
 						</ul>
 					</div>
 
 					<!-- RTM Rules -->
-					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
+					<!-- <div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
 						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">RTM (Right-to-Match) Rules</h3>
 						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
 							<li style="margin-bottom: 12px;">An RTM card is given to every franchise holder in this auction.</li>
@@ -2562,19 +2785,47 @@
 							<li style="margin-bottom: 12px;"><strong style="color: var(--text);">Example:</strong> If Franchise A bids X for a player, Franchise B (original owner) can secure the player at that exact amount.</li>
 							<li style="margin-bottom: 0;">When RTM is used, the original bidder gets the bid amount refunded.</li>
 						</ul>
-					</div>
+					</div> -->
 
 					<!-- Points Table -->
 					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
 						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">Points Table</h3>
 						<p style="color: var(--muted); margin: 0 0 18px; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Based on IPL 2025 Tournament</p>
 
-							<div style="padding: 16px; border-radius: var(--radius-md); background: rgba(76, 201, 176, 0.08); border: 1px solid rgba(76, 201, 176, 0.2);">
+						<div class="points-table-wrap" style="margin-bottom: 16px; padding: 16px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.14); overflow-x: auto;">
+							<h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; margin: 0 0 12px; color: #ffd778; letter-spacing: 0.05em;">Franchise Performance Points</h4>
+							<table class="points-table" style="width: 100%; border-collapse: collapse; min-width: 0; font-size: 0.85rem; color: var(--muted); table-layout: fixed;">
+								<thead>
+									<tr>
+										<th style="text-align: left; padding: 10px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); color: var(--text);">Rank</th>
+										<th style="text-align: left; padding: 10px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); color: var(--text);">Team</th>
+										<th style="text-align: left; padding: 10px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); color: var(--text);">IPL Points</th>
+										<th style="text-align: left; padding: 10px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); color: var(--text);">Auction Points</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">1</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">PBKS</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">19</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #8de2d2; font-weight: 700;">100</td></tr>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">2</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">RCB</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">19</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); color: #8de2d2; font-weight: 700;">100</td></tr>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">3</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">GT</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">18</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">92</td></tr>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">4</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">MI</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">16</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">75</td></tr>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">5</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">DC</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">15</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">67</td></tr>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">6</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">SRH</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">13</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">51</td></tr>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">7</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">LSG</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">12</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">43</td></tr>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">8</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">KKR</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">12</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">43</td></tr>
+									<tr><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">9</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">RR</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">8</td><td style="padding: 9px 8px; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">10</td></tr>
+									<tr><td style="padding: 9px 8px;">10</td><td style="padding: 9px 8px;">CSK</td><td style="padding: 9px 8px;">8</td><td style="padding: 9px 8px;">10</td></tr>
+								</tbody>
+							</table>
+						</div>
+
+							<div class="info-note-box" style="padding: 16px; border-radius: var(--radius-md); background: rgba(76, 201, 176, 0.08); border: 1px solid rgba(76, 201, 176, 0.2);">
 								<h4 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; margin: 0 0 12px; color: #8de2d2; letter-spacing: 0.05em;">Leftover Money</h4>
-								<ul style="margin: 0; padding-left: 18px; font-size: 0.9rem; line-height: 1.8; color: var(--muted);">
-									<li>1 CR - 4 CR <span style="float: right; color: var(--text);">50 Pts</span></li>
-									<li>5 CR - 9 CR <span style="float: right; color: var(--text);">100 Pts</span></li>
-									<li>10 CR+ <span style="float: right; color: var(--text);">150 Pts</span></li>
+								<ul class="score-list" style="margin: 0; padding-left: 0; font-size: 0.9rem; line-height: 1.8; color: var(--muted);">
+									<li class="score-row"><span>1 Lakh - 49 Lakh</span><span class="score-value">10 Pts</span></li>
+									<li class="score-row"><span>50 Lakhs - 99 Lakhs</span><span class="score-value">25 Pts</span></li>
+									<li class="score-row"><span>1 CR - 4 CR</span><span class="score-value">50 Pts</span></li>
+									<li class="score-row"><span>5 CR - 9 CR</span><span class="score-value">100 Pts</span></li>
+									<li class="score-row"><span>10 CR+</span><span class="score-value">150 Pts</span></li>
 								</ul>
 							</div>
 						</div>
@@ -2584,11 +2835,11 @@
 					<div style="border-radius: var(--radius-lg); background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); padding: 24px;">
 						<h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; margin: 0 0 16px; letter-spacing: 0.06em;">Scoring Instructions</h3>
 						<ul style="margin: 0; padding-left: 20px; color: var(--muted); line-height: 1.8;">
-							<li style="margin-bottom: 12px;">Points based on IPL 2025 tournament stats from official IPL website.</li>
-							<li style="margin-bottom: 12px;">Teams earn points based on franchise auction positioning: 1st = 100 pts, 2nd = 90 pts, ..., Last = 10 pts.</li>
+							<!-- <li style="margin-bottom: 12px;">Points based on IPL 2025 tournament stats from official IPL website.</li> -->
+							<!-- <li style="margin-bottom: 12px;">Teams earn points based on franchise auction positioning: 1st = 100 pts, 2nd = 90 pts, ..., Last = 10 pts.</li> -->
 							<li style="margin-bottom: 12px;">Each team gets assigned a volunteer for tracking.</li>
 							<li style="margin-bottom: 12px;">Players must track purse money usage and note all players and amounts.</li>
-							<li style="margin-bottom: 0;">After team formation, appoint one player as <strong style="color: var(--text);">Ace Captain</strong>—their points are <strong style="color: var(--text);">doubled</strong>.</li>
+							<li style="margin-bottom: 0;">After team formation, appoint one player as <strong style="color: var(--text);">Ace Captain</strong>—their rating points will be <strong style="color: var(--text);">doubled</strong>.</li>
 						</ul>
 					</div>
 
@@ -2678,6 +2929,7 @@
 
 	<script>
 		const APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxZ1RzQwMM5Ghu1SUULqVRDuRUmZ0b7kMraPjvtolnb6dDAPexFErSByUQZdfYiRwxG/exec";
+		const REGISTRATIONS_OPEN = false;
 		const pageLoader = document.getElementById("pageLoader");
 		const loaderStart = Date.now();
 		const MIN_LOADER_TIME = 3500;
@@ -2734,38 +2986,61 @@
 		}
 
 		function showStatus(message, isError) {
+			if (!successMessage) {
+				return;
+			}
 			successMessage.style.display = "block";
 			successMessage.textContent = message;
 			successMessage.classList.toggle("error", Boolean(isError));
 			successMessage.scrollIntoView({ behavior: "smooth", block: "nearest" });
 		}
 
-		form.addEventListener("submit", async function (event) {
-			event.preventDefault();
-
-			const payload = Object.fromEntries(new FormData(form).entries());
-			const encodedPayload = new URLSearchParams(payload);
-
-			submitButton.disabled = true;
-			submitButton.textContent = "Submitting...";
-
-			try {
-				await fetch(APPS_SCRIPT_WEB_APP_URL, {
-					method: "POST",
-					headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-					mode: "no-cors",
-					body: encodedPayload.toString()
+		if (form && submitButton) {
+			if (!REGISTRATIONS_OPEN) {
+				Array.from(form.elements).forEach(function (element) {
+					if (!element || element.tagName === "FIELDSET") {
+						return;
+					}
+					if ("disabled" in element) {
+						element.disabled = true;
+					}
 				});
-
-				showStatus("Registration saved for " + payload.fullName + ". See you at the auction table.", false);
-				form.reset();
-			} catch (error) {
-				showStatus(error.message || "Something went wrong while submitting the form.", true);
-			} finally {
-				submitButton.disabled = false;
-				submitButton.textContent = "Confirm Registration";
+				submitButton.disabled = true;
+				submitButton.textContent = "Registrations Closed";
 			}
-		});
+
+			form.addEventListener("submit", async function (event) {
+				event.preventDefault();
+
+				if (!REGISTRATIONS_OPEN) {
+					showStatus("Registrations are closed. Event briefing session and franchise bidding and purchasing: 21 April, 10:00 AM, Seminar Hall, Pratapgarh Building.", true);
+					return;
+				}
+
+				const payload = Object.fromEntries(new FormData(form).entries());
+				const encodedPayload = new URLSearchParams(payload);
+
+				submitButton.disabled = true;
+				submitButton.textContent = "Submitting...";
+
+				try {
+					await fetch(APPS_SCRIPT_WEB_APP_URL, {
+						method: "POST",
+						headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+						mode: "no-cors",
+						body: encodedPayload.toString()
+					});
+
+					showStatus("Registration saved for " + payload.fullName + ". See you at the auction table.", false);
+					form.reset();
+				} catch (error) {
+					showStatus(error.message || "Something went wrong while submitting the form.", true);
+				} finally {
+					submitButton.disabled = false;
+					submitButton.textContent = "Confirm Registration";
+				}
+			});
+		}
 
 		teamLogos.forEach(function (logo) {
 			logo.addEventListener("error", function () {
