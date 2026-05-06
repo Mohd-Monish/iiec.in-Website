@@ -1178,7 +1178,7 @@
         this.showBlogMessage('Blog post published successfully!', 'success');
         this.blogForm.reset();
 
-      } catch (error) {
+      } catch (error) { 
         console.error('Blog submission error:', error);
         this.showBlogMessage('Failed to publish. Please try again.', 'error');
       } finally {
