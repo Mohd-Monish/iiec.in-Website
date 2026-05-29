@@ -13,4 +13,4 @@ Sitemap: https://iiec.in/sitemap.xml
 
 # LLMs.txt — structured site info for AI models
 # https://llmstxt.org
-LLMsTxt: https://iiec.in/llms.txt
+# LLMsTxt: https://iiec.in/llms.txt
