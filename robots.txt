@@ -5,6 +5,8 @@ Allow: /
 Disallow: /admin.html
 Disallow: /404.html
 Disallow: /analytics.html
+Disallow: /certificate-dashboard.html
+Disallow: /blog-post.html
 
 # Sitemap location
 Sitemap: https://iiec.in/sitemap.xml
