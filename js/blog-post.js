@@ -1,100 +1,8 @@
-/**
- * Blog Post Page Script
- * Handles fetching and rendering blog posts from API
- */
-(function() {
-  'use strict';
-  
-  const API_URL = 'https://script.google.com/macros/s/AKfycbw0KJk8ObDw-Xpz9TJlPXLCXOEovWx0I3bSUlcTmBLWb_KLoL4AvtAkG5oEnvxMFNvryA/exec';
-  
-  // Get post ID from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const postId = urlParams.get('id');
-  const postIndex = urlParams.get('index');
-  
-  // DOM Elements
-  const mainEl = document.getElementById('blog-post-main');
-  const loadingEl = document.getElementById('loading-state');
-  
-  // Store all posts for related posts section
-  let allPosts = [];
-  
-  // Initialize
-  async function init() {
-    // First check localStorage for the post data
-    const storedPost = localStorage.getItem('currentBlogPost');
-    
-    if (storedPost) {
-      const post = JSON.parse(storedPost);
-      // Clear it after reading
-      localStorage.removeItem('currentBlogPost');
-      
-      // Fetch all posts for related posts section
-      fetchAllPosts().then(() => {
-        renderPost(post);
-      });
-      return;
-    }
-    
-    // If no stored post, fetch from API
-    try {
-      const response = await fetch(API_URL, {
-        method: 'GET',
-        redirect: 'follow'
-      });
-      const data = await response.json();
-      
-      if (data.success && data.posts && data.posts.length > 0) {
-        allPosts = data.posts;
-        
-        // Find the post by ID or index
-        let post = null;
-        
-        if (postId) {
-          post = data.posts.find(p => p.id === postId);
-        } else if (postIndex !== null) {
-          post = data.posts[parseInt(postIndex)];
-        }
-        
-        if (post) {
-          renderPost(post);
-        } else {
-          renderNotFound();
-        }
-      } else {
-        renderNotFound();
-      }
-    } catch (error) {
-      console.error('Error loading post:', error);
-      renderNotFound();
-    }
-  }
-  
-  async function fetchAllPosts() {
-    try {
-      const response = await fetch(API_URL, {
-        method: 'GET',
-        redirect: 'follow'
-      });
-      const data = await response.json();
-      if (data.success && data.posts) {
-        allPosts = data.posts;
-      }
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    }
-  }
-  
-  function renderPost(post) {
-    const imageUrl = post.imageUrl || post.image || './assets/images/default-blog.webp';
-    const authorInitials = (post.author || 'IIEC').split(' ').map(n => n[0]).join('').toUpperCase();
-    
-    // Update page title and meta
-    document.title = `${post.title} | IIEC Blog`;
-    document.querySelector('meta[property="og:title"]').setAttribute('content', post.title);
-    document.querySelector('meta[property="og:description"]').setAttribute('content', post.excerpt || '');
-    
-    mainEl.innerHTML = `
+(function(){'use strict';const API_URL=atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3MEtKazhPYkR3LVhwejlUSmxQWExDWE9Fb3ZXeDBJM2JTVWxjVG1CTFdiX0tMb0w0QXZ0QWtHNW9FbnZ4TUZOdnJ5QS9leGVj');const urlParams=new URLSearchParams(window.location.search);const postId=urlParams.get('id');const postIndex=urlParams.get('index');const mainEl=document.getElementById('blog-post-main');const loadingEl=document.getElementById('loading-state');let allPosts=[];async function init(){const storedPost=localStorage.getItem('currentBlogPost');if(storedPost){const post=JSON.parse(storedPost);localStorage.removeItem('currentBlogPost');fetchAllPosts().then(()=>{renderPost(post);});return;}
+try{const response=await fetch(API_URL,{method:'GET',redirect:'follow'});const data=await response.json();if(data.success&&data.posts&&data.posts.length>0){allPosts=data.posts;let post=null;if(postId){post=data.posts.find(p=>p.id===postId);}else if(postIndex!==null){post=data.posts[parseInt(postIndex)];}
+if(post){renderPost(post);}else{renderNotFound();}}else{renderNotFound();}}catch(error){console.error('Error loading post:',error);renderNotFound();}}
+async function fetchAllPosts(){try{const response=await fetch(API_URL,{method:'GET',redirect:'follow'});const data=await response.json();if(data.success&&data.posts){allPosts=data.posts;}}catch(error){console.error('Error fetching posts:',error);}}
+function renderPost(post){const imageUrl=post.imageUrl||post.image||'./assets/images/default-blog.webp';const authorInitials=(post.author||'IIEC').split(' ').map(n=>n[0]).join('').toUpperCase();document.title=`${post.title} | IIEC Blog`;document.querySelector('meta[property="og:title"]').setAttribute('content',post.title);document.querySelector('meta[property="og:description"]').setAttribute('content',post.excerpt||'');mainEl.innerHTML=`
       <!-- Hero Image -->
       <div class="blog-post-hero">
         <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}" onerror="this.src='./assets/images/default-blog.webp'">
@@ -155,22 +63,9 @@
           </div>
         </section>
       </div>
-    `;
-  }
-  
-  function renderRelatedPosts(currentPost) {
-    // Filter out current post and get up to 3 related posts
-    const related = allPosts
-      .filter(p => p.id !== currentPost.id && p.title !== currentPost.title)
-      .slice(0, 3);
-    
-    if (related.length === 0) {
-      return '<p style="text-align: center; color: var(--text-muted);">No other articles available yet.</p>';
-    }
-    
-    return related.map((post, index) => {
-      const imageUrl = post.imageUrl || post.image || './assets/images/default-blog.webp';
-      return `
+    `;}
+function renderRelatedPosts(currentPost){const related=allPosts.filter(p=>p.id!==currentPost.id&&p.title!==currentPost.title).slice(0,3);if(related.length===0){return'<p style="text-align: center; color: var(--text-muted);">No other articles available yet.</p>';}
+return related.map((post,index)=>{const imageUrl=post.imageUrl||post.image||'./assets/images/default-blog.webp';return`
         <article class="blog-card" data-animate="scale">
           <div class="blog-card-image">
             <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(post.title)}" 
@@ -193,12 +88,8 @@
             </a>
           </div>
         </article>
-      `;
-    }).join('');
-  }
-  
-  function renderNotFound() {
-    mainEl.innerHTML = `
+      `;}).join('');}
+function renderNotFound(){mainEl.innerHTML=`
       <div class="blog-post-not-found">
         <h1>Article Not Found</h1>
         <p>Sorry, the article you're looking for doesn't exist or has been removed.</p>
@@ -209,96 +100,9 @@
           </svg>
         </a>
       </div>
-    `;
-  }
-  
-  function parseMarkdown(text) {
-    if (!text) return '<p>No content available.</p>';
-    
-    let html = escapeHtml(text);
-    
-    // Headers
-    html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
-    html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
-    html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
-    
-    // Bold
-    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-    
-    // Italic
-    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
-    
-    // Links
-    html = html.replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-    
-    // Blockquotes
-    html = html.replace(/^&gt; (.+)$/gm, '<blockquote>$1</blockquote>');
-    
-    // Code blocks
-    html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
-    
-    // Inline code
-    html = html.replace(/`(.+?)`/g, '<code>$1</code>');
-    
-    // Unordered lists
-    html = html.replace(/^- (.+)$/gm, '<li>$1</li>');
-    
-    // Ordered lists
-    html = html.replace(/^\d+\. (.+)$/gm, '<li>$1</li>');
-    
-    // Wrap consecutive list items
-    html = html.replace(/(<li>.*<\/li>\n?)+/g, function(match) {
-      return '<ul>' + match + '</ul>';
-    });
-    
-    // Paragraphs - split by double newlines
-    const paragraphs = html.split(/\n\n+/);
-    html = paragraphs.map(p => {
-      p = p.trim();
-      if (!p) return '';
-      // Don't wrap if already wrapped in a block element
-      if (p.startsWith('<h') || p.startsWith('<ul') || p.startsWith('<ol') || 
-          p.startsWith('<blockquote') || p.startsWith('<pre')) {
-        return p;
-      }
-      return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
-    }).join('\n');
-    
-    return html;
-  }
-  
-  function formatDate(timestamp) {
-    if (!timestamp) return 'Recently';
-    try {
-      return new Date(timestamp).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      });
-    } catch {
-      return 'Recently';
-    }
-  }
-  
-  function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-  
-  // Make openPost available globally for related posts
-  window.openPost = function(index) {
-    if (allPosts[index]) {
-      localStorage.setItem('currentBlogPost', JSON.stringify(allPosts[index]));
-      window.location.href = `blog-post.html?index=${index}`;
-    }
-  };
-  
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
+    `;}
+function parseMarkdown(text){if(!text)return'<p>No content available.</p>';let html=escapeHtml(text);html=html.replace(/^### (.+)$/gm,'<h3>$1</h3>');html=html.replace(/^## (.+)$/gm,'<h2>$1</h2>');html=html.replace(/^# (.+)$/gm,'<h1>$1</h1>');html=html.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');html=html.replace(/\*(.+?)\*/g,'<em>$1</em>');html=html.replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');html=html.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');html=html.replace(/```([\s\S]*?)```/g,'<pre><code>$1</code></pre>');html=html.replace(/`(.+?)`/g,'<code>$1</code>');html=html.replace(/^- (.+)$/gm,'<li>$1</li>');html=html.replace(/^\d+\. (.+)$/gm,'<li>$1</li>');html=html.replace(/(<li>.*<\/li>\n?)+/g,function(match){return'<ul>'+match+'</ul>';});const paragraphs=html.split(/\n\n+/);html=paragraphs.map(p=>{p=p.trim();if(!p)return'';if(p.startsWith('<h')||p.startsWith('<ul')||p.startsWith('<ol')||p.startsWith('<blockquote')||p.startsWith('<pre')){return p;}
+return'<p>'+p.replace(/\n/g,'<br>')+'</p>';}).join('\n');return html;}
+function formatDate(timestamp){if(!timestamp)return'Recently';try{return new Date(timestamp).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}catch{return'Recently';}}
+function escapeHtml(text){if(!text)return'';const div=document.createElement('div');div.textContent=text;return div.innerHTML;}
+window.openPost=function(index){if(allPosts[index]){localStorage.setItem('currentBlogPost',JSON.stringify(allPosts[index]));window.location.href=`blog-post.html?index=${index}`;}};if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}})();

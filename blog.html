@@ -33,7 +33,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="IIEC Blog — Read the latest articles on innovation, entrepreneurship, startups, technology, and student success stories. Insights from Incubation, Innovation & Entrepreneurship Cell at CSMU, Navi Mumbai.">
+  <meta name="description" content="IIEC Blog — Read the latest articles on innovation, entrepreneurship, startups, technology, and student success stories. Insights from Incubation,...">
   <meta name="keywords" content="IIEC blog, entrepreneurship articles, startup blog India, innovation insights, student startup stories, technology articles college, E-Cell blog CSMU, incubation cell blog, startup tips students, entrepreneurship resources, college innovation blog, tech articles university, business ideas students, Navi Mumbai college blog, startup funding India, business plan template, lean startup methodology, digital marketing workshop, AI startup India, how to start a startup in college India, startup advice for students, entrepreneurship lessons, student success stories India, product development tips, pitch deck guide">
   <meta name="author" content="IIEC">
   <meta name="theme-color" content="#05070f">
@@ -91,7 +91,7 @@
         "headline": "Why College is the Best Time to Start a Startup",
         "description": "The unique advantages of starting your entrepreneurial journey while still in university.",
         "author": {
-          "@type": "Person",
+          "@type": "Organization",
           "name": "IIEC"
         },
         "datePublished": "2024-05-15"
@@ -99,6 +99,10 @@
     ]
   }
   </script>
+<meta property="og:locale" content="en_IN" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@iiec_csmu" />
+	<meta name="twitter:creator" content="@iiec_csmu" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -143,7 +147,8 @@
   </div>
 
   <!-- Main Content -->
-  <div class="main-content">
+  <main id="main">
+	<div class="main-content">
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
@@ -163,7 +168,7 @@
           <a href="about.html" class="nav-link" role="menuitem">About</a>
           <a href="team.html" class="nav-link" role="menuitem">Team</a>
           <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-          <a href="blog.html" class="nav-link active" role="menuitem">Blog</a>
+          <a href="blog.html" class="nav-link active" role="menuitem" aria-current="page" aria-current="page">Blog</a>
           <a href="https://join.ecellcsmu.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem">Join Us</a>
         </div>
       </div>
@@ -182,7 +187,41 @@
       <div class="container">
         <div class="blog-grid" id="blog-posts">
           <!-- Blog posts will be loaded dynamically from API -->
-          <div class="blog-loading" id="blog-loading">
+          <noscript><div class="blog-grid-static" style="display:grid; gap:20px;">
+
+        <article class="blog-card" style="opacity:1; transform:none;">
+          <div class="blog-card-content">
+            <h2 class="blog-card-title">Gen- Z redefining Entrepreneurship</h2>
+            <p class="blog-card-excerpt">The arena where businesses compete now isn't just a playground to push each other behind - That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.</p>
+            <a href="blog-post-0.html" class="blog-card-link">Read More</a>
+          </div>
+        </article>
+        
+        <article class="blog-card" style="opacity:1; transform:none;">
+          <div class="blog-card-content">
+            <h2 class="blog-card-title">Balancing Studies and Start-Up as a full-time student</h2>
+            <p class="blog-card-excerpt">There could be nothing more overwhelming than the constant juggling between start-up drive as an individual and managing the duties of a student at the college. This blog will explore some efficient and feasible hacks that could bring ease into the venture quest of every start-up student out there!</p>
+            <a href="blog-post-1.html" class="blog-card-link">Read More</a>
+          </div>
+        </article>
+        
+        <article class="blog-card" style="opacity:1; transform:none;">
+          <div class="blog-card-content">
+            <h2 class="blog-card-title">Side Hustle: Beyond just a culture, a stepping stone.</h2>
+            <p class="blog-card-excerpt">Hustling is an essential element to acquiring almost anything extraordinary or something even remotely close to it. Getting fuel ready for your own Start-Up is hardly any different- hustling while maintaning the several tasks as an acdemic weapon is how some young ventures excelled. In this blog, we shall explore the various ways where being a student- start-up owner isn't necessarily as glorious as it appears once product is delivered.</p>
+            <a href="blog-post-2.html" class="blog-card-link">Read More</a>
+          </div>
+        </article>
+        
+        <article class="blog-card" style="opacity:1; transform:none;">
+          <div class="blog-card-content">
+            <h2 class="blog-card-title">The Midterm Manoeuvre: Why Your &quot;Failed&quot; Startup is Your Best Grade Yet</h2>
+            <p class="blog-card-excerpt">Getting an idea and wanting to make it a reality is a canon event for most university students. Half of them manage to execute the said ideas- only barely. The first ever start-up doesn't necessarily boom at the first go. Nearly each student start-up is destined to face a failure. That first failure isn't meant to demotivate you from trying ever again- it is an essential area that needs be explored. We shall dsicuss FAILURE in this blog.</p>
+            <a href="blog-post-3.html" class="blog-card-link">Read More</a>
+          </div>
+        </article>
+        </div></noscript>
+<div class="blog-loading" id="blog-loading">
             <!-- Skeleton Card 1 -->
             <div class="skeleton-card">
               <div class="skeleton-image"></div>
@@ -233,32 +272,32 @@
     <section class="section" aria-labelledby="categories-title">
       <div class="container">
         <header class="section-header" data-animate="fade-up">
-          <h2 id="categories-title" class="section-title">Explore <span class="highlight">Topics</span></h2>
+          <h2 id="posts-title" id="categories-title" class="section-title">Explore <span class="highlight">Topics</span></h2>
           <p class="section-subtitle">Find articles by category</p>
         </header>
         
         <div class="categories-grid" data-animate="scale" data-animate-delay="1">
-          <a href="#" class="category-tag">
+          <a href="javascript:void(0)" class="category-tag">
             <span>Insights</span>
             <span class="category-count">3</span>
           </a>
-          <a href="#" class="category-tag">
+          <a href="javascript:void(0)" class="category-tag">
             <span>Tutorials</span>
             <span class="category-count">2</span>
           </a>
-          <a href="#" class="category-tag">
+          <a href="javascript:void(0)" class="category-tag">
             <span>Guides</span>
             <span class="category-count">4</span>
           </a>
-          <a href="#" class="category-tag">
+          <a href="javascript:void(0)" class="category-tag">
             <span>Success Stories</span>
             <span class="category-count">1</span>
           </a>
-          <a href="#" class="category-tag">
+          <a href="javascript:void(0)" class="category-tag">
             <span>Events</span>
             <span class="category-count">2</span>
           </a>
-          <a href="#" class="category-tag">
+          <a href="javascript:void(0)" class="category-tag">
             <span>News</span>
             <span class="category-count">5</span>
           </a>
@@ -289,7 +328,8 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer" role="contentinfo" data-animate="fade-up">
+    </main>
+	<footer class="footer" role="contentinfo" data-animate="fade-up">
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
@@ -358,7 +398,7 @@
         
         <div class="footer-bottom">
           <p class="footer-copyright">
-            © 2025 IIEC. All rights reserved.
+            © 2026 IIEC. All rights reserved.
           </p>
           <a href="admin.html" class="footer-ops">Login to Post →</a>
         </div>

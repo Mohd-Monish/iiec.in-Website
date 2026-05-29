@@ -44,7 +44,7 @@ IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entreprene
 - **Email**: ecell-student-rep@csmu.ac.in
 - **Join URL**: https://join.ecellcsmu.in
 - **Collaboration Partner**: GeeksforGeeks (for GENESIS orientation event and learning resources)
-- **Copyright Year**: 2025
+- **Copyright Year**: 2026
 
 ---
 
@@ -285,3 +285,37 @@ The IIEC Blog publishes articles and insights on innovation, entrepreneurship, s
 - **blog-post.html**: BlogPosting with publisher Organization/IIEC
 - **genesis.html**: Event (eventStatus: EventCompleted, isAccessibleForFree: true)
 - **techastra.html**: Event (eventStatus: EventScheduled)
+
+
+---
+
+## Upcoming & Flagship Events in Detail
+
+### 1. IPL Auction 2026
+- **Date:** 22 April 2026
+- **Venue:** Seminar Hall, Pratapgad Block, CSMU Campus
+- **Theme:** "Bid like a captain"
+- **Dress Code:** Team colors + sporty
+- **Format:** 5 Rounds held throughout the year, culminating in 1 Grand Finale. Winners and Runners-up from each round advance to the finale.
+- **Scale:** 10 IPL franchise teams competing for 1 Grand winning squad
+- **Description:** A live auction arena where participants' decisions shape a dream squad. It tests strategy, budget management, and bidding tactics under pressure. Participants scout for players, bid within budgets, and build a winning team.
+- **Status:** Registrations Closed (as per the latest update).
+- **URL:** https://iiec.in/ipl-auction.html
+
+### 2. TechAstra 2026: The Multiverse of Innovation
+- **Title:** The Largest Annual Technical Fest of Chhatrapati Shivaji Maharaj University
+- **Organized By:** IIEC - Incubation, Innovation & Entrepreneurship Cell
+- **Dates:** March 17-18, 2026
+- **Scale & Prizes:** 15 Events, 1000+ Expected Footfall, ₹50K+ Total Prize Pool
+- **URL:** https://iiec.in/techastra.html
+
+**Flagship Events & Competitions included in TechAstra:**
+- **CEOs Talk:** Featuring IIT Bombay alumni founders Anup Raj and Aman Goel (March 18, 2026).
+- **Guardians of Governance (Tech MUN):** The official Model United Nations conference debating AI regulation, cybersecurity, and digital privacy across 6 committees.
+- **Webathon:** A 3-4 hour intensive web development hackathon where teams build web apps live.
+- **Stark Expo / Project Exhibition:** A live showcase of innovative tech projects presented to expert judges.
+- **N8N Automation Workshop:** A 2-Day intensive workshop on no-code automation and building workflows in collaboration with NCP.
+- **Infinity Stones Hunt:** A thrilling campus-wide treasure hunt featuring complex puzzles and clues.
+- **E-Sports & Gaming Tournaments:** Highly competitive brackets for Valorant (5v5), BGMI (Squad), and FreeFire (Squad).
+- **Other Competitions:** Chess Tournament (1v1 strategic matchups) and Reel Craft Competition (short-form video creation).
+- **Volunteering:** Roles included Event Management, Technical Support, Design & Creatives, Logistics, Sponsorship, Photography, and Social Media.
