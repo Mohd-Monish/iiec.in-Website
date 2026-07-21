@@ -1,0 +1,565 @@
+# Innovation & Startup Expo – Website Page Prompt
+
+Act as a Senior UI/UX Designer, Frontend Developer, Motion Designer, and Google Apps Script Developer.
+
+Create a premium, modern, responsive webpage in this existing website. This is NOT a separate website—it is a new page integrated into the existing website. Reuse the existing website's Header, Navigation, Footer, typography, spacing, and overall branding so the page feels like a natural extension of the current site.
+
+## Tech Stack
+- HTML5
+- CSS3
+- Vanilla JavaScript (ES6)
+- Google Apps Script (Backend)
+- Google Spreadsheet (Database)
+- Font Awesome Icons
+- AOS (Animate On Scroll)
+- GSAP (for premium animations)
+- Lenis (Smooth Scrolling)
+- Vanilla Tilt.js (Card Tilt Effect)
+
+No React, Vue, Angular, Bootstrap, Tailwind, Node.js, PHP, or external backend.
+
+---
+
+# Theme
+
+Innovation & Startup Expo
+
+Tagline:
+"Where Innovation Meets Opportunity"
+
+The design should look premium like Apple, Stripe, Linear, Framer, Vercel, and Web Summit.
+
+Overall Feel:
+• Modern
+• Clean
+• Premium
+• Startup Ecosystem
+• Investor Pitch Event
+• Professional
+• High-end
+• Interactive
+
+---
+
+# Color Palette
+
+Primary: #BB3012
+Dark: #272323
+Black: #000000
+Background: #FFFFF1
+Accent Gradient:
+#BB3012 → #6E0D0D
+
+Cards:
+White Glassmorphism
+
+Buttons:
+Dark Red Gradient
+
+---
+
+# Typography
+
+Headings:
+Bold Sans Serif
+Large
+Clean
+
+Body:
+Modern Sans Serif
+Comfortable spacing
+
+Use strong typography hierarchy.
+
+---
+
+# Mobile First
+
+The page MUST be perfectly responsive.
+
+Desktop
+Tablet
+Mobile
+
+Nothing should overflow.
+
+Cards should stack automatically.
+
+Navigation should work properly.
+
+Animations should be optimized for mobile.
+
+Touch friendly buttons.
+
+Fast loading.
+
+---
+
+# Animations
+
+Use premium but lightweight animations.
+
+Hero
+• Fade Up
+• Floating Rocket
+• Animated Background Grid
+• Mouse Parallax
+• Gradient Movement
+
+Cards
+• Fade In
+• Slide Up
+• Hover Lift
+• Glass Effect
+• Tilt Effect
+
+Buttons
+• Ripple Effect
+• Scale on Hover
+• Glow
+
+Timeline
+• Scroll Reveal
+
+Counters
+• Animated Count Up
+
+Sections
+• AOS Animations
+
+Registration Success
+• Lottie Success Animation
+
+QR Code
+• Pulse Animation
+
+No annoying animations.
+
+Smooth.
+
+Professional.
+
+---
+
+# Page Sections
+
+--------------------------------------------------
+
+1. Hero Section
+
+Large Title
+
+Innovation & Startup Expo
+
+Tagline
+
+Where Innovation Meets Opportunity
+
+Small Description
+
+Showcase your startup, connect with mentors & investors, receive valuable feedback, and unlock opportunities for funding and growth.
+
+Buttons
+
+Register Now
+
+Learn More
+
+Display
+
+Rocket Illustration
+
+Startup Graphics
+
+Innovation Icons
+
+Floating Shapes
+
+Animated Background
+
+Event Card
+
+Date
+23–24 July 2026
+
+Time
+9:00 AM onwards
+
+Venue
+Room No. 008
+Rajgarh
+CSMU
+
+Open For
+All CSMU Students
+
+--------------------------------------------------
+
+2. About Event
+
+Two Column Layout
+
+Left
+Image of Startup Expo
+
+Right
+
+About Event
+
+Explain purpose.
+
+Innovation
+
+Networking
+
+Investment
+
+Mentorship
+
+Funding
+
+Startup Showcase
+
+--------------------------------------------------
+
+3. Why Participate
+
+Animated Cards
+
+Showcase Startup
+
+Pitch Ideas
+
+Meet Investors
+
+Funding Opportunities
+
+Networking
+
+Mentorship
+
+Startup Validation
+
+Certificate of Participation
+
+Each card
+
+Icon
+
+Title
+
+Description
+
+Hover animation
+
+--------------------------------------------------
+
+4. Who Can Participate
+
+Modern Grid
+
+Startup Founders
+
+Student Entrepreneurs
+
+Innovators
+
+Teams
+
+Working Prototypes
+
+Business Ideas
+
+All CSMU Students
+
+--------------------------------------------------
+
+5. Event Schedule
+
+Timeline
+
+Day 1
+
+Registration
+
+Startup Setup
+
+Expo Begins
+
+Mentor Interaction
+
+Networking
+
+Day 2
+
+Pitch Sessions
+
+Investor Interaction
+
+Certificates
+
+Closing Ceremony
+
+--------------------------------------------------
+
+6. Funding Opportunities
+
+Beautiful Section
+
+Explain
+
+Potential Investors
+
+Mentors
+
+Incubation
+
+Networking
+
+Growth
+
+Use attractive cards.
+
+--------------------------------------------------
+
+7. Certificate Section
+
+Large Certificate Mockup
+
+Text
+
+Every registered participant who showcases their startup will receive a Certificate of Participation.
+
+Animated Preview
+
+--------------------------------------------------
+
+8. Gallery
+
+Responsive Masonry
+
+Placeholder Images
+
+Lightbox
+
+Lazy Loading
+
+--------------------------------------------------
+
+9. FAQ
+
+Accordion
+
+Questions
+
+Who can participate?
+
+How to register?
+
+Is there any registration fee?
+
+Do I need a prototype?
+
+Will certificates be provided?
+
+Can teams participate?
+
+Can I participate individually?
+
+--------------------------------------------------
+
+10. Registration Section
+
+Beautiful Glass Card
+
+Large Heading
+
+Register Your Startup
+
+QR Code on Left
+
+Registration Form on Right
+
+Fields
+
+Full Name
+
+Email
+
+Phone Number
+
+Department
+
+Year
+
+Enrollment Number
+
+Startup Name
+
+Startup Stage
+(Idea / Prototype / MVP / Revenue)
+
+Startup Category
+
+Brief Description
+
+Team Size
+
+Need Funding?
+Yes / No
+
+Submit Button
+
+--------------------------------------------------
+
+# Backend
+
+Google Apps Script
+
+Google Spreadsheet
+
+On Submit
+
+Validate Inputs
+
+Store Data
+
+Timestamp
+
+Send Success Message
+
+Clear Form
+
+Prevent Duplicate Registration using Email.
+
+Show Loading Animation.
+
+Display Success Popup.
+
+Spreadsheet Columns
+
+Timestamp
+
+Name
+
+Email
+
+Phone
+
+Department
+
+Year
+
+Enrollment
+
+Startup Name
+
+Stage
+
+Category
+
+Description
+
+Team Size
+
+Funding Required
+
+--------------------------------------------------
+
+11. Contact Section
+
+Contact Number
+
+9594738406
+
+Email
+
+[EMAIL_ADDRESS]
+
+Venue
+
+Room No. 008
+Rajgarh
+CSMU
+
+Google Map Embed
+
+--------------------------------------------------
+
+12. CTA Section
+
+
+Ready to Showcase Your Startup?
+
+Button
+
+Register Now
+
+--------------------------------------------------
+
+Header
+
+DO NOT redesign.
+
+Reuse the exact Header from the existing IIEC website.
+
+Maintain same navigation.
+
+Maintain same logo.
+
+Maintain same sticky behavior.
+
+--------------------------------------------------
+
+Footer
+
+Reuse the existing website footer exactly.
+
+No redesign.
+
+Keep branding consistent.
+
+--------------------------------------------------
+
+Performance
+
+Lazy load images
+
+Minify CSS & JS
+
+Smooth scrolling
+
+Optimized animations
+
+Responsive images
+
+No layout shift
+
+High Lighthouse Score
+
+SEO friendly
+
+Semantic HTML
+
+Accessible
+
+Keyboard navigation
+
+ARIA labels
+
+Fast loading
+
+--------------------------------------------------
+
+Deliverables
+
+• Clean HTML
+• Modular CSS
+• Vanilla JavaScript
+• Google Apps Script backend
+• Google Spreadsheet integration
+• Fully responsive
+• Smooth animations
+• Mobile optimized
+• SEO optimized
+• Production-ready code that integrates seamlessly into the existing IIEC website.

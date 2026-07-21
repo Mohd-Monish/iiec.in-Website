@@ -1,0 +1,974 @@
+/* ================================================================
+   Innovation & Startup Expo 2026 - Page Specific Stylesheet
+   Theme: #BB3012 (Primary), #272323 (Dark), #FFFFF1 (Background)
+   Design Aesthetic: Apple, Stripe, Linear, Framer, Vercel & Web Summit
+   ================================================================ */
+
+:root {
+  --expo-primary: #BB3012;
+  --expo-primary-dark: #6E0D0D;
+  --expo-primary-light: #e04322;
+  --expo-dark: #272323;
+  --expo-black: #000000;
+  --expo-bg: #FFFFF1;
+  --expo-card-bg: rgba(255, 255, 255, 0.82);
+  --expo-card-bg-hover: rgba(255, 255, 255, 0.95);
+  --expo-glass-border: rgba(187, 48, 18, 0.14);
+  --expo-glass-border-hover: rgba(187, 48, 18, 0.35);
+  --expo-text-dark: #272323;
+  --expo-text-muted: #5c5555;
+  --expo-gradient-primary: linear-gradient(135deg, #BB3012 0%, #6E0D0D 100%);
+  --expo-gradient-hero: radial-gradient(circle at 50% 30%, rgba(187, 48, 18, 0.08) 0%, rgba(255, 255, 241, 0) 70%);
+  --expo-shadow-sm: 0 4px 15px rgba(39, 35, 35, 0.04);
+  --expo-shadow-md: 0 10px 30px rgba(39, 35, 35, 0.08);
+  --expo-shadow-lg: 0 20px 50px rgba(187, 48, 18, 0.15);
+  --expo-font-heading: 'Montserrat', 'Inter', sans-serif;
+  --expo-font-body: 'Inter', sans-serif;
+}
+
+body.expo-body {
+  background-color: var(--expo-bg);
+  color: var(--expo-text-dark);
+  font-family: var(--expo-font-body);
+  overflow-x: hidden;
+}
+
+/* Base Expo Glass Card */
+.expo-glass-card {
+  background: var(--expo-card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--expo-glass-border);
+  border-radius: 20px;
+  box-shadow: var(--expo-shadow-md);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+              border-color 0.4s ease;
+}
+
+.expo-glass-card:hover {
+  background: var(--expo-card-bg-hover);
+  border-color: var(--expo-glass-border-hover);
+  box-shadow: var(--expo-shadow-lg);
+}
+
+/* Expo Button Style */
+.btn-expo-primary {
+  background: var(--expo-gradient-primary);
+  color: #ffffff !important;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 50px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 25px rgba(187, 48, 18, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-expo-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(187, 48, 18, 0.45);
+}
+
+.btn-expo-secondary {
+  background: rgba(39, 35, 35, 0.05);
+  color: var(--expo-dark) !important;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 50px;
+  border: 1px solid rgba(39, 35, 35, 0.15);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-expo-secondary:hover {
+  background: rgba(39, 35, 35, 0.1);
+  transform: translateY(-2px);
+  border-color: var(--expo-primary);
+  color: var(--expo-primary) !important;
+}
+
+/* ----------------------------------------------------------------
+   1. Hero Section
+   ---------------------------------------------------------------- */
+.expo-hero {
+  position: relative;
+  min-height: 92vh;
+  display: flex;
+  align-items: center;
+  padding: 130px 0 70px;
+  background: var(--expo-bg);
+  overflow: hidden;
+}
+
+.expo-hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(39, 35, 35, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(39, 35, 35, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 80%);
+  pointer-events: none;
+}
+
+.expo-hero-glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: var(--expo-gradient-hero);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.expo-hero-grid-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.expo-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  background: rgba(187, 48, 18, 0.08);
+  border: 1px solid rgba(187, 48, 18, 0.2);
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--expo-primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.expo-badge-pill .pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--expo-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(187, 48, 18, 0.4);
+  animation: pulse-dot-anim 2s infinite;
+}
+
+@keyframes pulse-dot-anim {
+  0% { box-shadow: 0 0 0 0 rgba(187, 48, 18, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(187, 48, 18, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(187, 48, 18, 0); }
+}
+
+.expo-hero-title {
+  font-family: var(--expo-font-heading);
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--expo-dark);
+  margin-bottom: 15px;
+  letter-spacing: -0.02em;
+}
+
+.expo-hero-title span.text-highlight {
+  background: var(--expo-gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.expo-hero-tagline {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 600;
+  color: var(--expo-primary);
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.expo-hero-desc {
+  font-size: 1.1rem;
+  color: var(--expo-text-muted);
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 620px;
+}
+
+.expo-hero-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+/* Event Info Card on Hero Right */
+.expo-event-info-card {
+  padding: 30px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.expo-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(39, 35, 35, 0.08);
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.expo-card-header h3 {
+  font-family: var(--expo-font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--expo-dark);
+  margin: 0;
+}
+
+.expo-event-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.expo-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.expo-meta-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(187, 48, 18, 0.1);
+  color: var(--expo-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.expo-meta-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--expo-text-muted);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.expo-meta-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--expo-dark);
+}
+
+/* Floating Rocket Illustration Container */
+.expo-rocket-wrapper {
+  position: absolute;
+  top: -40px;
+  right: -20px;
+  width: 90px;
+  height: 90px;
+  animation: float-rocket 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float-rocket {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+/* ----------------------------------------------------------------
+   2. Section Headers
+   ---------------------------------------------------------------- */
+.expo-section-title-wrap {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 50px;
+}
+
+.expo-section-subtitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--expo-primary);
+  margin-bottom: 10px;
+  display: block;
+}
+
+.expo-section-heading {
+  font-family: var(--expo-font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--expo-dark);
+  line-height: 1.2;
+}
+
+.expo-section-heading span.highlight {
+  color: var(--expo-primary);
+  position: relative;
+}
+
+/* ----------------------------------------------------------------
+   3. About Event
+   ---------------------------------------------------------------- */
+.expo-about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.expo-about-image-wrap {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--expo-shadow-lg);
+  border: 1px solid var(--expo-glass-border);
+}
+
+.expo-about-image-wrap img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.expo-about-image-wrap:hover img {
+  transform: scale(1.04);
+}
+
+.expo-about-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.expo-pillar-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(187, 48, 18, 0.12);
+  border-radius: 14px;
+  font-weight: 600;
+  color: var(--expo-dark);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.expo-pillar-chip i {
+  color: var(--expo-primary);
+  font-size: 1.1rem;
+}
+
+.expo-pillar-chip:hover {
+  background: #ffffff;
+  border-color: var(--expo-primary);
+  transform: translateY(-2px);
+}
+
+/* ----------------------------------------------------------------
+   4. Why Participate (8 Cards Grid)
+   ---------------------------------------------------------------- */
+.expo-why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.expo-why-card {
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.expo-why-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: var(--expo-gradient-primary);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(187, 48, 18, 0.25);
+}
+
+.expo-why-card h4 {
+  font-family: var(--expo-font-heading);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--expo-dark);
+  margin-bottom: 10px;
+}
+
+.expo-why-card p {
+  color: var(--expo-text-muted);
+  font-size: 0.93rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ----------------------------------------------------------------
+   5. Who Can Participate
+   ---------------------------------------------------------------- */
+.expo-who-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.expo-who-box {
+  padding: 24px 20px;
+  text-align: center;
+  border-radius: 18px;
+}
+
+.expo-who-icon {
+  font-size: 2.2rem;
+  color: var(--expo-primary);
+  margin-bottom: 14px;
+}
+
+.expo-who-box h4 {
+  font-family: var(--expo-font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--expo-dark);
+  margin-bottom: 6px;
+}
+
+/* ----------------------------------------------------------------
+   6. Event Schedule (Timeline)
+   ---------------------------------------------------------------- */
+.expo-schedule-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.expo-tab-btn {
+  padding: 12px 30px;
+  border-radius: 50px;
+  border: 1px solid rgba(187, 48, 18, 0.2);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--expo-dark);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.expo-tab-btn.active, .expo-tab-btn:hover {
+  background: var(--expo-gradient-primary);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(187, 48, 18, 0.3);
+}
+
+.expo-timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.expo-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--expo-primary), rgba(187, 48, 18, 0.1));
+  transform: translateX(-50%);
+}
+
+.expo-timeline-item {
+  position: relative;
+  margin-bottom: 35px;
+  width: 50%;
+}
+
+.expo-timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 40px;
+  text-align: right;
+}
+
+.expo-timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 40px;
+  text-align: left;
+}
+
+.expo-timeline-dot {
+  position: absolute;
+  top: 15px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--expo-primary);
+  border: 4px solid var(--expo-bg);
+  box-shadow: 0 0 0 2px var(--expo-primary);
+  z-index: 2;
+}
+
+.expo-timeline-item:nth-child(odd) .expo-timeline-dot {
+  right: -9px;
+}
+
+.expo-timeline-item:nth-child(even) .expo-timeline-dot {
+  left: -9px;
+}
+
+.expo-timeline-content {
+  padding: 22px;
+}
+
+.expo-timeline-time {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--expo-primary);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.expo-timeline-title {
+  font-family: var(--expo-font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--expo-dark);
+  margin-bottom: 6px;
+}
+
+.expo-schedule-pane {
+  display: none;
+}
+
+.expo-schedule-pane.active {
+  display: block;
+}
+
+/* ----------------------------------------------------------------
+   7. Funding Opportunities
+   ---------------------------------------------------------------- */
+.expo-funding-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.expo-funding-card {
+  padding: 30px;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.expo-funding-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--expo-gradient-primary);
+}
+
+/* ----------------------------------------------------------------
+   8. Certificate Section
+   ---------------------------------------------------------------- */
+.expo-certificate-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.expo-cert-preview-card {
+  border: 2px dashed rgba(187, 48, 18, 0.3);
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  background: #ffffff;
+  box-shadow: var(--expo-shadow-md);
+  position: relative;
+}
+
+.expo-cert-watermark {
+  font-family: var(--expo-font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--expo-primary);
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+/* ----------------------------------------------------------------
+   9. Gallery (Masonry & Lightbox)
+   ---------------------------------------------------------------- */
+.expo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.expo-gallery-item {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 240px;
+  cursor: pointer;
+}
+
+.expo-gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.expo-gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(39, 35, 35, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  color: #ffffff;
+  font-size: 1.8rem;
+}
+
+.expo-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.expo-gallery-item:hover .expo-gallery-overlay {
+  opacity: 1;
+}
+
+/* ----------------------------------------------------------------
+   10. FAQ Accordion
+   ---------------------------------------------------------------- */
+.expo-faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.expo-faq-item {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(187, 48, 18, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.expo-faq-question {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  border: none;
+  font-family: var(--expo-font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--expo-dark);
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.expo-faq-question i {
+  color: var(--expo-primary);
+  transition: transform 0.3s ease;
+}
+
+.expo-faq-item.active .expo-faq-question i {
+  transform: rotate(180deg);
+}
+
+.expo-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.4s ease;
+  padding: 0 24px;
+  color: var(--expo-text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.expo-faq-item.active .expo-faq-answer {
+  max-height: 250px;
+  padding: 0 24px 20px 24px;
+}
+
+/* ----------------------------------------------------------------
+   11. Registration Section
+   ---------------------------------------------------------------- */
+.expo-registration-card {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 40px;
+  padding: 40px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.expo-qr-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+  background: rgba(187, 48, 18, 0.04);
+  border-radius: 20px;
+  border: 1px solid rgba(187, 48, 18, 0.1);
+}
+
+.expo-qr-box {
+  width: 180px;
+  height: 180px;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: var(--expo-shadow-md);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.expo-qr-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.expo-qr-pulse {
+  animation: qr-glow 2.5s infinite alternate;
+}
+
+@keyframes qr-glow {
+  0% { box-shadow: 0 0 10px rgba(187, 48, 18, 0.2); }
+  100% { box-shadow: 0 0 25px rgba(187, 48, 18, 0.5); }
+}
+
+.expo-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.expo-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.expo-form-group.full-width {
+  grid-column: span 2;
+}
+
+.expo-form-group label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--expo-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.expo-form-control {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(39, 35, 35, 0.15);
+  background: #ffffff;
+  font-family: var(--expo-font-body);
+  font-size: 0.95rem;
+  color: var(--expo-dark);
+  transition: all 0.3s ease;
+}
+
+.expo-form-control:focus {
+  outline: none;
+  border-color: var(--expo-primary);
+  box-shadow: 0 0 0 3px rgba(187, 48, 18, 0.15);
+}
+
+textarea.expo-form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Success Modal */
+.expo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(39, 35, 35, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.expo-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.expo-modal-box {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 24px;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--expo-shadow-lg);
+  transform: scale(0.8);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.expo-modal.active .expo-modal-box {
+  transform: scale(1);
+}
+
+.expo-modal-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(187, 48, 18, 0.1);
+  color: var(--expo-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  margin: 0 auto 20px;
+}
+
+/* ----------------------------------------------------------------
+   12. Contact & Maps
+   ---------------------------------------------------------------- */
+.expo-contact-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.expo-contact-card {
+  padding: 35px;
+}
+
+.expo-map-container {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--expo-shadow-md);
+  border: 1px solid var(--expo-glass-border);
+  height: 380px;
+}
+
+.expo-map-container iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ----------------------------------------------------------------
+   13. Responsive Breakpoints
+   ---------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .expo-hero-grid-layout,
+  .expo-about-grid,
+  .expo-certificate-box,
+  .expo-registration-card,
+  .expo-contact-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .expo-form-group.full-width {
+    grid-column: span 1;
+  }
+  
+  .expo-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expo-timeline::before {
+    left: 20px;
+  }
+
+  .expo-timeline-item {
+    width: 100%;
+    padding-left: 50px !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+
+  .expo-timeline-item:nth-child(even) {
+    left: 0;
+  }
+
+  .expo-timeline-dot {
+    left: 11px !important;
+    right: auto !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .expo-hero {
+    padding-top: 110px;
+  }
+  
+  .expo-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .expo-about-badges-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .expo-registration-card {
+    padding: 24px;
+  }
+}

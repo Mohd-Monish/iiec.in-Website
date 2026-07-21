@@ -1,0 +1,14 @@
+# Netlify / Cloudflare Pages Clean URLs
+/startup-expo           /startup-expo.html           200
+/about                  /about.html                  200
+/team                   /team.html                   200
+/activities             /activities.html             200
+/blog                   /blog.html                   200
+/genesis                /genesis.html                200
+/certificates           /certificates.html           200
+/verify                 /verify.html                 200
+/admin                  /admin.html                  200
+/ipl-auction            /ipl-auction.html            200
+/techastra              /techastra.html              200
+/analytics              /analytics.html              200
+/certificate-dashboard  /certificate-dashboard.html  200
