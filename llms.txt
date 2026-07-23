@@ -2,15 +2,15 @@
 
 > Where Vision Drives Venture
 
-IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entrepreneurship cell of Chhatrapati Shivaji Maharaj University (CSMU), located in Navi Mumbai, Maharashtra, India. Formerly known as E-Cell CSMU, the organization was founded in 2020 and rebranded as IIEC in 2025. It is a student-led organization that fosters entrepreneurship, innovation, and startup culture on campus through hackathons, tech fests, workshops, startup bootcamps, mentorship programs, industry connect sessions, and national-level competitions. IIEC ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC), organized by E-Cell IIT Bombay, making it one of the best entrepreneurship cells in Maharashtra. The cell bridges the gap between ideas and execution, helping students build real startups from campus.
+IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entrepreneurship cell of Chhatrapati Shivaji Maharaj University (CSMU), located in Navi Mumbai, Maharashtra, India. Founded in 2023, it is a student-led organization that fosters entrepreneurship, innovation, and startup culture on campus through hackathons, tech fests, workshops, startup bootcamps, mentorship programs, industry connect sessions, and national-level competitions. IIEC ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC), organized by E-Cell IIT Bombay, making it one of the best entrepreneurship cells in Maharashtra. The cell bridges the gap between ideas and execution, helping students build real startups from campus.
 
 ---
 
 ## Pages
 
-- [Home](https://iiec.in/): Main landing page with hero tagline "Where Vision Drives Venture", badge "Est. 2020 • Rebranded 2025". Features a timeline (2020 E-Cell Launch → 2025 NEC Top 23 → 2025 Rebranded as IIEC), 4 core pillars (Incubation, Innovation, Leadership, National Reach), offerings (Workshops & Startup Bootcamps, Mentorship & Industry Network, Startup Launchpad), impact stats (Top 23 NEC rank, 4000+ teams competed against, NEC IIT Bombay Finals), TechAstra volunteer banner, newsletter subscription form, and footer with GeeksforGeeks collaboration. JSON-LD: EducationalOrganization, foundingDate: 2020, parentOrganization: CollegeOrUniversity (CSMU).
+- [Home](https://iiec.in/): Main landing page with hero tagline "Where Vision Drives Venture", badge "Est. 2023". Features a timeline (2023 IIEC Launch → 2025 NEC Top 23 → 2025–2026 Expansion & Incubation), 4 core pillars (Incubation, Innovation, Leadership, National Reach), offerings (Workshops & Startup Bootcamps, Mentorship & Industry Network, Startup Launchpad), impact stats (Top 23 NEC rank, 4000+ teams competed against, NEC IIT Bombay Finals), TechAstra volunteer banner, newsletter subscription form, and footer with GeeksforGeeks collaboration. JSON-LD: EducationalOrganization, foundingDate: 2023, parentOrganization: CollegeOrUniversity (CSMU).
 
-- [About](https://iiec.in/about.html): Comprehensive page covering who IIEC is, mission statement, vision statement, core values, and historical timeline. Describes IIEC as "one of the best entrepreneurship cells in Maharashtra" that "bridges the gap between ideas and execution." Includes detailed mission and vision sections, 3 core values (Innovation First, Community Driven, Action Oriented), and a 5-stage timeline (2020 Founded → 2020-2024 Building Foundations → 2025 NEC Top 23 → 2025 Evolution to IIEC → Feb 2026 GENESIS & Beyond). JSON-LD: AboutPage with EducationalOrganization schema including mission and vision statements.
+- [About](https://iiec.in/about.html): Comprehensive page covering who IIEC is, mission statement, vision statement, core values, and historical timeline. Describes IIEC as "one of the best entrepreneurship cells in Maharashtra" that "bridges the gap between ideas and execution." Includes detailed mission and vision sections, 3 core values (Innovation First, Community Driven, Action Oriented), and a 5-stage timeline (2023 Founded → 2023-2024 Building Foundations → 2025 NEC Top 23 → 2025–2026 Expansion & Incubation → Feb 2026 GENESIS & Beyond). JSON-LD: AboutPage with EducationalOrganization schema including mission and vision statements.
 
 - [Team](https://iiec.in/team.html): Full team roster page with stats banner (4 Core Leaders, 7 Portfolios, 15 Portfolio Heads, 30+ Members). Lists all core leadership (President, Vice President, Secretary, Treasurer) and all 7 portfolio departments with their respective heads and junior heads, including LinkedIn profile URLs. JSON-LD: Organization with member array.
 
@@ -30,11 +30,7 @@ IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entreprene
 
 - **Full Name**: Incubation, Innovation & Entrepreneurship Cell (IIEC)
 - **Abbreviation**: IIEC
-- **Former Name**: E-Cell CSMU (Entrepreneurship Cell)
-- **University**: Chhatrapati Shivaji Maharaj University (CSMU)
-- **Location**: Navi Mumbai, Maharashtra, India
-- **Founded**: 2020 (as E-Cell CSMU)
-- **Rebranded**: 2025 (from E-Cell CSMU to IIEC)
+- **Founded**: 2023
 - **Type**: Student-led educational organization / Entrepreneurship cell
 - **Top Achievement**: Ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC), organized by E-Cell IIT Bombay — reached NEC Finals
 - **Recognition**: One of the best entrepreneurship cells in Maharashtra
@@ -91,10 +87,10 @@ To become India's most recognized college entrepreneurship cell, known for produ
 
 ## History & Timeline
 
-1. **2020 — E-Cell Founded**: The Entrepreneurship Cell (E-Cell) was established at Chhatrapati Shivaji Maharaj University, Navi Mumbai, to foster startup culture on campus.
-2. **2020–2024 — Building Foundations**: Years of building the entrepreneurship community, organizing workshops, bootcamps, speaker sessions, and internal events to develop the startup ecosystem at CSMU.
-3. **2025 — NEC Top 23**: E-Cell CSMU competed at the National Entrepreneurship Challenge (NEC) by E-Cell IIT Bombay and ranked Top 23 out of 4,000+ teams across India, reaching the NEC Finals. This became the cell's biggest milestone and put CSMU on the national map.
-4. **2025 — Rebranded as IIEC**: E-Cell CSMU was officially rebranded to IIEC (Incubation, Innovation & Entrepreneurship Cell) to reflect the expanded scope beyond entrepreneurship into incubation and innovation.
+1. **2023 — IIEC Founded**: IIEC (Incubation, Innovation & Entrepreneurship Cell) was established at Chhatrapati Shivaji Maharaj University, Navi Mumbai, to foster startup culture on campus.
+2. **2023–2024 — Building Foundations**: Years of building the entrepreneurship community, organizing workshops, bootcamps, speaker sessions, and internal events to develop the startup ecosystem at CSMU.
+3. **2025 — NEC Top 23**: IIEC competed at the National Entrepreneurship Challenge (NEC) by E-Cell IIT Bombay and ranked Top 23 out of 4,000+ teams across India, reaching the NEC Finals. This became the cell's biggest milestone and put CSMU on the national map.
+4. **2025–2026 — Expansion & Incubation**: IIEC expanded its scope to cover incubation support, innovation labs, and national outreach.
 5. **February 2026 — GENESIS & Beyond**: IIEC held its grand orientation program "GENESIS" on 11 February 2026 in collaboration with GeeksforGeeks at G.D. Badaya Auditorium, CSMU Campus. This marked the beginning of a new chapter with upcoming events like TechAstra, IPL Auction, Problem Auction, and the next NEC journey.
 
 ---
@@ -103,7 +99,7 @@ To become India's most recognized college entrepreneurship cell, known for produ
 
 ### Core Leadership (4 Members)
 
-- **President**: Mohd Monish — Leading IIEC's mission to foster innovation, incubation, and entrepreneurship at CSMU. LinkedIn: https://www.linkedin.com/in/mrmonish
+- **President**: Mohd Monish — Leading IIEC's mission to foster incubation, innovation, and entrepreneurship at CSMU. LinkedIn: https://www.linkedin.com/in/mrmonish
 - **Vice President**: Geet Sharma — Supporting leadership, driving strategic initiatives, and building the innovation ecosystem. LinkedIn: https://www.linkedin.com/in/geetsharrma
 - **Secretary**: Shivansh Mishra — Managing operations, communications, and organizational coordination. LinkedIn: https://www.linkedin.com/in/shivansh-mishra-476455381/
 - **Treasurer**: Abu Hujaifa — Overseeing finances, budgets, and resource allocation for all IIEC events and operations.
@@ -277,7 +273,7 @@ The IIEC Blog publishes articles and insights on innovation, entrepreneurship, s
 
 ## Structured Data (JSON-LD Schemas)
 
-- **index.html**: EducationalOrganization (name: IIEC, foundingDate: 2020, parentOrganization: CollegeOrUniversity/CSMU)
+- **index.html**: EducationalOrganization (name: IIEC, foundingDate: 2023, parentOrganization: CollegeOrUniversity/CSMU)
 - **about.html**: AboutPage → EducationalOrganization with mission and vision statements
 - **team.html**: Organization with member array
 - **activities.html**: ItemList containing 5 Event entries (GENESIS, TechAstra, IPL Auction, Problem Auction, NEC)
