@@ -2,7 +2,7 @@
 
 > Where Vision Drives Venture
 
-IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entrepreneurship cell of Chhatrapati Shivaji Maharaj University (CSMU), located in Navi Mumbai, Maharashtra, India. Founded in 2023, it is a student-led organization that fosters entrepreneurship, innovation, and startup culture on campus through hackathons, tech fests, workshops, startup bootcamps, mentorship programs, industry connect sessions, and national-level competitions. IIEC ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC), organized by E-Cell IIT Bombay, making it one of the best entrepreneurship cells in Maharashtra. The cell bridges the gap between ideas and execution, helping students build real startups from campus.
+IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entrepreneurship cell of Chhatrapati Shivaji Maharaj University (CSMU), located in Navi Mumbai, Maharashtra, India. Founded in December 2024, it is a student-led organization that fosters entrepreneurship, innovation, and startup culture on campus through hackathons, tech fests, workshops, startup bootcamps, mentorship programs, industry connect sessions, and national-level competitions. IIEC ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC), organized by E-Cell IIT Bombay, making it one of the best entrepreneurship cells in Maharashtra. The cell bridges the gap between ideas and execution, helping students build real startups from campus.
 
 ---
 
@@ -37,9 +37,9 @@ IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entreprene
 
 ## Pages
 
-- [Home](https://iiec.in/): Main landing page with hero tagline "Where Vision Drives Venture", badge "Est. 2023". Features a timeline (2023 IIEC Launch → 2025 NEC Top 23 → 2025–2026 Expansion & Incubation), 4 core pillars (Incubation, Innovation, Leadership, National Reach), offerings (Workshops & Startup Bootcamps, Mentorship & Industry Network, Startup Launchpad), impact stats (Top 23 NEC rank, 4000+ teams competed against, NEC IIT Bombay Finals), TechAstra volunteer banner, newsletter subscription form, and footer with GeeksforGeeks collaboration. JSON-LD: EducationalOrganization, foundingDate: 2023, parentOrganization: CollegeOrUniversity (CSMU).
+- [Home](https://iiec.in/): Main landing page with hero tagline "Where Vision Drives Venture", badge "Est. Dec 2024". Features a timeline (Dec 2024 IIEC Launch → 2025 NEC Top 23 → 2025–2026 Expansion & Incubation), 4 core pillars (Incubation, Innovation, Leadership, National Reach), offerings (Workshops & Startup Bootcamps, Mentorship & Industry Network, Startup Launchpad), impact stats (Top 23 NEC rank, 4000+ teams competed against, NEC IIT Bombay Finals), TechAstra volunteer banner, newsletter subscription form, and footer with GeeksforGeeks collaboration. JSON-LD: EducationalOrganization, foundingDate: 2024-12, parentOrganization: CollegeOrUniversity (CSMU).
 
-- [About](https://iiec.in/about.html): Comprehensive page covering who IIEC is, mission statement, vision statement, core values, and historical timeline. Describes IIEC as "one of the best entrepreneurship cells in Maharashtra" that "bridges the gap between ideas and execution." Includes detailed mission and vision sections, 3 core values (Innovation First, Community Driven, Action Oriented), and a 5-stage timeline (2023 Founded → 2023-2024 Building Foundations → 2025 NEC Top 23 → 2025–2026 Expansion & Incubation → Feb 2026 GENESIS & Beyond). JSON-LD: AboutPage with EducationalOrganization schema including mission and vision statements.
+- [About](https://iiec.in/about.html): Comprehensive page covering who IIEC is, mission statement, vision statement, core values, and historical timeline. Describes IIEC as "one of the best entrepreneurship cells in Maharashtra" that "bridges the gap between ideas and execution." Includes detailed mission and vision sections, 3 core values (Innovation First, Community Driven, Action Oriented), and a 5-stage timeline (Dec 2024 Founded → Dec 2024-2025 Building Foundations → 2025 NEC Top 23 → 2025–2026 Expansion & Incubation → Feb 2026 GENESIS & Beyond). JSON-LD: AboutPage with EducationalOrganization schema including mission and vision statements.
 
 - [Team](https://iiec.in/team.html): Full team roster page with stats banner (4 Core Leaders, 7 Portfolios, 15 Portfolio Heads, 30+ Members). Lists all core leadership (President, Vice President, Secretary, Treasurer) and all 7 portfolio departments with their respective heads and junior heads, including LinkedIn profile URLs. JSON-LD: Organization with member array.
 
@@ -59,7 +59,7 @@ IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entreprene
 
 - **Full Name**: Incubation, Innovation & Entrepreneurship Cell (IIEC)
 - **Abbreviation**: IIEC
-- **Founded**: 2023
+- **Founded**: December 2024
 - **Type**: Student-led educational organization / Entrepreneurship cell
 - **Top Achievement**: Ranked Top 23 out of 4,000+ teams across India at the National Entrepreneurship Challenge (NEC), organized by E-Cell IIT Bombay — reached NEC Finals
 - **Recognition**: One of the best entrepreneurship cells in Maharashtra
@@ -116,8 +116,8 @@ To become India's most recognized college entrepreneurship cell, known for produ
 
 ## History & Timeline
 
-1. **2023 — IIEC Founded**: IIEC (Incubation, Innovation & Entrepreneurship Cell) was established at Chhatrapati Shivaji Maharaj University, Navi Mumbai, to foster startup culture on campus. A group of passionate students recognized the need for an entrepreneurship platform at CSMU. IIEC was born with a vision to build startup culture from the ground up.
-2. **2023–2024 — Building Foundations**: Years of building the entrepreneurship community, organizing workshops, bootcamps, speaker sessions, and internal events to develop the startup ecosystem at CSMU. IIEC grew steadily — organizing events, workshops, and building a strong entrepreneurial community on campus.
+1. **Dec 2024 — IIEC Founded**: IIEC (Incubation, Innovation & Entrepreneurship Cell) was established in December 2024 at Chhatrapati Shivaji Maharaj University, Navi Mumbai, to foster startup culture on campus. A group of passionate students recognized the need for an entrepreneurship platform at CSMU. IIEC was born with a vision to build startup culture from the ground up.
+2. **Dec 2024–2025 — Building Foundations**: Period of building the entrepreneurship community, organizing workshops, bootcamps, speaker sessions, and internal events to develop the startup ecosystem at CSMU. IIEC grew steadily — organizing events, workshops, and building a strong entrepreneurial community on campus.
 3. **2025 — NEC Top 23**: IIEC competed at the National Entrepreneurship Challenge (NEC) by E-Cell IIT Bombay and ranked Top 23 out of 4,000+ teams across India, reaching the NEC Finals. This became the cell's biggest milestone and put CSMU on the national map. Achieved Top 23 rank out of 4,000+ teams at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay — qualifying for the national finals.
 4. **2025–2026 — Expansion & Incubation**: IIEC expanded its scope with incubation support, national outreach, and industry collaborations including GeeksforGeeks.
 5. **February 2026 — GENESIS & Beyond**: IIEC held its grand orientation program "GENESIS" on 11 February 2026 in collaboration with GeeksforGeeks at G.D. Badaya Auditorium, CSMU Campus. This marked the beginning of a new chapter with upcoming events like TechAstra, IPL Auction, Problem Auction, and the next NEC journey. Successfully conducted GENESIS — flagship orientation event. Building the team, hosting events, and scaling national presence.
@@ -311,7 +311,7 @@ The IIEC Blog publishes articles and insights on innovation, entrepreneurship, s
 
 ## Structured Data (JSON-LD Schemas)
 
-- **index.html**: EducationalOrganization (name: IIEC, foundingDate: 2023, parentOrganization: CollegeOrUniversity/CSMU)
+- **index.html**: EducationalOrganization (name: IIEC, foundingDate: 2024-12, parentOrganization: CollegeOrUniversity/CSMU)
 - **about.html**: AboutPage → EducationalOrganization with mission and vision statements
 - **team.html**: Organization with member array
 - **activities.html**: ItemList containing 5 Event entries (GENESIS, TechAstra, IPL Auction, Problem Auction, NEC)
@@ -334,7 +334,7 @@ The IIEC Blog publishes articles and insights on innovation, entrepreneurship, s
 Home | About | Team | Activities | Blog | TechAstra (CTA)
 
 ### Hero Section
-- Badge: Est. 2023
+- Badge: Est. Dec 2024
 - Tagline: Where Vision Drives Venture
 - Title: Incubation. Innovation. Entrepreneurship.
 - Subtitle: Where Vision Drives Venture — The student-led incubation, innovation, and entrepreneurship hub at Chhatrapati Shivaji Maharaj University, Navi Mumbai. Ranked Top 23 All India at the National Entrepreneurship Challenge (NEC), IIT Bombay. Building India's next generation of student founders and startup leaders.
@@ -343,7 +343,7 @@ Home | About | Team | Activities | Blog | TechAstra (CTA)
 ### History of Growth Timeline
 From a student initiative to a nationally recognized entrepreneurship powerhouse.
 
-1. **2023 — IIEC Launch**: Founded as IIEC — a passionate student-led initiative to foster entrepreneurial mindset and build startup culture within the university.
+1. **Dec 2024 — IIEC Launch**: Founded as IIEC — a passionate student-led initiative to foster entrepreneurial mindset and build startup culture within the university.
 2. **2025 — NEC — Top 23 All India**: Ranked Top 23 out of 4,000+ teams at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay. Made it to the national finals, earning recognition among the best in the country.
 3. **2025–2026 — Expansion & Incubation**: Expanded scope with incubation support, national outreach, and industry collaborations including GeeksforGeeks. [Current]
 
@@ -434,8 +434,8 @@ Vision Points:
 ### Our Journey (Timeline)
 Milestones we've achieved and the road ahead.
 
-1. **2023 — IIEC Founded**: A group of passionate students recognized the need for an entrepreneurship platform at CSMU. IIEC was born with a vision to build startup culture from the ground up.
-2. **2023–2024 — Building Foundations**: IIEC grew steadily — organizing events, workshops, and building a strong entrepreneurial community on campus.
+1. **Dec 2024 — IIEC Founded**: A group of passionate students recognized the need for an entrepreneurship platform at CSMU. IIEC was born with a vision to build startup culture from the ground up.
+2. **Dec 2024–2025 — Building Foundations**: IIEC grew steadily — organizing events, workshops, and building a strong entrepreneurial community on campus.
 3. **2025 — NEC — Top 23 All India**: Achieved Top 23 rank out of 4,000+ teams at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay — qualifying for the national finals and putting CSMU on the map. [Milestone]
 4. **2025–2026 — Expansion & Incubation**: IIEC expanded scope to cover incubation, innovation labs, and national outreach.
 5. **Feb 2026 — GENESIS & Beyond**: Successfully conducted GENESIS — our flagship orientation event in collaboration with GeeksforGeeks. Building the team, hosting events, and scaling our national presence. [Completed]
