@@ -52,7 +52,7 @@ Every page includes:
     "@type": "CollegeOrUniversity",
     "name": "Chhatrapati Shivaji Maharaj University"
   },
-  "foundingDate": "2023",
+  "foundingDate": "2024-12",
   "areaServed": "India",
   "sameAs": [
     "https://linkedin.com/company/iiec-csmu",
@@ -71,7 +71,7 @@ Every page includes:
     "@type": "EducationalOrganization",
     "name": "IIEC",
     "description": "Student-led entrepreneurship hub...",
-    "foundingDate": "2023",
+    "foundingDate": "2024-12",
     "mission": "To foster innovation...",
     "vision": "To become the leading..."
   }
