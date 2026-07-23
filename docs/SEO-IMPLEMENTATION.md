@@ -1,7 +1,7 @@
 # SEO Implementation Guide
 
 ## Overview
-This document outlines the complete SEO implementation for IIEC website (formerly E-Cell CSMU), ensuring optimal visibility and search engine rankings.
+This document outlines the complete SEO implementation for IIEC website, ensuring optimal visibility and search engine rankings.
 
 ---
 
@@ -44,7 +44,7 @@ Every page includes:
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "IIEC",
-  "alternateName": "Incubation, Innovation & Entrepreneurship Cell (Formerly E-Cell CSMU)",
+  "alternateName": "Incubation, Innovation & Entrepreneurship Cell",
   "url": "https://iiec.in",
   "logo": "./Assests/logo.png",
   "description": "Student-led entrepreneurship hub at Chhatrapati Shivaji Maharaj University",
@@ -52,7 +52,7 @@ Every page includes:
     "@type": "CollegeOrUniversity",
     "name": "Chhatrapati Shivaji Maharaj University"
   },
-  "foundingDate": "2020",
+  "foundingDate": "2023",
   "areaServed": "India",
   "sameAs": [
     "https://linkedin.com/company/iiec-csmu",
@@ -71,7 +71,7 @@ Every page includes:
     "@type": "EducationalOrganization",
     "name": "IIEC",
     "description": "Student-led entrepreneurship hub...",
-    "foundingDate": "2020",
+    "foundingDate": "2023",
     "mission": "To foster innovation...",
     "vision": "To become the leading..."
   }
