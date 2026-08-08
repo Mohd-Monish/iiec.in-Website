@@ -163,10 +163,23 @@
   <!-- Main Content -->
   <main id="main">
     <div class="main-content">
+      <!-- Recruitment Top Announcement Bar -->
+      <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
+        <span class="recruitment-topbar-badge">
+          <span class="recruitment-topbar-dot"></span>
+          Recruitment Open
+        </span>
+        <span>IIEC Core Team & Department Member Recruitments Are Live!</span>
+        <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
+          <span>Apply on join.iiec.in</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </aside>
+
       <!-- Navigation -->
       <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
-          <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+          <a href="index" class="nav-logo" aria-label="IIEC Home">
             <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager"
               decoding="async">
             <span>IIEC</span>
@@ -179,12 +192,12 @@
           </button>
 
           <div class="nav-links" role="menu">
-            <a href="index" class="nav-link active" role="menuitem" aria-current="page" aria-current="page">Home</a>
+            <a href="index" class="nav-link active" role="menuitem" aria-current="page">Home</a>
             <a href="about" class="nav-link" role="menuitem">About</a>
             <a href="team" class="nav-link" role="menuitem">Team</a>
             <a href="activities" class="nav-link" role="menuitem">Activities</a>
             <a href="blog" class="nav-link" role="menuitem">Blog</a>
-            <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem">Join IIEC</a>
+            <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
           </div>
         </div>
       </nav>
@@ -211,7 +224,7 @@
 
           <div class="hero-buttons">
             <a href="https://join.iiec.in" class="btn btn-primary btn-large" target="_blank" rel="noopener">
-              <span>Join the Movement</span>
+              <span>Apply for Recruitment</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                 aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -459,19 +472,18 @@
       <section class="section cta-section" aria-labelledby="cta-title">
         <div class="container">
           <div data-animate="blur" data-animate-duration="slow">
-            <h2 id="cta-title" class="cta-title">Join the <span class="highlight">Movement</span></h2>
-            <p class="cta-subtitle">Be part of the next generation of innovators, builders, and changemakers. Your
-              entrepreneurial journey starts here.</p>
+            <h2 id="cta-title" class="cta-title">Recruitments <span class="highlight">Are Live</span></h2>
+            <p class="cta-subtitle">Be part of the core team building the next generation of innovators, startups, and changemakers at CSMU. Apply today on join.iiec.in.</p>
             <div class="cta-buttons">
               <a href="https://join.iiec.in" class="btn btn-primary btn-large" target="_blank" rel="noopener">
-                <span>Apply Now</span>
+                <span>Apply for Recruitment</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   aria-hidden="true">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
-              <a href="about.html" class="btn btn-secondary btn-large">
-                <span>Learn More</span>
+              <a href="team" class="btn btn-secondary btn-large">
+                <span>Meet the Team</span>
               </a>
             </div>
           </div>
@@ -663,8 +675,12 @@
     <div class="lightbox-info">
       <h3 class="lightbox-name" id="lightbox-name"></h3>
       <p class="lightbox-role" id="lightbox-role"></p>
-    </div>
-  </div>
+  <!-- Floating Recruitment Pill -->
+  <a href="https://join.iiec.in" target="_blank" rel="noopener" class="floating-recruitment-pill" aria-label="Apply for Recruitment">
+    <span class="pill-badge">Live</span>
+    <span>Join IIEC Team</span>
+    <i class="fas fa-arrow-right"></i>
+  </a>
 
   <!-- Main Script -->
   <script src="js/script.js" defer></script>
