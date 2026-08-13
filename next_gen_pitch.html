@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Gen Pitch — IIEC × IIT Bombay E-Cell</title>
+  <meta name="description" content="Next Gen Pitch — CSMU's premier startup pitching competition under NEC 2026, powered by IIEC and IIT Bombay E-Cell. 24 August 2026 at CSMU." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f5f5f0;
+      --ink: #111111;
+      --muted: #66665f;
+      --line: #d8d8d0;
+      --card: #ffffff;
+      --accent: #ff5a1f;
+      --accent-dark: #dc4310;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: auto; }
+
+    nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 19px;
+    }
+    .brand span { color: var(--accent); }
+    .nav-right {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      font-size: 14px;
+      color: #444;
+    }
+    .nav-right a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--ink);
+      color: white !important;
+      padding: 11px 17px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .hero {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 70px;
+      align-items: center;
+      padding: 78px 0 90px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    h1 {
+      font-size: clamp(58px, 8vw, 104px);
+      line-height: .86;
+      letter-spacing: -.075em;
+      max-width: 800px;
+    }
+    h1 em {
+      color: var(--accent);
+      font-style: normal;
+    }
+    .hero-copy {
+      max-width: 650px;
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 21px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: .2s ease;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .btn[disabled] { opacity: .6; pointer-events: none; }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    .btn-secondary { border: 1px solid #bdbdb5; background: transparent; }
+    .btn-secondary:hover { border-color: var(--ink); }
+
+    .hero-card {
+      background: var(--ink);
+      color: white;
+      min-height: 420px;
+      border-radius: 28px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: rotate(1.5deg);
+    }
+    .hero-card:before {
+      content: "PITCH";
+      position: absolute;
+      font-size: 145px;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      color: rgba(255,255,255,.05);
+      right: -30px;
+      bottom: 40px;
+    }
+    .card-top { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #aaa; }
+    .date {
+      font-size: 68px;
+      font-weight: 900;
+      line-height: .9;
+      letter-spacing: -.07em;
+    }
+    .date small {
+      display: block;
+      font-size: 17px;
+      letter-spacing: 0;
+      margin-top: 12px;
+      color: #aaa;
+      font-weight: 600;
+    }
+    .venue {
+      font-size: 14px;
+      color: #cfcfcf;
+      max-width: 240px;
+    }
+
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 17px 0;
+      white-space: nowrap;
+    }
+    .marquee-track {
+      display: inline-block;
+      animation: move 22s linear infinite;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .marquee-track span { margin: 0 28px; color: var(--accent); }
+    @keyframes move { to { transform: translateX(-50%); } }
+
+    section { padding: 100px 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    h2 {
+      font-size: clamp(38px, 5vw, 66px);
+      line-height: .95;
+      letter-spacing: -.06em;
+      max-width: 680px;
+    }
+    .section-description {
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+    }
+    .reason {
+      padding: 30px 28px 20px 0;
+      border-right: 1px solid var(--line);
+      margin-right: 28px;
+    }
+    .reason:last-child { border-right: 0; margin-right: 0; }
+    .number { font-size: 12px; font-weight: 900; color: var(--accent); margin-bottom: 65px; }
+    .reason h3 { font-size: 24px; letter-spacing: -.03em; margin-bottom: 10px; }
+    .reason p { color: var(--muted); font-size: 14px; max-width: 290px; }
+
+    .details {
+      background: var(--ink);
+      color: white;
+    }
+    .details .section-label { color: #ff7b4c; }
+    .details .section-description { color: #aaa; }
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid #333;
+      border-bottom: 1px solid #333;
+    }
+    .detail {
+      padding: 28px 25px 35px 0;
+      margin-right: 25px;
+      border-right: 1px solid #333;
+    }
+    .detail:last-child { border-right: 0; }
+    .detail small {
+      display: block;
+      color: #888;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 16px;
+    }
+    .detail strong {
+      display: block;
+      font-size: 21px;
+      letter-spacing: -.03em;
+    }
+
+    .eligibility {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 90px;
+      align-items: start;
+    }
+    .eligibility-list { border-top: 1px solid var(--line); }
+    .eligibility-item {
+      display: flex;
+      gap: 25px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .eligibility-item b { color: var(--accent); font-size: 13px; }
+    .eligibility-item span { font-size: 16px; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .step {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 25px;
+      min-height: 205px;
+    }
+    .step-num {
+      display: inline-flex;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 35px;
+    }
+    .step h3 { font-size: 19px; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 14px; }
+    .step a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ---------- Deadline / code chip / callout ---------- */
+    .deadline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 26px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .deadline-pill b { color: var(--ink); }
+
+    .code {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: #ffece4;
+      border: 1px solid #ffc7b0;
+      color: var(--accent-dark);
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-weight: 700;
+      letter-spacing: .06em;
+      font-size: 13px;
+    }
+
+    .callout {
+      display: flex;
+      gap: 14px;
+      margin-top: 20px;
+      padding: 20px 22px;
+      border-radius: 18px;
+      background: #fff4ee;
+      border: 1px solid #ffcdb8;
+    }
+    .callout b { display: block; font-size: 14px; margin-bottom: 4px; }
+    .callout p { font-size: 14px; color: #7a4a34; }
+    .callout .mark {
+      flex: none;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+    }
+
+    /* ---------- Registration form ---------- */
+    .form-shell {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: clamp(24px, 4vw, 46px);
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: 13px; font-weight: 700; letter-spacing: -.01em; }
+    .field label i, .consent span i { color: var(--accent); font-style: normal; }
+    .field input,
+    .field select,
+    .field textarea {
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 15px;
+      width: 100%;
+      outline: none;
+      transition: .18s ease;
+    }
+    .field textarea { min-height: 108px; resize: vertical; }
+    .field input::placeholder, .field textarea::placeholder { color: #9c9c94; }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 90, 31, .16);
+      background: var(--card);
+    }
+    .field .hint { font-size: 12px; color: var(--muted); }
+    .field .error {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-dark);
+      display: none;
+    }
+    .field.invalid .error { display: block; }
+    .field.invalid input,
+    .field.invalid select,
+    .field.invalid textarea { border-color: var(--accent-dark); background: #fff7f4; }
+    .field.invalid input:focus { box-shadow: 0 0 0 3px rgba(220, 67, 16, .18); }
+
+    .member-block {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px 22px 22px;
+      margin-top: 24px;
+      background: var(--bg);
+    }
+    .member-block[hidden] { display: none; }
+    .member-block legend {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 10px;
+      margin-left: -4px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      background: var(--card);
+    }
+    .member-tag {
+      display: inline-grid;
+      place-items: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .member-hint {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .consent {
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+      margin-top: 26px;
+      padding: 18px 20px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: var(--bg);
+      cursor: pointer;
+    }
+    .consent input {
+      flex: none;
+      width: 19px; height: 19px;
+      margin-top: 1px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .consent span { font-size: 14px; color: #3d3d38; }
+
+    .submit-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+    .status { font-size: 13px; font-weight: 700; color: var(--muted); }
+    .status.err { color: var(--accent-dark); }
+    .status.ok { color: #157f4a; }
+
+    .form-note {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .form-note b { color: var(--ink); }
+
+    /* ---------- FAQ ---------- */
+    .faq { border-top: 1px solid var(--line); }
+    .faq details { border-bottom: 1px solid var(--line); padding: 22px 0; }
+    .faq summary {
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary:after {
+      content: "+";
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 20px;
+      line-height: 1;
+    }
+    .faq details[open] summary:after { content: "−"; }
+    .faq p { margin-top: 12px; color: var(--muted); font-size: 15px; max-width: 720px; }
+    .faq a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    .final-cta {
+      text-align: center;
+      padding: 110px 20px;
+      border-top: 1px solid var(--line);
+    }
+    .final-cta h2 { margin: auto; }
+    .final-cta p { color: var(--muted); margin: 22px auto 30px; max-width: 550px; }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0 35px;
+      display: flex;
+      justify-content: space-between;
+      color: #777;
+      font-size: 12px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    footer a { text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    .footer-home { font-weight: 800; color: var(--ink); font-size: 13px; }
+    .socials { display: flex; gap: 22px; }
+    .socials a { font-weight: 600; }
+
+    @media (max-width: 850px) {
+      .nav-right a:not(.nav-cta) { display: none; }
+      .hero, .eligibility { grid-template-columns: 1fr; gap: 45px; }
+      .hero { padding-top: 55px; }
+      .hero-card { min-height: 340px; }
+      .reasons, .detail-grid, .steps, .form-grid { grid-template-columns: 1fr; }
+      .reason, .detail { border-right: 0; border-bottom: 1px solid var(--line); margin: 0; padding-right: 0; }
+      .reason:last-child, .detail:last-child { border-bottom: 0; }
+      .number { margin-bottom: 25px; }
+      .section-head { display: block; }
+      .section-description { margin-top: 18px; }
+    }
+
+    @media (max-width: 520px) {
+      .container { width: min(100% - 28px, 1160px); }
+      nav { height: 68px; }
+      h1 { font-size: 60px; }
+      .hero { min-height: auto; padding: 55px 0 70px; }
+      .hero-card { border-radius: 20px; transform: none; }
+      .date { font-size: 57px; }
+      section { padding: 75px 0; }
+      footer { flex-direction: column; }
+      .faq summary { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="container">
+    <nav>
+      <a class="brand" href="#">NEXT<span>GEN</span> PITCH</a>
+      <div class="nav-right">
+        <a href="#why">Why Participate</a>
+        <a href="#details">Details</a>
+        <a href="#how">How to Register</a>
+        <a class="nav-cta" href="#register">Register →</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> IIEC × IIT Bombay E-Cell</div>
+        <h1>Pitch the idea that changes <em>everything.</em></h1>
+        <p class="hero-copy">
+          Next Gen Pitch is CSMU's premier startup pitching competition under NEC 2026.
+          Put your idea in front of mentors, sharpen your vision, and get a shot at
+          the Eureka! 2026 Zonal Rounds.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#register">Register to Participate ↗</a>
+          <a class="btn btn-secondary" href="#details">Explore Event</a>
+        </div>
+        <div class="deadline-pill">
+          <span class="dot"></span> Registration closes <b>20 August 2026</b>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="card-top">Next Gen Pitch / NEC 2026</div>
+        <div class="date">
+          24
+          <small>August 2026 · Monday</small>
+        </div>
+        <div class="venue">
+          10:00 AM — 4:00 PM<br>
+          Pratapgarh Block, Seminar Hall<br>
+          CSMU
+        </div>
+      </aside>
+    </section>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        PITCH • BUILD • CONNECT • SCALE • PITCH • BUILD • CONNECT • SCALE •
+        <span>NEXT GEN PITCH</span> • PITCH • BUILD • CONNECT • SCALE • PITCH • BUILD • CONNECT • SCALE •
+        <span>NEC 2026</span> •
+      </div>
+    </div>
+
+    <section class="container" id="why">
+      <div class="section-head">
+        <div>
+          <div class="section-label">01 / Why participate</div>
+          <h2>Your startup deserves more than a pitch deck.</h2>
+        </div>
+        <p class="section-description">
+          Bring your idea, product, or early-stage startup. This is an opportunity
+          to get real feedback and take your next step with confidence.
+        </p>
+      </div>
+
+      <div class="reasons">
+        <article class="reason">
+          <div class="number">01</div>
+          <h3>Meet mentors</h3>
+          <p>Connect with experienced mentors and ecosystem players who can challenge and strengthen your thinking.</p>
+        </article>
+        <article class="reason">
+          <div class="number">02</div>
+          <h3>Get feedback</h3>
+          <p>Present your vision, hear what works, discover what doesn't, and leave with actionable insights.</p>
+        </article>
+        <article class="reason">
+          <div class="number">03</div>
+          <h3>Go national</h3>
+          <p>Stand a chance to represent your startup on a larger platform through Eureka! 2026 — plus recognition and certificates for every participant.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="details" id="details">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="section-label">02 / Event details</div>
+            <h2>One room. Big ideas.</h2>
+          </div>
+          <p class="section-description">
+            Whether you're a student founder, aspiring entrepreneur, or local startup,
+            you're invited to take the stage.
+          </p>
+        </div>
+
+        <div class="detail-grid">
+          <div class="detail">
+            <small>Date</small>
+            <strong>24 August 2026</strong>
+          </div>
+          <div class="detail">
+            <small>Time</small>
+            <strong>10:00 AM — 4:00 PM</strong>
+          </div>
+          <div class="detail">
+            <small>Venue</small>
+            <strong>Pratapgarh Block, Seminar Hall</strong>
+          </div>
+          <div class="detail">
+            <small>Hosted by</small>
+            <strong>Incubation, Innovation &amp; Entrepreneurship Cell</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="eligibility">
+        <div>
+          <div class="section-label">03 / Who can participate</div>
+          <h2>Come as a founder. Leave as a contender.</h2>
+        </div>
+
+        <div class="eligibility-list">
+          <div class="eligibility-item">
+            <b>01</b>
+            <span>CSMU students — individual or teams of up to 3 members</span>
+          </div>
+          <div class="eligibility-item">
+            <b>02</b>
+            <span>Local startups and aspiring entrepreneurs</span>
+          </div>
+          <div class="eligibility-item">
+            <b>03</b>
+            <span>Outsiders interested in pitching their ideas</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="how">
+      <div class="section-head">
+        <div>
+          <div class="section-label">04 / How to register</div>
+          <h2>Three steps. Then it's your turn.</h2>
+        </div>
+        <p class="section-description">
+          Complete your Eureka! registration first. Then submit your details to IIEC.
+        </p>
+      </div>
+
+      <div class="steps">
+        <article class="step">
+          <div class="step-num">01</div>
+          <h3>Register on Eureka!</h3>
+          <p>Head to <a href="https://ecell.in/eureka" target="_blank" rel="noopener">ecell.in/eureka</a> and register your startup before submitting the form below. You can skip the detailed startup information for now if you prefer.</p>
+        </article>
+        <article class="step">
+          <div class="step-num">02</div>
+          <h3>Use the NEC referral</h3>
+          <p>Select <b>NEC</b> under “How did you hear about Eureka?” and enter <span class="code">NEC2661839</span> in the Referral Code / NEC ID field.</p>
+        </article>
+        <article class="step">
+          <div class="step-num">03</div>
+          <h3>Submit your team</h3>
+          <p>You'll receive a Eureka! Team ID by email. Share it with IIEC along with your team details through the form below.</p>
+        </article>
+      </div>
+
+      <div class="callout">
+        <span class="mark">!</span>
+        <div>
+          <b>The referral code is mandatory.</b>
+          <p>
+            Without <span class="code">NEC2661839</span> in the referral field we can't track your
+            status, you won't receive extra points, and your pitch will not be evaluated at the
+            Pre-Zonal level.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="register">
+      <div class="section-head">
+        <div>
+          <div class="section-label">05 / Registration form</div>
+          <h2>Tell us who's pitching.</h2>
+        </div>
+        <p class="section-description">
+          Registration closes on 20 August 2026. Selected teams will be contacted with
+          pitch preparation guidelines.
+        </p>
+      </div>
+
+      <div class="form-shell">
+        <form id="reg-form" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label for="teamName">Team Name <i>*</i></label>
+              <input id="teamName" name="teamName" type="text" placeholder="e.g. Team Innovate" required autocomplete="organization" />
+            </div>
+
+            <div class="field">
+              <label for="memberCount">Number of Members in Team <i>*</i></label>
+              <select id="memberCount" name="memberCount" required>
+                <option value="">Select</option>
+                <option value="1">1 — individual</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+              <span class="hint">Maximum 3 members per team, including the team leader.</span>
+            </div>
+
+            <div class="field">
+              <label for="college">College / Organization Name <i>*</i></label>
+              <input id="college" name="college" type="text" placeholder="e.g. CSMU, Navi Mumbai" required />
+            </div>
+
+            <div class="field">
+              <label for="city">City <i>*</i></label>
+              <input id="city" name="city" type="text" placeholder="e.g. Navi Mumbai" required autocomplete="address-level2" />
+            </div>
+
+            <div class="field full">
+              <label for="eurekaId">Eureka! Team ID <span class="hint" style="font-weight:600">(if you already have it)</span></label>
+              <input id="eurekaId" name="eurekaId" type="text" placeholder="Received by email after Eureka! registration" />
+            </div>
+          </div>
+
+          <!-- Team leader -->
+          <fieldset class="member-block">
+            <legend><span class="member-tag">Leader</span> Team Leader's Details</legend>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="leaderName">Full Name <i>*</i></label>
+                <input id="leaderName" name="leaderName" type="text" placeholder="Full name" required autocomplete="name" />
+              </div>
+              <div class="field">
+                <label for="leaderEmail">Email Address <i>*</i></label>
+                <input id="leaderEmail" name="leaderEmail" type="email" inputmode="email" placeholder="name@domain.com" required autocomplete="email" data-validate="email" />
+                <span class="error" data-error-for="leaderEmail"></span>
+              </div>
+              <div class="field">
+                <label for="leaderPhone">Contact Number <i>*</i></label>
+                <input id="leaderPhone" name="leaderPhone" type="tel" inputmode="tel" placeholder="10-digit mobile number" required autocomplete="tel" data-validate="phone" />
+                <span class="error" data-error-for="leaderPhone"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Member 2 — revealed when team size is 2 or 3 -->
+          <fieldset class="member-block" id="member-2" data-member="2" hidden>
+            <legend><span class="member-tag">02</span> Member 2 Details</legend>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="member2Name">Full Name <i>*</i></label>
+                <input id="member2Name" name="member2Name" type="text" placeholder="Full name" />
+              </div>
+              <div class="field">
+                <label for="member2Email">Email Address <i>*</i></label>
+                <input id="member2Email" name="member2Email" type="email" inputmode="email" placeholder="name@domain.com" data-validate="email" />
+                <span class="error" data-error-for="member2Email"></span>
+              </div>
+              <div class="field">
+                <label for="member2Phone">Contact Number <i>*</i></label>
+                <input id="member2Phone" name="member2Phone" type="tel" inputmode="tel" placeholder="10-digit mobile number" data-validate="phone" />
+                <span class="error" data-error-for="member2Phone"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Member 3 — revealed when team size is 3 -->
+          <fieldset class="member-block" id="member-3" data-member="3" hidden>
+            <legend><span class="member-tag">03</span> Member 3 Details</legend>
+            <div class="form-grid">
+              <div class="field full">
+                <label for="member3Name">Full Name <i>*</i></label>
+                <input id="member3Name" name="member3Name" type="text" placeholder="Full name" />
+              </div>
+              <div class="field">
+                <label for="member3Email">Email Address <i>*</i></label>
+                <input id="member3Email" name="member3Email" type="email" inputmode="email" placeholder="name@domain.com" data-validate="email" />
+                <span class="error" data-error-for="member3Email"></span>
+              </div>
+              <div class="field">
+                <label for="member3Phone">Contact Number <i>*</i></label>
+                <input id="member3Phone" name="member3Phone" type="tel" inputmode="tel" placeholder="10-digit mobile number" data-validate="phone" />
+                <span class="error" data-error-for="member3Phone"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <p class="member-hint" id="member-hint">Select your team size above to add each member's details.</p>
+
+          <label class="consent" for="consent">
+            <input id="consent" name="consent" type="checkbox" value="Yes" required />
+            <span>I confirm that I have read and agreed to all the details and instructions mentioned above. <i>*</i></span>
+          </label>
+
+          <div class="submit-row">
+            <button class="btn btn-primary" type="submit" id="reg-submit">Submit Registration ↗</button>
+            <p class="status" id="reg-status" role="status" aria-live="polite"></p>
+          </div>
+
+          <p class="form-note">
+            <b>Final note:</b> Once you submit this form, our team will review your details.
+            Upon confirmation, you will receive another form to share your startup and pitch
+            information, including your pitch deck link.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-label">06 / FAQ</div>
+          <h2>Still deciding?</h2>
+        </div>
+        <p class="section-description">
+          Anything else, write to us and the IIEC team will get back to you.
+        </p>
+      </div>
+
+      <div class="faq">
+        <details open>
+          <summary>Do I need a registered startup to participate?</summary>
+          <p>No. An idea is enough. Students, aspiring entrepreneurs, and early-stage startups are all welcome to pitch.</p>
+        </details>
+        <details>
+          <summary>Is the Eureka! registration really compulsory?</summary>
+          <p>Yes. Without a Eureka! 2026 registration carrying our NEC ID <span class="code">NEC2661839</span>, IIT Bombay cannot evaluate your pitch at the Pre-Zonal level.</p>
+        </details>
+        <details>
+          <summary>When do I submit my pitch deck?</summary>
+          <p>Not with this form. After your registration is confirmed, we'll send a separate form to collect your startup details and pitch deck link.</p>
+        </details>
+        <details>
+          <summary>Can students from outside CSMU take part?</summary>
+          <p>Yes. Local startups, aspiring entrepreneurs, and outside participants are all invited to pitch.</p>
+        </details>
+        <details>
+          <summary>Will I get a certificate?</summary>
+          <p>Yes. All participants receive recognition and certificates, and top teams stand a chance to be fast-tracked to the Eureka! 2026 Zonal Rounds.</p>
+        </details>
+        <details>
+          <summary>Who do I contact for help?</summary>
+          <p>Email <a href="mailto:ecell-student-rep@csmu.ac.in?subject=Next%20Gen%20Pitch%20Query">ecell-student-rep@csmu.ac.in</a> with your question and team name.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="section-label">Ready?</div>
+      <h2>Turn your dream into a demo.</h2>
+      <p>
+        Submit your team details and take the first step toward the Next Gen Pitch stage.
+        Selected teams will receive further pitch preparation guidelines.
+      </p>
+      <a class="btn btn-primary" href="#register">Start Registration ↗</a>
+    </section>
+  </main>
+
+  <footer class="container">
+    <a class="footer-home" href="index.html">← iiec.in</a>
+    <div class="socials">
+      <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:ecell-student-rep@csmu.ac.in">Email</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+      // Apps Script web app that writes each team to the Google Sheet and the .xlsx.
+      // Backend source lives in next_gen_pitch_code.gs.
+      var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyXEXIaD7IBo2ATYM1lB1vaLue0F5s7RFUCtWSFxfQrXR_ITsHjqYTGen8RWs1nJpbtpA/exec';
+
+      var form = document.getElementById('reg-form');
+      var statusEl = document.getElementById('reg-status');
+      var submitBtn = document.getElementById('reg-submit');
+      if (!form || !statusEl || !submitBtn) return;
+
+      function setStatus(msg, kind) {
+        statusEl.textContent = msg;
+        statusEl.className = 'status' + (kind ? ' ' + kind : '');
+      }
+
+      /* --- Reveal one details block per additional team member (max 3) --- */
+      var countSelect = document.getElementById('memberCount');
+      var memberBlocks = Array.prototype.slice.call(form.querySelectorAll('[data-member]'));
+      var memberHint = document.getElementById('member-hint');
+
+      function syncMemberBlocks() {
+        var size = parseInt(countSelect.value, 10) || 0;
+
+        memberBlocks.forEach(function (block) {
+          var position = parseInt(block.dataset.member, 10);
+          var active = position <= size;
+
+          block.hidden = !active;
+          // Only enforce validation on the blocks that are actually visible,
+          // and clear stale values when a block is hidden again.
+          block.querySelectorAll('input').forEach(function (input) {
+            input.required = active;
+            input.disabled = !active;
+            if (!active) input.value = '';
+          });
+        });
+
+        if (!size) {
+          memberHint.textContent = 'Select your team size above to add each member\u2019s details.';
+        } else if (size === 1) {
+          memberHint.textContent = 'Pitching solo \u2014 only the team leader\u2019s details are needed.';
+        } else {
+          memberHint.textContent = 'Please fill in details for all ' + size + ' team members, including the leader.';
+        }
+      }
+
+      countSelect.addEventListener('change', function () {
+        syncMemberBlocks();
+        // Clearing a collapsed block must clear its error state too.
+        memberBlocks.forEach(function (block) {
+          if (block.hidden) {
+            block.querySelectorAll('[data-validate]').forEach(clearError);
+          }
+        });
+      });
+      syncMemberBlocks();
+
+      /* --- Email and phone validation --- */
+      // Deliberately permissive on shape, strict on the parts that break contact:
+      // one @, a dot in the domain, no spaces.
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/;
+
+      function fieldOf(input) { return input.closest('.field'); }
+
+      function clearError(input) {
+        var field = fieldOf(input);
+        if (!field) return;
+        field.classList.remove('invalid');
+        var msg = field.querySelector('[data-error-for="' + input.id + '"]');
+        if (msg) msg.textContent = '';
+      }
+
+      function showError(input, message) {
+        var field = fieldOf(input);
+        if (!field) return;
+        field.classList.add('invalid');
+        var msg = field.querySelector('[data-error-for="' + input.id + '"]');
+        if (msg) msg.textContent = message;
+      }
+
+      // Returns '' when valid, otherwise the reason.
+      function checkValue(input) {
+        var value = input.value.trim();
+        var kind = input.dataset.validate;
+
+        if (!value) return input.required ? 'This field is required.' : '';
+
+        if (kind === 'email') {
+          if (/\s/.test(value)) return 'Email cannot contain spaces.';
+          if (value.indexOf('@') === -1) return 'Email must include an @.';
+          if (!EMAIL_RE.test(value)) return 'Enter a valid email, e.g. name@domain.com.';
+          return '';
+        }
+
+        if (kind === 'phone') {
+          if (/[^0-9+\s()-]/.test(value)) return 'Phone can only contain digits, spaces, +, -, ().';
+          var digits = value.replace(/\D/g, '');
+          // Accept a bare 10-digit Indian mobile or the same number with a country code.
+          if (digits.length === 10) {
+            if (!/^[6-9]/.test(digits)) return 'Indian mobile numbers start with 6, 7, 8 or 9.';
+            return '';
+          }
+          if (digits.length === 11 && digits.charAt(0) === '0') return '';
+          if (digits.length === 12 && digits.indexOf('91') === 0) return '';
+          if (digits.length === 13 && digits.indexOf('091') === 0) return '';
+          return digits.length < 10
+            ? 'Phone number is too short — enter 10 digits.'
+            : 'Phone number is too long — enter 10 digits.';
+        }
+
+        return '';
+      }
+
+      function validateInput(input) {
+        var problem = checkValue(input);
+        if (problem) { showError(input, problem); return false; }
+        clearError(input);
+        return true;
+      }
+
+      // Validate all currently active email/phone inputs. Returns the first bad one.
+      function validateContactFields() {
+        var firstBad = null;
+        form.querySelectorAll('[data-validate]').forEach(function (input) {
+          if (input.disabled || input.offsetParent === null) { clearError(input); return; }
+          if (!validateInput(input) && !firstBad) firstBad = input;
+        });
+        return firstBad;
+      }
+
+      form.querySelectorAll('[data-validate]').forEach(function (input) {
+        input.addEventListener('blur', function () {
+          if (!input.disabled) validateInput(input);
+        });
+        // Once a field is flagged, re-check as they type so the error clears itself.
+        input.addEventListener('input', function () {
+          if (fieldOf(input).classList.contains('invalid')) validateInput(input);
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (!form.checkValidity()) {
+          var firstInvalid = form.querySelector(':invalid');
+          if (firstInvalid) firstInvalid.focus();
+          setStatus('Please complete all required fields.', 'err');
+          return;
+        }
+
+        var badContact = validateContactFields();
+        if (badContact) {
+          badContact.focus();
+          setStatus('Please correct the highlighted email or phone number.', 'err');
+          return;
+        }
+
+        if (!FORM_ENDPOINT) {
+          setStatus('Registrations are handled by the IIEC team — email your details to ecell-student-rep@csmu.ac.in.', 'err');
+          return;
+        }
+
+        submitBtn.disabled = true;
+        setStatus('Submitting your registration…');
+
+        var payload = {};
+        new FormData(form).forEach(function (value, key) { payload[key] = value; });
+        payload.submittedAt = new Date().toISOString();
+        payload.page = location.href;
+        payload.userAgent = navigator.userAgent;
+
+        // text/plain avoids a CORS preflight, which Apps Script /exec does not answer.
+        fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) { return res.json(); })
+          .then(function (out) {
+            if (!out || out.ok !== true) throw new Error((out && out.error) || 'Request failed');
+            if (out.duplicate) {
+              setStatus('This team is already registered — we have your details.', 'ok');
+              return;
+            }
+            form.reset();
+            syncMemberBlocks();
+            setStatus('Registration received. We will review it and email you the pitch information form.', 'ok');
+          })
+          .catch(function (err) {
+            setStatus((err && err.message) || 'Something went wrong. Please retry or email ecell-student-rep@csmu.ac.in.', 'err');
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
+          });
+      });
+    })();
+  </script>
+
+</body>
+</html>
