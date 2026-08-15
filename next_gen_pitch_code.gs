@@ -342,7 +342,9 @@ function validateSubmission(data) {
   }
   if (!trim(data.college)) return { error:'College / organization is required' };
   if (!trim(data.city)) return { error:'City is required' };
-  if (!trim(data.eurekaId)) return { error:'Eureka! Team ID is required' };
+  if (!trim(data.eurekaId) || trim(data.eurekaId).length < 5) {
+    return { error:'Eureka! Team ID must be at least 5 characters' };
+  }
 
   var consent = /^(yes|true|on|1)$/i.test(trim(data.consent));
   if (!consent) return { error:'You must accept the details and instructions' };
