@@ -24,7 +24,7 @@ IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entreprene
 
 - [TechAstra](https://iiec.in/techastra.html): Dedicated page for the annual tech fest. Described as "The Largest Annual Technical Fest of Chhatrapati Shivaji Maharaj University." Headline stats: 10+ Events, 1000+ Expected Footfall, Prize Pool TBA, 2 Epic Days. Features 6 event tracks, 3 reasons to volunteer, volunteer registration form (collects: Full Name, Department, Academic Year, College Roll Number, Mobile Number, Email, Preferred Volunteer Roles, Skills, Why Volunteer, Previous Experience), and post-submission flow with WhatsApp group link and Instagram follow prompts. Volunteer roles: Event Management, Technical Support, Registration Desk, Design & Creatives, Social Media & Content, Logistics & Venue, Photography & Videography, Sponsorship & Outreach. JSON-LD: Event, eventStatus: EventScheduled.
 
-- [Brand Assets & Media Kit](https://iiec.in/assets.html): Official brand assets, master vector SVG logos, brand color tokens (#F5A524 Cyber Gold, #FFB703 Amber Gold, #09090B Obsidian Base), typography guidelines (Montserrat, Inter), usage rules (Do's & Don'ts), press boilerplates, and media event photos for organizers, sponsors, partners, and media publications.
+- [Brand Assets & Media Kit](https://iiec.in/assets.html): Official brand assets, master vector SVG logos (IIEC Logo, CSMU University Logo), brand color tokens (#F5A524 Cyber Gold, #FFB703 Amber Gold, #09090B Obsidian Base), typography guidelines (Montserrat, Inter), usage rules (Do's & Don'ts), press boilerplates, and media event photos for organizers, sponsors, partners, and media publications.
 
 ---
 
