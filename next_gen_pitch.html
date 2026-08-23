@@ -795,6 +795,77 @@
       border-top: 1px solid var(--line);
     }
 
+    /* "already registered" entry points to the stage 2 form */
+    .already-line {
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .already-line a {
+      font-weight: 800;
+      color: var(--ink);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 1px;
+    }
+
+    .already-line a:hover {
+      color: var(--accent);
+    }
+
+    .already-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      padding: 30px 32px;
+      border: 1px solid #ffcdb8;
+      border-radius: 22px;
+      background: linear-gradient(120deg, #fff6f1 0%, var(--card) 70%);
+    }
+
+    .already-badge {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .already-card h3 {
+      font-size: 24px;
+      letter-spacing: -.03em;
+      margin-bottom: 8px;
+    }
+
+    .already-card p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 560px;
+      line-height: 1.6;
+    }
+
+    .already-card .btn {
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 700px) {
+      .already-card {
+        padding: 24px 20px;
+      }
+
+      .already-card .btn {
+        width: 100%;
+      }
+    }
+
     .final-cta h2 {
       margin: auto;
     }
@@ -803,6 +874,13 @@
       color: var(--muted);
       margin: 22px auto 30px;
       max-width: 550px;
+    }
+
+    .final-cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     footer {
@@ -1463,6 +1541,7 @@
         <a href="#details">Details</a>
         <a href="#gallery">2025 Highlights</a>
         <a href="#how">How to Register</a>
+        <a href="next_gen_pitch_form">Submit Idea</a>
         <a class="nav-cta" href="#register">Register →</a>
       </div>
     </nav>
@@ -1485,6 +1564,9 @@
         <div class="deadline-pill">
           <span class="dot"></span> Registration closes <b>20 August 2026</b>
         </div>
+        <p class="already-line">
+          Already registered? <a href="next_gen_pitch_form">Submit your startup &amp; pitch deck →</a>
+        </p>
       </div>
 
       <aside class="hero-card">
@@ -1844,10 +1926,24 @@
 
           <p class="form-note">
             <b>Final note:</b> Once you submit this form, our team will review your details.
-            Upon confirmation, you will receive another form to share your startup and pitch
-            information, including your pitch deck link.
+            You can share your startup information and pitch deck straight away using the
+            panel below — no need to wait for our reply.
           </p>
         </form>
+      </div>
+
+      <!-- Stage 2 entry point for teams who already registered above -->
+      <div class="already-card" id="submit-idea">
+        <div>
+          <div class="already-badge">Already registered?</div>
+          <h3>Submit your startup &amp; pitch deck</h3>
+          <p>
+            If you have completed the registration above and received your
+            <b>Eureka! Team ID</b>, go ahead and send us your idea and pitch deck. You do not
+            have to wait for a reply to start.
+          </p>
+        </div>
+        <a class="btn btn-primary" href="next_gen_pitch_form">Submit Your Idea ↗</a>
       </div>
     </section>
 
@@ -1903,7 +1999,10 @@
         Submit your team details and take the first step toward the Next Gen Pitch stage.
         Selected teams will receive further pitch preparation guidelines.
       </p>
-      <a class="btn btn-primary" href="#register">Start Registration ↗</a>
+      <div class="final-cta-actions">
+        <a class="btn btn-primary" href="#register">Start Registration ↗</a>
+        <a class="btn btn-secondary" href="next_gen_pitch_form">Already registered? Submit your idea</a>
+      </div>
     </section>
   </main>
 
