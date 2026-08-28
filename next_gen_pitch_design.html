@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Gen Pitch 2026 — Design System & UI Style Guide</title>
+  <meta name="description"
+    content="Official visual design system, UI components, color tokens, and typography scale for Next Gen Pitch 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5f5f0;
+      --ink: #111111;
+      --muted: #66665f;
+      --line: #d8d8d0;
+      --card: #ffffff;
+      --accent: #ff5a1f;
+      --accent-dark: #dc4310;
+      --accent-light: #ffece4;
+      --accent-border: #ffc7b0;
+      --dark-shell-bg: #111111;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--ink);
+      color: white;
+      padding: 60px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 50px;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .brand-title {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .subtitle {
+      color: #aaa;
+      font-size: 16px;
+      max-width: 500px;
+      margin-top: 10px;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    section {
+      margin-bottom: 60px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    }
+
+    .section-head {
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 16px;
+    }
+
+    .section-head h2 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    /* Color Matrix */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .color-card {
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .color-swatch {
+      height: 100px;
+      width: 100%;
+      position: relative;
+    }
+
+    .color-info {
+      padding: 14px;
+    }
+
+    .color-name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .color-hex {
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* Typography Playground */
+    .type-specimen {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .type-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 20px;
+      align-items: baseline;
+      border-bottom: 1px solid #f0f0eb;
+      padding-bottom: 20px;
+    }
+
+    .type-meta {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* UI Component Matrix */
+    .component-matrix {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .comp-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 21px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: .2s ease;
+      border: 0;
+      cursor: pointer;
+      font-family: inherit;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid #bdbdb5;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--ink);
+    }
+
+    .nav-cta {
+      background: var(--ink);
+      color: white !important;
+      padding: 11px 17px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* Badges & Pills */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .deadline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .code {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: #ffece4;
+      border: 1px solid #ffc7b0;
+      color: var(--accent-dark);
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .member-tag {
+      display: inline-grid;
+      place-items: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    /* Hero Card Live Render */
+    .hero-card-preview {
+      background: var(--ink);
+      color: white;
+      width: 320px;
+      min-height: 380px;
+      border-radius: 28px;
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: rotate(1.5deg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+
+    .hero-card-preview::before {
+      content: "PITCH";
+      position: absolute;
+      font-size: 130px;
+      font-weight: 900;
+      letter-spacing: -.08em;
+      color: rgba(255, 255, 255, .05);
+      right: -30px;
+      bottom: 30px;
+      pointer-events: none;
+    }
+
+    .card-top {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: #aaa;
+    }
+
+    .date {
+      font-size: 60px;
+      font-weight: 900;
+      line-height: .9;
+      letter-spacing: -.07em;
+    }
+
+    .date small {
+      display: block;
+      font-size: 16px;
+      letter-spacing: 0;
+      margin-top: 10px;
+      color: #aaa;
+      font-weight: 600;
+    }
+
+    /* Form Fields */
+    .form-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .field label i {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .field input {
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 13px 15px;
+      width: 100%;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(255, 90, 31, .16);
+      background: white;
+    }
+
+    .field.invalid input {
+      border-color: var(--accent-dark);
+      background: #fff7f4;
+    }
+
+    .field .error {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-dark);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container header-content">
+      <div>
+        <div class="brand-title">IIEC Design Tokens & System</div>
+        <h1>Next Gen Pitch <span>UI Library</span></h1>
+        <p class="subtitle">Component breakdown, design tokens, color palette, and responsive rules from next_gen_pitch.html</p>
+      </div>
+      <a class="back-btn" href="next_gen_pitch.html">← Back to Next Gen Pitch Page</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 01 Color System -->
+    <section id="colors">
+      <div class="section-head">
+        <h2>01 / Color System & Tokens</h2>
+        <p>Curated palette featuring editorial warm cream, pitch black, and startup electric orange.</p>
+      </div>
+
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background: #f5f5f0;"></div>
+          <div class="color-info">
+            <div class="color-name">Editorial Canvas</div>
+            <div class="color-hex">--bg: #f5f5f0</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #ff5a1f;"></div>
+          <div class="color-info">
+            <div class="color-name">Electric Orange</div>
+            <div class="color-hex">--accent: #ff5a1f</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #dc4310;"></div>
+          <div class="color-info">
+            <div class="color-name">Flame Dark</div>
+            <div class="color-hex">--accent-dark: #dc4310</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #111111;"></div>
+          <div class="color-info">
+            <div class="color-name">Pitch Black</div>
+            <div class="color-hex">--ink: #111111</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #ffffff; border-bottom: 1px solid #ddd;"></div>
+          <div class="color-info">
+            <div class="color-name">Crisp Card</div>
+            <div class="color-hex">--card: #ffffff</div>
+          </div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background: #ffece4;"></div>
+          <div class="color-info">
+            <div class="color-name">Code Chip Tint</div>
+            <div class="color-hex">--accent-light: #ffece4</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Typography Scale -->
+    <section id="typography">
+      <div class="section-head">
+        <h2>02 / Typography Scale & Font Weights</h2>
+        <p>Inter font family with tight line-heights and negative letter-spacing for headlines.</p>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-row">
+          <div class="type-meta">Hero Title<br>clamp(58px, 8vw, 104px)</div>
+          <h1 style="font-size: clamp(38px, 6vw, 64px);">Pitch the idea that changes <em style="color:var(--accent); font-style:normal;">everything.</em></h1>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Section Title<br>clamp(38px, 5vw, 66px)</div>
+          <h2 style="font-size: 38px; font-weight:800; letter-spacing:-0.05em;">Your startup deserves more than a pitch deck.</h2>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Card Title<br>24px Bold</div>
+          <h3 style="font-size: 24px; font-weight: 700; letter-spacing: -0.03em;">01 / Meet experienced mentors</h3>
+        </div>
+        <div class="type-row">
+          <div class="type-meta">Code & Monospace<br>SF Mono 13px</div>
+          <div>Code chip: <span class="code">NEC2661839</span> (Mandatory referral tag)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Button & Badge Components -->
+    <section id="components">
+      <div class="section-head">
+        <h2>03 / UI Component Matrix</h2>
+        <p>Buttons, pill tags, badges, callouts, and ticket cards.</p>
+      </div>
+
+      <div class="component-matrix">
+        <div>
+          <h4 style="font-size: 14px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;">Buttons & Call to Actions</h4>
+          <div class="comp-row">
+            <button class="btn btn-primary">Register to Participate ↗</button>
+            <button class="btn btn-secondary">Explore Event Details</button>
+            <a class="nav-cta" href="#">Register →</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-size: 14px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;">Badges & Eyebrow Indicators</h4>
+          <div class="comp-row">
+            <div class="eyebrow"><span class="dot"></span> IIEC × IIT Bombay E-Cell</div>
+            <div class="deadline-pill"><span class="dot"></span> Registration closes <b>20 August 2026</b></div>
+            <span class="member-tag">Leader</span>
+            <span class="member-tag" style="background:#111;">02</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="font-size: 14px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;">3D Tilted Hero Ticket Preview</h4>
+          <aside class="hero-card-preview">
+            <div class="card-top">Next Gen Pitch / NEC 2026</div>
+            <div class="date">
+              24
+              <small>August 2026 · Monday</small>
+            </div>
+            <div style="font-size:13px; color:#cfcfcf;">
+              10:00 AM — 4:00 PM<br>
+              Pratapgarh Block, Seminar Hall
+            </div>
+          </aside>
+        </div>
+
+        <div>
+          <h4 style="font-size: 14px; text-transform: uppercase; color: var(--muted); margin-bottom: 14px;">Form Input Field States</h4>
+          <div class="form-preview-grid">
+            <div class="field">
+              <label>Default State Input <i>*</i></label>
+              <input type="text" placeholder="e.g. Team Innovate" />
+            </div>
+            <div class="field">
+              <label>Active Focus State <i>*</i></label>
+              <input type="text" value="Team Alpha" style="border-color:var(--accent); box-shadow: 0 0 0 3px rgba(255, 90, 31, .16);" />
+            </div>
+            <div class="field invalid">
+              <label>Invalid Error State <i>*</i></label>
+              <input type="email" value="invalid-email-address" />
+              <span class="error">Enter a valid email, e.g. name@domain.com.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+
+</html>
