@@ -549,34 +549,38 @@ h2 {
 .stepper-tabs {
   display: flex;
   gap: 8px;
-  overflow-x: auto;
+  flex-wrap: wrap;
   padding-bottom: 4px;
-  margin-top: 14px;
-  scrollbar-width: none;
+  margin-top: 16px;
 }
-.stepper-tabs::-webkit-scrollbar { display: none; }
 
 .stepper-tab {
-  flex: 1;
-  min-width: 105px;
-  padding: 8px 10px;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: max-content;
+  padding: 8px 16px;
   background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
   text-align: center;
   cursor: pointer;
-  transition: .2s ease;
+  transition: all .2s ease;
   white-space: nowrap;
   font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .stepper-tab.active {
   background: var(--accent);
   border-color: var(--accent);
   color: white;
+  box-shadow: 0 2px 8px rgba(255, 90, 31, .2);
 }
 
 .stepper-tab.completed {
@@ -841,33 +845,38 @@ h2 {
 /* Member Switcher & Member Block */
 .member-switcher {
   display: flex;
-  gap: 6px;
-  margin-bottom: 18px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .member-switcher-btn {
-  flex: 1;
-  min-width: 90px;
-  padding: 7px 10px;
+  flex: 0 0 auto;
+  width: auto;
+  min-width: max-content;
+  padding: 8px 16px;
   background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: 8px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 12.5px;
   font-weight: 700;
   cursor: pointer;
-  transition: .2s ease;
+  transition: all .2s ease;
   white-space: nowrap;
   font-family: inherit;
+}
+
+.member-switcher-btn:hover {
+  border-color: #b0b0a8;
+  background: #ffffff;
 }
 
 .member-switcher-btn.active {
   background: var(--ink);
   color: white;
   border-color: var(--ink);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
 }
 
 .member-card {
@@ -1605,6 +1614,15 @@ footer a:hover {
 }
 
 /* Responsive Media Queries */
+@media (max-width: 1024px) {
+  .entry-pass-roster-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .entry-pass-code-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 850px) {
   .nav-right a:not(.nav-cta) {
     display: none;
@@ -1612,31 +1630,52 @@ footer a:hover {
 
   .hero {
     grid-template-columns: 1fr;
-    gap: 45px;
-    padding-top: 50px;
+    gap: 40px;
+    padding-top: 45px;
   }
 
   .hero-card {
-    min-height: 340px;
+    min-height: 320px;
+    transform: none;
+  }
+
+  .partner-logos-strip {
+    justify-content: center;
+    gap: 16px;
+    padding: 14px 18px;
+  }
+
+  .partner-logo-divider {
+    display: none;
+  }
+
+  .partner-logo-item {
+    height: 38px;
+    max-width: 110px;
   }
 
   .reasons {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .reason {
     border-right: 0;
     border-bottom: 1px solid var(--line);
     margin: 0;
-    padding-right: 0;
+    padding: 20px 14px 20px 0;
   }
 
-  .reason:last-child {
+  .reason:nth-child(even) {
+    padding-left: 14px;
+    border-left: 1px solid var(--line);
+  }
+
+  .reason:last-child, .reason:nth-last-child(2) {
     border-bottom: 0;
   }
 
   .number {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
   }
 
   .section-head {
@@ -1644,39 +1683,113 @@ footer a:hover {
   }
 
   .section-description {
-    margin-top: 14px;
+    margin-top: 12px;
   }
 
   .form-grid {
     grid-template-columns: 1fr;
   }
+
+  .entry-pass-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .entry-pass-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-pass-footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .pass-seal-badge {
+    text-align: center;
+  }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
   .container {
-    width: min(100% - 28px, 1160px);
+    width: min(100% - 24px, 1160px);
   }
 
   nav {
-    height: 68px;
+    height: 64px;
   }
 
   h1 {
-    font-size: 42px;
+    font-size: 38px;
+    line-height: 1;
   }
 
   .hero {
     min-height: auto;
-    padding: 45px 0 55px;
+    padding: 35px 0 45px;
+  }
+
+  .reasons {
+    grid-template-columns: 1fr;
+  }
+
+  .reason:nth-child(even) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .reason {
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  .reason:last-child {
+    border-bottom: 0 !important;
   }
 
   .hero-card {
     border-radius: 20px;
     transform: none;
+    padding: 22px 18px;
+    min-height: auto;
   }
 
   .date {
-    font-size: 50px;
+    font-size: 46px;
+    margin: 18px 0;
+  }
+
+  .form-shell {
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+
+  .controls-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .compliance-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .entry-pass-code-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-pass-roster-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-pass-document {
+    padding: 16px 12px;
+  }
+
+  .pass-event-title {
+    font-size: 17px;
   }
 
   .wizard-actions {
@@ -1689,5 +1802,11 @@ footer a:hover {
 
   footer {
     flex-direction: column;
+    gap: 16px;
+  }
+
+  .socials {
+    flex-wrap: wrap;
+    gap: 14px;
   }
 }
