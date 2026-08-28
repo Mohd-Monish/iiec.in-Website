@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCharCounters();
   initComplianceChecker();
   initDraftSaving();
+  initCustomSelects();
 
   // ---------------------------------------------------------
   // 0. Mobile Hamburger Menu Toggle
@@ -186,10 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------------------------------------------------------
-  // 4. Tag Chips Selection
+  // 4. Tag Chips & Declarations Selection
   // ---------------------------------------------------------
   function initChipsSelection() {
-    document.querySelectorAll('.sih-chip').forEach(chip => {
+    document.querySelectorAll('.sih-chip, .chip').forEach(chip => {
       const input = chip.querySelector('input[type="checkbox"]');
       if (input) {
         if (input.checked) chip.classList.add('selected');
@@ -199,9 +200,19 @@ document.addEventListener('DOMContentLoaded', () => {
             input.checked = !input.checked;
           }
           chip.classList.toggle('selected', input.checked);
+          chip.closest('[data-required="true"]')?.classList.remove('has-error');
           saveDraft();
         });
       }
+    });
+
+    document.querySelectorAll('.dec-item input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        if (cb.checked) {
+          cb.closest('.dec-item')?.classList.remove('has-error');
+        }
+        saveDraft();
+      });
     });
   }
 
@@ -471,24 +482,68 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ---------------------------------------------------------
-  // 9. Submission Handling & Google Apps Script Posting
+  // 9. Submission Handling & Official Entry Pass Receipt
   // ---------------------------------------------------------
   function processSubmission() {
     const regId = 'CSMU-SIH26-' + Math.floor(10000 + Math.random() * 90000);
     const teamName = document.getElementById('q1_team_name')?.value || 'Your Team';
     const leaderName = document.getElementById('m1_fullname')?.value || document.getElementById('m1_name')?.value || 'Team Leader';
     const email = document.getElementById('q0_email')?.value || 'N/A';
+    const deptName = document.getElementById('q10_dept_name')?.value || 'General Engineering / CSMU';
+    const mentorName = document.getElementById('q62_mentor_name')?.value || 'Assigned Faculty Guide';
     const category = document.getElementById('q3_category_select')?.value || 'SIH 2026 Problem';
+    const theme = document.getElementById('q4_sih_theme')?.value || 'General Theme';
+    const probId = document.getElementById('q5_problem_id')?.value || 'SIH26-N/A';
+    const probTitle = document.getElementById('q6_problem_title')?.value || document.getElementById('q7_idea_title')?.value || 'Innovative Hackathon Solution';
+    const devStatus = document.getElementById('q61_dev_status')?.value || 'Idea / Prototype';
 
-    // Populate modal receipt
-    document.getElementById('receiptRegId').textContent = regId;
-    document.getElementById('receiptTeamName').textContent = teamName;
-    document.getElementById('receiptLeaderName').textContent = leaderName;
-    document.getElementById('receiptEmail').textContent = email;
-    document.getElementById('receiptCategory').textContent = category;
-    document.getElementById('receiptDate').textContent = new Date().toLocaleDateString('en-IN', {
-      day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
-    });
+    // Populate modal receipt elements
+    if (document.getElementById('receiptRegId')) document.getElementById('receiptRegId').textContent = regId;
+    if (document.getElementById('receiptTeamName')) document.getElementById('receiptTeamName').textContent = teamName;
+    if (document.getElementById('receiptLeaderName')) document.getElementById('receiptLeaderName').textContent = leaderName;
+    if (document.getElementById('receiptEmail')) document.getElementById('receiptEmail').textContent = email;
+    if (document.getElementById('receiptDept')) document.getElementById('receiptDept').textContent = deptName;
+    if (document.getElementById('receiptMentor')) document.getElementById('receiptMentor').textContent = mentorName;
+    if (document.getElementById('receiptCategory')) document.getElementById('receiptCategory').textContent = category;
+    if (document.getElementById('receiptTheme')) document.getElementById('receiptTheme').textContent = theme;
+    if (document.getElementById('receiptProbId')) document.getElementById('receiptProbId').textContent = probId;
+    if (document.getElementById('receiptProbTitle')) document.getElementById('receiptProbTitle').textContent = probTitle;
+    if (document.getElementById('receiptStatus')) document.getElementById('receiptStatus').textContent = devStatus;
+    if (document.getElementById('receiptDate')) {
+      document.getElementById('receiptDate').textContent = new Date().toLocaleDateString('en-IN', {
+        day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    // Populate All 6 Members Roster in Entry Pass
+    const rosterContainer = document.getElementById('receiptMembersRoster');
+    if (rosterContainer) {
+      rosterContainer.innerHTML = '';
+      for (let m = 1; m <= 6; m++) {
+        const mName = document.getElementById(`m${m}_fullname`)?.value || (m === 1 ? document.getElementById('m1_name')?.value : '') || `Member ${m}`;
+        const mEnroll = document.getElementById(`m${m}_enrollment`)?.value || 'N/A';
+        const mGender = document.getElementById(`m${m}_gender`)?.value || '-';
+        const mProg = document.getElementById(`m${m}_program`)?.value || 'Student';
+        const mYear = document.getElementById(`m${m}_year`)?.value || '';
+        const mMobile = document.getElementById(`m${m}_mobile`)?.value || '-';
+
+        const card = document.createElement('div');
+        card.className = 'receipt-member-card';
+        card.innerHTML = `
+          <div class="receipt-member-header">
+            <span class="receipt-member-badge ${m === 1 ? 'leader' : ''}">${m === 1 ? 'Leader' : '0' + m}</span>
+            <strong class="receipt-member-name" title="${mName}">${mName}</strong>
+            <span class="receipt-member-gender">(${mGender === 'F' ? 'Female' : (mGender === 'M' ? 'Male' : mGender)})</span>
+          </div>
+          <div class="receipt-member-meta">
+            <span><b>Enroll:</b> ${mEnroll}</span>
+            <span><b>Prog:</b> ${mProg} ${mYear ? '(' + mYear + ')' : ''}</span>
+            <span><b>Mob:</b> ${mMobile}</span>
+          </div>
+        `;
+        rosterContainer.appendChild(card);
+      }
+    }
 
     // Send payload to Google Sheets if endpoint URL is configured
     if (GOOGLE_SCRIPT_URL) {
@@ -525,6 +580,140 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnCloseModal')?.addEventListener('click', () => {
       modal.classList.remove('show');
       window.location.href = 'index.html';
+    });
+  }
+
+  // ---------------------------------------------------------
+  // 10. Custom Dropdown Select UI Engine
+  // ---------------------------------------------------------
+  function initCustomSelects() {
+    document.querySelectorAll('.sih-select').forEach(select => {
+      if (select.parentElement.classList.contains('custom-select-wrapper')) return;
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'custom-select-wrapper';
+      select.parentNode.insertBefore(wrapper, select);
+      wrapper.appendChild(select);
+
+      // Hide default select visually but keep accessible for form/validation
+      select.style.position = 'absolute';
+      select.style.opacity = '0';
+      select.style.pointerEvents = 'none';
+      select.style.height = '0';
+      select.style.width = '0';
+      select.style.margin = '0';
+      select.style.padding = '0';
+      select.style.border = 'none';
+
+      // Create Custom Trigger
+      const trigger = document.createElement('div');
+      trigger.className = 'custom-select-trigger';
+      trigger.setAttribute('tabindex', '0');
+      trigger.setAttribute('role', 'combobox');
+      trigger.setAttribute('aria-expanded', 'false');
+
+      const selectedOption = select.options[select.selectedIndex];
+      const hasValue = select.value !== '';
+      const initialText = selectedOption ? selectedOption.text : '-- Select --';
+
+      const valSpan = document.createElement('span');
+      valSpan.className = 'select-value' + (hasValue ? '' : ' placeholder');
+      valSpan.textContent = initialText;
+
+      const arrowSpan = document.createElement('span');
+      arrowSpan.className = 'custom-select-arrow';
+      arrowSpan.innerHTML = '<i class="fas fa-chevron-down"></i>';
+
+      trigger.appendChild(valSpan);
+      trigger.appendChild(arrowSpan);
+      wrapper.appendChild(trigger);
+
+      // Create Custom Options List
+      const optionsContainer = document.createElement('div');
+      optionsContainer.className = 'custom-select-options';
+      optionsContainer.setAttribute('role', 'listbox');
+
+      function buildOptions() {
+        optionsContainer.innerHTML = '';
+        Array.from(select.options).forEach((opt, idx) => {
+          if (opt.value === '' && idx === 0) return;
+          const optEl = document.createElement('div');
+          optEl.className = 'custom-option' + (opt.value === select.value ? ' selected' : '');
+          optEl.textContent = opt.text;
+          optEl.dataset.value = opt.value;
+
+          optEl.addEventListener('click', (e) => {
+            e.stopPropagation();
+            select.value = opt.value;
+            valSpan.textContent = opt.text;
+            valSpan.classList.remove('placeholder');
+            wrapper.classList.remove('active');
+            trigger.setAttribute('aria-expanded', 'false');
+
+            // Dispatch live compliance check & validation
+            select.dispatchEvent(new Event('change', { bubbles: true }));
+            select.dispatchEvent(new Event('input', { bubbles: true }));
+
+            // Update selected class
+            optionsContainer.querySelectorAll('.custom-option').forEach(o => o.classList.remove('selected'));
+            optEl.classList.add('selected');
+          });
+
+          optionsContainer.appendChild(optEl);
+        });
+      }
+
+      buildOptions();
+      wrapper.appendChild(optionsContainer);
+
+      // Toggle dropdown open/close
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isActive = wrapper.classList.contains('active');
+        document.querySelectorAll('.custom-select-wrapper.active').forEach(w => {
+          if (w !== wrapper) {
+            w.classList.remove('active');
+            w.querySelector('.custom-select-trigger')?.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        wrapper.classList.toggle('active', !isActive);
+        trigger.setAttribute('aria-expanded', String(!isActive));
+      });
+
+      // Keyboard navigation
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          wrapper.classList.add('active');
+          trigger.setAttribute('aria-expanded', 'true');
+        } else if (e.key === 'Escape') {
+          wrapper.classList.remove('active');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Sync if select value changes programmatically (e.g. Draft restored or reset)
+      select.addEventListener('change', () => {
+        const curOpt = select.options[select.selectedIndex];
+        if (curOpt) {
+          valSpan.textContent = curOpt.text;
+          valSpan.classList.toggle('placeholder', select.value === '');
+          optionsContainer.querySelectorAll('.custom-option').forEach(o => {
+            o.classList.toggle('selected', o.dataset.value === select.value);
+          });
+        }
+      });
+    });
+
+    // Close any open custom select when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.custom-select-wrapper')) {
+        document.querySelectorAll('.custom-select-wrapper.active').forEach(w => {
+          w.classList.remove('active');
+          w.querySelector('.custom-select-trigger')?.setAttribute('aria-expanded', 'false');
+        });
+      }
     });
   }
 });

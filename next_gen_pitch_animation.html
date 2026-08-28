@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Gen Pitch 2026 — Motion & Animation Playground</title>
+  <meta name="description"
+    content="Interactive 3D Orbit wheel engine, marquee physics, particle network, and animation playground for Next Gen Pitch 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0e12;
+      --surface: #14161d;
+      --card: #1c1f2a;
+      --ink: #f0f2f8;
+      --muted: #8891a8;
+      --accent: #ff5a1f;
+      --accent-glow: rgba(255, 90, 31, 0.35);
+      --line: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding-bottom: 80px;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    header {
+      padding: 50px 0 30px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 40px;
+    }
+
+    .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 90, 31, 0.15);
+      border: 1px solid rgba(255, 90, 31, 0.3);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      margin-top: 10px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      transition: 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .card-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .panel-head h2 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    /* 3D Orbit Stage Playground */
+    .orbit-stage-wrapper {
+      position: relative;
+      margin: 20px 0;
+      user-select: none;
+    }
+
+    .orbit-stage {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      perspective: 1200px;
+      perspective-origin: 50% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .orbit-stage:active {
+      cursor: grabbing;
+    }
+
+    .orbit-card {
+      position: absolute;
+      width: clamp(230px, 30vw, 320px);
+      aspect-ratio: 4 / 3;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #181818;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, filter, opacity;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+    }
+
+    .orbit-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .orbit-card.is-active {
+      border-color: rgba(255, 90, 31, 0.8);
+      box-shadow: 0 25px 60px rgba(255, 90, 31, 0.3), 0 10px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .ctrl-btn:hover,
+    .ctrl-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* Marquee Ticker Playground */
+    .marquee {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+      white-space: nowrap;
+      background: #11131a;
+      border-radius: 14px;
+      margin-top: 15px;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: move 18s linear infinite;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .marquee-track span {
+      margin: 0 28px;
+      color: var(--accent);
+    }
+
+    @keyframes move {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Micro Animations Grid */
+    .micro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .micro-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .pulse-ring-demo {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(255, 90, 31, 0.7);
+      animation: pulse-ring 1.8s infinite;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        box-shadow: 0 0 0 0 rgba(255, 90, 31, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 14px rgba(255, 90, 31, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 90, 31, 0);
+      }
+    }
+
+    /* Lightbox Modal Preview */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(16px);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox img {
+      max-width: 85vw;
+      max-height: 80vh;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="particle-canvas"></canvas>
+
+  <header class="container">
+    <div class="header-nav">
+      <div>
+        <div class="badge">IIEC Motion Specification</div>
+        <h1>Next Gen Pitch <span>Animation Engine</span></h1>
+      </div>
+      <a class="back-btn" href="next_gen_pitch.html">← Return to Main Page</a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 01 3D Orbit Carousel Wheel -->
+    <section class="card-panel">
+      <div class="panel-head">
+        <div>
+          <h2>01 / 3D Cylindrical Orbit Wheel Gallery</h2>
+          <p style="color:var(--muted); font-size:14px; margin-top:4px;">Drag, swipe, or click controls to inspect 3D perspective transforms & momentum physics.</p>
+        </div>
+        <div style="font-family:monospace; font-size:13px; color:var(--accent);" id="orbit-status">3D Active • Index: 01 / 06</div>
+      </div>
+
+      <div class="orbit-stage-wrapper">
+        <div class="orbit-stage" id="orbit-stage">
+          <!-- Dynamically populated by JS -->
+        </div>
+
+        <div class="controls-bar">
+          <div class="control-group">
+            <button class="ctrl-btn active" id="btn-autoplay">Pause Auto-Rotate</button>
+            <button class="ctrl-btn" id="btn-prev">← Previous</button>
+            <button class="ctrl-btn" id="btn-next">Next →</button>
+          </div>
+          <div class="control-group">
+            <span style="font-size:13px; color:var(--muted);">Particle Stars:</span>
+            <button class="ctrl-btn" id="btn-particles">Toggle Canvas</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 Marquee Ticker -->
+    <section class="card-panel">
+      <div class="panel-head">
+        <h2>02 / Hardware-Accelerated Marquee Ticker</h2>
+        <p style="color:var(--muted); font-size:14px;">Smooth 60fps keyframe translate ticker animation.</p>
+      </div>
+
+      <div class="marquee">
+        <div class="marquee-track">
+          PITCH • BUILD • CONNECT • SCALE • PITCH • BUILD • CONNECT • SCALE •
+          <span>NEXT GEN PITCH</span> • PITCH • BUILD • CONNECT • SCALE • PITCH • BUILD • CONNECT • SCALE •
+          <span>NEC 2026</span> •
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Micro Animations -->
+    <section class="card-panel">
+      <div class="panel-head">
+        <h2>03 / Micro-Animations & Glow Effects</h2>
+        <p style="color:var(--muted); font-size:14px;">Pulsing indicators, hover cards, and interaction feedback.</p>
+      </div>
+
+      <div class="micro-grid">
+        <div class="micro-card">
+          <div class="pulse-ring-demo"></div>
+          <div style="font-size:14px; font-weight:700;">Live Pulse Ring</div>
+          <div style="font-size:12px; color:var(--muted);">Continuous status aura</div>
+        </div>
+        <div class="micro-card" style="cursor:pointer; transition:.3s ease;" onmouseover="this.style.transform='translateY(-6px)'; this.style.borderColor='var(--accent)';" onmouseout="this.style.transform='none'; this.style.borderColor='var(--line)';">
+          <div style="font-size:24px;">🚀</div>
+          <div style="font-size:14px; font-weight:700;">Hover Lift Physics</div>
+          <div style="font-size:12px; color:var(--muted);">Hover over me to test</div>
+        </div>
+        <div class="micro-card">
+          <div style="font-size:13px; font-family:monospace; background:rgba(255,90,31,0.2); padding:4px 10px; border-radius:6px; color:var(--accent);">
+            NEC2661839
+          </div>
+          <div style="font-size:14px; font-weight:700;">Code Chip Highlight</div>
+          <div style="font-size:12px; color:var(--muted);">Monospace focal token</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lightbox Modal Preview -->
+  <div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+    <img id="lightbox-img" src="" alt="Fullscreen preview" />
+  </div>
+
+  <script>
+    /* Particle Constellation Network Engine */
+    (function () {
+      const canvas = document.getElementById('particle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      let active = true;
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (let i = 0; i < 45; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          size: Math.random() * 2 + 1
+        });
+      }
+
+      function draw() {
+        if (!active) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p, i) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = canvas.width;
+          if (p.x > canvas.width) p.x = 0;
+          if (p.y < 0) p.y = canvas.height;
+          if (p.y > canvas.height) p.y = 0;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 90, 31, 0.7)';
+          ctx.fill();
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const p2 = particles[j];
+            const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+            if (dist < 120) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(255, 90, 31, ${0.2 * (1 - dist / 120)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+
+      document.getElementById('btn-particles').addEventListener('click', () => {
+        active = !active;
+        if (active) draw();
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      });
+    })();
+
+    /* 3D Orbit Carousel Engine */
+    (function () {
+      const samplePhotos = [
+        'assets/Next_Gen_Pitch_2025(Photos)/IMG_2330.webp',
+        'assets/Next_Gen_Pitch_2025(Photos)/IMG_2341.webp',
+        'assets/Next_Gen_Pitch_2025(Photos)/Copy%20of%20IMG_2419.webp',
+        'assets/Next_Gen_Pitch_2025(Photos)/IMG_2418.webp',
+        'assets/Next_Gen_Pitch_2025(Photos)/Copy%20of%20IMG_2455.webp',
+        'assets/Next_Gen_Pitch_2025(Photos)/Copy%20of%20IMG_2468.webp'
+      ];
+
+      const stage = document.getElementById('orbit-stage');
+      const statusEl = document.getElementById('orbit-status');
+      const total = samplePhotos.length;
+      let currentIndex = 0;
+      let targetIndex = 0;
+      let isAutoplay = true;
+      let cards = [];
+
+      samplePhotos.forEach((src, i) => {
+        const card = document.createElement('div');
+        card.className = 'orbit-card';
+        card.innerHTML = `<img src="${src}" alt="Highlight ${i + 1}" />`;
+        card.addEventListener('click', () => {
+          if (Math.round(currentIndex) === i) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('open');
+          } else {
+            targetIndex = i;
+          }
+        });
+        stage.appendChild(card);
+        cards.push(card);
+      });
+
+      function render() {
+        const radius = Math.min(stage.clientWidth * 0.4, 380);
+        cards.forEach((card, i) => {
+          let diff = (i - currentIndex) % total;
+          if (diff > total / 2) diff -= total;
+          if (diff < -total / 2) diff += total;
+
+          const absDiff = Math.abs(diff);
+          const angle = diff * 0.55;
+          const x = Math.sin(angle) * radius;
+          const z = (Math.cos(angle) - 1) * radius;
+          const rotY = -angle * 35;
+          const scale = Math.max(0.7, 1 - absDiff * 0.12);
+          const opacity = Math.max(0.1, 1 - absDiff * 0.3);
+
+          if (absDiff < 0.4) card.classList.add('is-active');
+          else card.classList.remove('is-active');
+
+          card.style.zIndex = Math.round(100 - absDiff * 10);
+          card.style.opacity = opacity.toFixed(2);
+          card.style.transform = `translate3d(${x.toFixed(1)}px, 0px, ${z.toFixed(1)}px) rotateY(${rotY.toFixed(1)}deg) scale(${scale.toFixed(2)})`;
+        });
+      }
+
+      function loop() {
+        if (isAutoplay && Math.abs(targetIndex - currentIndex) < 0.05) {
+          targetIndex += 0.003;
+        }
+        currentIndex += (targetIndex - currentIndex) * 0.08;
+        const norm = ((Math.round(currentIndex) % total) + total) % total;
+        statusEl.textContent = `3D Active • Index: 0${norm + 1} / 0${total}`;
+        render();
+        requestAnimationFrame(loop);
+      }
+      loop();
+
+      document.getElementById('btn-next').addEventListener('click', () => targetIndex += 1);
+      document.getElementById('btn-prev').addEventListener('click', () => targetIndex -= 1);
+      const autoBtn = document.getElementById('btn-autoplay');
+      autoBtn.addEventListener('click', () => {
+        isAutoplay = !isAutoplay;
+        autoBtn.textContent = isAutoplay ? 'Pause Auto-Rotate' : 'Resume Auto-Rotate';
+        autoBtn.classList.toggle('active', isAutoplay);
+      });
+    })();
+  </script>
+
+</body>
+
+</html>
