@@ -1540,9 +1540,8 @@
         <a href="#why">Why Participate</a>
         <a href="#details">Details</a>
         <a href="#gallery">2025 Highlights</a>
-        <a href="#how">How to Register</a>
-        <a href="next_gen_pitch_form">Submit Idea</a>
-        <a class="nav-cta" href="#register">Register →</a>
+        <a href="#closed-notice">Event Status</a>
+        <a class="nav-cta" href="#closed-notice" style="background: #444440;">Registrations Closed</a>
       </div>
     </nav>
   </header>
@@ -1558,14 +1557,14 @@
           the Eureka! 2026 Zonal Rounds.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#register">Register to Participate ↗</a>
-          <a class="btn btn-secondary" href="#details">Explore Event</a>
+          <a class="btn btn-secondary" href="#closed-notice">Registrations Closed</a>
+          <a class="btn btn-primary" href="sih-2026.html">Explore SIH 2026 ↗</a>
         </div>
         <div class="deadline-pill">
-          <span class="dot"></span> Registration closes <b>20 August 2026</b>
+          <span class="dot" style="background: #e04b2b;"></span> Registrations are <b>Closed</b> (Event Concluded on 24 August 2026)
         </div>
         <p class="already-line">
-          Already registered? <a href="next_gen_pitch_form">Submit your startup &amp; pitch deck →</a>
+          Next Gen Pitch 2026 has concluded. Explore <a href="sih-2026.html">CSMU – SIH 2026 Internal Hackathon (Live) →</a>
         </p>
       </div>
 
@@ -1691,7 +1690,6 @@
             <div class="orbit-controls-bar">
               <div class="orbit-info">
                 <span class="orbit-counter" id="orbit-counter">01 / 14</span>
-                <span class="orbit-title" id="orbit-title">Next Gen Pitch 2025 Moments</span>
               </div>
               <div class="orbit-buttons">
                 <button class="orbit-btn btn-autoplay" id="orbit-autoplay-btn" type="button"
@@ -1792,158 +1790,32 @@
     </section>
 
     <section class="container" id="register">
-      <div class="section-head">
+      <div class="section-head" id="closed-notice">
         <div>
-          <div class="section-label">06 / Registration form</div>
-          <h2>Tell us who's pitching.</h2>
+          <div class="section-label">06 / Registration Status</div>
+          <h2>Registrations are closed.</h2>
         </div>
         <p class="section-description">
-          Registration closes on 20 August 2026. Selected teams will be contacted with
-          pitch preparation guidelines.
+          Next Gen Pitch 2026 concluded on 24 August 2026 at Pratapgarh Block Seminar Hall, CSMU.
         </p>
       </div>
 
-      <div class="form-shell">
-        <form id="reg-form" novalidate>
-          <div class="form-grid">
-            <div class="field">
-              <label for="teamName">Team Name <i>*</i></label>
-              <input id="teamName" name="teamName" type="text" placeholder="e.g. Team Innovate" required
-                autocomplete="organization" />
-            </div>
-
-            <div class="field">
-              <label for="memberCount">Number of Members in Team <i>*</i></label>
-              <select id="memberCount" name="memberCount" required>
-                <option value="">Select</option>
-                <option value="1">1 — individual</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-              <span class="hint">Maximum 3 members per team, including the team leader.</span>
-            </div>
-
-            <div class="field">
-              <label for="college">College / Organization Name <i>*</i></label>
-              <input id="college" name="college" type="text" placeholder="e.g. CSMU, Navi Mumbai" required />
-            </div>
-
-            <div class="field">
-              <label for="city">City <i>*</i></label>
-              <input id="city" name="city" type="text" placeholder="e.g. Navi Mumbai" required
-                autocomplete="address-level2" />
-            </div>
-
-            <div class="field full">
-              <label for="eurekaId">Eureka! Team ID <i>*</i></label>
-              <input id="eurekaId" name="eurekaId" type="text"
-                placeholder="Received by email after Eureka! registration" required minlength="5" />
-            </div>
-          </div>
-
-          <!-- Team leader -->
-          <fieldset class="member-block">
-            <legend><span class="member-tag">Leader</span> Team Leader's Details</legend>
-            <div class="form-grid">
-              <div class="field full">
-                <label for="leaderName">Full Name <i>*</i></label>
-                <input id="leaderName" name="leaderName" type="text" placeholder="Full name" required
-                  autocomplete="name" />
-              </div>
-              <div class="field">
-                <label for="leaderEmail">Email Address <i>*</i></label>
-                <input id="leaderEmail" name="leaderEmail" type="email" inputmode="email" placeholder="name@domain.com"
-                  required autocomplete="email" data-validate="email" />
-                <span class="error" data-error-for="leaderEmail"></span>
-              </div>
-              <div class="field">
-                <label for="leaderPhone">Contact Number <i>*</i></label>
-                <input id="leaderPhone" name="leaderPhone" type="tel" inputmode="tel"
-                  placeholder="10-digit mobile number" required autocomplete="tel" data-validate="phone" />
-                <span class="error" data-error-for="leaderPhone"></span>
-              </div>
-            </div>
-          </fieldset>
-
-          <!-- Member 2 — revealed when team size is 2 or 3 -->
-          <fieldset class="member-block" id="member-2" data-member="2" hidden>
-            <legend><span class="member-tag">02</span> Member 2 Details</legend>
-            <div class="form-grid">
-              <div class="field full">
-                <label for="member2Name">Full Name <i>*</i></label>
-                <input id="member2Name" name="member2Name" type="text" placeholder="Full name" />
-              </div>
-              <div class="field">
-                <label for="member2Email">Email Address <i>*</i></label>
-                <input id="member2Email" name="member2Email" type="email" inputmode="email"
-                  placeholder="name@domain.com" data-validate="email" />
-                <span class="error" data-error-for="member2Email"></span>
-              </div>
-              <div class="field">
-                <label for="member2Phone">Contact Number <i>*</i></label>
-                <input id="member2Phone" name="member2Phone" type="tel" inputmode="tel"
-                  placeholder="10-digit mobile number" data-validate="phone" />
-                <span class="error" data-error-for="member2Phone"></span>
-              </div>
-            </div>
-          </fieldset>
-
-          <!-- Member 3 — revealed when team size is 3 -->
-          <fieldset class="member-block" id="member-3" data-member="3" hidden>
-            <legend><span class="member-tag">03</span> Member 3 Details</legend>
-            <div class="form-grid">
-              <div class="field full">
-                <label for="member3Name">Full Name <i>*</i></label>
-                <input id="member3Name" name="member3Name" type="text" placeholder="Full name" />
-              </div>
-              <div class="field">
-                <label for="member3Email">Email Address <i>*</i></label>
-                <input id="member3Email" name="member3Email" type="email" inputmode="email"
-                  placeholder="name@domain.com" data-validate="email" />
-                <span class="error" data-error-for="member3Email"></span>
-              </div>
-              <div class="field">
-                <label for="member3Phone">Contact Number <i>*</i></label>
-                <input id="member3Phone" name="member3Phone" type="tel" inputmode="tel"
-                  placeholder="10-digit mobile number" data-validate="phone" />
-                <span class="error" data-error-for="member3Phone"></span>
-              </div>
-            </div>
-          </fieldset>
-
-          <p class="member-hint" id="member-hint">Select your team size above to add each member's details.</p>
-
-          <label class="consent" for="consent">
-            <input id="consent" name="consent" type="checkbox" value="Yes" required />
-            <span>I confirm that I have read and agreed to all the details and instructions mentioned above.
-              <i>*</i></span>
-          </label>
-
-          <div class="submit-row">
-            <button class="btn btn-primary" type="submit" id="reg-submit">Submit Registration ↗</button>
-            <p class="status" id="reg-status" role="status" aria-live="polite"></p>
-          </div>
-
-          <p class="form-note">
-            <b>Final note:</b> Once you submit this form, our team will review your details.
-            You can share your startup information and pitch deck straight away using the
-            panel below — no need to wait for our reply.
-          </p>
-        </form>
-      </div>
-
-      <!-- Stage 2 entry point for teams who already registered above -->
-      <div class="already-card" id="submit-idea">
-        <div>
-          <div class="already-badge">Already registered?</div>
-          <h3>Submit your startup &amp; pitch deck</h3>
-          <p>
-            If you have completed the registration above and received your
-            <b>Eureka! Team ID</b>, go ahead and send us your idea and pitch deck. You do not
-            have to wait for a reply to start.
-          </p>
+      <div class="form-shell" style="text-align: center; padding: 48px 24px;">
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: #eef9f2; color: #157f4a; display: grid; place-items: center; font-size: 28px; margin: 0 auto 18px;">
+          ✓
         </div>
-        <a class="btn btn-primary" href="next_gen_pitch_form">Submit Your Idea ↗</a>
+        <h3 style="font-size: 24px; font-weight: 900; letter-spacing: -.03em; margin-bottom: 10px;">Next Gen Pitch 2026 Successfully Concluded!</h3>
+        <p style="color: var(--muted); font-size: 15px; max-width: 600px; margin: 0 auto 24px; line-height: 1.6;">
+          Thank you to all participating student founders, innovative teams, jury panels, and mentors. Registrations are now closed and shortlisted teams for the Eureka! 2026 Zonal Rounds have been notified.
+        </p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="sih-2026.html" class="btn btn-primary">
+            <span>Explore CSMU – SIH 2026 (Live Now) ↗</span>
+          </a>
+          <a href="activities.html" class="btn btn-secondary">
+            <span>View All IIEC Activities</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -2341,7 +2213,6 @@
       function updateMeta(idx) {
         var normalized = ((idx % total) + total) % total;
         if (counterEl) counterEl.textContent = pad(normalized + 1) + ' / ' + pad(total);
-        if (titleEl) titleEl.textContent = 'Next Gen Pitch 2025 Moments';
       }
 
       function render3DOrbit() {
