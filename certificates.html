@@ -59,6 +59,7 @@
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
 
   <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/mobile-nav.css">
   <link rel="stylesheet" href="css/style.css">
 
   <!-- External Libraries for PDF -->
@@ -66,25 +67,104 @@
   <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4/dist/fontkit.umd.min.js"></script>
 
   <!-- Page-specific styles -->
+  <link rel="stylesheet" href="css/iiec-loader.css" />
+  <link rel="stylesheet" href="css/mobile-nav.css" />
   <link rel="stylesheet" href="css/certificates.css" />
-<meta property="og:locale" content="en_IN" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@iiec_csmu" />
-	<meta name="twitter:creator" content="@iiec_csmu" />
-	<script type="application/ld+json">
-	{
-		"@context": "https://schema.org",
-		"@type": "WebPage",
-		"name": "Certificates | IIEC",
-		"description": "View and verify certificates issued by IIEC."
-	}
-	</script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58G63L54"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Top Scroll Reading Hairline -->
+  <div id="iiec-top-hairline"
+    style="position: fixed; top: 0; left: 0; height: 3px; background: var(--accent, #ff5a1f); width: 0%; z-index: 99999; transition: width 0.1s ease-out;"
+    aria-hidden="true"></div>
+
+  <!-- IIEC Customized Circuit Chip Preloader -->
+  <div class="page-loader" id="page-loader" aria-hidden="true">
+    <div class="main-container">
+      <div class="loader">
+        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1c1d24"></stop>
+              <stop offset="100%" stop-color="#0c0d12"></stop>
+            </linearGradient>
+            <linearGradient id="pinGradient" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#ffb703"></stop>
+              <stop offset="50%" stop-color="#ff7b4c"></stop>
+              <stop offset="100%" stop-color="#8a3000"></stop>
+            </linearGradient>
+            <linearGradient id="iiecTextGradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffffff"></stop>
+              <stop offset="100%" stop-color="#ffb703"></stop>
+            </linearGradient>
+          </defs>
+          <g id="traces">
+            <path d="M100 100 H200 V210 H326" class="trace-bg"></path>
+            <path d="M100 100 H200 V210 H326" class="trace-flow orange"></path>
+            <path d="M80 180 H180 V230 H326" class="trace-bg"></path>
+            <path d="M80 180 H180 V230 H326" class="trace-flow cyan"></path>
+            <path d="M60 260 H150 V250 H326" class="trace-bg"></path>
+            <path d="M60 260 H150 V250 H326" class="trace-flow gold"></path>
+            <path d="M100 350 H200 V270 H326" class="trace-bg"></path>
+            <path d="M100 350 H200 V270 H326" class="trace-flow flame"></path>
+            <path d="M700 90 H560 V210 H474" class="trace-bg"></path>
+            <path d="M700 90 H560 V210 H474" class="trace-flow cyan"></path>
+            <path d="M740 160 H580 V230 H474" class="trace-bg"></path>
+            <path d="M740 160 H580 V230 H474" class="trace-flow gold"></path>
+            <path d="M720 250 H590 V250 H474" class="trace-bg"></path>
+            <path d="M720 250 H590 V250 H474" class="trace-flow orange"></path>
+            <path d="M680 340 H570 V270 H474" class="trace-bg"></path>
+            <path d="M680 340 H570 V270 H474" class="trace-flow flame"></path>
+          </g>
+          <rect x="328" y="185" width="144" height="110" rx="18" ry="18" fill="url(#chipGradient)" stroke="#ff5a1f"
+            stroke-width="1.8" stroke-opacity="0.85" filter="drop-shadow(0 0 16px rgba(255, 90, 31, 0.45))"></rect>
+          <rect x="334" y="191" width="132" height="98" rx="12" ry="12" fill="none" stroke="rgba(255, 255, 255, 0.1)"
+            stroke-width="1"></rect>
+          <g>
+            <rect x="320" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="225" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="245" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+          </g>
+          <g>
+            <rect x="472" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="225" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="245" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+          </g>
+          <text x="400" y="233" font-family="'Inter', -apple-system, sans-serif" font-size="24" font-weight="900"
+            letter-spacing="2.5" fill="url(#iiecTextGradient)" text-anchor="middle"
+            alignment-baseline="middle">IIEC</text>
+          <text x="400" y="258" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="800"
+            letter-spacing="2" fill="#ff7b4c" text-anchor="middle" alignment-baseline="middle">INNOVATION CELL</text>
+          <g>
+            <circle cx="100" cy="100" r="7" fill="#1c1d24" stroke="#ff5a1f" stroke-width="1.5"></circle>
+            <circle cx="100" cy="100" r="3" fill="#ff5a1f"></circle>
+            <circle cx="80" cy="180" r="7" fill="#1c1d24" stroke="#00ccff" stroke-width="1.5"></circle>
+            <circle cx="80" cy="180" r="3" fill="#00ccff"></circle>
+            <circle cx="60" cy="260" r="7" fill="#1c1d24" stroke="#ffb703" stroke-width="1.5"></circle>
+            <circle cx="60" cy="260" r="3" fill="#ffb703"></circle>
+            <circle cx="100" cy="350" r="7" fill="#1c1d24" stroke="#ff7b4c" stroke-width="1.5"></circle>
+            <circle cx="100" cy="350" r="3" fill="#ff7b4c"></circle>
+          </g>
+          <g>
+            <circle cx="700" cy="90" r="7" fill="#1c1d24" stroke="#00ccff" stroke-width="1.5"></circle>
+            <circle cx="700" cy="90" r="3" fill="#00ccff"></circle>
+            <circle cx="740" cy="160" r="7" fill="#1c1d24" stroke="#ffb703" stroke-width="1.5"></circle>
+            <circle cx="740" cy="160" r="3" fill="#ffb703"></circle>
+            <circle cx="720" cy="250" r="7" fill="#1c1d24" stroke="#ff5a1f" stroke-width="1.5"></circle>
+            <circle cx="720" cy="250" r="3" fill="#ff5a1f"></circle>
+            <circle cx="680" cy="340" r="7" fill="#1c1d24" stroke="#ff7b4c" stroke-width="1.5"></circle>
+            <circle cx="680" cy="340" r="3" fill="#ff7b4c"></circle>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
 
   <!-- Particle Canvas -->
   <canvas id="particle-canvas" aria-hidden="true"></canvas>
@@ -117,7 +197,7 @@
           <span>IIEC</span>
         </a>
 
-        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" type="button">
           <span></span>
           <span></span>
           <span></span>
@@ -133,6 +213,73 @@
         </div>
       </div>
     </nav>
+
+    <!-- Mobile Navigation Drawer (Same as Team Page) -->
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+      <div class="mobile-nav-panel">
+        <div class="mobile-nav-panel-top">
+          <div class="brand">
+            <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" width="32" height="32" />
+            <span>IIEC</span>
+          </div>
+          <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close Menu">
+            ✕
+          </button>
+        </div>
+
+        <div class="mobile-nav-links">
+          <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+            <span class="link-num">01</span>
+            <span class="link-text">Home</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+            <span class="link-num">02</span>
+            <span class="link-text">About</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+            <span class="link-num">03</span>
+            <span class="link-text">Team</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+            <span class="link-num">04</span>
+            <span class="link-text">Activities</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+            <span class="link-num">05</span>
+            <span class="link-text">Blog</span>
+            <span class="link-arrow">→</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-highlight-box">
+          <div class="mobile-highlight-tag">
+            <span class="pulse-dot"></span> Active Hackathon
+          </div>
+          <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
+          <p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
+          <a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
+            <span>Register Team ↗</span>
+          </a>
+        </div>
+
+        <div class="mobile-nav-bottom">
+          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="mobile-join-link">
+            <span>Apply to Join IIEC Core Team</span>
+            <span>→</span>
+          </a>
+          <div class="mobile-socials">
+            <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="mailto:ecell-student-rep@csmu.ac.in">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <main>
       <!-- Hero Section -->
@@ -564,5 +711,7 @@
         .replace(/'/g, '&#39;');
     }
   </script>
+  <script src="js/iiec-loader.js"></script>
+  <script src="js/mobile-nav.js"></script>
 </body>
 </html>

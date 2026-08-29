@@ -33,24 +33,23 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <meta name="theme-color" content="#05070f">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="format-detection" content="telephone=no">
 
   <!-- SEO Meta Tags -->
-  <title>Our Team | IIEC - Incubation, Innovation & Entrepreneurship Cell</title>
+  <title>Our Team | IIEC — Incubation, Innovation &amp; Entrepreneurship Cell</title>
   <meta name="description"
-    content="Meet the passionate team behind IIEC. Where Vision Drives Venture — driving innovation, fostering startups, and building entrepreneurs at Chhatrapati...">
+    content="Meet the passionate student leadership team behind IIEC. Where Vision Drives Venture — driving innovation, incubation, and student startups at CSMU, Navi Mumbai.">
   <meta name="keywords"
-    content="IIEC team, E-Cell CSMU team members, student leaders entrepreneurship, innovation cell members, CSMU student organization leaders, college startup founders, student entrepreneur India, team IIEC Navi Mumbai, entrepreneurship cell core team, university club leadership, student innovators Maharashtra, student founder network, campus entrepreneurship, leadership experience college, portfolio heads IIEC, technical team college club, creative design team, PR sponsorship college, production social media team, Mohd Monish president, Geet Sharma vice president, college club team India">
+    content="IIEC team, E-Cell CSMU team members, student leaders entrepreneurship, innovation cell members, CSMU student organization leaders, college startup founders, student entrepreneur India, team IIEC Navi Mumbai, Mohd Monish president, Geet Sharma vice president, Shivam Sah general secretary, Shivansh Mishra secretary, Abu Hujaifa treasurer">
   <meta name="author" content="IIEC CSMU">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Meet Our Team | IIEC - CSMU">
+  <meta property="og:title" content="Meet Our Team | IIEC — CSMU">
   <meta property="og:description"
-    content="Where Vision Drives Venture. Meet the passionate team driving innovation and entrepreneurship at CSMU.">
+    content="Where Vision Drives Venture. Meet the passionate student leaders driving innovation and entrepreneurship at CSMU.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://iiec.in/team">
   <meta property="og:image" content="https://iiec.in/assets/og-image.webp">
@@ -58,31 +57,32 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Meet Our Team | IIEC - CSMU">
+  <meta name="twitter:title" content="Meet Our Team | IIEC — CSMU">
   <meta name="twitter:description"
-    content="Where Vision Drives Venture. Meet the passionate team driving innovation and entrepreneurship at CSMU.">
+    content="Where Vision Drives Venture. Meet the passionate student leaders driving innovation and entrepreneurship at CSMU.">
   <meta name="twitter:image" content="https://iiec.in/assets/og-image.webp">
+  <meta name="twitter:site" content="@iiec_csmu">
+  <meta name="twitter:creator" content="@iiec_csmu">
 
   <!-- Canonical -->
   <link rel="canonical" href="https://iiec.in/team">
-  <link rel="help" type="text/plain" href="https://iiec.in/llms.txt" title="LLM Information">
 
-  <!-- Preconnects -->
+  <!-- Preconnects & Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- Font -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="./assets/favicon.webp">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Modern Visual Design System -->
+  <link rel="stylesheet" href="css/mobile-nav.css">
   <link rel="stylesheet" href="css/team.css">
+  <!-- Unique IIEC Kinetic Loading Bar System -->
+  <link rel="stylesheet" href="css/iiec-loader.css">
 
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -104,19 +104,6 @@
     ]
   }
   </script>
-
-  <!-- Page Loader Script -->
-  <script>
-    document.documentElement.classList.add('js-loading');
-    window.addEventListener('load', () => {
-      document.documentElement.classList.remove('js-loading');
-      document.documentElement.classList.add('js-loaded');
-    });
-  </script>
-  <meta property="og:locale" content="en_IN" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@iiec_csmu" />
-  <meta name="twitter:creator" content="@iiec_csmu" />
 </head>
 
 <body>
@@ -125,764 +112,1207 @@
       style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Page Loader -->
+  <!-- Minimalist Top Reading Hairline -->
+  <div class="iiec-top-hairline" id="iiec-top-hairline" aria-hidden="true"></div>
+
+  <!-- IIEC Customized Circuit Chip Preloader -->
   <div class="page-loader" id="page-loader" aria-hidden="true">
-    <div class="loader-content">
-      <div class="loader-logo">
-        <img src="./assets/logos/iiec-logo.webp" alt="IIEC" width="80" height="80" loading="eager" decoding="async">
+    <div class="main-container">
+      <div class="loader">
+        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Dark Silicon IC Body Gradient -->
+            <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1c1d24"></stop>
+              <stop offset="100%" stop-color="#0c0d12"></stop>
+            </linearGradient>
+
+            <!-- IIEC Gold & Copper IC Pins Gradient -->
+            <linearGradient id="pinGradient" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#ffb703"></stop>
+              <stop offset="50%" stop-color="#ff7b4c"></stop>
+              <stop offset="100%" stop-color="#8a3000"></stop>
+            </linearGradient>
+
+            <!-- IIEC Brand Typography Gradient -->
+            <linearGradient id="iiecTextGradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffffff"></stop>
+              <stop offset="100%" stop-color="#ffb703"></stop>
+            </linearGradient>
+          </defs>
+
+          <!-- Circuit PCB Traces with IIEC Flame & Cyan Palette -->
+          <g id="traces">
+            <!-- Left Side Traces -->
+            <path d="M100 100 H200 V210 H326" class="trace-bg"></path>
+            <path d="M100 100 H200 V210 H326" class="trace-flow orange"></path>
+
+            <path d="M80 180 H180 V230 H326" class="trace-bg"></path>
+            <path d="M80 180 H180 V230 H326" class="trace-flow cyan"></path>
+
+            <path d="M60 260 H150 V250 H326" class="trace-bg"></path>
+            <path d="M60 260 H150 V250 H326" class="trace-flow gold"></path>
+
+            <path d="M100 350 H200 V270 H326" class="trace-bg"></path>
+            <path d="M100 350 H200 V270 H326" class="trace-flow flame"></path>
+
+            <!-- Right Side Traces -->
+            <path d="M700 90 H560 V210 H474" class="trace-bg"></path>
+            <path d="M700 90 H560 V210 H474" class="trace-flow cyan"></path>
+
+            <path d="M740 160 H580 V230 H474" class="trace-bg"></path>
+            <path d="M740 160 H580 V230 H474" class="trace-flow gold"></path>
+
+            <path d="M720 250 H590 V250 H474" class="trace-bg"></path>
+            <path d="M720 250 H590 V250 H474" class="trace-flow orange"></path>
+
+            <path d="M680 340 H570 V270 H474" class="trace-bg"></path>
+            <path d="M680 340 H570 V270 H474" class="trace-flow flame"></path>
+          </g>
+
+          <!-- Central Silicon IC Chip -->
+          <rect
+            x="328"
+            y="185"
+            width="144"
+            height="110"
+            rx="18"
+            ry="18"
+            fill="url(#chipGradient)"
+            stroke="#ff5a1f"
+            stroke-width="1.8"
+            stroke-opacity="0.85"
+            filter="drop-shadow(0 0 16px rgba(255, 90, 31, 0.45))"
+          ></rect>
+
+          <!-- Inner Inset Frame -->
+          <rect
+            x="334"
+            y="191"
+            width="132"
+            height="98"
+            rx="12"
+            ry="12"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.1)"
+            stroke-width="1"
+          ></rect>
+
+          <!-- Left Pins (Gold/Copper) -->
+          <g>
+            <rect x="320" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="225" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="245" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+          </g>
+
+          <!-- Right Pins (Gold/Copper) -->
+          <g>
+            <rect x="472" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="225" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="245" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+          </g>
+
+          <!-- Official IIEC Brand Text Inside Chip -->
+          <text
+            x="400"
+            y="233"
+            font-family="'Inter', -apple-system, sans-serif"
+            font-size="24"
+            font-weight="900"
+            letter-spacing="2.5"
+            fill="url(#iiecTextGradient)"
+            text-anchor="middle"
+            alignment-baseline="middle"
+          >
+            IIEC
+          </text>
+
+          <!-- Innovation Cell Tagline Inside Chip -->
+          <text
+            x="400"
+            y="258"
+            font-family="'Inter', -apple-system, sans-serif"
+            font-size="8.5"
+            font-weight="800"
+            letter-spacing="2"
+            fill="#ff7b4c"
+            text-anchor="middle"
+            alignment-baseline="middle"
+          >
+            INNOVATION CELL
+          </text>
+
+          <!-- Terminal Solder Pad Nodes (Left) -->
+          <g>
+            <circle cx="100" cy="100" r="7" fill="#1c1d24" stroke="#ff5a1f" stroke-width="1.5"></circle>
+            <circle cx="100" cy="100" r="3" fill="#ff5a1f"></circle>
+
+            <circle cx="80" cy="180" r="7" fill="#1c1d24" stroke="#00ccff" stroke-width="1.5"></circle>
+            <circle cx="80" cy="180" r="3" fill="#00ccff"></circle>
+
+            <circle cx="60" cy="260" r="7" fill="#1c1d24" stroke="#ffb703" stroke-width="1.5"></circle>
+            <circle cx="60" cy="260" r="3" fill="#ffb703"></circle>
+
+            <circle cx="100" cy="350" r="7" fill="#1c1d24" stroke="#ff7b4c" stroke-width="1.5"></circle>
+            <circle cx="100" cy="350" r="3" fill="#ff7b4c"></circle>
+          </g>
+
+          <!-- Terminal Solder Pad Nodes (Right) -->
+          <g>
+            <circle cx="700" cy="90" r="7" fill="#1c1d24" stroke="#00ccff" stroke-width="1.5"></circle>
+            <circle cx="700" cy="90" r="3" fill="#00ccff"></circle>
+
+            <circle cx="740" cy="160" r="7" fill="#1c1d24" stroke="#ffb703" stroke-width="1.5"></circle>
+            <circle cx="740" cy="160" r="3" fill="#ffb703"></circle>
+
+            <circle cx="720" cy="250" r="7" fill="#1c1d24" stroke="#ff5a1f" stroke-width="1.5"></circle>
+            <circle cx="720" cy="250" r="3" fill="#ff5a1f"></circle>
+
+            <circle cx="680" cy="340" r="7" fill="#1c1d24" stroke="#ff7b4c" stroke-width="1.5"></circle>
+            <circle cx="680" cy="340" r="3" fill="#ff7b4c"></circle>
+          </g>
+        </svg>
       </div>
-      <div class="loader-bar-container">
-        <div class="loader-dots-wrapper">
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-        </div>
-        <div class="loader-info-row">
-          <div class="loader-percentage">
-            <span class="loader-percentage-num" id="loader-percent">0</span>
-            <span class="loader-percentage-symbol">%</span>
-          </div>
-          <span class="loader-divider">•</span>
-          <div class="loader-text">Where Vision Drives Venture</div>
-        </div>
-        <!-- Hidden element for script compatibility -->
-        <div id="loader-bar" style="display:none;"></div>
+      <div class="iiec-circuit-caption">
+        <span>IIEC</span> · WHERE VISION DRIVES VENTURE · <span>CSMU</span>
       </div>
     </div>
   </div>
 
-  <!-- Skip Link -->
-  <a href="#main-content" class="skip-link"
-    style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;z-index:99999;">Skip to main
-    content</a>
-  <style>
-    .skip-link:focus {
-      position: fixed !important;
-      left: 50% !important;
-      top: 1rem !important;
-      transform: translateX(-50%);
-      width: auto !important;
-      height: auto !important;
-      padding: 1rem 2rem;
-      background: var(--color-accent);
-      color: var(--color-base);
-      font-weight: 600;
-      border-radius: var(--radius-lg);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-  </style>
+  <!-- Top Recruitment Announcement Bar -->
+  <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
+    <span class="recruitment-topbar-badge">
+      <span class="pulse-dot" style="background: #ff7b4c;"></span>
+      Recruitment Open
+    </span>
+    <span>IIEC Core Team &amp; Department Member Recruitments Are Live!</span>
+    <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
+      <span>Apply on join.iiec.in</span>
+      <span>→</span>
+    </a>
+  </aside>
 
-  <div class="page-wrapper">
-    <!-- Recruitment Top Announcement Bar -->
-    <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
-      <span class="recruitment-topbar-badge">
-        <span class="recruitment-topbar-dot"></span>
-        Recruitment Open
-      </span>
-      <span>IIEC Core Team & Department Member Recruitments Are Live!</span>
-      <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
-        <span>Apply on join.iiec.in</span>
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </aside>
-
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="container">
-        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
-          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager"
-            decoding="async">
+  <!-- Sticky Navbar Header -->
+  <header class="nav-header">
+    <div class="container">
+      <nav class="main-nav" role="navigation" aria-label="Main Navigation">
+        <a href="index.html" class="brand" aria-label="IIEC Home">
+          <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" />
           <span>IIEC</span>
         </a>
 
-        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <div class="nav-links" role="menu">
-          <a href="index.html" class="nav-link" role="menuitem">Home</a>
-          <a href="about.html" class="nav-link" role="menuitem">About</a>
-          <a href="team.html" class="nav-link active" role="menuitem" aria-current="page">Team</a>
+        <div class="nav-right" role="menubar">
+          <a href="index.html" role="menuitem">Home</a>
+          <a href="about.html" role="menuitem">About</a>
+          <a href="team.html" class="active" role="menuitem" aria-current="page">Team</a>
           <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-          <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
-          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
+          <a href="blog.html" role="menuitem">Blog</a>
+          <a href="sih-2026.html" class="nav-cta" role="menuitem">
+            <span class="pulse-dot"></span>
+            SIH 2026 Live →
+          </a>
         </div>
-      </div>
-    </nav>
 
-    <main id="main-content">
+        <!-- Mobile Hamburger Trigger Button -->
+        <button class="hamburger-btn" id="hamburger-btn" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span class="hamburger-icon">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span>
+          </span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-      <!-- Hero Section with Animated Background -->
-      <section class="team-hero">
-        <div class="team-hero-bg">
-          <div class="hero-orb hero-orb-1"></div>
-          <div class="hero-orb hero-orb-2"></div>
-          <div class="hero-orb hero-orb-3"></div>
-        </div>
-        <div class="container">
-          <div class="team-hero-content" data-animate="blur">
-            <span class="team-hero-label">THE FORCE BEHIND IIEC</span>
-            <h1 class="team-hero-title">
-              Meet the <span class="gradient-text">Innovators</span>
-            </h1>
-            <p class="team-hero-subtitle">
-              Where Vision Drives Venture — Passionate student leaders, innovators, and startup founders building the
-              future of entrepreneurship at Chhatrapati Shivaji Maharaj University, Navi Mumbai
-            </p>
-            <div class="team-stats">
-              <div class="stat-item" data-animate="fade-up" data-animate-delay="1">
-                <span class="stat-number">4</span>
-                <span class="stat-label">Core Leaders</span>
-              </div>
-              <div class="stat-divider"></div>
-              <div class="stat-item" data-animate="fade-up" data-animate-delay="2">
-                <span class="stat-number">7</span>
-                <span class="stat-label">Portfolios</span>
-              </div>
-              <div class="stat-divider"></div>
-              <div class="stat-item" data-animate="fade-up" data-animate-delay="3">
-                <span class="stat-number">15</span>
-                <span class="stat-label">Portfolio Heads</span>
-              </div>
-              <div class="stat-divider"></div>
-              <div class="stat-item" data-animate="fade-up" data-animate-delay="4">
-                <span class="stat-number">30+</span>
-                <span class="stat-label">Members</span>
-              </div>
-            </div>
+  <main id="main-content">
+    <!-- ================================================================
+         HERO SECTION: Team Leadership Hub & Stats
+         ================================================================ -->
+    <section class="container team-hero-section">
+      <div class="team-hero-header">
+        <div class="team-hero-left">
+          <div class="eyebrow">
+            <span class="pulse-dot"></span> THE FORCE BEHIND IIEC · LEADERSHIP
           </div>
-        </div>
-      </section>
-
-      <!-- President Spotlight Section -->
-      <section class="section president-spotlight">
-        <div class="container">
-          <div class="spotlight-wrapper" data-animate="scale">
-            <div class="spotlight-card">
-              <div class="spotlight-visual">
-                <div class="spotlight-ring"></div>
-                <div class="spotlight-ring spotlight-ring-2"></div>
-                <div class="spotlight-image">
-                  <img src="./assets/team/president.webp"
-                    alt="Mohd Monish - President of IIEC Entrepreneurship Cell CSMU Navi Mumbai" width="300"
-                    height="300" loading="lazy" decoding="async"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                  <div class="spotlight-avatar" style="display:none;">MM</div>
-                </div>
-                <div class="spotlight-badge">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm14 3c0 .6-.4 1-1 1H6c-.6 0-1-.4-1-1v-1h14v1z" />
-                  </svg>
-                  President
-                </div>
-              </div>
-              <div class="spotlight-content">
-                <h2 class="spotlight-name">Mohd Monish</h2>
-                <p class="spotlight-title">President, IIEC</p>
-                <p class="spotlight-bio">
-                  Leading IIEC's mission to foster incubation, innovation, and entrepreneurship among students at CSMU.
-                  Dedicated to creating startup opportunities, building a thriving student founder network, and
-                  developing India's next generation of entrepreneurs at Navi Mumbai.
-                </p>
-                <div class="spotlight-actions">
-                  <a href="https://linkedin.com/in/mohdmonishh" class="spotlight-linkedin" target="_blank"
-                    rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                    Connect on LinkedIn
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Core Leadership Bento Grid -->
-      <section class="section core-leadership">
-        <div class="container">
-          <header class="section-header" data-animate="fade-up">
-            <span class="section-label">LEADERSHIP</span>
-            <h2 class="section-title">Core <span class="highlight">Team</span></h2>
-          </header>
-
-          <div class="bento-grid">
-            <!-- Vice President -->
-            <div class="bento-card bento-vp" data-animate="scale" data-animate-delay="1">
-              <div class="bento-glow"></div>
-              <div class="bento-content">
-                <div class="bento-image">
-                  <img src="./assets/team/vice-president.webp" alt="Geet Sharma - Vice President IIEC CSMU" width="200"
-                    height="200" loading="lazy" decoding="async"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                  <div class="bento-avatar" style="display:none;">VP</div>
-                </div>
-                <div class="bento-info">
-                  <span class="bento-role">Vice President</span>
-                  <h3 class="bento-name">Geet Sharma</h3>
-                  <p class="bento-desc">Supporting leadership, driving strategic initiatives, and building the
-                    innovation ecosystem</p>
-                </div>
-                <a href="https://linkedin.com/in/geetsharrma" class="bento-linkedin" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Secretary -->
-            <div class="bento-card bento-secretary" data-animate="scale" data-animate-delay="2">
-              <div class="bento-glow"></div>
-              <div class="bento-content">
-                <div class="bento-image">
-                  <img src="./assets/team/secretary.webp" alt="Shivansh Mishra - Secretary IIEC CSMU" width="200"
-                    height="200" loading="lazy" decoding="async"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                  <div class="bento-avatar" style="display:none;">S</div>
-                </div>
-                <div class="bento-info">
-                  <span class="bento-role">Secretary</span>
-                  <h3 class="bento-name">Shivansh Mishra</h3>
-                  <p class="bento-desc">Managing operations and communications</p>
-                </div>
-                <a href="https://www.linkedin.com/in/shivansh-mishra-476455381/" class="bento-linkedin" target="_blank"
-                  rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Treasurer -->
-            <div class="bento-card bento-treasurer" data-animate="scale" data-animate-delay="3">
-              <div class="bento-glow"></div>
-              <div class="bento-content">
-                <div class="bento-image">
-                  <img src="./assets/team/treasurer.webp" alt="Abu Hujaifa - Treasurer IIEC CSMU" width="200"
-                    height="200" loading="lazy" decoding="async"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                  <div class="bento-avatar" style="display:none;">T</div>
-                </div>
-                <div class="bento-info">
-                  <span class="bento-role">Treasurer</span>
-                  <h3 class="bento-name">Abu Hujaifa</h3>
-                  <p class="bento-desc">Overseeing finances and resource allocation</p>
-                </div>
-                <a href="javascript:void(0)" class="bento-linkedin" target="_blank" rel="noopener">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Portfolio Heads Section -->
-      <section class="section portfolio-section">
-        <div class="container">
-          <header class="section-header" data-animate="fade-up">
-            <span class="section-label">DEPARTMENTS</span>
-            <h2 class="section-title">Portfolio <span class="highlight">Heads</span></h2>
-            <p class="section-subtitle">Specialized teams driving IIEC's verticals</p>
-          </header>
-
-          <div class="portfolio-bento-grid">
-
-            <!-- Recruitment Announcement Notice -->
-            <div class="portfolio-recruitment-card" data-animate="scale"
-              style="grid-column: 1 / -1; padding: 3.5rem 2rem; text-align: center; background: rgba(18, 24, 38, 0.75); border: 1px solid rgba(255, 215, 0, 0.25); border-radius: var(--radius-xl, 24px); position: relative; overflow: hidden; backdrop-filter: blur(16px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);">
-              <div
-                style="position: absolute; top: -40%; left: 50%; transform: translateX(-50%); width: 400px; height: 300px; background: radial-gradient(circle, rgba(var(--color-accent-rgb, 255, 215, 0), 0.12) 0%, transparent 70%); pointer-events: none;">
-              </div>
-
-              <div
-                style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; background: rgba(78, 205, 196, 0.15); border: 1px solid rgba(78, 205, 196, 0.4); border-radius: 50px; color: #4ECDC4; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem;">
-                <span
-                  style="width: 8px; height: 8px; background: #4ECDC4; border-radius: 50%; display: inline-block; box-shadow: 0 0 10px #4ECDC4;"></span>
-                Recruitment Open
-              </div>
-
-              <h3
-                style="font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 700; color: #ffffff; margin-bottom: 1rem; line-height: 1.2;">
-                New Team Will Be Announced <span class="gradient-text">Shortly</span>
-              </h3>
-
-              <p
-                style="font-size: clamp(1rem, 2vw, 1.15rem); color: var(--color-text-muted, #94a3b8); max-width: 620px; margin: 0 auto 2rem; line-height: 1.6;">
-                Recruiting process is currently live! If you want to be a part of the IIEC leadership team, apply today.
-                <br>
-                Apply as soon as possible because there are limited slots and the last date to apply is 15th August
-                2026. <b>Do not miss this opprtunity.</b>
-              </p>
-
-              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="btn btn-primary btn-large"
-                style="display: inline-flex; align-items: center; gap: 0.75rem;">
-                <span>Click Here to Apply</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20"
-                  height="20" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-
-            <!--
-            ==================================================
-            PORTFOLIO HEADS (COMMENTED OUT FOR RECRUITMENT PHASE)
-            ==================================================
-            
-            <!-- Events & Operations
-            <div class="portfolio-card" data-animate="scale" data-animate-delay="1" style="--card-accent: #FF6B6B;">
-              <div class="portfolio-card-glow"></div>
-              <div class="portfolio-card-content">
-                <div class="portfolio-card-header">
-                  <div class="portfolio-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div class="portfolio-title-wrap">
-                    <span class="portfolio-role-badge">Events & Operations</span>
-                    <p class="portfolio-desc">Planning and executing impactful college events, hackathons, workshops, and operational excellence for the entrepreneurship community</p>
-                  </div>
-                </div>
-                <div class="portfolio-head-section">
-                  <div class="portfolio-head-image">
-                    <img src="./assets/team/events-operation-head.webp" alt="Events Head" width="200" height="200" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="portfolio-head-avatar" style="display:none;">EO</div>
-                  </div>
-                  <div class="portfolio-head-info">
-                    <h3 class="portfolio-head-name">Shivam Sah</h3>
-                    <span class="portfolio-head-title">Head</span>
-                  </div>
-                  <a href="https://linkedin.com/in/shivamsah26" class="portfolio-linkedin" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
-                <div class="portfolio-joint-heads">
-                  <span class="jh-label">Joint Heads</span>
-                  <div class="jh-list">
-                    <div class="jh-member">
-                      <div class="jh-img"><img src="./assets/team/events-operation-jh-1.webp" alt="Joint Head" width="80" height="80" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.textContent='JH';"></div>
-                      <span class="jh-name">Swayam Kumar</span>
-                      <a href="https://linkedin.com/in/swayam-kumar-swain-6ab052296" class="jh-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                    </div>
-                    <div class="jh-member">
-                      <div class="jh-img"><img src="./assets/team/events-operation-jh-2.webp" alt="Joint Head" width="80" height="80" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.textContent='JH';"></div>
-                      <span class="jh-name">Sumit Karkun</span>
-                      <a href="https://www.linkedin.com/in/sumeet-karkun-11660a3a5" class="jh-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            -->
-
-            <!-- Production & Social Media
-            <div class="portfolio-card" data-animate="scale" data-animate-delay="2" style="--card-accent: #4ECDC4;">
-              <div class="portfolio-card-glow"></div>
-              <div class="portfolio-card-content">
-                <div class="portfolio-card-header">
-                  <div class="portfolio-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div class="portfolio-title-wrap">
-                    <span class="portfolio-role-badge">Production & Social Media</span>
-                    <p class="portfolio-desc">Creating compelling digital content, social media marketing, and managing IIEC's online presence across platforms</p>
-                  </div>
-                </div>
-                <div class="portfolio-head-section">
-                  <div class="portfolio-head-image">
-                    <img src="./assets/team/production-social-media-head.webp" alt="Production Head" width="200" height="200" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="portfolio-head-avatar" style="display:none;">PS</div>
-                  </div>
-                  <div class="portfolio-head-info">
-                    <h3 class="portfolio-head-name">Bhumika Chavan</h3>
-                    <span class="portfolio-head-title">Head</span>
-                  </div>
-                  <a href="javascript:void(0)" class="portfolio-linkedin" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
-                <div class="portfolio-joint-heads">
-                  <span class="jh-label">Joint Head</span>
-                  <div class="jh-list">
-                    <div class="jh-member">
-                      <div class="jh-img"><img src="./assets/team/production-social-media-joint-head.webp" alt="Joint Head" width="80" height="80" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.textContent='JH';"></div>
-                      <span class="jh-name">Mahak Saini</span>
-                      <a href="javascript:void(0)" class="jh-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            -->
-
-            <!-- PR & Sponsorship
-            <div class="portfolio-card" data-animate="scale" data-animate-delay="3" style="--card-accent: #FFE66D;">
-              <div class="portfolio-card-glow"></div>
-              <div class="portfolio-card-content">
-                <div class="portfolio-card-header">
-                  <div class="portfolio-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  </div>
-                  <div class="portfolio-title-wrap">
-                    <span class="portfolio-role-badge">PR & Sponsorship</span>
-                    <p class="portfolio-desc">Building industry partnerships, securing sponsorships, and connecting with angel investors for IIEC initiatives</p>
-                  </div>
-                </div>
-                <div class="portfolio-head-section">
-                  <div class="portfolio-head-image">
-                    <img src="./assets/team/pr-head.webp" alt="PR Head" width="200" height="200" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="portfolio-head-avatar" style="display:none;">PR</div>
-                  </div>
-                  <div class="portfolio-head-info">
-                    <h3 class="portfolio-head-name">Pallavi Patil</h3>
-                    <span class="portfolio-head-title">Head</span>
-                  </div>
-                  <a href="https://www.linkedin.com/in/pallavi-patil-741506396" class="portfolio-linkedin" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
-                <div class="portfolio-joint-heads">
-                  <span class="jh-label">Joint Head</span>
-                  <div class="jh-list">
-                    <div class="jh-member">
-                      <div class="jh-img"><img src="./assets/team/pr-jh.webp" alt="Joint Head" width="80" height="80" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.textContent='JH';"></div>
-                      <span class="jh-name">Aayush Kumar Singh</span>
-                      <a href="javascript:void(0)" class="jh-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            -->
-
-            <!-- Research & Content
-            <div class="portfolio-card" data-animate="scale" data-animate-delay="4" style="--card-accent: #95E1D3;">
-              <div class="portfolio-card-glow"></div>
-              <div class="portfolio-card-content">
-                <div class="portfolio-card-header">
-                  <div class="portfolio-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                  <div class="portfolio-title-wrap">
-                    <span class="portfolio-role-badge">Research & Content</span>
-                    <p class="portfolio-desc">Curating insights, startup knowledge resources, and entrepreneurship content for the student community</p>
-                  </div>
-                </div>
-                <div class="portfolio-head-section">
-                  <div class="portfolio-head-image">
-                    <img src="./assets/team/research-head.webp" alt="Research Head" width="200" height="200" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="portfolio-head-avatar" style="display:none;">RC</div>
-                  </div>
-                  <div class="portfolio-head-info">
-                    <h3 class="portfolio-head-name">Sarah Farooqui</h3>
-                    <span class="portfolio-head-title">Head</span>
-                  </div>
-                  <a href="https://linkedin.com/in/sarahfarooquii" class="portfolio-linkedin" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            -->
-
-            <!-- Creative Design
-            <div class="portfolio-card" data-animate="scale" data-animate-delay="5" style="--card-accent: #DDA0DD;">
-              <div class="portfolio-card-glow"></div>
-              <div class="portfolio-card-content">
-                <div class="portfolio-card-header">
-                  <div class="portfolio-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                    </svg>
-                  </div>
-                  <div class="portfolio-title-wrap">
-                    <span class="portfolio-role-badge">Creative Design</span>
-                    <p class="portfolio-desc">Crafting visual identity and stunning designs for all IIEC assets</p>
-                  </div>
-                </div>
-                <div class="portfolio-head-section">
-                  <div class="portfolio-head-image">
-                    <img src="./assets/team/graphics-head.webp" alt="Design Head" width="200" height="200" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="portfolio-head-avatar" style="display:none;">CD</div>
-                  </div>
-                  <div class="portfolio-head-info">
-                    <h3 class="portfolio-head-name">Sampada Gawde</h3>
-                    <span class="portfolio-head-title">Head</span>
-                  </div>
-                  <a href="javascript:void(0)" class="portfolio-linkedin" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
-                <div class="portfolio-joint-heads">
-                  <span class="jh-label">Joint Head</span>
-                  <div class="jh-list">
-                    <div class="jh-member">
-                      <div class="jh-img"><img src="./assets/team/graphics-jh.webp" alt="Joint Head" width="80" height="80" loading="lazy" decoding="async" onerror="this.style.display='none'; this.parentElement.textContent='JH';"></div>
-                      <span class="jh-name">Vaishnavi Bodke</span>
-                      <a href="javascript:void(0)" class="jh-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            -->
-
-            <!-- Technical Team
-            <div class="portfolio-card" data-animate="scale" data-animate-delay="6" style="--card-accent: #7B68EE;">
-              <div class="portfolio-card-glow"></div>
-              <div class="portfolio-card-content">
-                <div class="portfolio-card-header">
-                  <div class="portfolio-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
-                  </div>
-                  <div class="portfolio-title-wrap">
-                    <span class="portfolio-role-badge">Technical Team</span>
-                    <p class="portfolio-desc">Building IIEC's digital solutions, website, tech infrastructure, and innovation tools using modern web technologies</p>
-                  </div>
-                </div>
-                <div class="portfolio-head-section">
-                  <div class="portfolio-head-image">
-                    <img src="./assets/team/technical-team.webp" alt="Tech Head" width="200" height="200" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="portfolio-head-avatar" style="display:none;">TT</div>
-                  </div>
-                  <div class="portfolio-head-info">
-                    <h3 class="portfolio-head-name">Samaira Kurlekar</h3>
-                    <span class="portfolio-head-title">Head</span>
-                  </div>
-                  <a href="javascript:void(0)" class="portfolio-linkedin" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            -->
-
-            <!-- HR & Documentation Team
-            <div class="portfolio-card" data-animate="scale" data-animate-delay="7" style="--card-accent: #F0A500;">
-              <div class="portfolio-card-glow"></div>
-              <div class="portfolio-card-content">
-                <div class="portfolio-card-header">
-                  <div class="portfolio-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                  <div class="portfolio-title-wrap">
-                    <span class="portfolio-role-badge">HR & Documentation</span>
-                    <p class="portfolio-desc">Managing human resources and creating comprehensive documentation</p>
-                  </div>
-                </div>
-                <div class="portfolio-head-section">
-                  <div class="portfolio-head-image">
-                    <img src="./assets/team/documentation-head.webp" alt="Docs Head" width="200" height="200" loading="lazy" decoding="async" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                    <div class="portfolio-head-avatar" style="display:none;">DT</div>
-                  </div>
-                  <div class="portfolio-head-info">
-                    <h3 class="portfolio-head-name">Divy Jagetiya</h3>
-                    <span class="portfolio-head-title">Head</span>
-                  </div>
-                  <a href="https://linkedin.com/in/divy-jagetiya" class="portfolio-linkedin" target="_blank" rel="noopener">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-            -->
-
-          </div>
-        </div>
-      </section>
-
-      <!-- Join the Team CTA -->
-      <section class="section cta-section" aria-labelledby="cta-title">
-        <div class="container">
-          <div class="cta-card" data-animate="blur">
-            <div class="cta-content">
-              <span class="cta-label">JOIN THE MOVEMENT</span>
-              <h2 id="cta-title" class="cta-title">Ready to Make an <span class="gradient-text">Impact</span>?</h2>
-              <p class="cta-subtitle">We're always looking for passionate individuals to join our team. Be part of the
-                innovation revolution at CSMU.</p>
-              <a href="https://join.iiec.in" class="btn btn-primary btn-large cta-btn" target="_blank" rel="noopener">
-                <span>Apply Now</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-            <div class="cta-visual">
-              <div class="cta-orb"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Explore More -->
-      <section class="section" aria-label="Explore More">
-        <div class="container">
-          <header class="section-header" data-animate="fade-up">
-            <h2 class="section-title">Explore <span class="highlight">More</span></h2>
-          </header>
-          <div class="explore-banners" data-animate="fade-up" data-animate-delay="1">
-            <div class="cross-banner glass-card">
-              <div class="cross-banner-content">
-                <span class="cross-banner-badge">Our Story</span>
-                <h3 class="cross-banner-title">About IIEC</h3>
-                <p class="cross-banner-desc">Our journey from E-Cell to NEC Top 23 All India — mission, vision, and
-                  milestones.</p>
-              </div>
-              <a href="about.html" class="btn btn-primary">
-                <span>Learn More</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-            <div class="cross-banner glass-card">
-              <div class="cross-banner-content">
-                <span class="cross-banner-badge">What's Coming</span>
-                <h3 class="cross-banner-title">Activities & Events</h3>
-                <p class="cross-banner-desc">All upcoming events, workshops, and programs happening at IIEC.</p>
-              </div>
-              <a href="activities.html" class="btn btn-primary">
-                <span>Explore Events</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                  aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo" data-animate="fade-up">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="lazy"
-                decoding="async">
-              <span>IIEC</span>
-            </div>
-            <p class="footer-desc">
-              IIEC — Incubation, Innovation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Where
-              Vision Drives Venture.
-            </p>
-            <div class="footer-collaboration">
-              <span>In collaboration with</span>
-              <img src="./assets/logos/gfg-logo.webp" alt="GeeksforGeeks" width="24" height="24"
-                style="margin-left: 8px;" loading="lazy" decoding="async">
-            </div>
-            <div class="footer-socials">
-              <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener"
-                aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-              </a>
-              <a href="https://www.instagram.com/iiec.csmu" class="footer-social" target="_blank" rel="noopener"
-                aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
-                </svg>
-              </a>
-              <a href="https://twitter.com/iiec_csmu" class="footer-social" target="_blank" rel="noopener"
-                aria-label="Twitter/X">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
-              </a>
-              <a href="mailto:ecell-student-rep@csmu.ac.in" class="footer-social" aria-label="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
-                  <path
-                    d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <nav class="footer-nav" aria-label="Quick Links">
-            <h4 class="footer-title">Quick Links</h4>
-            <div class="footer-links">
-              <a href="index.html">Home</a>
-              <a href="about.html">About Us</a>
-              <a href="team.html">Team</a>
-              <a href="activities.html">Activities</a>
-              <a href="blog.html">Blog</a>
-            </div>
-          </nav>
-
-          <nav class="footer-nav" aria-label="Programs">
-            <h4 class="footer-title">Programs</h4>
-            <div class="footer-links">
-              <a href="activities.html#workshops">Workshops</a>
-              <a href="activities.html#bootcamp">Startup Bootcamp</a>
-              <a href="activities.html#talks">Industry Talks</a>
-              <a href="activities.html#events">Events</a>
-            </div>
-          </nav>
-
-          <nav class="footer-nav" aria-label="Contact">
-            <h4 class="footer-title">Contact</h4>
-            <div class="footer-links">
-              <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
-              <a href="https://join.iiec.in" target="_blank" rel="noopener">Join Us</a>
-              <a href="index.html#newsletter">Newsletter</a>
-            </div>
-          </nav>
-        </div>
-
-        <div class="footer-bottom">
-          <p class="footer-copyright">
-            © 2026 IIEC. All rights reserved.
+          <h1 class="team-hero-title">
+            Meet the <em>Innovators</em> Building the Ecosystem.
+          </h1>
+          <p class="team-hero-subtitle">
+            Where Vision Drives Venture — Passionate student leaders, innovators, and startup founders driving entrepreneurship, incubation, and venture creation at Chhatrapati Shivaji Maharaj University, Navi Mumbai.
           </p>
-          <span class="footer-credit">Website by <a href="https://novish.studio" target="_blank" rel="noopener">Novish
-              Studio</a></span>
-          <a href="admin.html" class="footer-ops">OPS Portal →</a>
+        </div>
+
+        <div class="team-hero-right">
+          <div class="team-live-pill">
+            <span class="pulse-dot"></span>
+            <span>RECRUITMENTS LIVE NOW</span>
+          </div>
+
+          <!-- Team Leadership Stats Card -->
+          <div class="team-stats-card">
+            <div class="team-stats-grid">
+              <div class="team-stat-item">
+                <div class="stat-num">0<span>5</span></div>
+                <div class="stat-label">Core Executive Leaders</div>
+              </div>
+              <div class="team-stat-item">
+                <div class="stat-num">0<span>8</span></div>
+                <div class="stat-label">Specialized Portfolios</div>
+              </div>
+              <div class="team-stat-item">
+                <div class="stat-num">25<span>+</span></div>
+                <div class="stat-label">Active Leaders &amp; Members</div>
+              </div>
+              <div class="team-stat-item">
+                <div class="stat-num">Top <span>23</span></div>
+                <div class="stat-label">In India (NEC IIT Bombay)</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </footer>
-  <!-- Floating Recruitment Pill -->
-  <a href="https://join.iiec.in" target="_blank" rel="noopener" class="floating-recruitment-pill" aria-label="Apply for Recruitment">
-    <span class="pill-badge">Live</span>
-    <span>Join IIEC Team</span>
-    <i class="fas fa-arrow-right"></i>
-  </a>
+    </section>
 
-  <!-- Main Script -->
-  <script src="js/script.js" defer></script>
-  <script src="js/team.js" defer></script>
+    <!-- ================================================================
+         PRESIDENT SPOTLIGHT SECTION (Grand Bento Spotlight)
+         ================================================================ -->
+    <section class="container president-section">
+      <article class="president-spotlight-card">
+        <div class="president-img-wrap">
+          <img src="assets/team/president.webp" alt="Mohd Monish - President, IIEC CSMU" class="president-img" loading="eager" />
+          <div class="president-badge-chip">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <span>President</span>
+          </div>
+        </div>
+
+        <div class="president-content">
+          <div class="president-top-meta">
+            <span class="president-role-tag">Executive Council</span>
+            <span class="president-council-tag">Leadership · Head of Organization</span>
+          </div>
+
+          <h2 class="president-name">Mohd Monish</h2>
+
+          <p class="president-bio">
+            Leading IIEC's mission to foster incubation, innovation, and entrepreneurship among students at CSMU. Dedicated to creating startup opportunities, building a thriving student founder network, and developing India's next generation of entrepreneurs at Navi Mumbai.
+          </p>
+
+          <div class="president-actions">
+            <a href="https://linkedin.com/in/mohdmonishh" target="_blank" rel="noopener" class="btn btn-linkedin">
+              <span>Connect on LinkedIn ↗</span>
+            </a>
+            <a href="about.html" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #fff; background: rgba(255,255,255,0.06);">
+              <span>View Leadership Story</span>
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================================================================
+         CORE EXECUTIVE LEADERSHIP (4-Card Bento Grid)
+         General Secretary before Secretary
+         ================================================================ -->
+    <section class="container leadership-section">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Executive Council</div>
+          <h2>Core Leadership Team</h2>
+        </div>
+        <p class="section-description">
+          The executive pillars steering IIEC's strategic initiatives, governance, finance, and cross-departmental excellence.
+        </p>
+      </div>
+
+      <div class="leadership-grid">
+        <!-- 1. Vice President -->
+        <article class="leader-card">
+          <div>
+            <div class="leader-img-box">
+              <span class="leader-num-badge">01</span>
+              <img src="assets/team/vice-president.webp" alt="Geet Sharma - Vice President IIEC" class="leader-img" loading="lazy" />
+              <div class="leader-role-chip">
+                <span class="pulse-dot" style="width: 6px; height: 6px;"></span>
+                <span>Vice President</span>
+              </div>
+            </div>
+            <div class="leader-info">
+              <span class="leader-focus-tag">Strategy &amp; Ecosystem</span>
+              <h3 class="leader-name">Geet Sharma</h3>
+              <p class="leader-desc">
+                Supporting executive leadership, driving strategic partnerships, and accelerating the campus innovation ecosystem.
+              </p>
+            </div>
+          </div>
+          <div class="leader-footer">
+            <a href="https://linkedin.com/in/geetsharrma" target="_blank" rel="noopener" class="leader-connect-btn">
+              <span>Connect on LinkedIn</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 2. General Secretary (BEFORE Secretary) -->
+        <article class="leader-card">
+          <div>
+            <div class="leader-img-box">
+              <span class="leader-num-badge">02</span>
+              <img src="assets/team/events-operation-head.webp" alt="Shivam Sah - General Secretary IIEC" class="leader-img" loading="lazy" />
+              <div class="leader-role-chip">
+                <span class="pulse-dot" style="width: 6px; height: 6px;"></span>
+                <span>General Secretary</span>
+              </div>
+            </div>
+            <div class="leader-info">
+              <span class="leader-focus-tag">Operations &amp; Execution</span>
+              <h3 class="leader-name">Shivam Sah</h3>
+              <p class="leader-desc">
+                Directing operational execution, cross-vertical synchronization, flagship event delivery, and student leadership governance.
+              </p>
+            </div>
+          </div>
+          <div class="leader-footer">
+            <a href="https://linkedin.com/in/shivamsah26" target="_blank" rel="noopener" class="leader-connect-btn">
+              <span>Connect on LinkedIn</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 3. Secretary -->
+        <article class="leader-card">
+          <div>
+            <div class="leader-img-box">
+              <span class="leader-num-badge">03</span>
+              <img src="assets/team/secretary.webp" alt="Shivansh Mishra - Secretary IIEC" class="leader-img" loading="lazy" />
+              <div class="leader-role-chip">
+                <span class="pulse-dot" style="width: 6px; height: 6px;"></span>
+                <span>Secretary</span>
+              </div>
+            </div>
+            <div class="leader-info">
+              <span class="leader-focus-tag">Governance &amp; Comms</span>
+              <h3 class="leader-name">Shivansh Mishra</h3>
+              <p class="leader-desc">
+                Overseeing institutional communications, administrative governance, meeting records, and operational workflows.
+              </p>
+            </div>
+          </div>
+          <div class="leader-footer">
+            <a href="https://www.linkedin.com/in/shivansh-mishra-476455381/" target="_blank" rel="noopener" class="leader-connect-btn">
+              <span>Connect on LinkedIn</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- 4. Treasurer -->
+        <article class="leader-card">
+          <div>
+            <div class="leader-img-box">
+              <span class="leader-num-badge">04</span>
+              <img src="assets/team/treasurer.webp" alt="Abu Hujaifa - Treasurer IIEC" class="leader-img" loading="lazy" />
+              <div class="leader-role-chip">
+                <span class="pulse-dot" style="width: 6px; height: 6px;"></span>
+                <span>Treasurer</span>
+              </div>
+            </div>
+            <div class="leader-info">
+              <span class="leader-focus-tag">Finance &amp; Allocations</span>
+              <h3 class="leader-name">Abu Hujaifa</h3>
+              <p class="leader-desc">
+                Managing financial governance, sponsorship allocations, event budget planning, and resource distribution.
+              </p>
+            </div>
+          </div>
+          <div class="leader-footer">
+            <span class="leader-connect-btn" style="background: rgba(17, 17, 17, 0.05); color: #555; border-color: var(--line); cursor: default;">
+              <span>IIEC Executive Council</span>
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         DEPARTMENT VERTICALS & PORTFOLIOS (New Team Selection in Process)
+         ================================================================ -->
+    <section class="container portfolios-section" id="portfolios">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Department Verticals</div>
+          <h2>New Team Formation in Process</h2>
+        </div>
+        <p class="section-description">
+          The specialized portfolio heads and executive teams for Session 2026-27 are currently under selection. Explore the 8 verticals and apply to lead.
+        </p>
+      </div>
+
+      <div class="selection-hub">
+        <!-- Grand Hero Bento Showcase -->
+        <article class="selection-hero-bento">
+          <div class="selection-hero-left">
+            <div class="selection-live-badge">
+              <span class="pulse-dot" style="background: #ff7b4c;"></span> Recruitments Live · Session 2026-27
+            </div>
+            <h3 class="selection-hero-title">
+              8 Specialized Verticals <em>Under Selection.</em>
+            </h3>
+            <p class="selection-hero-desc">
+              We are currently interviewing and onboarding student leaders, department heads, and creators across all 8 specialized verticals. The newly formed IIEC student executive council will be revealed here soon!
+            </p>
+            <div class="selection-hero-actions">
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="btn btn-primary btn-large">
+                <span>Apply on join.iiec.in ↗</span>
+              </a>
+              <a href="#selection-matrix" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.2); color: #fff; background: rgba(255,255,255,0.06);">
+                <span>Explore 8 Verticals ↓</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="selection-stats-hub">
+            <div class="selection-stats-grid">
+              <div class="selection-stat-box">
+                <div class="selection-stat-num">08<span>/08</span></div>
+                <div class="selection-stat-label">Verticals Open</div>
+              </div>
+              <div class="selection-stat-box">
+                <div class="selection-stat-num">25<span>+</span></div>
+                <div class="selection-stat-label">Leadership Roles</div>
+              </div>
+              <div class="selection-stat-box">
+                <div class="selection-stat-num">Top <span>23</span></div>
+                <div class="selection-stat-label">NEC IIT Bombay</div>
+              </div>
+              <div class="selection-stat-box">
+                <div class="selection-stat-num" style="font-size: 20px; color: #ff7b4c;">LIVE</div>
+                <div class="selection-stat-label">Interviews On</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- 8 Verticals Interactive Live Matrix Grid -->
+        <div id="selection-matrix">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
+            <h3 style="font-size: 20px; font-weight: 800; color: var(--ink);">
+              Explore the 8 Specialized Departments
+            </h3>
+            <span style="font-size: 13px; font-weight: 700; color: var(--accent); display: inline-flex; align-items: center; gap: 6px;">
+              <span class="pulse-dot"></span> Applications Actively Reviewed Daily
+            </span>
+          </div>
+
+          <div class="selection-matrix-grid">
+            <!-- 01 Operations -->
+            <article class="matrix-card">
+              <div>
+                <div class="matrix-card-top">
+                  <div class="matrix-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+                  <span class="matrix-status-pill green"><span class="pulse-dot" style="background:#00ccff;"></span> Open for Applications</span>
+                </div>
+                <div class="matrix-card-body" style="margin-top: 14px;">
+                  <h4 class="matrix-title">Event Planning &amp; Operations</h4>
+                  <p class="matrix-desc">
+                    Lead campus hackathons (SIH 2026, TechAstra), venture bootcamps, workshops, and high-impact logistics.
+                  </p>
+                </div>
+              </div>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="matrix-apply-link">
+                <span>Apply for Operations</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <!-- 02 Design -->
+            <article class="matrix-card">
+              <div>
+                <div class="matrix-card-top">
+                  <div class="matrix-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg></div>
+                  <span class="matrix-status-pill green"><span class="pulse-dot" style="background:#00ccff;"></span> Open for Applications</span>
+                </div>
+                <div class="matrix-card-body" style="margin-top: 14px;">
+                  <h4 class="matrix-title">Creative &amp; Graphics Design</h4>
+                  <p class="matrix-desc">
+                    Craft brand visual identity, digital UI/UX designs, event graphics, pitch decks, and ecosystem merch.
+                  </p>
+                </div>
+              </div>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="matrix-apply-link">
+                <span>Apply for Design</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <!-- 03 Production -->
+            <article class="matrix-card">
+              <div>
+                <div class="matrix-card-top">
+                  <div class="matrix-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg></div>
+                  <span class="matrix-status-pill green"><span class="pulse-dot" style="background:#00ccff;"></span> Open for Applications</span>
+                </div>
+                <div class="matrix-card-body" style="margin-top: 14px;">
+                  <h4 class="matrix-title">Social Media &amp; Production</h4>
+                  <p class="matrix-desc">
+                    Direct photography, stage cinematography, social storytelling, viral event reels, and digital media.
+                  </p>
+                </div>
+              </div>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="matrix-apply-link">
+                <span>Apply for Production</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <!-- 04 PR & Outreach -->
+            <article class="matrix-card">
+              <div>
+                <div class="matrix-card-top">
+                  <div class="matrix-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg></div>
+                  <span class="matrix-status-pill green"><span class="pulse-dot" style="background:#00ccff;"></span> Open for Applications</span>
+                </div>
+                <div class="matrix-card-body" style="margin-top: 14px;">
+                  <h4 class="matrix-title">Public Relations &amp; Outreach</h4>
+                  <p class="matrix-desc">
+                    Drive university publicity, student founder community reachouts, and inter-college relations.
+                  </p>
+                </div>
+              </div>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="matrix-apply-link">
+                <span>Apply for PR &amp; Outreach</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <!-- 05 Partnerships -->
+            <article class="matrix-card">
+              <div>
+                <div class="matrix-card-top">
+                  <div class="matrix-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></div>
+                  <span class="matrix-status-pill green"><span class="pulse-dot" style="background:#00ccff;"></span> Open for Applications</span>
+                </div>
+                <div class="matrix-card-body" style="margin-top: 14px;">
+                  <h4 class="matrix-title">Partnerships &amp; Collaborations</h4>
+                  <p class="matrix-desc">
+                    Secure corporate sponsorships, incubator alliances, mentor networks, and external partnerships.
+                  </p>
+                </div>
+              </div>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="matrix-apply-link">
+                <span>Apply for Partnerships</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <!-- 06 Research -->
+            <article class="matrix-card">
+              <div>
+                <div class="matrix-card-top">
+                  <div class="matrix-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+                  <span class="matrix-status-pill green"><span class="pulse-dot" style="background:#00ccff;"></span> Open for Applications</span>
+                </div>
+                <div class="matrix-card-body" style="margin-top: 14px;">
+                  <h4 class="matrix-title">Content Writing &amp; Research</h4>
+                  <p class="matrix-desc">
+                    Author founder case studies, startup curriculum, market research, press releases, and publications.
+                  </p>
+                </div>
+              </div>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="matrix-apply-link">
+                <span>Apply for Research</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <!-- 07 Documentation -->
+            <article class="matrix-card">
+              <div>
+                <div class="matrix-card-top">
+                  <div class="matrix-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div>
+                  <span class="matrix-status-pill green"><span class="pulse-dot" style="background:#00ccff;"></span> Open for Applications</span>
+                </div>
+                <div class="matrix-card-body" style="margin-top: 14px;">
+                  <h4 class="matrix-title">Documentation &amp; Compliance</h4>
+                  <p class="matrix-desc">
+                    Manage official paperwork, activity reports, university MoUs, compliance, and institutional archives.
+                  </p>
+                </div>
+              </div>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="matrix-apply-link">
+                <span>Apply for Documentation</span>
+                <span>→</span>
+              </a>
+            </article>
+
+            <!-- 08 Technical -->
+            <article class="matrix-card">
+              <div>
+                <div class="matrix-card-top">
+                  <div class="matrix-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+                  <span class="matrix-status-pill green"><span class="pulse-dot" style="background:#00ccff;"></span> Open for Applications</span>
+                </div>
+                <div class="matrix-card-body" style="margin-top: 14px;">
+                  <h4 class="matrix-title">Technical Team &amp; Infrastructure</h4>
+                  <p class="matrix-desc">
+                    Build scalable web apps, hackathon registration dashboards, portal engines, and tech infrastructure.
+                  </p>
+                </div>
+              </div>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="matrix-apply-link">
+                <span>Apply for Tech Team</span>
+                <span>→</span>
+              </a>
+            </article>
+          </div>
+        </div>
+
+        <!-- 3-Pillar Leadership Perks Bento -->
+        <div class="selection-perks-grid">
+          <article class="perk-card">
+            <div class="perk-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21"></line><line x1="3" y1="10" x2="21" y2="10"></line><polyline points="12 3 2 10 22 10"></polyline><line x1="5" y1="10" x2="5" y2="21"></line><line x1="9" y1="10" x2="9" y2="21"></line><line x1="15" y1="10" x2="15" y2="21"></line><line x1="19" y1="10" x2="19" y2="21"></line></svg></div>
+            <h4 class="perk-title">E-Cell IIT Bombay Network</h4>
+            <p class="perk-desc">
+              Direct exposure to India's top startup ecosystems and national entrepreneurship challenges representing CSMU.
+            </p>
+          </article>
+
+          <article class="perk-card">
+            <div class="perk-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></div>
+            <h4 class="perk-title">Lead Flagship Innovation Events</h4>
+            <p class="perk-desc">
+              Direct Smart India Hackathon (SIH 2026), venture pitch stages, startup bootcamps, and high-impact fests.
+            </p>
+          </article>
+
+          <article class="perk-card">
+            <div class="perk-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg></div>
+            <h4 class="perk-title">Executive Letters &amp; Recommendations</h4>
+            <p class="perk-desc">
+              Official leadership certification, LinkedIn endorsement, and direct recommendation letters from IIEC leadership.
+            </p>
+          </article>
+        </div>
+      <!--
+      <div class="portfolio-filters-bar">
+        <div class="filter-pills" role="tablist">
+          <button class="filter-pill active" data-filter="all" type="button">All 8 Portfolios</button>
+          <button class="filter-pill" data-filter="events" type="button">01 Operations</button>
+          <button class="filter-pill" data-filter="design" type="button">02 Design</button>
+          <button class="filter-pill" data-filter="media" type="button">03 Production</button>
+          <button class="filter-pill" data-filter="pr" type="button">04 PR &amp; Outreach</button>
+          <button class="filter-pill" data-filter="partnerships" type="button">05 Partnerships</button>
+          <button class="filter-pill" data-filter="research" type="button">06 Research</button>
+          <button class="filter-pill" data-filter="docs" type="button">07 Documentation</button>
+          <button class="filter-pill" data-filter="tech" type="button">08 Technical</button>
+        </div>
+        <div class="vault-results-count" id="portfolio-results-count">
+          Showing 8 of 8 Portfolios
+        </div>
+      </div>
+
+      <div class="portfolios-grid">
+
+        <article class="portfolio-card" data-category="events">
+          <div>
+            <div class="portfolio-card-top">
+              <span class="portfolio-badge accent">PORTFOLIO 01 / 08</span>
+              <div class="portfolio-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+            </div>
+            <div class="portfolio-card-body">
+              <h3 class="portfolio-name">Event Planning &amp; Operations</h3>
+              <p class="portfolio-desc">
+                Planning and executing university hackathons (SIH 2026, TechAstra, IPL Auction), ideation bootcamps, workshops, and end-to-end logistics.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-members-box">
+            <div class="portfolio-notice-pill">
+              <span class="pulse-dot"></span> New Team in Process · Recruitment Open
+            </div>
+            <div class="portfolio-roster-list">
+              <div class="roster-member">
+                <div class="roster-member-left">
+                  <img src="assets/team/events-operation-jh-1.webp" alt="Swayam Kumar" class="roster-member-img" loading="lazy" />
+                  <div class="roster-member-meta">
+                    <span class="roster-name">Swayam Kumar</span>
+                    <span class="roster-role">Joint Head · Operations</span>
+                  </div>
+                </div>
+                <a href="https://linkedin.com/in/swayam-kumar-swain-6ab052296" target="_blank" rel="noopener" class="roster-linkedin-btn">
+                  <span>LinkedIn ↗</span>
+                </a>
+              </div>
+
+              <div class="roster-member">
+                <div class="roster-member-left">
+                  <img src="assets/team/events-operation-jh-2.webp" alt="Sumit Karkun" class="roster-member-img" loading="lazy" />
+                  <div class="roster-member-meta">
+                    <span class="roster-name">Sumit Karkun</span>
+                    <span class="roster-role">Joint Head · Operations</span>
+                  </div>
+                </div>
+                <a href="https://www.linkedin.com/in/sumeet-karkun-11660a3a5" target="_blank" rel="noopener" class="roster-linkedin-btn">
+                  <span>LinkedIn ↗</span>
+                </a>
+              </div>
+
+              <div class="roster-slot-card">
+                <div class="roster-slot-left">
+                  <span class="pulse-dot"></span>
+                  <span>New Executive Slots Open</span>
+                </div>
+                <a href="https://join.iiec.in" target="_blank" rel="noopener" class="roster-slot-btn">
+                  <span>Apply Now ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card" data-category="design">
+          <div>
+            <div class="portfolio-card-top">
+              <span class="portfolio-badge">PORTFOLIO 02 / 08</span>
+              <div class="portfolio-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"></circle><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"></circle><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"></circle><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"></circle><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path></svg>
+              </div>
+            </div>
+            <div class="portfolio-card-body">
+              <h3 class="portfolio-name">Creative &amp; Graphics Design</h3>
+              <p class="portfolio-desc">
+                Crafting brand visual identity, UI/UX for digital products, event graphics, pitch deck presentations, certificates, and merchandise.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-members-box">
+            <div class="portfolio-notice-pill">
+              <span class="pulse-dot"></span> New Design Leads In Process
+            </div>
+            <div class="portfolio-roster-list">
+              <div class="roster-member">
+                <div class="roster-member-left">
+                  <img src="assets/team/graphics-jh.webp" alt="Vaishnavi Bodke" class="roster-member-img" loading="lazy" />
+                  <div class="roster-member-meta">
+                    <span class="roster-name">Vaishnavi Bodke</span>
+                    <span class="roster-role">Design Lead</span>
+                  </div>
+                </div>
+                <span class="roster-linkedin-btn" style="color: #666; background: #f0f0ea; cursor: default;">IIEC Creative</span>
+              </div>
+
+              <div class="roster-slot-card">
+                <div class="roster-slot-left">
+                  <span class="pulse-dot"></span>
+                  <span>Head of Design Slot Open</span>
+                </div>
+                <a href="https://join.iiec.in" target="_blank" rel="noopener" class="roster-slot-btn">
+                  <span>Apply Now ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card" data-category="media">
+          <div>
+            <div class="portfolio-card-top">
+              <span class="portfolio-badge accent">PORTFOLIO 03 / 08</span>
+              <div class="portfolio-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+              </div>
+            </div>
+            <div class="portfolio-card-body">
+              <h3 class="portfolio-name">Social Media &amp; Production</h3>
+              <p class="portfolio-desc">
+                Directing photography, stage cinematography, social media storytelling, event reels, and managing IIEC's online presence.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-members-box">
+            <div class="portfolio-notice-pill">
+              <span class="pulse-dot"></span> New Media Crew In Process
+            </div>
+            <div class="portfolio-roster-list">
+              <div class="roster-member">
+                <div class="roster-member-left">
+                  <img src="assets/team/production-social-media-head.webp" alt="Bhumika Chavan" class="roster-member-img" loading="lazy" />
+                  <div class="roster-member-meta">
+                    <span class="roster-name">Bhumika Chavan</span>
+                    <span class="roster-role">Head of Production</span>
+                  </div>
+                </div>
+                <span class="roster-linkedin-btn" style="color: #666; background: #f0f0ea; cursor: default;">IIEC Media</span>
+              </div>
+
+              <div class="roster-slot-card">
+                <div class="roster-slot-left">
+                  <span class="pulse-dot"></span>
+                  <span>Production Crew Slots Open</span>
+                </div>
+                <a href="https://join.iiec.in" target="_blank" rel="noopener" class="roster-slot-btn">
+                  <span>Apply Now ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card" data-category="pr">
+          <div>
+            <div class="portfolio-card-top">
+              <span class="portfolio-badge">PORTFOLIO 04 / 08</span>
+              <div class="portfolio-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>
+              </div>
+            </div>
+            <div class="portfolio-card-body">
+              <h3 class="portfolio-name">Public Relations &amp; Outreach</h3>
+              <p class="portfolio-desc">
+                Driving campus-wide outreach, student community engagement, institutional publicity, and inter-university founder networks.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-members-box">
+            <div class="roster-selection-box">
+              <div class="roster-selection-header">
+                <div class="roster-selection-title">
+                  <span class="pulse-dot"></span>
+                  <span>New Team in Process</span>
+                </div>
+                <span class="roster-selection-badge">Recruitment Live</span>
+              </div>
+              <p class="roster-selection-desc">
+                Department Head and PR ambassadors are currently being selected. The new team will be announced here soon.
+              </p>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="roster-selection-btn">
+                <span>Apply for PR &amp; Outreach ↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card" data-category="partnerships">
+          <div>
+            <div class="portfolio-card-top">
+              <span class="portfolio-badge accent">PORTFOLIO 05 / 08</span>
+              <div class="portfolio-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+              </div>
+            </div>
+            <div class="portfolio-card-body">
+              <h3 class="portfolio-name">Partnerships &amp; Collaborations</h3>
+              <p class="portfolio-desc">
+                Forging corporate partnerships, institutional sponsorships, incubator networks, investor relations, and external alliances.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-members-box">
+            <div class="roster-selection-box">
+              <div class="roster-selection-header">
+                <div class="roster-selection-title">
+                  <span class="pulse-dot"></span>
+                  <span>New Team in Process</span>
+                </div>
+                <span class="roster-selection-badge">Recruitment Live</span>
+              </div>
+              <p class="roster-selection-desc">
+                Partnership leads and corporate sponsorship coordinators are currently being interviewed. The new team will be revealed shortly.
+              </p>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="roster-selection-btn">
+                <span>Apply for Partnerships ↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card" data-category="research">
+          <div>
+            <div class="portfolio-card-top">
+              <span class="portfolio-badge">PORTFOLIO 06 / 08</span>
+              <div class="portfolio-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </div>
+            </div>
+            <div class="portfolio-card-body">
+              <h3 class="portfolio-name">Content Writing &amp; Research</h3>
+              <p class="portfolio-desc">
+                Authoring founder case studies, startup curriculum, market research, press releases, newsletters, and entrepreneurial knowledge.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-members-box">
+            <div class="portfolio-notice-pill">
+              <span class="pulse-dot"></span> New Writers &amp; Analysts in Process
+            </div>
+            <div class="portfolio-roster-list">
+              <div class="roster-member">
+                <div class="roster-member-left">
+                  <img src="assets/team/research-head.webp" alt="Sarah Farooqui" class="roster-member-img" loading="lazy" />
+                  <div class="roster-member-meta">
+                    <span class="roster-name">Sarah Farooqui</span>
+                    <span class="roster-role">Head of Research</span>
+                  </div>
+                </div>
+                <a href="https://linkedin.com/in/sarahfarooquii" target="_blank" rel="noopener" class="roster-linkedin-btn">
+                  <span>LinkedIn ↗</span>
+                </a>
+              </div>
+
+              <div class="roster-slot-card">
+                <div class="roster-slot-left">
+                  <span class="pulse-dot"></span>
+                  <span>Content Analyst Slots Open</span>
+                </div>
+                <a href="https://join.iiec.in" target="_blank" rel="noopener" class="roster-slot-btn">
+                  <span>Apply Now ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card" data-category="docs">
+          <div>
+            <div class="portfolio-card-top">
+              <span class="portfolio-badge">PORTFOLIO 07 / 08</span>
+              <div class="portfolio-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+              </div>
+            </div>
+            <div class="portfolio-card-body">
+              <h3 class="portfolio-name">Documentation Team</h3>
+              <p class="portfolio-desc">
+                Managing official university paperwork, event records, MoUs, compliance reports, institutional archives, and meeting minutes.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-members-box">
+            <div class="roster-selection-box">
+              <div class="roster-selection-header">
+                <div class="roster-selection-title">
+                  <span class="pulse-dot"></span>
+                  <span>New Team in Process</span>
+                </div>
+                <span class="roster-selection-badge">Recruitment Live</span>
+              </div>
+              <p class="roster-selection-desc">
+                Documentation specialists and official governance coordinators are in onboarding. The new team will be announced soon.
+              </p>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="roster-selection-btn">
+                <span>Apply for Documentation ↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="portfolio-card" data-category="tech">
+          <div>
+            <div class="portfolio-card-top">
+              <span class="portfolio-badge accent">PORTFOLIO 08 / 08</span>
+              <div class="portfolio-icon-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+            </div>
+            <div class="portfolio-card-body">
+              <h3 class="portfolio-name">Technical Team</h3>
+              <p class="portfolio-desc">
+                Engineering IIEC's web platforms, portal verification engines, hackathon dashboards, open tech tools, and digital infrastructure.
+              </p>
+            </div>
+          </div>
+
+          <div class="portfolio-members-box">
+            <div class="roster-selection-box">
+              <div class="roster-selection-header">
+                <div class="roster-selection-title">
+                  <span class="pulse-dot"></span>
+                  <span>New Team in Process</span>
+                </div>
+                <span class="roster-selection-badge">Recruitment Live</span>
+              </div>
+              <p class="roster-selection-desc">
+                Full-stack developers, UI engineers, and technical infrastructure leads are currently being evaluated. New team coming soon!
+              </p>
+              <a href="https://join.iiec.in" target="_blank" rel="noopener" class="roster-selection-btn">
+                <span>Apply for Tech Team ↗</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+      -->
+    </section>
+
+    <!-- ================================================================
+         JOIN THE MOVEMENT GRAND CTA SECTION
+         ================================================================ -->
+    <section class="container join-movement-section">
+      <article class="join-movement-card">
+        <div class="join-movement-content">
+          <div class="eyebrow" style="color: #ff7b4c; margin-bottom: 14px;">
+            <span class="pulse-dot" style="background: #ff7b4c;"></span> BE PART OF THE REVOLUTION
+          </div>
+          <h2 class="join-movement-title">Ready to Make an Impact?</h2>
+          <p class="join-movement-desc">
+            We are always looking for visionary, driven students to join our leadership team. Apply to join IIEC and build the startup revolution at Chhatrapati Shivaji Maharaj University.
+          </p>
+          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="btn btn-primary btn-large">
+            <span>Apply for Recruitment ↗</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================================================================
+         EXPLORE MORE CROSS BANNERS
+         ================================================================ -->
+    <section class="container explore-section">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Explore More</div>
+          <h2>Ecosystem Portals</h2>
+        </div>
+      </div>
+
+      <div class="explore-banners">
+        <article class="cross-banner">
+          <div>
+            <span class="cross-banner-badge">Our Story</span>
+            <h3 class="cross-banner-title">About IIEC</h3>
+            <p class="cross-banner-desc">
+              Discover our journey from university E-Cell to NEC Top 23 All India with E-Cell IIT Bombay.
+            </p>
+          </div>
+          <a href="about.html" class="btn btn-secondary btn-sm" style="margin-top: 10px;">Learn More →</a>
+        </article>
+
+        <article class="cross-banner">
+          <div>
+            <span class="cross-banner-badge">Flagship Calendar</span>
+            <h3 class="cross-banner-title">Activities &amp; Events</h3>
+            <p class="cross-banner-desc">
+              Explore hackathons, startup bootcamps, workshops, tech fests, and 3D photo highlights.
+            </p>
+          </div>
+          <a href="activities.html" class="btn btn-secondary btn-sm" style="margin-top: 10px;">View Activities →</a>
+        </article>
+
+        <article class="cross-banner">
+          <div>
+            <span class="cross-banner-badge" style="color: #ff7b4c;">Live Hackathon</span>
+            <h3 class="cross-banner-title">SIH 2026 Internal</h3>
+            <p class="cross-banner-desc">
+              Register 6-member multidisciplinary teams across 18 innovation tracks for Smart India Hackathon.
+            </p>
+          </div>
+          <a href="sih-2026.html" class="btn btn-primary btn-sm" style="margin-top: 10px;">Register Team ↗</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Mobile Navigation Drawer Overlay -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-panel-top">
+        <div class="brand">
+          <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" />
+          <span>IIEC</span>
+        </div>
+        <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close Menu">
+          ✕
+        </button>
+      </div>
+
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+          <span class="link-num">01</span>
+          <span class="link-text">Home</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+          <span class="link-num">02</span>
+          <span class="link-text">About</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="team.html" class="mobile-nav-link active" style="--item-index: 3;">
+          <span class="link-num">03</span>
+          <span class="link-text">Team</span>
+          <span class="link-badge">Active</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+          <span class="link-num">04</span>
+          <span class="link-text">Activities</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+          <span class="link-num">05</span>
+          <span class="link-text">Blog</span>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="mobile-nav-highlight-box">
+        <div class="mobile-highlight-tag">
+          <span class="pulse-dot"></span> Active Hackathon
+        </div>
+        <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
+        <p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
+        <a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
+          <span>Register Team ↗</span>
+        </a>
+      </div>
+
+      <div class="mobile-nav-bottom">
+        <a href="https://join.iiec.in" target="_blank" rel="noopener" class="mobile-join-link">
+          <span>Apply to Join IIEC Core Team</span>
+          <span>→</span>
+        </a>
+        <div class="mobile-socials">
+          <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:iiec@csmu.ac.in">Email</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Footer -->
+  <footer class="container team-footer" role="contentinfo">
+    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" width="32" height="32" style="object-fit: contain;" />
+      <span class="footer-home">IIEC · Incubation, Innovation &amp; Entrepreneurship Cell</span>
+      <span style="color: #999;">© 2026 CSMU</span>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:iiec@csmu.ac.in">iiec@csmu.ac.in</a>
+      <a href="sitemap.xml">Sitemap</a>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Engines -->
+  <script src="js/iiec-loader.js"></script>
+  <script src="js/mobile-nav.js"></script>
+  <script src="js/team.js"></script>
 </body>
 
 </html>

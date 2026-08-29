@@ -717,3 +717,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/* IIEC Global Floating Recruitment Pill */
+(function(){function initRecruitmentPill(){if(document.getElementById('iiec-recruitment-pill'))return;if(!document.querySelector('link[href*="recruitment-popup.css"]')){const l=document.createElement('link');l.rel='stylesheet';l.href='css/recruitment-popup.css';document.head.appendChild(l);}const p=document.createElement('a');p.id='iiec-recruitment-pill';p.className='iiec-floating-pill';p.href='https://join.iiec.in';p.target='_blank';p.rel='noopener';p.setAttribute('aria-label','Join IIEC Team - Recruitment Live');p.innerHTML='<span class="pill-live-badge">LIVE</span><span class="pill-label">Join IIEC Team</span><span class="pill-arrow">↗</span>';document.body.appendChild(p);setTimeout(()=>{p.classList.add('visible');},700);}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',initRecruitmentPill);}else{setTimeout(initRecruitmentPill,500);}})();

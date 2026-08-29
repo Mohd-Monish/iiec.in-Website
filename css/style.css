@@ -634,21 +634,21 @@ p {
    5. Navigation
    ---------------------------------------------------------------- */
 .navbar {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   height: var(--navbar-height);
   z-index: var(--z-fixed);
   transition: all var(--transition-base);
-  background: transparent;
-}
-
-.navbar.scrolled {
-  background: rgba(var(--color-base-rgb), 0.85);
+  background: rgba(5, 7, 15, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--glass-border);
+}
+
+.navbar.scrolled {
+  background: rgba(var(--color-base-rgb), 0.95);
   box-shadow: var(--shadow-lg);
 }
 
@@ -4629,10 +4629,6 @@ img {
   image-rendering: -webkit-optimize-contrast;
 }
 
-/* Fix navbar positioning */
-.navbar {
-  position: fixed;
-}
 
 /* ================================================================
    Active Event Styling - IPL Auction Highlight

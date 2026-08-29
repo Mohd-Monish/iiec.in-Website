@@ -33,47 +33,46 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="About IIEC - Incubation, Innovation & Entrepreneurship Cell at CSMU, Navi Mumbai. Our mission, vision, and journey building Maharashtra's leading student...">
+  <meta name="description" content="About IIEC - Incubation, Innovation & Entrepreneurship Cell at CSMU, Navi Mumbai. Our mission, vision, and journey building Maharashtra's leading student-led startup ecosystem.">
   <meta name="keywords" content="IIEC about, IIEC CSMU about, incubation innovation entrepreneurship cell, CSMU Navi Mumbai, student entrepreneurship mission, university innovation hub, startup ecosystem Maharashtra, college IIEC India, entrepreneurship cell vision, IIEC history, student-led organization, Where Vision Drives Venture, NEC IIT Bombay Top 23, Chhatrapati Shivaji Maharaj University clubs, startup mentorship college, entrepreneurship opportunities for students, grassroots innovation, lean startup methodology, student-led initiative, innovation ecosystem university, college entrepreneurship programs India, startup culture in Indian colleges, youth innovation India, campus entrepreneurship, how to join innovation cell">
   <meta name="author" content="IIEC">
-  <meta name="theme-color" content="#05070f">
+  <meta name="theme-color" content="#111111">
   
   <!-- Canonical -->
   <link rel="canonical" href="https://iiec.in/about">
   <link rel="help" type="text/plain" href="https://iiec.in/llms.txt" title="LLM Information">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="About IIEC">
-  <meta property="og:description" content="Where Vision Drives Venture. Learn about our mission, vision, and journey in building the entrepreneurship ecosystem.">
+  <meta property="og:title" content="About IIEC — Where Vision Drives Venture">
+  <meta property="og:description" content="Learn about our mission, vision, and journey building Maharashtra's premier student innovation and startup hub at CSMU. Top 23 All India at NEC IIT Bombay.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://iiec.in/about">
   <meta property="og:image" content="https://iiec.in/assets/og-image.webp">
   <meta property="og:site_name" content="IIEC">
+  <meta property="og:locale" content="en_IN">
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About IIEC">
-  <meta name="twitter:description" content="Where Vision Drives Venture. Learn about our mission, vision, and journey in building the entrepreneurship ecosystem.">
+  <meta name="twitter:site" content="@iiec_csmu">
+  <meta name="twitter:creator" content="@iiec_csmu">
+  <meta name="twitter:title" content="About IIEC — Where Vision Drives Venture">
+  <meta name="twitter:description" content="Learn about our mission, vision, and journey building Maharashtra's premier student innovation and startup hub at CSMU. Top 23 All India at NEC IIT Bombay.">
   <meta name="twitter:image" content="https://iiec.in/assets/og-image.webp">
   
-  <title>About | IIEC</title>
+  <title>About IIEC | Where Vision Drives Venture</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <link rel="icon" type="image/webp" href="./assets/favicon.webp">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
   
-  <link rel="stylesheet" href="css/style.css">
-  <!-- Page Loader Script -->
-  <script>
-    document.documentElement.classList.add('js-loading');
-    window.addEventListener('load', () => {
-      document.documentElement.classList.remove('js-loading');
-      document.documentElement.classList.add('js-loaded');
-    });
-  </script>
+  <!-- Modern Next Gen Pitch Design System & Loader Stylesheets -->
+  <link rel="stylesheet" href="css/iiec-loader.css">
+  <link rel="stylesheet" href="css/mobile-nav.css">
+  <link rel="stylesheet" href="css/about.css">
+  <link rel="stylesheet" href="css/recruitment-popup.css">
   
   <script type="application/ld+json">
   {
@@ -90,10 +89,6 @@
     }
   }
   </script>
-<meta property="og:locale" content="en_IN" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@iiec_csmu" />
-	<meta name="twitter:creator" content="@iiec_csmu" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -101,99 +96,245 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Page Loader -->
+  <!-- Top Scroll Reading Hairline -->
+  <div class="iiec-top-hairline" id="iiec-top-hairline" aria-hidden="true"></div>
+
+  <!-- IIEC Customized Circuit Chip Preloader -->
   <div class="page-loader" id="page-loader" aria-hidden="true">
-    <div class="loader-content">
-      <div class="loader-logo">
-        <img src="./assets/logos/iiec-logo.webp" alt="IIEC" width="80" height="80" loading="eager" decoding="async">
+    <div class="main-container">
+      <div class="loader">
+        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1c1d24"></stop>
+              <stop offset="100%" stop-color="#0c0d12"></stop>
+            </linearGradient>
+            <linearGradient id="pinGradient" x1="1" y1="0" x2="0" y2="0">
+              <stop offset="0%" stop-color="#ffb703"></stop>
+              <stop offset="50%" stop-color="#ff7b4c"></stop>
+              <stop offset="100%" stop-color="#8a3000"></stop>
+            </linearGradient>
+            <linearGradient id="iiecTextGradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffffff"></stop>
+              <stop offset="100%" stop-color="#ffb703"></stop>
+            </linearGradient>
+          </defs>
+          <g id="traces">
+            <path d="M100 100 H200 V210 H326" class="trace-bg"></path>
+            <path d="M100 100 H200 V210 H326" class="trace-flow orange"></path>
+            <path d="M80 180 H180 V230 H326" class="trace-bg"></path>
+            <path d="M80 180 H180 V230 H326" class="trace-flow cyan"></path>
+            <path d="M60 260 H150 V250 H326" class="trace-bg"></path>
+            <path d="M60 260 H150 V250 H326" class="trace-flow gold"></path>
+            <path d="M100 350 H200 V270 H326" class="trace-bg"></path>
+            <path d="M100 350 H200 V270 H326" class="trace-flow flame"></path>
+            <path d="M700 90 H560 V210 H474" class="trace-bg"></path>
+            <path d="M700 90 H560 V210 H474" class="trace-flow cyan"></path>
+            <path d="M740 160 H580 V230 H474" class="trace-bg"></path>
+            <path d="M740 160 H580 V230 H474" class="trace-flow gold"></path>
+            <path d="M720 250 H590 V250 H474" class="trace-bg"></path>
+            <path d="M720 250 H590 V250 H474" class="trace-flow orange"></path>
+            <path d="M680 340 H570 V270 H474" class="trace-bg"></path>
+            <path d="M680 340 H570 V270 H474" class="trace-flow flame"></path>
+          </g>
+          <rect x="328" y="185" width="144" height="110" rx="18" ry="18" fill="url(#chipGradient)" stroke="#ff5a1f" stroke-width="1.8" stroke-opacity="0.85" filter="drop-shadow(0 0 16px rgba(255, 90, 31, 0.45))"></rect>
+          <rect x="334" y="191" width="132" height="98" rx="12" ry="12" fill="none" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1"></rect>
+          <g>
+            <rect x="320" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="225" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="245" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="320" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+          </g>
+          <g>
+            <rect x="472" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="225" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="245" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+            <rect x="472" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
+          </g>
+          <text x="400" y="233" font-family="'Inter', -apple-system, sans-serif" font-size="24" font-weight="900" letter-spacing="2.5" fill="url(#iiecTextGradient)" text-anchor="middle" alignment-baseline="middle">IIEC</text>
+          <text x="400" y="258" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="800" letter-spacing="2" fill="#ff7b4c" text-anchor="middle" alignment-baseline="middle">INNOVATION CELL</text>
+          <g>
+            <circle cx="100" cy="100" r="7" fill="#1c1d24" stroke="#ff5a1f" stroke-width="1.5"></circle>
+            <circle cx="100" cy="100" r="3" fill="#ff5a1f"></circle>
+            <circle cx="80" cy="180" r="7" fill="#1c1d24" stroke="#00ccff" stroke-width="1.5"></circle>
+            <circle cx="80" cy="180" r="3" fill="#00ccff"></circle>
+            <circle cx="60" cy="260" r="7" fill="#1c1d24" stroke="#ffb703" stroke-width="1.5"></circle>
+            <circle cx="60" cy="260" r="3" fill="#ffb703"></circle>
+            <circle cx="100" cy="350" r="7" fill="#1c1d24" stroke="#ff7b4c" stroke-width="1.5"></circle>
+            <circle cx="100" cy="350" r="3" fill="#ff7b4c"></circle>
+          </g>
+          <g>
+            <circle cx="700" cy="90" r="7" fill="#1c1d24" stroke="#00ccff" stroke-width="1.5"></circle>
+            <circle cx="700" cy="90" r="3" fill="#00ccff"></circle>
+            <circle cx="740" cy="160" r="7" fill="#1c1d24" stroke="#ffb703" stroke-width="1.5"></circle>
+            <circle cx="740" cy="160" r="3" fill="#ffb703"></circle>
+            <circle cx="720" cy="250" r="7" fill="#1c1d24" stroke="#ff5a1f" stroke-width="1.5"></circle>
+            <circle cx="720" cy="250" r="3" fill="#ff5a1f"></circle>
+            <circle cx="680" cy="340" r="7" fill="#1c1d24" stroke="#ff7b4c" stroke-width="1.5"></circle>
+            <circle cx="680" cy="340" r="3" fill="#ff7b4c"></circle>
+          </g>
+        </svg>
       </div>
-      <div class="loader-bar-container">
-        <div class="loader-dots-wrapper">
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-        </div>
-        <div class="loader-info-row">
-          <div class="loader-percentage">
-            <span class="loader-percentage-num" id="loader-percent">0</span>
-            <span class="loader-percentage-symbol">%</span>
-          </div>
-          <span class="loader-divider">•</span>
-          <div class="loader-text">Where Vision Drives Venture</div>
-        </div>
-        <!-- Hidden element for script compatibility -->
-        <div id="loader-bar" style="display:none;"></div>
+      <div class="iiec-circuit-caption">
+        <span>IIEC</span> · WHERE VISION DRIVES VENTURE · <span>CSMU</span>
       </div>
     </div>
   </div>
 
-  <!-- Particle Canvas -->
-  <canvas id="particle-canvas" aria-hidden="true"></canvas>
-  
-  <!-- Glow Orb -->
-  <div class="glow-orb-wrapper" aria-hidden="true">
-    <div class="glow-orb"></div>
-  </div>
+  <!-- Recruitment Top Announcement Bar -->
+  <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
+    <span class="recruitment-topbar-badge">
+      <span class="pulse-dot" style="background: #ff7b4c;"></span>
+      Recruitment Open
+    </span>
+    <span>IIEC Core Team &amp; Department Member Recruitments Are Live!</span>
+    <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
+      <span>Apply on join.iiec.in</span>
+      <span>→</span>
+    </a>
+  </aside>
 
-  <!-- Main Content -->
-  <main id="main">
-	<div class="main-content">
-    <!-- Recruitment Top Announcement Bar -->
-    <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
-      <span class="recruitment-topbar-badge">
-        <span class="recruitment-topbar-dot"></span>
-        Recruitment Open
-      </span>
-      <span>IIEC Core Team & Department Member Recruitments Are Live!</span>
-      <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
-        <span>Apply on join.iiec.in</span>
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </aside>
-
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="container">
-        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
-          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
+  <!-- Navigation Bar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-wrap">
+        <a href="index.html" class="brand" aria-label="IIEC Home">
+          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo-img" width="38" height="38" loading="eager" />
           <span>IIEC</span>
         </a>
         
-        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        
-        <div class="nav-links" role="menu">
+        <div class="nav-links" role="menubar">
           <a href="index.html" class="nav-link" role="menuitem">Home</a>
           <a href="about.html" class="nav-link active" role="menuitem" aria-current="page">About</a>
           <a href="team.html" class="nav-link" role="menuitem">Team</a>
           <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
           <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
-          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
+          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem">
+            <span class="pulse-dot" style="background: #ff7b4c; width: 6px; height: 6px;"></span>
+            <span>Join IIEC (Recruiting)</span>
+          </a>
+        </div>
+
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" type="button">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Drawer (Same as Team Page) -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-panel-top">
+        <div class="brand">
+          <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" width="32" height="32" />
+          <span>IIEC</span>
+        </div>
+        <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close Menu">
+          ✕
+        </button>
+      </div>
+
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+          <span class="link-num">01</span>
+          <span class="link-text">Home</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link active" style="--item-index: 2;">
+          <span class="link-num">02</span>
+          <span class="link-text">About</span>
+          <span class="link-badge">Active</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+          <span class="link-num">03</span>
+          <span class="link-text">Team</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+          <span class="link-num">04</span>
+          <span class="link-text">Activities</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+          <span class="link-num">05</span>
+          <span class="link-text">Blog</span>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="mobile-nav-highlight-box">
+        <div class="mobile-highlight-tag">
+          <span class="pulse-dot"></span> Active Hackathon
+        </div>
+        <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
+        <p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
+        <a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
+          <span>Register Team ↗</span>
+        </a>
+      </div>
+
+      <div class="mobile-nav-bottom">
+        <a href="https://join.iiec.in" target="_blank" rel="noopener" class="mobile-join-link">
+          <span>Apply to Join IIEC Core Team</span>
+          <span>→</span>
+        </a>
+        <div class="mobile-socials">
+          <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:ecell-student-rep@csmu.ac.in">Email</a>
         </div>
       </div>
-    </nav>
+    </div>
+  </div>
 
-    <!-- Page Header -->
-    <section class="page-header" aria-labelledby="page-title">
+  <!-- Main Content Wrapper -->
+  <main id="main">
+
+    <!-- ================================================================
+         1. HERO DISPLAY HEADER SECTION
+         ================================================================ -->
+    <section class="about-hero-section" aria-labelledby="page-title">
       <div class="container">
-        <h1 id="page-title" class="page-title" data-animate="fade-up">About <span class="highlight">IIEC</span></h1>
-        <p class="page-subtitle" data-animate="blur" data-animate-delay="1">Our mission, vision, and the journey ahead</p>
+        <div class="about-hero-wrap">
+          <div class="about-hero-eyebrow">
+            <span class="pulse-dot"></span>
+            <span>ABOUT IIEC · CSMU NAVI MUMBAI</span>
+          </div>
+          <h1 id="page-title" class="about-hero-title">
+            Where Vision <em>Drives Venture.</em>
+          </h1>
+          <p class="about-hero-subtitle">
+            Our mission, vision, and the journey building Maharashtra's leading student innovation ecosystem and founder launchpad.
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- Who We Are Section -->
-    <section class="section" aria-labelledby="whoweare-title">
+    <!-- ================================================================
+         2. INFINITE HARDWARE-ACCELERATED MARQUEE TICKER
+         ================================================================ -->
+    <div class="marquee-container" aria-hidden="true">
+      <div class="marquee-track">
+        WHERE VISION DRIVES VENTURE <span>•</span> TOP 23 ALL INDIA (NEC IIT BOMBAY) <span>•</span> 4,000+ TEAMS COMPETED <span>•</span> INCUBATION &amp; STARTUP HUB <span>•</span> STUDENT-LED MOVEMENT <span>•</span> CHHATRAPATI SHIVAJI MAHARAJ UNIVERSITY <span>•</span> WHERE VISION DRIVES VENTURE <span>•</span> TOP 23 ALL INDIA (NEC IIT BOMBAY) <span>•</span> 4,000+ TEAMS COMPETED <span>•</span> INCUBATION &amp; STARTUP HUB <span>•</span> STUDENT-LED MOVEMENT <span>•</span>
+      </div>
+    </div>
+
+    <!-- ================================================================
+         3. WHO WE ARE SECTION (2-Column Grid + Tilted 3D Hero Ticket)
+         ================================================================ -->
+    <section class="whoweare-section" aria-labelledby="whoweare-title">
       <div class="container">
-        <div class="about-content" data-animate="fade-up">
-          <div class="about-text" data-animate="fade-right" data-animate-delay="1">
-            <h2 id="whoweare-title" class="section-title text-left">Who <span class="highlight">We Are</span></h2>
+        <div class="whoweare-grid">
+          <div class="whoweare-text">
+            <div class="section-label">Organization Overview</div>
+            <h2 id="whoweare-title">Who <span class="highlight">We Are</span></h2>
             <p>
-              IIEC — Incubation, Innovation & Entrepreneurship Cell is the official student-led entrepreneurship hub of Chhatrapati Shivaji Maharaj University, Navi Mumbai. What started as a small group of passionate students at IIEC has grown into a nationally recognized movement — ranked <strong>Top 23 out of 4,000+ teams across India</strong> at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay. We are one of the best entrepreneurship cells in Maharashtra.
+              IIEC — Incubation, Innovation &amp; Entrepreneurship Cell is the official student-led entrepreneurship hub of Chhatrapati Shivaji Maharaj University, Navi Mumbai. What started as a small group of passionate students at IIEC has grown into a nationally recognized movement — ranked <strong>Top 23 out of 4,000+ teams across India</strong> at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay. We are one of the best entrepreneurship cells in Maharashtra.
             </p>
             <p>
               We exist to bridge the gap between ideas and execution. Through skill development workshops, startup mentorship, national competitions, hackathons, coding bootcamps, and industry connections, IIEC provides the platform where raw ambition transforms into real ventures. We don't just study entrepreneurship — we practice it. From business plan competitions to startup incubation, our community of student founders is building the future.
@@ -202,34 +343,62 @@
               Every member who joins IIEC becomes part of a legacy of innovation and entrepreneurship. We're building a culture where innovation is second nature, failures are celebrated as lessons, and every student at CSMU is empowered to think like a startup founder and leader.
             </p>
           </div>
-          <div class="about-visual" data-animate="fade-left" data-animate-delay="2">
-            <div class="glass-card highlight-card" data-animate="scale" data-animate-delay="3">
-              <div class="highlight-stat">Top 23</div>
-              <div class="highlight-label">NEC All India Rank</div>
+
+          <!-- 3D Tilted Status Ticket Card -->
+          <aside class="hero-ticket-card">
+            <div class="ticket-top">
+              <span class="ticket-brand">IIEC CSMU / NEC 2026</span>
+              <span class="ticket-tag">FOUNDED DEC 2024</span>
             </div>
-            <div class="glass-card highlight-card" data-animate="scale" data-animate-delay="4">
-              <div class="highlight-stat">4,000+</div>
-              <div class="highlight-label">Teams Competed Against</div>
+
+            <div class="ticket-middle">
+              <div class="ticket-stat-box">
+                <div class="ticket-stat-num">Top <span>23</span></div>
+                <div class="ticket-stat-label">NEC All India Rank (IIT Bombay)</div>
+              </div>
+
+              <div class="ticket-stat-box">
+                <div class="ticket-stat-num">4,000<span>+</span></div>
+                <div class="ticket-stat-label">Teams Competed Against</div>
+              </div>
             </div>
-          </div>
+
+            <div class="ticket-bottom">
+              <strong>CSMU Navi Mumbai Campus Hub</strong><br>
+              Incubation · Hackathons · Venture Creation
+            </div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Mission & Vision Section -->
-    <section class="section" aria-labelledby="mission-title">
+    <!-- ================================================================
+         4. MISSION & VISION SECTION (2-Column Bento Grid)
+         ================================================================ -->
+    <section class="mission-vision-section" aria-labelledby="mission-title">
       <div class="container">
-        <div class="grid-2">
-          <article class="glass-card mission-card" data-animate="flip-y" data-animate-delay="1">
-            <div class="mission-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+        <div class="section-head">
+          <div>
+            <div class="section-label">Foundational Pillars</div>
+            <h2 id="mission-title">Mission &amp; <span class="highlight">Vision</span></h2>
+          </div>
+          <p class="section-description">
+            Guiding principles accelerating our ecosystem from university initiative to nationally celebrated startup accelerator.
+          </p>
+        </div>
+
+        <div class="mission-grid">
+          <!-- Mission Card -->
+          <article class="mission-card">
+            <div>
+              <div class="mission-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </div>
+              <h3 class="mission-card-title">Our Mission</h3>
+              <p class="mission-card-desc">
+                To ignite the entrepreneurial spirit in every student at Chhatrapati Shivaji Maharaj University by providing hands-on startup experiences, real-world industry exposure, and a community that turns bold ideas into impactful ventures.
+              </p>
             </div>
-            <h3 id="mission-title" class="mission-title">Our Mission</h3>
-            <p class="mission-text">
-              To ignite the entrepreneurial spirit in every student at Chhatrapati Shivaji Maharaj University by providing hands-on startup experiences, real-world industry exposure, and a community that turns bold ideas into impactful ventures.
-            </p>
             <ul class="mission-points">
               <li>Foster innovation, design thinking, and creative problem-solving</li>
               <li>Compete and excel at national-level entrepreneurship challenges like NEC IIT Bombay</li>
@@ -238,17 +407,17 @@
             </ul>
           </article>
           
-          <article class="glass-card mission-card" data-animate="flip-y" data-animate-delay="2">
-            <div class="mission-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-              </svg>
+          <!-- Vision Card -->
+          <article class="mission-card">
+            <div>
+              <div class="mission-card-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+              </div>
+              <h3 class="mission-card-title">Our Vision</h3>
+              <p class="mission-card-desc">
+                To establish IIEC as India's most recognized college entrepreneurship cell that produces successful student founders, award-winning teams, and a self-sustaining innovation ecosystem at CSMU, Navi Mumbai.
+              </p>
             </div>
-            <h3 class="mission-title">Our Vision</h3>
-            <p class="mission-text">
-              To establish IIEC as India's most recognized college entrepreneurship cell that produces successful student founders, award-winning teams, and a self-sustaining innovation ecosystem at CSMU, Navi Mumbai.
-            </p>
             <ul class="mission-points">
               <li>Grow a thriving community of student entrepreneurs and innovators</li>
               <li>Incubate and launch student-led startups from CSMU campus</li>
@@ -260,243 +429,310 @@
       </div>
     </section>
 
-    <!-- Timeline Section -->
-    <section class="section" aria-labelledby="timeline-title">
+    <!-- ================================================================
+         5. OUR JOURNEY & TIMELINE SECTION
+         ================================================================ -->
+    <section class="timeline-section" aria-labelledby="timeline-title">
       <div class="container">
-        <header class="section-header" data-animate="fade-up">
-          <h2 id="timeline-title" class="section-title">Our <span class="highlight">Journey</span></h2>
-          <p class="section-subtitle">Milestones we've achieved and the road ahead</p>
-        </header>
+        <div class="section-head">
+          <div>
+            <div class="section-label">Evolution &amp; Milestones</div>
+            <h2 id="timeline-title">Our <span class="highlight">Journey</span></h2>
+          </div>
+          <p class="section-description">
+            Key milestones we've achieved from our grassroots founding to qualifying for national finals.
+          </p>
+        </div>
         
-        <div class="timeline">
-          <div class="timeline-item" data-animate="fade-left" data-animate-delay="1">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-date">Dec 2024</div>
-              <h3 class="timeline-title">IIEC Founded</h3>
-              <p class="timeline-desc">A group of passionate students recognized the need for an entrepreneurship platform at CSMU. IIEC was born with a vision to build startup culture from the ground up.</p>
-            </div>
+        <div class="timeline-track-wrap">
+          <!-- 1. Dec 2024 -->
+          <div class="timeline-node">
+            <div class="timeline-bullet"></div>
+            <article class="timeline-card">
+              <div class="timeline-top-row">
+                <span class="timeline-date-chip">Dec 2024</span>
+                <span class="timeline-status-tag">Foundation</span>
+              </div>
+              <h3 class="timeline-node-title">IIEC Founded</h3>
+              <p class="timeline-node-desc">
+                A group of passionate students recognized the need for an entrepreneurship platform at CSMU. IIEC was born with a vision to build startup culture from the ground up.
+              </p>
+            </article>
           </div>
           
-          <div class="timeline-item" data-animate="fade-right" data-animate-delay="2">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-date">Dec 2024–2025</div>
-              <h3 class="timeline-title">Building Foundations</h3>
-              <p class="timeline-desc">IIEC grew steadily — organizing events, workshops, and building a strong entrepreneurial community on campus.</p>
-            </div>
+          <!-- 2. Dec 2024–2025 -->
+          <div class="timeline-node">
+            <div class="timeline-bullet"></div>
+            <article class="timeline-card">
+              <div class="timeline-top-row">
+                <span class="timeline-date-chip">Dec 2024 – 2025</span>
+                <span class="timeline-status-tag">Ecosystem</span>
+              </div>
+              <h3 class="timeline-node-title">Building Foundations</h3>
+              <p class="timeline-node-desc">
+                IIEC grew steadily — organizing events, workshops, and building a strong entrepreneurial community on campus.
+              </p>
+            </article>
           </div>
           
-          <div class="timeline-item" data-animate="fade-left" data-animate-delay="3">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-date">2025</div>
-              <h3 class="timeline-title">NEC — Top 23 All India</h3>
-              <p class="timeline-desc">Achieved <strong>Top 23 rank out of 4,000+ teams</strong> at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay — qualifying for the national finals and putting CSMU on the map.</p>
-              <span class="event-status upcoming">Milestone</span>
-            </div>
+          <!-- 3. 2025 -->
+          <div class="timeline-node">
+            <div class="timeline-bullet"></div>
+            <article class="timeline-card" style="border-color: rgba(255, 90, 31, 0.4); box-shadow: 0 8px 24px rgba(255, 90, 31, 0.08);">
+              <div class="timeline-top-row">
+                <span class="timeline-date-chip" style="background: var(--accent); color: #ffffff;">2025 · National Finals</span>
+                <span class="timeline-status-tag" style="background: var(--accent);">Key Milestone</span>
+              </div>
+              <h3 class="timeline-node-title">NEC — Top 23 All India</h3>
+              <p class="timeline-node-desc">
+                Achieved <strong>Top 23 rank out of 4,000+ teams</strong> at the National Entrepreneurship Challenge (NEC) by E-Cell, IIT Bombay — qualifying for the national finals and putting CSMU on the map.
+              </p>
+            </article>
           </div>
           
-          <div class="timeline-item" data-animate="fade-right" data-animate-delay="4">
-            <div class="timeline-marker"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-date">2025–2026</div>
-              <h3 class="timeline-title">Expansion & Incubation</h3>
-              <p class="timeline-desc">IIEC expanded scope to cover incubation, innovation labs, and national outreach.</p>
-            </div>
+          <!-- 4. 2025–2026 -->
+          <div class="timeline-node">
+            <div class="timeline-bullet"></div>
+            <article class="timeline-card">
+              <div class="timeline-top-row">
+                <span class="timeline-date-chip">2025 – 2026</span>
+                <span class="timeline-status-tag">Scaling</span>
+              </div>
+              <h3 class="timeline-node-title">Expansion &amp; Incubation</h3>
+              <p class="timeline-node-desc">
+                IIEC expanded scope to cover incubation, innovation labs, and national outreach.
+              </p>
+            </article>
           </div>
           
-          <div class="timeline-item" data-animate="fade-left" data-animate-delay="5">
-            <div class="timeline-marker current"></div>
-            <div class="timeline-content glass-card">
-              <div class="timeline-date">Feb 2026</div>
-              <h3 class="timeline-title">GENESIS & Beyond</h3>
-              <p class="timeline-desc">Successfully conducted GENESIS — our flagship orientation event in collaboration with GeeksforGeeks. Building the team, hosting events, and scaling our national presence.</p>
-              <span class="event-status upcoming">Milestone</span>
-            </div>
+          <!-- 5. Feb 2026 -->
+          <div class="timeline-node">
+            <div class="timeline-bullet"></div>
+            <article class="timeline-card">
+              <div class="timeline-top-row">
+                <span class="timeline-date-chip">Feb 2026</span>
+                <span class="timeline-status-tag">Flagship</span>
+              </div>
+              <h3 class="timeline-node-title">GENESIS &amp; Beyond</h3>
+              <p class="timeline-node-desc">
+                Successfully conducted GENESIS — our flagship orientation event in collaboration with GeeksforGeeks. Building the team, hosting events, and scaling our national presence.
+              </p>
+            </article>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Values Section -->
-    <section class="section" aria-labelledby="values-title">
+    <!-- ================================================================
+         6. CORE VALUES SECTION (3-Column Grid)
+         ================================================================ -->
+    <section class="values-section" aria-labelledby="values-title">
       <div class="container">
-        <header class="section-header" data-animate="fade-up">
-          <h2 id="values-title" class="section-title">Our <span class="highlight">Values</span></h2>
-          <p class="section-subtitle">The principles that guide everything we do</p>
-        </header>
+        <div class="section-head">
+          <div>
+            <div class="section-label">Organizational DNA</div>
+            <h2 id="values-title">Our <span class="highlight">Values</span></h2>
+          </div>
+          <p class="section-description">
+            The guiding principles shaping every event, hackathon, and mentorship session at IIEC.
+          </p>
+        </div>
         
-        <div class="grid-3">
-          <article class="glass-card" data-animate="scale" data-animate-delay="1">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-              </svg>
+        <div class="values-grid">
+          <!-- 01 Innovation First -->
+          <article class="value-card">
+            <div class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z"></path></svg>
             </div>
-            <h3 class="card-title">Innovation First</h3>
-            <p class="card-desc">We encourage thinking differently, challenging norms, and finding creative startup solutions to real-world problems through design thinking and lean methodology.</p>
+            <span class="value-num">VALUE // 01</span>
+            <h3 class="value-title">Innovation First</h3>
+            <p class="value-desc">
+              We encourage thinking differently, challenging norms, and finding creative startup solutions to real-world problems through design thinking and lean methodology.
+            </p>
           </article>
           
-          <article class="glass-card" data-animate="scale" data-animate-delay="2">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
+          <!-- 02 Community Driven -->
+          <article class="value-card">
+            <div class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
             </div>
-            <h3 class="card-title">Community Driven</h3>
-            <p class="card-desc">Success is collective. Our student founder network builds each other up, shares knowledge through peer learning, and celebrates every startup milestone together.</p>
+            <span class="value-num">VALUE // 02</span>
+            <h3 class="value-title">Community Driven</h3>
+            <p class="value-desc">
+              Success is collective. Our student founder network builds each other up, shares knowledge through peer learning, and celebrates every startup milestone together.
+            </p>
           </article>
           
-          <article class="glass-card" data-animate="scale" data-animate-delay="3">
-            <div class="card-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+          <!-- 03 Action Oriented -->
+          <article class="value-card">
+            <div class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
             </div>
-            <h3 class="card-title">Action Oriented</h3>
-            <p class="card-desc">Ideas are great, execution is everything. We believe in learning by doing — through hackathons, startup bootcamps, and real project building — and failing forward fast.</p>
+            <span class="value-num">VALUE // 03</span>
+            <h3 class="value-title">Action Oriented</h3>
+            <p class="value-desc">
+              Ideas are great, execution is everything. We believe in learning by doing — through hackathons, startup bootcamps, and real project building — and failing forward fast.
+            </p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Explore More -->
-    <section class="section" aria-label="Explore More">
+    <!-- ================================================================
+         7. ECOSYSTEM PORTALS / CROSS BANNERS
+         ================================================================ -->
+    <section class="explore-section" aria-label="Explore Ecosystem">
       <div class="container">
-        <header class="section-header" data-animate="fade-up">
-          <h2 class="section-title">Continue <span class="highlight">Exploring</span></h2>
-        </header>
-        <div class="explore-banners" data-animate="fade-up" data-animate-delay="1">
-          <div class="cross-banner glass-card">
-            <div class="cross-banner-content">
+        <div class="section-head">
+          <div>
+            <div class="section-label">Ecosystem Navigation</div>
+            <h2>Continue <span class="highlight">Exploring</span></h2>
+          </div>
+        </div>
+
+        <div class="explore-banners">
+          <!-- Card 1: Team -->
+          <article class="cross-banner">
+            <div>
               <span class="cross-banner-badge">Our People</span>
               <h3 class="cross-banner-title">Meet the Team</h3>
-              <p class="cross-banner-desc">The people behind the mission — leadership, core team, and every portfolio head.</p>
+              <p class="cross-banner-desc">
+                The people behind the mission — leadership, core team, and every portfolio head.
+              </p>
             </div>
-            <a href="team.html" class="btn btn-primary">
+            <a href="team.html" class="btn btn-secondary">
               <span>View Team</span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <span>→</span>
             </a>
-          </div>
-          <div class="cross-banner glass-card">
-            <div class="cross-banner-content">
+          </article>
+
+          <!-- Card 2: Activities -->
+          <article class="cross-banner">
+            <div>
               <span class="cross-banner-badge">What's Coming</span>
-              <h3 class="cross-banner-title">Activities & Events</h3>
-              <p class="cross-banner-desc">Upcoming events, workshops, and programs — there's always something happening at IIEC.</p>
+              <h3 class="cross-banner-title">Activities &amp; Events</h3>
+              <p class="cross-banner-desc">
+                Upcoming events, workshops, and programs — there's always something happening at IIEC.
+              </p>
             </div>
-            <a href="activities.html" class="btn btn-primary">
+            <a href="activities.html" class="btn btn-secondary">
               <span>Explore Events</span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              <span>→</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         8. GRAND DARK CTA SECTION
+         ================================================================ -->
+    <section class="cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <article class="cta-card">
+          <div class="cta-content">
+            <div class="section-label" style="color: #ff7b4c;">BE PART OF THE REVOLUTION</div>
+            <h2 id="cta-title" class="cta-title">
+              Ready to Write <span class="highlight">History?</span>
+            </h2>
+            <p class="cta-subtitle">
+              Join the team at IIEC and build the future of student entrepreneurship at Chhatrapati Shivaji Maharaj University.
+            </p>
+            <a href="https://join.iiec.in" class="btn btn-primary btn-large" target="_blank" rel="noopener">
+              <span>Join the Team ↗</span>
             </a>
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="section cta-section" aria-labelledby="cta-title">
-      <div class="container">
-        <div data-animate="blur">
-          <h2 id="cta-title" class="cta-title">Ready to Write <span class="highlight">History</span>?</h2>
-          <p class="cta-subtitle">Join the team at IIEC and be part of something extraordinary.</p>
-          <a href="https://join.iiec.in" class="btn btn-primary btn-large" target="_blank" rel="noopener">
-            <span>Join the Team</span>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </section>
+  </main>
 
-    <!-- Footer -->
-    </main>
-	<footer class="footer" role="contentinfo" data-animate="fade-up">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="lazy" decoding="async">
-              <span>IIEC</span>
-            </div>
-            <p class="footer-desc">
-              IIEC — Incubation, Innovation & Entrepreneurship Cell. Where Vision Drives Venture. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University.
-            </p>
-            <div class="footer-socials">
-              <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-              <a href="https://www.instagram.com/iiec.csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                </svg>
-              </a>
-              <a href="https://twitter.com/iiec_csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Twitter/X">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </a>
-              <a href="mailto:ecell-student-rep@csmu.ac.in" class="footer-social" aria-label="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
-                  <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
-                </svg>
-              </a>
-            </div>
+  <!-- ================================================================
+       9. FOOTER
+       ================================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="36" height="36" loading="lazy" decoding="async">
+            <span>IIEC</span>
           </div>
-          
-          <nav class="footer-nav" aria-label="Quick Links">
-            <h4 class="footer-title">Quick Links</h4>
-            <div class="footer-links">
-              <a href="index.html">Home</a>
-              <a href="about.html">About Us</a>
-              <a href="team.html">Team</a>
-              <a href="activities.html">Activities</a>
-              <a href="blog.html">Blog</a>
-              <a href="assets.html">Brand Assets</a>
-            </div>
-          </nav>
-          
-          <nav class="footer-nav" aria-label="Programs">
-            <h4 class="footer-title">Programs</h4>
-            <div class="footer-links">
-              <a href="activities.html#workshops">Workshops</a>
-              <a href="activities.html#bootcamp">Startup Bootcamp</a>
-              <a href="activities.html#talks">Industry Talks</a>
-              <a href="activities.html#events">Events</a>
-            </div>
-          </nav>
-          
-          <nav class="footer-nav" aria-label="Contact">
-            <h4 class="footer-title">Contact</h4>
-            <div class="footer-links">
-              <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
-              <a href="https://join.iiec.in" target="_blank" rel="noopener">Join the Movement</a>
-              <a href="index.html#newsletter">Newsletter</a>
-            </div>
-          </nav>
+          <p class="footer-desc">
+            IIEC — Incubation, Innovation &amp; Entrepreneurship Cell. Where Vision Drives Venture. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University.
+          </p>
+          <div class="footer-socials">
+            <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/iiec.csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+            <a href="https://twitter.com/iiec_csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Twitter/X">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="mailto:ecell-student-rep@csmu.ac.in" class="footer-social" aria-label="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
+                <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
+              </svg>
+            </a>
+          </div>
         </div>
         
-        <div class="footer-bottom">
-          <p class="footer-copyright">
-            © 2026 IIEC. All rights reserved.
-          </p>
-          <span class="footer-credit">Website by <a href="https://novish.studio" target="_blank" rel="noopener">Novish Studio</a></span>
-          <a href="admin.html" class="footer-ops">OPS Portal →</a>
-        </div>
+        <nav class="footer-nav" aria-label="Quick Links">
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="team.html">Team</a>
+            <a href="activities.html">Activities</a>
+            <a href="blog.html">Blog</a>
+            <a href="assets.html">Brand Assets</a>
+          </div>
+        </nav>
+        
+        <nav class="footer-nav" aria-label="Programs">
+          <h4 class="footer-title">Programs</h4>
+          <div class="footer-links">
+            <a href="activities.html#workshops">Workshops</a>
+            <a href="activities.html#bootcamp">Startup Bootcamp</a>
+            <a href="activities.html#talks">Industry Talks</a>
+            <a href="activities.html#events">Events</a>
+          </div>
+        </nav>
+        
+        <nav class="footer-nav" aria-label="Contact">
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-links">
+            <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
+            <a href="https://join.iiec.in" target="_blank" rel="noopener">Join the Movement</a>
+            <a href="index.html#newsletter">Newsletter</a>
+          </div>
+        </nav>
       </div>
-    </footer>
-  <!-- Floating Recruitment Pill -->
-  <a href="https://join.iiec.in" target="_blank" rel="noopener" class="floating-recruitment-pill" aria-label="Apply for Recruitment">
-    <span class="pill-badge">Live</span>
-    <span>Join IIEC Team</span>
-    <i class="fas fa-arrow-right"></i>
-  </a>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">
+          © 2026 IIEC. All rights reserved.
+        </p>
+        <span class="footer-credit">Website by <a href="https://novish.studio" target="_blank" rel="noopener">Novish Studio</a></span>
+        <a href="admin.html" class="footer-ops">OPS Portal →</a>
+      </div>
+    </div>
+  </footer>
 
-  <!-- Main Script -->
-  <script src="js/script.js" defer></script>
+  <!-- Scripts -->
+  <script src="js/iiec-loader.js"></script>
+  <script src="js/mobile-nav.js"></script>
+  <script src="js/about.js"></script>
+  <script src="js/recruitment-popup.js"></script>
 </body>
 </html>
