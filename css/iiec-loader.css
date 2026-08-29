@@ -1,0 +1,132 @@
+/**
+ * IIEC - CUSTOMIZED CIRCUIT CHIP LOADER
+ * Tailored to IIEC brand colors: Electric Orange, Innovation Gold, Tech Cyan & Obsidian.
+ */
+
+/* Fullscreen Preloader Container */
+.page-loader,
+.iiec-circuit-loader {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #14161f 0%, #0c0d12 60%, #06070a 100%);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  user-select: none;
+}
+
+.page-loader.loaded,
+.iiec-circuit-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.03);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 720px;
+  max-height: 520px;
+  padding: 20px;
+  position: relative;
+}
+
+.loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader svg {
+  width: 100%;
+  height: auto;
+  max-width: 660px;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.8));
+}
+
+/* Background Inactive Traces */
+.trace-bg {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1.8;
+  fill: none;
+}
+
+/* Flowing Laser Current Animation */
+.trace-flow {
+  stroke-width: 2.2;
+  fill: none;
+  stroke-dasharray: 45 420;
+  stroke-dashoffset: 465;
+  filter: drop-shadow(0 0 8px currentColor);
+  animation: iiec-circuit-flow 2.4s cubic-bezier(0.5, 0, 0.9, 1) infinite;
+}
+
+/* IIEC Curated Theme Colors */
+.orange {
+  stroke: #ff5a1f;
+  color: #ff5a1f;
+}
+
+.cyan {
+  stroke: #00ccff;
+  color: #00ccff;
+}
+
+.gold {
+  stroke: #ffb703;
+  color: #ffb703;
+}
+
+.flame {
+  stroke: #ff7b4c;
+  color: #ff7b4c;
+}
+
+@keyframes iiec-circuit-flow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Subtitle Tagline below Circuit */
+.iiec-circuit-caption {
+  margin-top: 10px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #888899;
+  text-align: center;
+}
+
+.iiec-circuit-caption span {
+  color: #ff5a1f;
+}
+
+/* Top Progress Line */
+.iiec-top-hairline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  width: 0%;
+  background: #ff5a1f;
+  z-index: 999998;
+  pointer-events: none;
+  transition: width 0.1s ease-out;
+}

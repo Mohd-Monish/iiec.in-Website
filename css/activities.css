@@ -394,20 +394,39 @@ nav.main-nav {
    NEW HERO: Bento Hub Layout
    ================================================================ */
 .hero-hub-section {
-  padding: 50px 0 30px;
+  padding: 45px 0 30px;
 }
 
 .hero-hub-header {
-  margin-bottom: 36px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 36px;
+  align-items: center;
+  margin-bottom: 32px;
 }
 
-.hero-hub-header-top {
+.hero-hub-header-left {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
+  flex-direction: column;
+}
+
+.hero-hub-title {
+  max-width: 900px;
+  margin-bottom: 16px;
+}
+
+.hero-hub-subtitle {
+  font-size: 16.5px;
+  color: var(--muted);
+  max-width: 680px;
+  line-height: 1.6;
+}
+
+.hero-hub-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
 }
 
 .hero-live-pill {
@@ -418,22 +437,25 @@ nav.main-nav {
   border: 1.5px solid var(--accent);
   padding: 6px 14px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 800;
   color: var(--ink);
   box-shadow: 0 2px 10px var(--accent-glow);
 }
 
-.hero-hub-title {
-  max-width: 900px;
-  margin-bottom: 18px;
+.hero-header-metrics-card {
+  background: #ffffff;
+  border: 1.5px solid var(--line);
+  border-radius: 24px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  width: 100%;
 }
 
-.hero-hub-subtitle {
-  font-size: 17px;
-  color: var(--muted);
-  max-width: 720px;
-  line-height: 1.6;
+.hero-header-metrics-card .metrics-grid-mini {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
 }
 
 /* Hero Bento Grid */
@@ -1634,6 +1656,16 @@ footer.activities-footer {
    Responsive Breakpoints
    ================================================================ */
 @media (max-width: 1080px) {
+  .hero-hub-header {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .hero-hub-header-right {
+    align-items: flex-start;
+  }
+  .hero-header-metrics-card {
+    max-width: 100%;
+  }
   .bento-hero-grid {
     grid-template-columns: 1fr;
   }
@@ -1753,292 +1785,4 @@ footer.activities-footer {
   }
 }
 
-/* ================================================================
-   Mobile Hamburger Button & Navigation Drawer
-   ================================================================ */
-.hamburger-btn {
-  display: none;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 1.5px solid var(--line);
-  padding: 0;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  z-index: 105;
-}
-
-.hamburger-btn:hover {
-  border-color: var(--accent);
-  transform: scale(1.05);
-  box-shadow: 0 4px 14px var(--accent-glow);
-}
-
-.hamburger-icon {
-  width: 20px;
-  height: 14px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.hamburger-icon .line {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, background-color 0.3s ease;
-  transform-origin: center;
-}
-
-.hamburger-btn[aria-expanded="true"] .line-1 {
-  transform: translateY(6px) rotate(45deg);
-  background: var(--accent);
-}
-
-.hamburger-btn[aria-expanded="true"] .line-2 {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-.hamburger-btn[aria-expanded="true"] .line-3 {
-  transform: translateY(-6px) rotate(-45deg);
-  background: var(--accent);
-}
-
-/* Mobile Drawer Overlay */
-.mobile-nav-drawer {
-  position: fixed;
-  inset: 0;
-  z-index: 9990;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.mobile-nav-drawer.open {
-  visibility: visible;
-  opacity: 1;
-}
-
-.mobile-nav-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.mobile-nav-drawer.open .mobile-nav-backdrop {
-  opacity: 1;
-}
-
-.mobile-nav-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: min(380px, 86vw);
-  background: #111111;
-  color: #ffffff;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 28px 24px 30px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  overflow-y: auto;
-  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.5);
-}
-
-.mobile-nav-drawer.open .mobile-nav-panel {
-  transform: translateX(0);
-}
-
-.mobile-nav-panel-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.mobile-drawer-close {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: #ffffff;
-  font-size: 16px;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.mobile-drawer-close:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  transform: scale(1.08);
-}
-
-.mobile-nav-links {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin: 24px 0;
-}
-
-.mobile-nav-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 14px;
-  border-radius: 12px;
-  color: #deded8;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  opacity: 0;
-  transform: translateX(20px);
-}
-
-.mobile-nav-drawer.open .mobile-nav-link {
-  opacity: 1;
-  transform: translateX(0);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--item-index, 1) * 0.05s),
-              opacity 0.4s ease calc(var(--item-index, 1) * 0.05s),
-              background 0.2s ease, color 0.2s ease;
-}
-
-.mobile-nav-link:hover {
-  background: rgba(255, 255, 255, 0.07);
-  color: #ffffff;
-  transform: translateX(4px) !important;
-}
-
-.mobile-nav-link.active {
-  background: rgba(255, 90, 31, 0.15);
-  color: var(--accent);
-  border: 1px solid rgba(255, 90, 31, 0.3);
-}
-
-.link-num {
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  width: 24px;
-}
-
-.link-text {
-  flex: 1;
-}
-
-.link-badge {
-  font-size: 10px;
-  font-weight: 800;
-  text-transform: uppercase;
-  background: var(--accent);
-  color: #fff;
-  padding: 2px 7px;
-  border-radius: 999px;
-  margin-right: 8px;
-}
-
-.link-arrow {
-  color: #777;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.mobile-nav-link:hover .link-arrow {
-  transform: translateX(4px);
-  color: var(--accent);
-}
-
-.mobile-nav-highlight-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 20px;
-}
-
-.mobile-highlight-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 10px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--accent);
-  margin-bottom: 6px;
-}
-
-.mobile-highlight-title {
-  font-size: 15px;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 4px;
-}
-
-.mobile-highlight-desc {
-  font-size: 12px;
-  color: #aaa;
-  line-height: 1.45;
-}
-
-.mobile-nav-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.mobile-join-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--accent);
-  padding: 8px 0;
-}
-
-.mobile-socials {
-  display: flex;
-  gap: 16px;
-  font-size: 12px;
-  color: #888;
-}
-
-.mobile-socials a {
-  color: #aaa;
-  transition: color 0.2s ease;
-}
-
-.mobile-socials a:hover {
-  color: var(--accent);
-}
-
-@media (max-width: 850px) {
-  .hamburger-btn {
-    display: inline-flex;
-  }
-}
 

@@ -9,9 +9,9 @@
    3. Go to Extensions → Apps Script
    4. Delete any existing code in the editor
    5. Paste this ENTIRE script
-   6. Click the 💾 Save button (or Ctrl+S)
+   6. Click the Save button (or Ctrl+S)
    7. Click "Deploy" → "New Deployment"
-   8. Click the gear icon ⚙️ next to "Select type" → choose "Web app"
+   8. Click the gear icon next to "Select type" → choose "Web app"
    9. Set:
       - Description: "TechAstra Volunteer Form"
       - Execute as: "Me"
@@ -326,5 +326,5 @@ function sendConfirmationEmail(data) {
 
 // ── Run this function FIRST to set up the spreadsheet ────────────
 // Go to the Apps Script editor, select "setupSheet" from the 
-// function dropdown, and click the ▶️ Run button.
+// function dropdown, and click the Run button.
 // This will auto-create all columns, formatting, and the summary sheet.
