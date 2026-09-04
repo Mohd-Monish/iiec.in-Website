@@ -475,6 +475,11 @@ h3 {
   color: var(--ink);
 }
 
+.hero-title-highlight {
+  display: inline-block;
+  white-space: nowrap;
+}
+
 .hero-subtitle {
   font-size: clamp(15px, 1.75vw, 19px);
   color: var(--muted);

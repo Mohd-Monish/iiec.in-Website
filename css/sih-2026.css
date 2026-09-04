@@ -300,6 +300,12 @@ h1 em {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
+.hero-card img {
+  max-height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
 .hero-card:before {
   content: "SIH";
   position: absolute;

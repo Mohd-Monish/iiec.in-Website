@@ -42,6 +42,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="css/iiec-loader.css" />
+	<link rel="stylesheet" href="css/iiec-animations.css" />
 	<link rel="stylesheet" href="css/mobile-nav.css" />
 	<link rel="stylesheet" href="css/ipl-auction.css" />
 </head>
@@ -151,7 +152,7 @@
 
 		<nav class="navbar" role="navigation" aria-label="Main navigation">
 			<div class="container">
-				<a href="index.html" class="nav-logo" aria-label="IIEC Home">
+				<a href="/" class="nav-logo" aria-label="IIEC Home">
 					<img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async" />
 					<span>IIEC</span>
 				</a>
@@ -163,11 +164,11 @@
 				</button>
 
 				<div class="nav-links" role="menu" id="primaryNavLinks">
-					<a href="index.html" class="nav-link" role="menuitem">Home</a>
-					<a href="about.html" class="nav-link" role="menuitem">About</a>
-					<a href="team.html" class="nav-link" role="menuitem">Team</a>
-					<a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-					<a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+					<a href="/" class="nav-link" role="menuitem">Home</a>
+					<a href="about" class="nav-link" role="menuitem">About</a>
+					<a href="team" class="nav-link" role="menuitem">Team</a>
+					<a href="activities" class="nav-link" role="menuitem">Activities</a>
+					<a href="blog" class="nav-link" role="menuitem">Blog</a>
 					<a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
 				</div>
 			</div>
@@ -188,27 +189,27 @@
 				</div>
 
 				<div class="mobile-nav-links">
-					<a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+					<a href="/" class="mobile-nav-link" style="--item-index: 1;">
 						<span class="link-num">01</span>
 						<span class="link-text">Home</span>
 						<span class="link-arrow">→</span>
 					</a>
-					<a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+					<a href="about" class="mobile-nav-link" style="--item-index: 2;">
 						<span class="link-num">02</span>
 						<span class="link-text">About</span>
 						<span class="link-arrow">→</span>
 					</a>
-					<a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+					<a href="team" class="mobile-nav-link" style="--item-index: 3;">
 						<span class="link-num">03</span>
 						<span class="link-text">Team</span>
 						<span class="link-arrow">→</span>
 					</a>
-					<a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+					<a href="activities" class="mobile-nav-link" style="--item-index: 4;">
 						<span class="link-num">04</span>
 						<span class="link-text">Activities</span>
 						<span class="link-arrow">→</span>
 					</a>
-					<a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+					<a href="blog" class="mobile-nav-link" style="--item-index: 5;">
 						<span class="link-num">05</span>
 						<span class="link-text">Blog</span>
 						<span class="link-arrow">→</span>
@@ -217,12 +218,12 @@
 
 				<div class="mobile-nav-highlight-box">
 					<div class="mobile-highlight-tag">
-						<span class="pulse-dot"></span> Active Hackathon
+						<span class="dot" style="background: #157f4a;"></span> Event Concluded
 					</div>
 					<div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
-					<p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
-					<a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
-						<span>Register Team ↗</span>
+					<p class="mobile-highlight-desc">Internal Hackathon concluded on 1 Sept 2026. Evaluations in progress.</p>
+					<a href="sih-2026" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 10px;">
+						<span>View SIH 2026 →</span>
 					</a>
 				</div>
 
@@ -276,7 +277,7 @@
 					</div>
 				</section>
 
-				<aside class="hero-card" aria-label="Event spotlight">
+				<aside class="hero-card ngp-tilt-card animate-on-scroll from-right" aria-label="Event spotlight">
 					<div class="stadium">
 						<div class="auction-board">
 							<div class="orbit-tag">Auction Playbook</div>
@@ -886,29 +887,29 @@
 					<nav class="footer-nav" aria-label="Quick Links">
 						<h4 class="footer-title">Quick Links</h4>
 						<div class="footer-links">
-							<a href="index.html">Home</a>
-							<a href="about.html">About Us</a>
-							<a href="team.html">Team</a>
-							<a href="activities.html">Activities</a>
-							<a href="blog.html">Blog</a>
+							<a href="/">Home</a>
+							<a href="about">About Us</a>
+							<a href="team">Team</a>
+							<a href="activities">Activities</a>
+							<a href="blog">Blog</a>
 						</div>
 					</nav>
 
 					<nav class="footer-nav" aria-label="Certificates">
 						<h4 class="footer-title">Certificates</h4>
 						<div class="footer-links">
-							<a href="certificates.html">Download Certificates</a>
-							<a href="verify.html">Verify Certificate</a>
+							<a href="certificates">Download Certificates</a>
+							<a href="verify">Verify Certificate</a>
 						</div>
 					</nav>
 
 					<nav class="footer-nav" aria-label="Programs">
 						<h4 class="footer-title">Programs</h4>
 						<div class="footer-links">
-							<a href="activities.html#workshops">Workshops</a>
-							<a href="activities.html#bootcamp">Startup Bootcamp</a>
-							<a href="activities.html#talks">Industry Talks</a>
-							<a href="activities.html#events">Events</a>
+							<a href="activities#workshops">Workshops</a>
+							<a href="activities#bootcamp">Startup Bootcamp</a>
+							<a href="activities#talks">Industry Talks</a>
+							<a href="activities#events">Events</a>
 						</div>
 					</nav>
 
@@ -917,7 +918,7 @@
 						<div class="footer-links">
 							<a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
 							<a href="https://join.iiec.in" target="_blank" rel="noopener">Join Us</a>
-							<a href="index.html#newsletter">Newsletter</a>
+							<a href="/#newsletter">Newsletter</a>
 						</div>
 					</nav>
 				</div>
@@ -1056,6 +1057,7 @@
 		});
 	</script>
 	<script src="js/iiec-loader.js"></script>
+	<script src="js/iiec-animations.js" defer></script>
 	<script src="js/mobile-nav.js"></script>
 </body>
 </html>

@@ -47,6 +47,7 @@
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
   
   <link rel="stylesheet" href="css/iiec-loader.css">
+  <link rel="stylesheet" href="css/iiec-animations.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/404.css">
 </head>
@@ -172,7 +173,7 @@
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
-        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+        <a href="/" class="nav-logo" aria-label="IIEC Home">
           <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
           <span>IIEC</span>
         </a>
@@ -184,11 +185,11 @@
         </button>
         
         <div class="nav-links" role="menu">
-          <a href="index.html" class="nav-link" role="menuitem">Home</a>
-          <a href="about.html" class="nav-link" role="menuitem">About</a>
-          <a href="team.html" class="nav-link" role="menuitem">Team</a>
-          <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-          <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+          <a href="/" class="nav-link" role="menuitem">Home</a>
+          <a href="about" class="nav-link" role="menuitem">About</a>
+          <a href="team" class="nav-link" role="menuitem">Team</a>
+          <a href="activities" class="nav-link" role="menuitem">Activities</a>
+          <a href="blog" class="nav-link" role="menuitem">Blog</a>
           <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
         </div>
       </div>
@@ -250,7 +251,7 @@
         </svg>
       </div>
       
-      <div class="error-card glass-card" data-animate>
+      <div class="error-card glass-card ngp-glass-card ngp-tilt-card animate-on-scroll scale-in" data-animate>
         <!-- Innovation Lightbulb Illustration -->
         <div class="lightbulb-container">
           <div class="lightbulb-glow"></div>
@@ -343,21 +344,21 @@
         </p>
         
         <div class="error-actions">
-          <a href="index.html" class="btn btn-primary">
+          <a href="/" class="btn btn-primary">
             <span>Back to Innovation Hub</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </a>
-          <a href="about.html" class="btn btn-secondary">
+          <a href="about" class="btn btn-secondary">
             <span>Explore IIEC</span>
           </a>
         </div>
         
         <div class="error-links">
-          <a href="team.html">Meet Our Team</a>
-          <a href="activities.html">Our Programs</a>
-          <a href="blog.html">Latest Updates</a>
+          <a href="team">Meet Our Team</a>
+          <a href="activities">Our Programs</a>
+          <a href="blog">Latest Updates</a>
           <a href="mailto:ecell-student-rep@csmu.ac.in">Get in Touch</a>
         </div>
       </div>
@@ -366,6 +367,7 @@
 
   <!-- Main Script -->
   <script src="js/iiec-loader.js"></script>
+  <script src="js/iiec-animations.js" defer></script>
   <script src="js/script.js" defer></script>
   
   <!-- Floating Icons Generator -->

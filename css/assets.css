@@ -5,7 +5,7 @@
 /* Hero Section */
 .assets-hero {
   position: relative;
-  padding: clamp(6rem, 12vh, 9rem) 0 clamp(3rem, 6vh, 5rem);
+  padding: clamp(5rem, 10vh, 7rem) 0 clamp(2.5rem, 5vh, 4rem);
   text-align: center;
   overflow: hidden;
 }
@@ -15,16 +15,15 @@
   align-items: center;
   gap: 8px;
   padding: 6px 16px;
-  background: var(--color-accent-muted, rgba(255, 183, 3, 0.15));
-  border: 1px solid rgba(255, 183, 3, 0.3);
+  background: var(--accent-light, #ffece4);
+  border: 1px solid var(--accent-border, #ffc7b0);
   border-radius: var(--radius-full, 9999px);
-  color: var(--color-accent, #F5A524);
+  color: var(--accent-dark, #dc4310);
   font-size: var(--text-xs, 0.75rem);
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  box-shadow: 0 0 15px rgba(245, 165, 36, 0.2);
 }
 
 .assets-hero-badge svg {
@@ -35,15 +34,15 @@
 .assets-hero-title {
   font-size: clamp(2.25rem, 4vw + 1rem, 3.75rem);
   font-weight: 800;
-  line-height: 1.15;
-  color: var(--text-primary, #f5f7ff);
+  line-height: 1.1;
+  color: var(--ink, #111111);
   margin-bottom: 1.25rem;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
 }
 
 .assets-hero-subtitle {
   font-size: clamp(1rem, 1.2vw + 0.5rem, 1.25rem);
-  color: var(--text-secondary, #c2c9de);
+  color: var(--muted, #66665f);
   max-width: 760px;
   margin: 0 auto 2.5rem;
   line-height: 1.6;
@@ -61,24 +60,24 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
-  background: rgba(24, 24, 27, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 9px 20px;
+  background: #ffffff;
+  border: 1px solid var(--line, #d8d8d0);
   border-radius: var(--radius-full, 9999px);
-  color: var(--text-secondary, #c2c9de);
+  color: var(--ink, #111111);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.25s ease;
-  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .assets-nav-pill:hover,
 .assets-nav-pill.active {
-  color: #09090b;
-  background: linear-gradient(135deg, #ffd56a 0%, #f5b335 100%);
-  border-color: rgba(255, 227, 152, 0.5);
-  box-shadow: 0 4px 15px rgba(245, 179, 53, 0.35);
+  color: #ffffff;
+  background: var(--accent, #ff5a1f);
+  border-color: var(--accent, #ff5a1f);
+  box-shadow: 0 4px 15px rgba(255, 90, 31, 0.35);
   transform: translateY(-2px);
 }
 
@@ -98,7 +97,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--color-accent, #F5A524);
+  color: var(--accent, #ff5a1f);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -109,25 +108,24 @@
 .assets-section-title {
   font-size: clamp(1.75rem, 2.5vw + 0.5rem, 2.5rem);
   font-weight: 800;
-  color: var(--text-primary, #f5f7ff);
+  color: var(--ink, #111111);
   margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
 }
 
 .assets-section-desc {
   font-size: 1rem;
-  color: var(--text-muted, #8891a8);
+  color: var(--muted, #66665f);
   line-height: 1.6;
 }
 
 /* Featured Hero Showcase for SVG Logo */
 .featured-logo-card {
-  background: rgba(24, 24, 27, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-2xl, 24px);
+  background: #ffffff;
+  border: 1px solid var(--line, #d8d8d0);
+  border-radius: var(--radius-2xl, 28px);
   padding: clamp(1.5rem, 3vw, 3rem);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 165, 36, 0.1);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.06);
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;

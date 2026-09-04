@@ -98,7 +98,11 @@
 .error-card {
   text-align: center;
   max-width: 600px;
-  padding: 3rem;
+  padding: 3.5rem 2.5rem;
+  background: #ffffff;
+  border: 1px solid var(--line, #d8d8d0);
+  border-radius: 28px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 1;
 }
@@ -234,16 +238,17 @@
 }
 
 .error-title {
-  font-size: 2rem;
-  font-weight: 700;
-  color: var(--text-primary);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--ink, #111111);
+  letter-spacing: -0.03em;
   margin-bottom: 1rem;
   animation: fade-in-up 0.6s ease-out 0.2s both;
 }
 
 .error-message {
-  font-size: 1.15rem;
-  color: var(--text-secondary);
+  font-size: 1.05rem;
+  color: var(--muted, #66665f);
   margin-bottom: 2.5rem;
   line-height: 1.7;
   animation: fade-in-up 0.6s ease-out 0.4s both;
@@ -274,21 +279,6 @@
   overflow: hidden;
 }
 
-.error-actions .btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.error-actions .btn:hover::before {
-  left: 100%;
-}
-
 .error-links {
   display: flex;
   flex-wrap: wrap;
@@ -296,15 +286,16 @@
   gap: 1.5rem;
   margin-top: 2.5rem;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--line, #d8d8d0);
   animation: fade-in-up 0.6s ease-out 0.8s both;
 }
 
 .error-links a {
-  color: var(--text-secondary);
+  color: var(--muted, #66665f);
   text-decoration: none;
   font-size: 0.95rem;
-  transition: all 0.3s ease;
+  font-weight: 500;
+  transition: all 0.25s ease;
   position: relative;
   padding-bottom: 2px;
 }
@@ -316,12 +307,12 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  transition: width 0.3s ease;
+  background: var(--accent, #ff5a1f);
+  transition: width 0.25s ease;
 }
 
 .error-links a:hover {
-  color: var(--text-primary);
+  color: var(--accent, #ff5a1f);
 }
 
 .error-links a:hover::after {

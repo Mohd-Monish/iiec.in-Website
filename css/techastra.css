@@ -1,19 +1,19 @@
-﻿/* ================================================================
+/* ================================================================
    TECHASTRA â€” Largest Annual Tech Fest of CSMU
    Volunteer Registration & Hype Page Styles
    ================================================================ */
 
 /* ----------------------------------------------------------------
-   TechAstra Accent Override (Cyan/Electric Blue theme)
+   TechAstra Accent (Electric Startup Orange theme)
    ---------------------------------------------------------------- */
 .techastra-page {
-  --ta-accent: #00d4ff;
-  --ta-accent-rgb: 0, 212, 255;
-  --ta-accent-hover: #33ddff;
-  --ta-accent-muted: rgba(0, 212, 255, 0.15);
-  --ta-accent-2: #7c3aed;
-  --ta-accent-2-rgb: 124, 58, 237;
-  --ta-gradient: linear-gradient(135deg, #00d4ff 0%, #7c3aed 100%);
+  --ta-accent: var(--accent, #ff5a1f);
+  --ta-accent-rgb: 255, 90, 31;
+  --ta-accent-hover: #dc4310;
+  --ta-accent-muted: rgba(255, 90, 31, 0.15);
+  --ta-accent-2: #dc4310;
+  --ta-accent-2-rgb: 220, 67, 16;
+  --ta-gradient: linear-gradient(135deg, #ff5a1f 0%, #dc4310 100%);
 }
 
 /* ----------------------------------------------------------------
@@ -21,11 +21,11 @@
    ---------------------------------------------------------------- */
 .techastra-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 120px 0 80px;
+  padding: 100px 0 60px;
   text-align: center;
   overflow: hidden;
 }
@@ -35,9 +35,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(var(--ta-accent-rgb), 0.1) 0%, transparent 70%),
-    radial-gradient(circle at 80% 20%, rgba(var(--ta-accent-2-rgb), 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(var(--ta-accent-rgb), 0.05) 0%, transparent 50%);
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255, 90, 31, 0.08) 0%, transparent 70%),
+    radial-gradient(circle at 80% 20%, rgba(220, 67, 16, 0.05) 0%, transparent 50%);
   pointer-events: none;
   z-index: 0;
 }
@@ -55,64 +54,54 @@
   align-items: center;
   gap: 8px;
   font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--ta-accent);
+  letter-spacing: 0.1em;
+  color: var(--accent, #ff5a1f);
   margin-bottom: 1.5rem;
-  padding: 8px 20px;
-  background: rgba(var(--ta-accent-rgb), 0.08);
-  border: 1px solid rgba(var(--ta-accent-rgb), 0.2);
+  padding: 6px 18px;
+  background: var(--accent-light, #ffece4);
+  border: 1px solid var(--accent-border, #ffc7b0);
   border-radius: var(--radius-full);
 }
 
 .techastra-overline .pulse-dot {
   width: 8px;
   height: 8px;
-  background: var(--ta-accent);
+  background: var(--accent, #ff5a1f);
   border-radius: 50%;
   animation: taPulse 2s ease-in-out infinite;
 }
 
 @keyframes taPulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(var(--ta-accent-rgb), 0.5); }
-  50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(var(--ta-accent-rgb), 0); }
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 90, 31, 0.5); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 8px rgba(255, 90, 31, 0); }
 }
 
 /* Title */
 .techastra-title {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 10vw, 7rem);
-  font-weight: var(--font-extrabold);
-  line-height: 1;
-  letter-spacing: -0.03em;
+  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
   margin-bottom: 1.25rem;
-  background: linear-gradient(135deg, #fff 0%, var(--ta-accent) 40%, var(--ta-accent-2) 70%, #fff 100%);
-  background-size: 300% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: taShimmer 6s ease-in-out infinite;
-}
-
-@keyframes taShimmer {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 300% center; }
+  color: var(--ink, #111111);
 }
 
 /* Subtitle */
 .techastra-subtitle {
   font-size: var(--text-xl);
-  color: var(--text-secondary);
+  color: var(--muted, #66665f);
   line-height: 1.6;
   max-width: 600px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.25rem;
 }
 
 .techastra-tagline {
   font-size: var(--text-base);
-  color: var(--text-muted);
-  margin-bottom: 2.5rem;
+  color: var(--muted, #66665f);
+  margin-bottom: 2rem;
 }
 
 /* Hero Badge */
@@ -121,15 +110,14 @@
   align-items: center;
   gap: 8px;
   padding: 6px 16px;
-  background: rgba(var(--ta-accent-2-rgb), 0.15);
-  border: 1px solid rgba(var(--ta-accent-2-rgb), 0.3);
+  background: var(--accent-light, #ffece4);
+  border: 1px solid var(--accent-border, #ffc7b0);
   border-radius: var(--radius-full);
   font-size: var(--text-xs);
-  font-weight: var(--font-semibold);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ta-accent-2);
-  color: #a78bfa;
+  letter-spacing: 0.08em;
+  color: var(--accent-dark, #dc4310);
   margin-bottom: 2rem;
 }
 
@@ -139,13 +127,13 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .btn-ta-primary {
-  background: var(--ta-gradient);
+  background: var(--accent, #ff5a1f);
   color: #fff;
-  font-weight: var(--font-bold);
+  font-weight: 700;
   border: none;
   padding: 14px 32px;
   border-radius: var(--radius-full);
@@ -155,13 +143,14 @@
   gap: 8px;
   text-decoration: none;
   transition: all var(--transition-base);
-  box-shadow: 0 4px 24px rgba(var(--ta-accent-rgb), 0.3);
+  box-shadow: 0 4px 20px rgba(255, 90, 31, 0.3);
   cursor: pointer;
 }
 
 .btn-ta-primary:hover {
+  background: var(--accent-dark, #dc4310);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(var(--ta-accent-rgb), 0.4);
+  box-shadow: 0 8px 32px rgba(255, 90, 31, 0.4);
 }
 
 .btn-ta-primary svg {
@@ -194,33 +183,31 @@
 .hype-item {
   text-align: center;
   padding: var(--space-6) var(--space-4);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-xl);
-  backdrop-filter: blur(12px);
+  background: #ffffff;
+  border: 1px solid var(--line, #d8d8d0);
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
   transition: all var(--transition-base);
 }
 
 .hype-item:hover {
-  border-color: rgba(var(--ta-accent-rgb), 0.3);
+  border-color: var(--accent, #ff5a1f);
   transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 }
 
 .hype-value {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
-  font-weight: var(--font-extrabold);
-  background: var(--ta-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-weight: 900;
+  color: var(--accent, #ff5a1f);
   line-height: 1.2;
 }
 
 .hype-label {
   font-size: var(--text-sm);
-  color: var(--text-muted);
-  font-weight: var(--font-medium);
+  color: var(--muted, #66665f);
+  font-weight: 700;
   margin-top: 4px;
 }
 
@@ -231,11 +218,15 @@
   max-width: 780px;
   margin: 0 auto;
   padding: var(--space-8);
+  background: #ffffff;
+  border: 1px solid var(--line, #d8d8d0);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 .techastra-about-card p {
   font-size: var(--text-base);
-  color: var(--text-secondary);
+  color: var(--muted, #66665f);
   line-height: 1.8;
   margin-bottom: 1rem;
 }
