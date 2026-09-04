@@ -1816,3 +1816,73 @@ footer a:hover {
     gap: 14px;
   }
 }
+
+/* ==========================================================================
+   REGISTRATION CLOSED PANEL
+   Shown in place of the team registration form once entries are no longer
+   accepted. The form markup itself stays in the page but is hidden.
+   ========================================================================== */
+.closed-panel {
+  background: var(--card);
+  border: 1px solid #ffcdb8;
+  border-radius: 22px;
+  padding: clamp(28px, 5vw, 46px);
+  text-align: center;
+  background-image: linear-gradient(140deg, #fff6f1 0%, var(--card) 65%);
+}
+
+.closed-panel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 16px;
+  margin-bottom: 20px;
+  border-radius: 999px;
+  background: rgba(255, 90, 31, .12);
+  border: 1px solid rgba(255, 90, 31, .32);
+  color: var(--accent-dark, #dc4310);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.closed-panel-badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent, #ff5a1f);
+}
+
+.closed-panel-title {
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 800;
+  letter-spacing: -.035em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.closed-panel-desc {
+  max-width: 680px;
+  margin: 0 auto 28px;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.closed-panel-desc b {
+  color: var(--ink);
+}
+
+.closed-panel-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 620px) {
+  .closed-panel-actions .btn {
+    width: 100%;
+  }
+}
