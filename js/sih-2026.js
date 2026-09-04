@@ -6,6 +6,15 @@
 // Replace this URL with your deployed Google Apps Script Web App URL
 var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxK1mCkQU48l2nQ_uXGUHplM70fJhbmt4XcP9iigEFXqatkrFfv4NZMKko8AQGMCkS4Mw/exec";
 
+/**
+ * Master switch for team registration.
+ * false = the hackathon is over: the form is hidden on the page and any submit
+ *         attempt is blocked before it can reach GOOGLE_SCRIPT_URL.
+ * Set back to true (and remove the `hidden` attribute on .form-shell in
+ * sih-2026.html) if registrations ever reopen.
+ */
+var REGISTRATION_OPEN = false;
+
 document.addEventListener('DOMContentLoaded', () => {
   let currentStep = 1;
   const totalSteps = 6;
@@ -83,6 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        // Registrations are closed. The form is hidden on the page, but this guard
+        // also stops a submission if the markup is re-enabled or edited in devtools.
+        if (!REGISTRATION_OPEN) {
+          console.warn('SIH 2026 registrations are closed. Submission blocked.');
+          return;
+        }
+
         if (validateAllSteps()) {
           processSubmission();
         }
