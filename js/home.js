@@ -49,21 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
       stat3Label: "Key Output",
       stat3Val: "Validated Lean Canvas",
       ctaText: "Explore Illuminate ↗",
-      ctaLink: "activities.html#events"
+      ctaLink: "activities#events"
     },
     2: {
       step: "STAGE 02 / 04",
       badge: "Build & Prototype",
       heading: "Hackathons & Technical Build",
       desc: "Transform validated hypotheses into working software and hardware prototypes at Smart India Hackathon (SIH 2026) and TechAstra annual fest.",
-      stat1Label: "Active Hackathon",
+      stat1Label: "Flagship Hackathon",
       stat1Val: "SIH 2026 Internal",
       stat2Label: "Innovation Tracks",
       stat2Val: "18+ Multi-Disciplinary",
       stat3Label: "Key Output",
       stat3Val: "Functional MVP",
       ctaText: "View SIH 2026 ↗",
-      ctaLink: "sih-2026.html"
+      ctaLink: "sih-2026"
     },
     3: {
       step: "STAGE 03 / 04",
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       stat3Label: "Key Output",
       stat3Val: "Seed Term Sheets",
       ctaText: "Explore Next Gen Pitch ↗",
-      ctaLink: "activities.html#vault"
+      ctaLink: "activities#vault"
     },
     4: {
       step: "STAGE 04 / 04",
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
       stat3Label: "Key Output",
       stat3Val: "Registered Startup",
       ctaText: "Join Incubation ↗",
-      ctaLink: "about.html"
+      ctaLink: "about"
     }
   };
 

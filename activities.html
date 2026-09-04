@@ -359,19 +359,19 @@
   <header class="nav-header">
     <div class="container">
       <nav class="main-nav" role="navigation" aria-label="Main Navigation">
-        <a href="index.html" class="brand" aria-label="IIEC Home">
+        <a href="/" class="brand" aria-label="IIEC Home">
           <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" />
           <span>IIEC</span>
         </a>
 
         <div class="nav-right" role="menubar">
-          <a href="index.html" role="menuitem">Home</a>
-          <a href="about.html" role="menuitem">About</a>
-          <a href="team.html" role="menuitem">Team</a>
-          <a href="activities.html" class="active" role="menuitem" aria-current="page">Activities</a>
-          <a href="blog.html" role="menuitem">Blog</a>
-          <a href="unlock.html" class="nav-cta" role="menuitem">
-            <span class="pulse-dot"></span>
+          <a href="/" role="menuitem">Home</a>
+          <a href="about" role="menuitem">About</a>
+          <a href="team" role="menuitem">Team</a>
+          <a href="activities" class="active" role="menuitem" aria-current="page">Activities</a>
+          <a href="blog" role="menuitem">Blog</a>
+          <a href="unlock" class="nav-cta" role="menuitem">
+            <span class="nav-pulse-dot"></span>
             UNLOCK Live →
           </a>
         </div>
@@ -474,10 +474,10 @@
           </div>
 
           <div class="spotlight-actions">
-            <a href="unlock.html" class="btn btn-primary" style="padding: 0 26px;">
+            <a href="unlock" class="btn btn-primary" style="padding: 0 26px;">
               <span>Reserve Your Seat ↗</span>
             </a>
-            <a href="unlock.html#start" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.22); color: #fff;">
+            <a href="unlock#start" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.22); color: #fff;">
               <span>What is UNLOCK?</span>
             </a>
           </div>
@@ -535,7 +535,7 @@
     </div>
 
     <!-- ================================================================
-         01 / THE COMPLETE EVENT VAULT (Grid of 9 Events)
+         01 / THE COMPLETE EVENT VAULT (Grid of 10 Events)
          ================================================================ -->
     <section class="container activities-section" id="vault">
       <div class="section-head">
@@ -548,32 +548,35 @@
         </p>
       </div>
 
-      <!-- Unified Filter Pills Bar -->
-      <div class="filter-pills-wrap" role="tablist" aria-label="Filter events by category">
-        <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">
-          <span>All Events</span>
-          <span class="filter-count">9</span>
-        </button>
-        <button class="filter-pill" data-filter="competition" role="tab" aria-selected="false">
-          <span>Competitions</span>
-          <span class="filter-count">5</span>
-        </button>
-        <button class="filter-pill" data-filter="hackathon" role="tab" aria-selected="false">
-          <span>Hackathons</span>
-          <span class="filter-count">2</span>
-        </button>
-        <button class="filter-pill" data-filter="workshop" role="tab" aria-selected="false">
-          <span>Workshops</span>
-          <span class="filter-count">3</span>
-        </button>
-        <button class="filter-pill" data-filter="fest" role="tab" aria-selected="false">
-          <span>Fests &amp; Expos</span>
-          <span class="filter-count">4</span>
-        </button>
+      <!-- Unified Filter Pills Bar & Results Counter -->
+      <div class="vault-controls-row">
+        <div class="filter-tabs-row" role="tablist" aria-label="Filter events by category">
+          <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">
+            <span>All Events</span>
+            <span class="filter-count">10</span>
+          </button>
+          <button class="filter-pill" data-filter="competition" role="tab" aria-selected="false">
+            <span>Competitions</span>
+            <span class="filter-count">6</span>
+          </button>
+          <button class="filter-pill" data-filter="hackathon" role="tab" aria-selected="false">
+            <span>Hackathons</span>
+            <span class="filter-count">2</span>
+          </button>
+          <button class="filter-pill" data-filter="workshop" role="tab" aria-selected="false">
+            <span>Workshops</span>
+            <span class="filter-count">4</span>
+          </button>
+          <button class="filter-pill" data-filter="fest" role="tab" aria-selected="false">
+            <span>Fests &amp; Expos</span>
+            <span class="filter-count">4</span>
+          </button>
+        </div>
+        <div class="vault-results-count" id="vault-results-count">Showing 10 of 10 Events</div>
       </div>
 
       <!-- Events Grid Container -->
-      <div class="events-grid-container" id="events-grid">
+      <div class="events-grid" id="events-grid">
         
         <!-- 1. UNLOCK (Active) -->
         <article class="event-card active-featured" data-category="bootcamp workshop">
@@ -582,7 +585,7 @@
               <span class="event-badge badge-active">
                 <span class="pulse-dot"></span> Active Now
               </span>
-              <span class="event-date-chip">Registrations Open</span>
+              <span class="event-date-chip">Around 20 seats</span>
             </div>
             <div class="event-card-body">
               <span class="event-category-label">Workshop • Discovery Session</span>
@@ -597,7 +600,7 @@
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
               <span>Pratapgarh, Room 403</span>
             </span>
-            <a href="unlock.html" class="btn btn-primary btn-sm">
+            <a href="unlock" class="btn btn-primary btn-sm">
               <span>Reserve Seat ↗</span>
             </a>
           </div>
@@ -636,7 +639,9 @@
         <article class="event-card" data-category="hackathon competition">
           <div>
             <div class="event-card-top">
-              <span class="event-badge badge-completed">✓ Completed</span>
+              <span class="event-badge badge-completed">
+                <span class="dot" style="background: #157f4a;"></span> Completed
+              </span>
               <span class="event-date-chip">31 Aug &amp; 1 Sept 2026</span>
             </div>
             <div class="event-card-body">
@@ -652,7 +657,7 @@
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
               <span>CSMU Campus</span>
             </span>
-            <a href="sih-2026.html" class="btn btn-secondary btn-sm">
+            <a href="sih-2026" class="btn btn-secondary btn-sm">
               <span>View Event</span>
             </a>
           </div>
@@ -834,7 +839,7 @@
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
               <span>National Stage / IIT Bombay</span>
             </span>
-            <a href="about.html" class="btn btn-secondary btn-sm">
+            <a href="about" class="btn btn-secondary btn-sm">
               <span>Our Journey</span>
             </a>
           </div>
@@ -848,49 +853,56 @@
          ================================================================ -->
     <section class="container activities-section" id="gallery">
       <div class="gallery-shell">
-        <div class="gallery-head">
-          <span class="gallery-badge">
-            <span class="pulse-dot"></span>
-            02 / HIGHLIGHTS ARCHIVE
-          </span>
-          <h2 class="gallery-title">Moments of Impact.</h2>
-          <p class="gallery-subtitle">
-            Relive key milestones from our orientation, pitch stages, hackathons, and exhibitions. Drag to rotate in 3D or switch to grid view.
-          </p>
-        </div>
-
-        <div class="gallery-view-toggle">
-          <button class="gallery-toggle-btn active" id="btn-view-orbit">3D Orbit Wheel</button>
-          <button class="gallery-toggle-btn" id="btn-view-grid">All Photos Grid</button>
+        <div class="gallery-toolbar">
+          <div>
+            <div class="section-label" style="margin-bottom: 8px;">02 / Highlights Archive</div>
+            <h2 style="font-size: clamp(28px, 4vw, 44px); color: #ffffff; letter-spacing: -0.04em;">Moments of Impact.</h2>
+            <p style="color: #aaa; font-size: 15px; margin-top: 8px; max-width: 600px;">
+              Relive milestones from our hackathons, pitch competitions, and startup expos. Drag the 3D cylinder or toggle photo grid.
+            </p>
+          </div>
+          <div class="gallery-view-toggle">
+            <button class="view-btn active" id="view-orbit-btn" type="button">3D Cylinder</button>
+            <button class="view-btn" id="view-grid-btn" type="button">Photo Grid</button>
+          </div>
         </div>
 
         <!-- 3D Orbit Wheel Stage View -->
-        <div class="orbit-stage-wrapper" id="orbit-wrapper">
-          <div class="orbit-stage" id="orbit-stage" aria-label="3D Cylindrical Photo Orbit Wheel (Drag to rotate)">
-            <!-- 14 Photo Cards populated via JavaScript -->
+        <div id="orbit-view">
+          <div class="orbit-stage-wrapper">
+            <div class="orbit-stage" id="orbit-stage" aria-label="3D Cylindrical Photo Orbit Wheel (Drag to rotate)">
+              <!-- 14 Photo Cards populated via JavaScript -->
+            </div>
           </div>
 
-          <!-- Interaction HUD Controls -->
-          <div class="orbit-hud">
-            <div class="orbit-counter" id="orbit-counter">01 / 14</div>
-            <div class="orbit-nav-arrows">
-              <button class="orbit-arrow-btn" id="orbit-prev" aria-label="Previous photo">←</button>
-              <button class="orbit-arrow-btn" id="orbit-next" aria-label="Next photo">→</button>
+          <!-- Orbit Controls Bar -->
+          <div class="orbit-controls-bar">
+            <div class="orbit-info">
+              <span class="orbit-counter" id="orbit-counter">01 / 14</span>
+              <span class="orbit-title" id="orbit-title"></span>
             </div>
+            <div class="orbit-buttons">
+              <button class="orbit-btn btn-autoplay" id="orbit-autoplay-btn" type="button" aria-label="Toggle Autoplay">
+                <span id="autoplay-icon">⏸</span>
+                <span id="autoplay-label">Pause</span>
+              </button>
+              <button class="orbit-btn" id="orbit-prev-btn" type="button" aria-label="Previous photo">←</button>
+              <button class="orbit-btn" id="orbit-next-btn" type="button" aria-label="Next photo">→</button>
+            </div>
+          </div>
+
+          <div class="gallery-scroll-prompt">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="2" width="14" height="20" rx="7"></rect>
+              <line x1="12" y1="6" x2="12" y2="10"></line>
+            </svg>
+            <span>Drag horizontally or click arrows to explore the 3D cylinder</span>
           </div>
         </div>
 
         <!-- Grid View (Hidden by default) -->
-        <div class="gallery-flat-grid" id="gallery-flat-grid" style="display: none;">
+        <div class="gallery-grid-view" id="grid-view">
           <!-- Populated by JS -->
-        </div>
-
-        <div class="gallery-scroll-prompt">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="5" y="2" width="14" height="20" rx="7"></rect>
-            <line x1="12" y1="6" x2="12" y2="10"></line>
-          </svg>
-          <span>Drag or use arrow buttons to explore the 3D cylinder</span>
         </div>
       </div>
     </section>
@@ -910,7 +922,7 @@
       </div>
 
       <div class="timeline-rail-wrapper">
-        <div class="timeline-rail-track">
+        <div class="timeline-rail">
           
           <!-- 1. Genesis -->
           <article class="rail-card">
@@ -981,13 +993,13 @@
           <article class="rail-card">
             <div>
               <div class="rail-card-top">
-                <span class="rail-marker marker-completed">✓</span>
-                <span class="rail-date">31 Aug &amp; 1 Sept</span>
+                <span class="rail-marker marker-completed"><span class="dot" style="background: #157f4a; width: 6px; height: 6px; border-radius: 50%; display: inline-block;"></span></span>
+                <span class="rail-date" style="color: var(--muted);">31 Aug &amp; 1 Sept</span>
               </div>
               <h3 class="rail-title">SIH 2026 Hackathon</h3>
               <p class="rail-desc">Internal evaluation hackathon for Smart India Hackathon. 6-member teams across 18 tracks.</p>
             </div>
-            <a href="sih-2026.html" class="btn btn-secondary btn-sm" style="margin-top: 10px;">View Event</a>
+            <a href="sih-2026" class="btn btn-secondary btn-sm" style="margin-top: 10px;">View Event</a>
           </article>
 
           <!-- 6b. UNLOCK (Active) -->
@@ -1000,7 +1012,7 @@
               <h3 class="rail-title">UNLOCK Workshop</h3>
               <p class="rail-desc">Interactive discovery workshop on innovation and problem-solving. Around 20 seats.</p>
             </div>
-            <a href="unlock.html" class="btn btn-primary btn-sm" style="margin-top: 10px;">Reserve Seat ↗</a>
+            <a href="unlock" class="btn btn-primary btn-sm" style="margin-top: 10px;">Reserve Seat ↗</a>
           </article>
 
           <!-- 7. Illuminate (Upcoming) -->
@@ -1103,7 +1115,7 @@
             <h3 class="cross-banner-title">About IIEC</h3>
             <p class="cross-banner-desc">Discover our journey, vision, and how we ranked among the Top 23 E-Cells in India.</p>
           </div>
-          <a href="about.html" class="btn btn-secondary" style="min-height: 42px;">
+          <a href="about" class="btn btn-secondary" style="min-height: 42px;">
             <span>Learn More →</span>
           </a>
         </div>
@@ -1114,7 +1126,7 @@
             <h3 class="cross-banner-title">IIEC Team</h3>
             <p class="cross-banner-desc">Meet the faculty mentors, student leaders, and department heads driving innovation.</p>
           </div>
-          <a href="team.html" class="btn btn-secondary" style="min-height: 42px;">
+          <a href="team" class="btn btn-secondary" style="min-height: 42px;">
             <span>View Team →</span>
           </a>
         </div>
@@ -1127,7 +1139,7 @@
           Join CSMU's fastest-growing startup community. Participate in hackathons, receive mentorship, and launch your ideas.
         </p>
         <div class="cta-banner-buttons">
-          <a href="unlock.html" class="btn btn-primary" style="padding: 0 28px;">
+          <a href="unlock" class="btn btn-primary" style="padding: 0 28px;">
             <span>Reserve Your UNLOCK Seat ↗</span>
           </a>
           <a href="https://join.iiec.in" target="_blank" rel="noopener" class="btn btn-secondary" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); color: #fff;">
@@ -1168,28 +1180,28 @@
       </div>
 
       <div class="mobile-nav-links">
-        <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+        <a href="/" class="mobile-nav-link" style="--item-index: 1;">
           <span class="link-num">01</span>
           <span class="link-text">Home</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+        <a href="about" class="mobile-nav-link" style="--item-index: 2;">
           <span class="link-num">02</span>
           <span class="link-text">About</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+        <a href="team" class="mobile-nav-link" style="--item-index: 3;">
           <span class="link-num">03</span>
           <span class="link-text">Team</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="activities.html" class="mobile-nav-link active" style="--item-index: 4;">
+        <a href="activities" class="mobile-nav-link active" style="--item-index: 4;">
           <span class="link-num">04</span>
           <span class="link-text">Activities</span>
           <span class="link-badge">Active</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+        <a href="blog" class="mobile-nav-link" style="--item-index: 5;">
           <span class="link-num">05</span>
           <span class="link-text">Blog</span>
           <span class="link-arrow">→</span>
@@ -1202,7 +1214,7 @@
         </div>
         <div class="mobile-highlight-title">UNLOCK — Discovery Workshop</div>
         <p class="mobile-highlight-desc">Registrations live. Around 20 seats, Pratapgarh Room 403.</p>
-        <a href="unlock.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
+        <a href="unlock" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
           <span>Reserve Seat ↗</span>
         </a>
       </div>

@@ -76,6 +76,7 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/iiec-loader.css">
+  <link rel="stylesheet" href="css/iiec-animations.css">
   <link rel="stylesheet" href="css/mobile-nav.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/startup-expo.css">
@@ -215,11 +216,11 @@
           </button>
 
           <div class="nav-links" role="menu">
-            <a href="index.html" class="nav-link" role="menuitem">Home</a>
-            <a href="about.html" class="nav-link" role="menuitem">About</a>
-            <a href="team.html" class="nav-link" role="menuitem">Team</a>
-            <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-            <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+            <a href="/" class="nav-link" role="menuitem">Home</a>
+            <a href="about" class="nav-link" role="menuitem">About</a>
+            <a href="team" class="nav-link" role="menuitem">Team</a>
+            <a href="activities" class="nav-link" role="menuitem">Activities</a>
+            <a href="blog" class="nav-link" role="menuitem">Blog</a>
             <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
           </div>
         </div>
@@ -240,27 +241,27 @@
           </div>
 
           <div class="mobile-nav-links">
-            <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+            <a href="/" class="mobile-nav-link" style="--item-index: 1;">
               <span class="link-num">01</span>
               <span class="link-text">Home</span>
               <span class="link-arrow">→</span>
             </a>
-            <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+            <a href="about" class="mobile-nav-link" style="--item-index: 2;">
               <span class="link-num">02</span>
               <span class="link-text">About</span>
               <span class="link-arrow">→</span>
             </a>
-            <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+            <a href="team" class="mobile-nav-link" style="--item-index: 3;">
               <span class="link-num">03</span>
               <span class="link-text">Team</span>
               <span class="link-arrow">→</span>
             </a>
-            <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+            <a href="activities" class="mobile-nav-link" style="--item-index: 4;">
               <span class="link-num">04</span>
               <span class="link-text">Activities</span>
               <span class="link-arrow">→</span>
             </a>
-            <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+            <a href="blog" class="mobile-nav-link" style="--item-index: 5;">
               <span class="link-num">05</span>
               <span class="link-text">Blog</span>
               <span class="link-arrow">→</span>
@@ -269,12 +270,12 @@
 
           <div class="mobile-nav-highlight-box">
             <div class="mobile-highlight-tag">
-              <span class="pulse-dot"></span> Active Hackathon
+              <span class="dot" style="background: #157f4a;"></span> Event Concluded
             </div>
             <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
-            <p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
-            <a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
-              <span>Register Team ↗</span>
+            <p class="mobile-highlight-desc">Internal Hackathon concluded on 1 Sept 2026. Evaluations in progress.</p>
+            <a href="sih-2026" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 10px;">
+              <span>View SIH 2026 →</span>
             </a>
           </div>
 
@@ -299,23 +300,23 @@
 
         <div class="container">
           <div class="expo-hero-grid-layout">
-            <div class="expo-hero-left" data-animate="fade-up">
+            <div class="expo-hero-left animate-on-scroll" data-animate="fade-up">
 
               <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 16px; background:rgba(40,200,64,0.15); border:1px solid rgba(40,200,64,0.4); border-radius:50px; color:#28c840; font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; margin-bottom:18px;">
                 <i class="fas fa-check-circle"></i> Event Completed • Registrations Closed
               </div>
 
-              <h1 class="expo-hero-title">
+              <h1 class="expo-hero-title animate-on-scroll delay-1">
                 Innovation & <br><span class="text-highlight">Startup Expo</span>
               </h1>
 
-              <p class="expo-hero-tagline">"Where Innovation Meets Opportunity"</p>
+              <p class="expo-hero-tagline animate-on-scroll delay-2">"Where Innovation Meets Opportunity"</p>
 
-              <p class="expo-hero-desc">
+              <p class="expo-hero-desc animate-on-scroll delay-2">
                 The Innovation & Startup Expo 2026 has successfully concluded. Startup founders presented their ventures, connected with mentors & investors, and unlocked funding opportunities at CSMU.
               </p>
 
-              <div class="expo-hero-actions">
+              <div class="expo-hero-actions animate-on-scroll delay-3">
                 <a href="https://join.iiec.in" target="_blank" rel="noopener" class="btn-expo-primary">
                   <span style="color: #ffffff;">Join IIEC (Recruitment Open)</span>
                   <i class="fas fa-arrow-right" style="color: #ffffff;"></i>
@@ -328,8 +329,8 @@
             </div>
 
             <!-- Event Card Right -->
-            <div class="expo-hero-right" data-animate="fade-left">
-              <div class="expo-glass-card expo-event-info-card" data-tilt>
+            <div class="expo-hero-right animate-on-scroll from-right delay-1" data-animate="fade-left">
+              <div class="expo-glass-card ngp-glass-card-light ngp-tilt-card expo-event-info-card" data-tilt>
                 <!-- Floating Rocket Illustration -->
                 <div class="expo-rocket-wrapper" title="Startup Rocket">
                   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -654,6 +655,7 @@
 
   <!-- Scripts -->
   <script src="js/iiec-loader.js"></script>
+  <script src="js/iiec-animations.js" defer></script>
   <script src="js/mobile-nav.js" defer></script>
   <script src="js/script.js" defer></script>
   <script src="js/startup-expo.js" defer></script>

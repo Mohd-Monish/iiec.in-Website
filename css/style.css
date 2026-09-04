@@ -219,46 +219,63 @@
 }
 
 /* ----------------------------------------------------------------
-   1. CSS Custom Properties (Design Tokens)
+   1. CSS Custom Properties (Next Gen Pitch Design System)
    ---------------------------------------------------------------- */
 :root {
-  /* Color System */
-  --color-base: #09090b;
-  --color-base-rgb: 9, 9, 11;
-  --color-surface: #18181b;
-  --color-surface-elevated: #27272a;
-  --color-surface-hover: #3f3f46;
+  /* Next Gen Pitch Core Palette */
+  --bg: #f5f5f0;              /* Warm Editorial Canvas */
+  --ink: #111111;             /* Charcoal / Pitch Black Accent */
+  --card: #ffffff;            /* Crisp Card Surface */
+  --muted: #66665f;           /* Muted Body Copy Text */
+  --line: #d8d8d0;            /* Subtle Border Divider Line */
+  --line-light: #e5e5dc;
+
+  /* Primary Vibrant Accent Scale */
+  --accent: #ff5a1f;          /* Electric Startup Orange */
+  --accent-dark: #dc4310;     /* Deep Flame Orange */
+  --accent-light: #ffece4;    /* Light Orange Tint Background */
+  --accent-border: #ffc7b0;   /* Muted Orange Border */
+  --accent-glow: rgba(255, 90, 31, 0.28);
+
+  /* Dark Section & Glass Tokens */
+  --dark-shell-bg: #111111;
+  --dark-card-bg: #18181b;
+  --dark-card-surface: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-border-hover: rgba(255, 90, 31, 0.4);
+  --glass-blur: blur(16px) saturate(180%);
+
+  /* Legacy Component Compatibility Variables */
+  --color-base: #f5f5f0;
+  --color-base-rgb: 245, 245, 240;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+  --color-surface-hover: #fafaf7;
   
-  /* Gradient Colors */
-  --gradient-start: #18181b;
-  --gradient-mid: #070912;
-  --gradient-end: #05070f;
+  --gradient-start: #f5f5f0;
+  --gradient-mid: #eeeee8;
+  --gradient-end: #e8e8e0;
   
-  /* Glass Effect Colors */
-  --glass-bg: rgba(24, 24, 27, 0.6);
-  --glass-bg-solid: rgba(14, 20, 34, 0.92);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-border-hover: rgba(255, 183, 3, 0.2);
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-bg-solid: #ffffff;
   
-  /* Accent Colors */
-  --color-accent: #F5A524;
-  --color-accent-rgb: 245, 165, 36;
-  --color-accent-hover: #F7B750;
-  --color-accent-muted: rgba(255, 183, 3, 0.15);
+  --color-accent: #ff5a1f;
+  --color-accent-rgb: 255, 90, 31;
+  --color-accent-hover: #dc4310;
+  --color-accent-muted: rgba(255, 90, 31, 0.12);
   
-  /* Text Colors */
-  --text-primary: #f5f7ff;
-  --text-secondary: #c2c9de;
-  --text-muted: #8891a8;
-  --text-accent: var(--color-accent);
+  --text-primary: #111111;
+  --text-secondary: #555550;
+  --text-muted: #66665f;
+  --text-accent: var(--accent);
   
   /* Semantic Colors */
-  --color-success: #10b981;
+  --color-success: #157f4a;
   --color-warning: #f59e0b;
-  --color-error: #ef4444;
+  --color-error: #dc4310;
   
   /* Typography */
-  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   
   /* Font Sizes (Fluid) */
@@ -355,9 +372,9 @@ body {
   font-size: var(--text-base);
   font-weight: var(--font-normal);
   line-height: 1.6;
-  color: var(--text-primary);
-  background: var(--color-base);
-  background-image: radial-gradient(ellipse at 50% 0%, var(--gradient-start) 0%, var(--gradient-mid) 50%, var(--gradient-end) 100%);
+  color: var(--ink, #111111);
+  background-color: var(--bg, #f5f5f0);
+  background-image: none;
   min-height: 100vh;
   min-height: 100dvh;
   overflow-x: hidden;
@@ -641,15 +658,15 @@ p {
   height: var(--navbar-height);
   z-index: var(--z-fixed);
   transition: all var(--transition-base);
-  background: rgba(5, 7, 15, 0.88);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--glass-border);
+  background: rgba(245, 245, 240, 0.92);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--line, #d8d8d0);
 }
 
 .navbar.scrolled {
-  background: rgba(var(--color-base-rgb), 0.95);
-  box-shadow: var(--shadow-lg);
+  background: rgba(245, 245, 240, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 .navbar .container {
@@ -720,19 +737,19 @@ p {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  background: var(--color-accent);
-  color: var(--color-base);
+  padding: 10px 18px;
+  background: var(--ink, #111111);
+  color: #ffffff !important;
   font-size: var(--text-sm);
-  font-weight: var(--font-semibold);
+  font-weight: 700;
   border-radius: var(--radius-full);
   transition: all var(--transition-fast);
 }
 
 .nav-cta:hover {
-  background: var(--color-accent-hover);
+  background: var(--accent, #ff5a1f);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 4px 14px rgba(255, 90, 31, 0.35);
 }
 
 /* Mobile Menu Toggle */
@@ -977,29 +994,29 @@ p {
 }
 
 .btn-primary {
-  background: var(--color-accent);
-  color: var(--color-base);
-  border: 2px solid var(--color-accent);
+  background: var(--accent, #ff5a1f);
+  color: #ffffff;
+  border: 2px solid var(--accent, #ff5a1f);
+  font-weight: 700;
 }
 
 .btn-primary:hover {
-  background: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+  background: var(--accent-dark, #dc4310);
+  border-color: var(--accent-dark, #dc4310);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-glow);
+  box-shadow: 0 6px 20px rgba(255, 90, 31, 0.35);
 }
 
 .btn-secondary {
-  background: transparent;
-  color: var(--text-primary);
-  border: 2px solid var(--glass-border);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: #ffffff;
+  color: var(--ink, #111111);
+  border: 2px solid var(--line, #d8d8d0);
+  font-weight: 700;
 }
 
 .btn-secondary:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  border-color: var(--ink, #111111);
+  color: var(--ink, #111111);
   transform: translateY(-2px);
 }
 
@@ -2552,8 +2569,31 @@ p {
    ---------------------------------------------------------------- */
 .footer {
   padding: var(--space-16) 0 var(--space-8);
-  background: var(--color-surface);
-  border-top: 1px solid var(--glass-border);
+  background: var(--ink, #111111);
+  color: #ffffff;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer .footer-title,
+.footer h4 {
+  color: #ffffff;
+}
+
+.footer .footer-links a {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.footer .footer-links a:hover {
+  color: var(--accent, #ff5a1f);
+}
+
+.footer .footer-desc {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.footer .footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-grid {
@@ -4828,10 +4868,10 @@ img {
    Global Recruitment Highlight & Notification System
    ================================================================ */
 .recruitment-topbar {
-  background: linear-gradient(90deg, rgba(14, 20, 34, 0.97) 0%, rgba(38, 28, 12, 0.97) 50%, rgba(14, 20, 34, 0.97) 100%);
-  border-bottom: 1px solid rgba(255, 215, 0, 0.28);
-  color: var(--text-primary, #ffffff);
-  padding: 8px 16px;
+  background: var(--ink, #111111);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  padding: 10px 16px;
   font-size: 0.86rem;
   font-weight: 500;
   text-align: center;
@@ -4843,16 +4883,15 @@ img {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .recruitment-topbar-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(78, 205, 196, 0.18);
-  border: 1px solid rgba(78, 205, 196, 0.5);
-  color: #4ECDC4;
+  background: rgba(255, 90, 31, 0.2);
+  border: 1px solid rgba(255, 90, 31, 0.4);
+  color: #ff7b4c;
   font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -4864,14 +4903,14 @@ img {
 .recruitment-topbar-dot {
   width: 7px;
   height: 7px;
-  background: #4ECDC4;
+  background: #ff5a1f;
   border-radius: 50%;
-  box-shadow: 0 0 8px #4ECDC4;
+  box-shadow: 0 0 8px #ff5a1f;
   animation: recruitmentDotPulse 1.8s infinite ease-in-out;
 }
 
 .recruitment-topbar-link {
-  color: #FFD700;
+  color: #ff7b4c;
   font-weight: 700;
   text-decoration: none;
   display: inline-flex;
@@ -4879,16 +4918,16 @@ img {
   gap: 6px;
   padding: 3px 12px;
   border-radius: 50px;
-  background: rgba(255, 215, 0, 0.14);
-  border: 1px solid rgba(255, 215, 0, 0.4);
+  background: rgba(255, 90, 31, 0.15);
+  border: 1px solid rgba(255, 90, 31, 0.35);
   transition: all 0.25s ease;
 }
 
 .recruitment-topbar-link:hover {
-  background: #FFD700;
-  color: #121826;
+  background: var(--accent, #ff5a1f);
+  color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(255, 215, 0, 0.4);
+  box-shadow: 0 4px 14px rgba(255, 90, 31, 0.4);
 }
 
 @keyframes recruitmentDotPulse {

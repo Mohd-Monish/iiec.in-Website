@@ -29,47 +29,43 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
-  <meta name="description" content="Download your TechAstra certificates - Participation certificates, winner certificates, and event certificates from IIEC CSMU's flagship tech fest.">
+  <meta name="description" content="Download your TechAstra certificates — Participation certificates, winner certificates, and organizer credentials from IIEC CSMU's flagship tech fest.">
   <meta name="keywords" content="TechAstra certificates, IIEC certificates, E-Cell CSMU, tech fest certificates, participation certificate, winner certificate, hackathon certificate">
   <meta name="author" content="IIEC CSMU">
-  <meta name="theme-color" content="#05070f">
+  <meta name="theme-color" content="#f5f5f0">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://iiec.in/certificates.html">
+  <link rel="canonical" href="https://iiec.in/certificates">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Download Certificates | TechAstra - IIEC CSMU">
-  <meta property="og:description" content="Access and download your TechAstra certificates - Participation, Winner, and Event certificates.">
+  <meta property="og:title" content="Download Certificates | TechAstra — IIEC CSMU">
+  <meta property="og:description" content="Access and download your verified TechAstra certificates — Participation, Winner, and Event credentials.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://iiec.in/certificates.html">
+  <meta property="og:url" content="https://iiec.in/certificates">
   <meta property="og:image" content="https://iiec.in/assets/og-image.webp">
 
-  <title>Download Certificates | TechAstra - IIEC</title>
+  <title>Download Certificates | TechAstra — IIEC</title>
 
-  <!-- Preconnect for fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="./assets/favicon.webp">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
 
-  <!-- Main Stylesheet -->
+  <!-- Next Gen Pitch Design System & Certificate Styles -->
   <link rel="stylesheet" href="css/mobile-nav.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/certificates.css">
+  <link rel="stylesheet" href="css/iiec-loader.css">
 
-  <!-- External Libraries for PDF -->
+  <!-- External Libraries for PDF handling -->
   <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
   <script src="https://unpkg.com/@pdf-lib/fontkit@0.0.4/dist/fontkit.umd.min.js"></script>
-
-  <!-- Page-specific styles -->
-  <link rel="stylesheet" href="css/iiec-loader.css" />
-  <link rel="stylesheet" href="css/mobile-nav.css" />
-  <link rel="stylesheet" href="css/certificates.css" />
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -163,158 +159,166 @@
           </g>
         </svg>
       </div>
+      <div class="iiec-circuit-caption">
+        <span>IIEC</span> · WHERE VISION DRIVES VENTURE · <span>CSMU</span>
+      </div>
     </div>
   </div>
 
-  <!-- Particle Canvas -->
-  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <!-- Top Recruitment Announcement Bar -->
+  <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
+    <span class="recruitment-topbar-badge">
+      <span class="pulse-dot" style="width: 6px; height: 6px; background: #ff7b4c;"></span>
+      Recruitment Open
+    </span>
+    <span>IIEC Core Team &amp; Department Member Recruitments Are Live!</span>
+    <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
+      <span>Apply on join.iiec.in</span>
+      <span>→</span>
+    </a>
+  </aside>
 
-  <!-- Glow Orb -->
-  <div class="glow-orb-wrapper" aria-hidden="true">
-    <div class="glow-orb"></div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Recruitment Top Announcement Bar -->
-    <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
-      <span class="recruitment-topbar-badge">
-        <span class="recruitment-topbar-dot"></span>
-        Recruitment Open
-      </span>
-      <span>IIEC Core Team & Department Member Recruitments Are Live!</span>
-      <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
-        <span>Apply on join.iiec.in</span>
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </aside>
-
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="container">
-        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
-          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
+  <!-- Sticky Navbar Header -->
+  <header class="nav-header">
+    <div class="container">
+      <nav class="main-nav" role="navigation" aria-label="Main Navigation">
+        <a href="/" class="brand" aria-label="IIEC Home">
+          <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" />
           <span>IIEC</span>
         </a>
 
-        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" type="button">
+        <div class="nav-right" role="menubar">
+          <a href="/" role="menuitem">Home</a>
+          <a href="about" role="menuitem">About</a>
+          <a href="team" role="menuitem">Team</a>
+          <a href="activities" role="menuitem">Activities</a>
+          <a href="blog" role="menuitem">Blog</a>
+          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem">
+            <span class="nav-pulse-dot"></span>
+            Join IIEC (Recruiting)
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Trigger Button -->
+        <button class="hamburger-btn" id="hamburger-btn" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
           <span></span>
           <span></span>
           <span></span>
         </button>
+      </nav>
+    </div>
+  </header>
 
-        <div class="nav-links" role="menu">
-          <a href="index.html" class="nav-link" role="menuitem">Home</a>
-          <a href="about.html" class="nav-link" role="menuitem">About</a>
-          <a href="team.html" class="nav-link" role="menuitem">Team</a>
-          <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-          <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
-          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-panel-top">
+        <div class="brand">
+          <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" width="32" height="32" />
+          <span>IIEC</span>
         </div>
+        <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close Menu">
+          ✕
+        </button>
       </div>
-    </nav>
 
-    <!-- Mobile Navigation Drawer (Same as Team Page) -->
-    <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-modal="true">
-      <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
-      <div class="mobile-nav-panel">
-        <div class="mobile-nav-panel-top">
-          <div class="brand">
-            <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" width="32" height="32" />
-            <span>IIEC</span>
-          </div>
-          <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close Menu">
-            ✕
-          </button>
+      <div class="mobile-nav-links">
+        <a href="/" class="mobile-nav-link" style="--item-index: 1;">
+          <span class="link-num">01</span>
+          <span class="link-text">Home</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="about" class="mobile-nav-link" style="--item-index: 2;">
+          <span class="link-num">02</span>
+          <span class="link-text">About</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="team" class="mobile-nav-link" style="--item-index: 3;">
+          <span class="link-num">03</span>
+          <span class="link-text">Team</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="activities" class="mobile-nav-link" style="--item-index: 4;">
+          <span class="link-num">04</span>
+          <span class="link-text">Activities</span>
+          <span class="link-arrow">→</span>
+        </a>
+        <a href="blog" class="mobile-nav-link" style="--item-index: 5;">
+          <span class="link-num">05</span>
+          <span class="link-text">Blog</span>
+          <span class="link-arrow">→</span>
+        </a>
+      </div>
+
+      <div class="mobile-nav-highlight-box">
+        <div class="mobile-highlight-tag">
+          <span class="dot" style="background: #157f4a; width: 7px; height: 7px; border-radius: 50%; display: inline-block;"></span> Event Concluded
         </div>
+        <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
+        <p class="mobile-highlight-desc">Internal Hackathon concluded on 1 Sept 2026. Evaluations in progress.</p>
+        <a href="sih-2026" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 10px;">
+          <span>View SIH 2026 →</span>
+        </a>
+      </div>
 
-        <div class="mobile-nav-links">
-          <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
-            <span class="link-num">01</span>
-            <span class="link-text">Home</span>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
-            <span class="link-num">02</span>
-            <span class="link-text">About</span>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
-            <span class="link-num">03</span>
-            <span class="link-text">Team</span>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
-            <span class="link-num">04</span>
-            <span class="link-text">Activities</span>
-            <span class="link-arrow">→</span>
-          </a>
-          <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
-            <span class="link-num">05</span>
-            <span class="link-text">Blog</span>
-            <span class="link-arrow">→</span>
-          </a>
-        </div>
-
-        <div class="mobile-nav-highlight-box">
-          <div class="mobile-highlight-tag">
-            <span class="pulse-dot"></span> Active Hackathon
-          </div>
-          <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
-          <p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
-          <a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
-            <span>Register Team ↗</span>
-          </a>
-        </div>
-
-        <div class="mobile-nav-bottom">
-          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="mobile-join-link">
-            <span>Apply to Join IIEC Core Team</span>
-            <span>→</span>
-          </a>
-          <div class="mobile-socials">
-            <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
-            <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
-            <a href="mailto:ecell-student-rep@csmu.ac.in">Email</a>
-          </div>
+      <div class="mobile-nav-bottom">
+        <a href="https://join.iiec.in" target="_blank" rel="noopener" class="mobile-join-link">
+          <span>Apply to Join IIEC Core Team</span>
+          <span>→</span>
+        </a>
+        <div class="mobile-socials">
+          <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:iiec@csmu.ac.in">Email</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <main>
-      <!-- Hero Section -->
-      <section class="certificate-hero" aria-labelledby="cert-hero-title">
-        <div class="certificate-hero-content">
-          <div class="certificate-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-            </svg>
-            <span>TechAstra 2026</span>
-          </div>
-          <h1 id="cert-hero-title" class="certificate-title">
-            Download Your <span class="highlight">Certificates</span>
-          </h1>
-          <p class="certificate-subtitle">
-            Enter your registered email address to access and download your TechAstra certificates — participation, winner, and event certificates.
-          </p>
+  <!-- Main Content -->
+  <main id="main">
+    <!-- ================================================================
+         HERO SECTION: Title & Credential Eyebrow
+         ================================================================ -->
+    <section class="container certificate-hero" aria-labelledby="cert-hero-title">
+      <div class="certificate-hero-content">
+        <div class="eyebrow">
+          <span class="pulse-dot"></span> OFFICIAL IIEC CREDENTIALS &bull; TECHASTRA
         </div>
-      </section>
+        <h1 id="cert-hero-title" class="certificate-title">
+          Download Your <em>Certificates.</em>
+        </h1>
+        <p class="certificate-subtitle">
+          Enter your registered event email address to retrieve, verify, and download your TechAstra credentials in high-resolution vector PDF format.
+        </p>
+      </div>
+    </section>
 
-      <!-- Search Section -->
-      <section class="search-section">
+    <!-- ================================================================
+         PORTAL BENTO SECTION: Search Form & Assurance Bento Card
+         ================================================================ -->
+    <section class="container cert-portal-section">
+      <div class="cert-portal-grid">
+        <!-- Search Card -->
         <div class="search-card">
           <form id="certificateForm" class="search-form">
             <div class="form-group">
-              <label class="form-label" for="emailInput">Email Address</label>
-              <input
-                type="email"
-                id="emailInput"
-                name="email"
-                class="form-input"
-                placeholder="Enter your registered email"
-                autocomplete="email"
-                required
-              >
+              <label class="form-label" for="emailInput">Registered Email Address</label>
+              <div class="form-input-wrapper">
+                <svg class="form-input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                </svg>
+                <input
+                  type="email"
+                  id="emailInput"
+                  name="email"
+                  class="form-input"
+                  placeholder="name@csmu.ac.in or personal email"
+                  autocomplete="email"
+                  required
+                >
+              </div>
             </div>
             <button type="submit" class="search-btn" id="searchButton">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -326,121 +330,95 @@
 
           <div id="loader" class="search-loading">
             <div class="loading-spinner"></div>
-            <span class="loading-text">Searching for your certificates...</span>
+            <span class="loading-text">Searching for verified credentials...</span>
           </div>
         </div>
-      </section>
 
-      <!-- Results Section -->
-      <section class="results-section" id="resultsSection" style="display: none;">
-        <div class="results-container">
-          <div class="info-banner">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <div class="info-banner-content">
-              <h4>Certificate Information</h4>
-              <p>Download your certificates in PDF format. Each certificate includes a unique verification code that can be used to verify its authenticity.</p>
-            </div>
-          </div>
-
-          <div class="results-header" id="resultsHeader">
-            <h2 class="results-title">Your Certificates</h2>
-            <p class="results-count" id="resultsCount"></p>
-          </div>
-
-          <div id="resultsArea" class="certificates-grid" aria-live="polite"></div>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="lazy" decoding="async">
-              <span>IIEC</span>
-            </div>
-            <p class="footer-desc">
-              IIEC — Incubation, Innovation & Entrepreneurship Cell at Chhatrapati Shivaji Maharaj University. Where Vision Drives Venture.
+        <!-- Assurance Bento Card -->
+        <div class="assurance-card">
+          <div>
+            <span class="assurance-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              Cryptographic Integrity
+            </span>
+            <h3 class="assurance-title">Institutional Grade Verification</h3>
+            <p class="assurance-desc">
+              Each certificate is cryptographically hashed with a permanent verification code and stored on official university records.
             </p>
-            <div class="footer-socials">
-              <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            <div class="assurance-features">
+              <div class="assurance-feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-              </a>
-              <a href="https://www.instagram.com/iiec.csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                <span>Unique Verifiable UID on every certificate</span>
+              </div>
+              <div class="assurance-feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-              </a>
-              <a href="https://twitter.com/iiec_csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Twitter/X">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                <span>Print-ready vector PDF rendering</span>
+              </div>
+              <div class="assurance-feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
                 </svg>
-              </a>
-              <a href="mailto:ecell-student-rep@csmu.ac.in" class="footer-social" aria-label="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
-                  <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
-                </svg>
-              </a>
+                <span>Shareable link for LinkedIn &amp; Resumes</span>
+              </div>
             </div>
           </div>
-
-          <nav class="footer-nav" aria-label="Quick Links">
-            <h4 class="footer-title">Quick Links</h4>
-            <div class="footer-links">
-              <a href="index.html">Home</a>
-              <a href="about.html">About Us</a>
-              <a href="team.html">Team</a>
-              <a href="activities.html">Activities</a>
-            </div>
-          </nav>
-
-          <nav class="footer-nav" aria-label="Certificates">
-            <h4 class="footer-title">Certificates</h4>
-            <div class="footer-links">
-              <a href="certificates.html">Download Certificates</a>
-              <a href="verify.html">Verify Certificate</a>
-            </div>
-          </nav>
-
-          <nav class="footer-nav" aria-label="Events">
-            <h4 class="footer-title">Events</h4>
-            <div class="footer-links">
-              <a href="https://techastra.iiec.in" target="_blank" rel="noopener">TechAstra</a>
-              <a href="genesis.html">GENESIS</a>
-              <a href="activities.html">All Events</a>
-            </div>
-          </nav>
-
-          <nav class="footer-nav" aria-label="Contact">
-            <h4 class="footer-title">Contact</h4>
-            <div class="footer-links">
-              <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
-              <a href="https://join.iiec.in" target="_blank" rel="noopener">Join Us</a>
-            </div>
-          </nav>
-        </div>
-
-        <div class="footer-bottom">
-          <p class="footer-copyright">
-            &copy; 2026 IIEC. All rights reserved.
-          </p>
-          <span class="footer-credit">Website by <a href="https://novish.studio" target="_blank" rel="noopener">Novish Studio</a></span>
+          <div>
+            <a href="verify" class="assurance-verify-link">
+              <span>Have a Certificate ID? Verify Authenticity →</span>
+            </a>
+          </div>
         </div>
       </div>
-    </footer>
-  </div>
+    </section>
 
-  <!-- Main Script -->
-  <script src="js/script.js" defer></script>
+    <!-- ================================================================
+         RESULTS SECTION
+         ================================================================ -->
+    <section class="container results-section" id="resultsSection" style="display: none;">
+      <div class="results-container">
+        <div class="info-banner">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <div class="info-banner-content">
+            <h4>Certificate Verification &amp; Export</h4>
+            <p>Download your certificates in vector PDF format. Each credential carries an immutable unique identification code for third-party institutional verification.</p>
+          </div>
+        </div>
 
-  <!-- Certificate Search Script -->
+        <div class="results-header" id="resultsHeader">
+          <h2 class="results-title">Your Credentials</h2>
+          <p class="results-count" id="resultsCount"></p>
+        </div>
+
+        <div id="resultsArea" class="certificates-grid" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Official Footer -->
+  <footer class="container cert-footer" role="contentinfo">
+    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" width="32" height="32" style="object-fit: contain;" />
+      <span class="footer-home">IIEC · Incubation, Innovation &amp; Entrepreneurship Cell</span>
+      <span style="color: #999;">© 2026 CSMU</span>
+    </div>
+    <div class="footer-socials">
+      <a href="verify">Verify Certificate</a>
+      <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:iiec@csmu.ac.in">iiec@csmu.ac.in</a>
+      <a href="sitemap.xml">Sitemap</a>
+    </div>
+  </footer>
+
+  <!-- Certificate Search & Download Engine -->
   <script>
     // ==========================================
     // CONFIGURATION
@@ -524,7 +502,7 @@
         });
         resultsSection.style.display = 'block';
         resultsArea.innerHTML = `
-          <div class="error-state">
+          <div class="error-state" style="grid-column: 1 / -1;">
             <p>We couldn't retrieve your certificates right now. Please try again in a moment.</p>
           </div>
         `;
@@ -551,14 +529,14 @@
               </svg>
             </div>
             <h3 class="empty-title">No Certificates Found</h3>
-            <p class="empty-text">We couldn't find any certificates for <strong>${safeEmail}</strong>. Please make sure you're using the email address you registered with.</p>
+            <p class="empty-text">We couldn't find any certificates registered under <strong>${safeEmail}</strong>. Please ensure you are entering the exact email address used at event registration.</p>
           </div>
         `;
-        resultsCount.innerHTML = `No certificates found for <strong>${safeEmail}</strong>`;
+        resultsCount.innerHTML = `No credentials found for <strong>${safeEmail}</strong>`;
         return;
       }
 
-      resultsCount.innerHTML = `Found <strong>${items.length}</strong> certificate${items.length > 1 ? 's' : ''} for <strong>${safeEmail}</strong>`;
+      resultsCount.innerHTML = `Found <strong>${items.length}</strong> verified credential${items.length > 1 ? 's' : ''} for <strong>${safeEmail}</strong>`;
 
       const cards = items.map(cert => {
         const uid = cert.uid != null ? String(cert.uid).trim() : '';
@@ -566,7 +544,7 @@
         const downloadLink = hasFile ? `certificates/${encodeURIComponent(uid)}.pdf` : '#';
         const title = escapeHtml(cert.docTitle || 'Certificate');
         const eventName = escapeHtml(cert.event || 'TechAstra Event');
-        const eventDate = escapeHtml(cert.date || 'Date to be announced');
+        const eventDate = escapeHtml(cert.date || 'Issued by IIEC');
         const roleValue = cert.role ? escapeHtml(cert.role) : '';
 
         // Determine certificate type for styling
@@ -598,16 +576,21 @@
                 <span class="detail-value">${eventName}</span>
               </div>
               <div class="certificate-detail">
-                <span class="detail-label">Date Issued</span>
+                <span class="detail-label">Issue Date</span>
                 <span class="detail-value">${eventDate}</span>
               </div>
+              ${uid ? `
+              <div class="certificate-detail">
+                <span class="detail-label">Verification UID</span>
+                <span class="detail-value" style="font-family: monospace; font-size: 11px;">${escapeHtml(uid)}</span>
+              </div>` : ''}
             </div>
             <div class="certificate-actions">
               <a href="${downloadLink}" ${hasFile ? 'target="_blank" rel="noopener"' : ''} class="download-btn ${!hasFile ? 'disabled' : ''}" ${!hasFile ? 'aria-disabled="true"' : ''} ${hasFile ? `data-track-download="1" data-cert-uid="${escapeHtml(uid)}" data-cert-title="${title}" data-cert-event="${eventName}" data-cert-type="${escapeHtml(typeName)}"` : ''}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>${hasFile ? 'Download PDF' : 'Coming Soon'}</span>
+                <span>${hasFile ? 'Download PDF' : 'Processing Certificate'}</span>
               </a>
             </div>
           </article>
@@ -642,7 +625,7 @@
             certificate_type: certType
           });
 
-          // Log to our dashboard (fire and forget)
+          // Log to our dashboard
           logDownloadToAPI(uid, title, event, certType);
         });
       });
@@ -653,19 +636,10 @@
         const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
         const url = `${LOGGER_API_URL}?action=logDownload&uid=${encodeURIComponent(uid)}&name=${encodeURIComponent(name)}&event=${encodeURIComponent(event)}&type=${encodeURIComponent(certType)}&ua=${ua}`;
 
-        // Use fetch with no-cors mode for cross-origin requests to Google Apps Script
-        fetch(url, {
-          method: 'GET',
-          mode: 'no-cors',
-          cache: 'no-cache'
-        }).catch(() => {});
-
-        // Also try creating an image beacon as backup (most reliable for logging)
+        fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-cache' }).catch(() => {});
         const img = new Image();
         img.src = url;
-      } catch (e) {
-        // Silent fail - don't interrupt download
-      }
+      } catch (e) {}
     }
 
     function logSearchToAPI(email, name, event, status) {
@@ -673,27 +647,18 @@
         const ua = encodeURIComponent(navigator.userAgent.substring(0, 200));
         const url = `${LOGGER_API_URL}?action=logSearch&email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}&event=${encodeURIComponent(event)}&status=${encodeURIComponent(status)}&ua=${ua}`;
 
-        // Use fetch for logging
         fetch(url, { method: 'GET', mode: 'no-cors', cache: 'no-cache' }).catch(() => {});
-
-        // Image beacon as backup
         const img = new Image();
         img.src = url;
-      } catch (e) {
-        // Silent fail
-      }
+      } catch (e) {}
     }
 
     function trackEvent(eventName, eventData = {}) {
       if (typeof window.gtag === 'function') {
         window.gtag('event', eventName, eventData);
       }
-
       if (Array.isArray(window.dataLayer)) {
-        window.dataLayer.push({
-          event: eventName,
-          ...eventData
-        });
+        window.dataLayer.push({ event: eventName, ...eventData });
       }
     }
 

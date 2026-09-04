@@ -66,6 +66,7 @@
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
 
   <link rel="stylesheet" href="css/iiec-loader.css">
+  <link rel="stylesheet" href="css/iiec-animations.css">
   <link rel="stylesheet" href="css/mobile-nav.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/genesis.css">
@@ -192,7 +193,7 @@
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
-        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+        <a href="/" class="nav-logo" aria-label="IIEC Home">
           <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
           <span>IIEC</span>
         </a>
@@ -204,11 +205,11 @@
         </button>
 
         <div class="nav-links" role="menu">
-          <a href="index.html" class="nav-link" role="menuitem">Home</a>
-          <a href="about.html" class="nav-link" role="menuitem">About</a>
-          <a href="team.html" class="nav-link" role="menuitem">Team</a>
-          <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-          <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
+          <a href="/" class="nav-link" role="menuitem">Home</a>
+          <a href="about" class="nav-link" role="menuitem">About</a>
+          <a href="team" class="nav-link" role="menuitem">Team</a>
+          <a href="activities" class="nav-link" role="menuitem">Activities</a>
+          <a href="blog" class="nav-link" role="menuitem">Blog</a>
           <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
         </div>
       </div>
@@ -229,27 +230,27 @@
         </div>
 
         <div class="mobile-nav-links">
-          <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+          <a href="/" class="mobile-nav-link" style="--item-index: 1;">
             <span class="link-num">01</span>
             <span class="link-text">Home</span>
             <span class="link-arrow">→</span>
           </a>
-          <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+          <a href="about" class="mobile-nav-link" style="--item-index: 2;">
             <span class="link-num">02</span>
             <span class="link-text">About</span>
             <span class="link-arrow">→</span>
           </a>
-          <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+          <a href="team" class="mobile-nav-link" style="--item-index: 3;">
             <span class="link-num">03</span>
             <span class="link-text">Team</span>
             <span class="link-arrow">→</span>
           </a>
-          <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+          <a href="activities" class="mobile-nav-link" style="--item-index: 4;">
             <span class="link-num">04</span>
             <span class="link-text">Activities</span>
             <span class="link-arrow">→</span>
           </a>
-          <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+          <a href="blog" class="mobile-nav-link" style="--item-index: 5;">
             <span class="link-num">05</span>
             <span class="link-text">Blog</span>
             <span class="link-arrow">→</span>
@@ -258,12 +259,12 @@
 
         <div class="mobile-nav-highlight-box">
           <div class="mobile-highlight-tag">
-            <span class="pulse-dot"></span> Active Hackathon
+            <span class="dot" style="background: #157f4a;"></span> Event Concluded
           </div>
           <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
-          <p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
-          <a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
-            <span>Register Team ↗</span>
+          <p class="mobile-highlight-desc">Internal Hackathon concluded on 1 Sept 2026. Evaluations in progress.</p>
+          <a href="sih-2026" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 10px;">
+            <span>View SIH 2026 →</span>
           </a>
         </div>
 
@@ -287,7 +288,7 @@
     <section class="genesis-hero" aria-labelledby="genesis-title">
       <div class="container">
         <div class="genesis-hero-content">
-          <div class="genesis-collab-badges">
+          <div class="genesis-collab-badges animate-on-scroll">
             <div class="collab-badge">
               <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="36" height="36" loading="eager" decoding="async">
               <span>IIEC</span>
@@ -298,13 +299,13 @@
             </div>
           </div>
 
-          <p class="genesis-overline">IIEC Orientation Program 2026</p>
+          <p class="genesis-overline animate-on-scroll delay-1">IIEC Orientation Program 2026</p>
 
-          <h1 id="genesis-title" class="genesis-title">GENESIS</h1>
+          <h1 id="genesis-title" class="genesis-title animate-on-scroll delay-1">GENESIS</h1>
 
-          <p class="genesis-subtitle">Official Orientation of the Incubation, Innovation &amp; Entrepreneurship Cell</p>
+          <p class="genesis-subtitle animate-on-scroll delay-2">Official Orientation of the Incubation, Innovation &amp; Entrepreneurship Cell</p>
 
-          <div class="genesis-meta-grid">
+          <div class="genesis-meta-grid ngp-stagger-grid animate-on-scroll delay-3">
             <div class="genesis-meta-item">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
               <div>
@@ -523,7 +524,7 @@
             <h3>GENESIS Was Successfully Held</h3>
             <p>GENESIS — the official IIEC Orientation Program 2026 — was successfully conducted on <strong>11 February 2026</strong> at the G.D. Badaya Auditorium, CSMU Campus. Thank you to all attendees for making it a grand success!</p>
             <p class="success-note">Registration for this event is now closed. Stay connected with IIEC for future events and opportunities.</p>
-            <a href="activities.html" class="btn btn-primary">
+            <a href="activities" class="btn btn-primary">
               <span>Explore More Events</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
@@ -545,7 +546,7 @@
               <h3 class="cross-banner-title">About IIEC</h3>
               <p class="cross-banner-desc">Our story, mission, and the NEC Top 23 achievement that put CSMU on the national map.</p>
             </div>
-            <a href="about.html" class="btn btn-primary">
+            <a href="about" class="btn btn-primary">
               <span>Learn More</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
@@ -556,7 +557,7 @@
               <h3 class="cross-banner-title">Meet the Team</h3>
               <p class="cross-banner-desc">The leaders and members driving innovation at IIEC — meet every portfolio head.</p>
             </div>
-            <a href="team.html" class="btn btn-primary">
+            <a href="team" class="btn btn-primary">
               <span>View Team</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
@@ -567,7 +568,7 @@
               <h3 class="cross-banner-title">All Events & Activities</h3>
               <p class="cross-banner-desc">TechAstra, IPL Auction, NEC and more — see everything happening at IIEC.</p>
             </div>
-            <a href="activities.html" class="btn btn-primary">
+            <a href="activities" class="btn btn-primary">
               <span>Explore Events</span>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
             </a>
@@ -584,7 +585,7 @@
         <div class="genesis-cta-card glass-card" data-animate="scale">
           <h2 id="cta-final-title">Be Part of Campus <span class="highlight">Growth</span></h2>
           <p>Entrepreneurship is a mindset. GENESIS was just the beginning. Stay connected with IIEC for upcoming events and opportunities.</p>
-          <a href="activities.html" class="btn btn-primary btn-large">
+          <a href="activities" class="btn btn-primary btn-large">
             <span>Explore Events</span>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -616,21 +617,21 @@
           <nav class="footer-nav" aria-label="Quick Links">
             <h4 class="footer-title">Quick Links</h4>
             <div class="footer-links">
-              <a href="index.html">Home</a>
-              <a href="about.html">About</a>
-              <a href="team.html">Team</a>
-              <a href="activities.html">Activities</a>
-              <a href="blog.html">Blog</a>
+              <a href="/">Home</a>
+              <a href="about">About</a>
+              <a href="team">Team</a>
+              <a href="activities">Activities</a>
+              <a href="blog">Blog</a>
             </div>
           </nav>
 
           <nav class="footer-nav" aria-label="Programs">
             <h4 class="footer-title">Programs</h4>
             <div class="footer-links">
-              <a href="activities.html#workshops">Workshops</a>
-              <a href="activities.html#bootcamp">Startup Bootcamp</a>
-              <a href="activities.html#talks">Industry Talks</a>
-              <a href="activities.html#events">Events</a>
+              <a href="activities#workshops">Workshops</a>
+              <a href="activities#bootcamp">Startup Bootcamp</a>
+              <a href="activities#talks">Industry Talks</a>
+              <a href="activities#events">Events</a>
             </div>
           </nav>
 
@@ -654,6 +655,7 @@
 
   <!-- Main Scripts -->
   <script src="js/iiec-loader.js"></script>
+  <script src="js/iiec-animations.js" defer></script>
   <script src="js/mobile-nav.js" defer></script>
   <script src="js/script.js" defer></script>
   <script src="js/genesis.js" defer></script>

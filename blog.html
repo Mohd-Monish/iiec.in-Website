@@ -31,20 +31,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="IIEC Blog — Read the latest articles on innovation, entrepreneurship, startups, technology, and student success stories. Insights from Incubation,...">
+  <meta name="description" content="IIEC Blog &amp; Insights — Read the latest student founder playbooks, startup stories, university innovation lessons, and technology trends from the IIEC community at CSMU.">
   <meta name="keywords" content="IIEC blog, entrepreneurship articles, startup blog India, innovation insights, student startup stories, technology articles college, E-Cell blog CSMU, incubation cell blog, startup tips students, entrepreneurship resources, college innovation blog, tech articles university, business ideas students, Navi Mumbai college blog, startup funding India, business plan template, lean startup methodology, digital marketing workshop, AI startup India, how to start a startup in college India, startup advice for students, entrepreneurship lessons, student success stories India, product development tips, pitch deck guide">
   <meta name="author" content="IIEC">
-  <meta name="theme-color" content="#05070f">
+  <meta name="theme-color" content="#f5f5f0">
   
   <!-- Canonical -->
   <link rel="canonical" href="https://iiec.in/blog">
   <link rel="help" type="text/plain" href="https://iiec.in/llms.txt" title="LLM Information">
   
   <!-- Open Graph -->
-  <meta property="og:title" content="Blog | IIEC">
-  <meta property="og:description" content="Where Vision Drives Venture. Read the latest articles and insights on innovation, entrepreneurship, and startups.">
+  <meta property="og:title" content="Blog &amp; Insights | IIEC — Where Vision Drives Venture">
+  <meta property="og:description" content="Where Vision Drives Venture. Read the latest student founder playbooks, startup stories, and innovation insights from CSMU.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://iiec.in/blog">
   <meta property="og:image" content="https://iiec.in/assets/og-image.webp">
@@ -52,22 +52,23 @@
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Blog | IIEC">
-  <meta name="twitter:description" content="Where Vision Drives Venture. Read the latest articles and insights on innovation, entrepreneurship, and startups.">
+  <meta name="twitter:title" content="Blog &amp; Insights | IIEC">
+  <meta name="twitter:description" content="Where Vision Drives Venture. Read the latest student founder playbooks, startup stories, and innovation insights from CSMU.">
   <meta name="twitter:image" content="https://iiec.in/assets/og-image.webp">
   
-  <title>Blog | IIEC</title>
+  <title>Blog &amp; Insights | IIEC — Where Vision Drives Venture</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <link rel="icon" type="image/webp" href="./assets/favicon.webp">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
   
-  <link rel="stylesheet" href="css/iiec-loader.css">
+  <!-- Next Gen Pitch Design System & Blog Styles -->
   <link rel="stylesheet" href="css/mobile-nav.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/blog.css">
+  <link rel="stylesheet" href="css/iiec-loader.css">
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
@@ -161,56 +162,57 @@
           </g>
         </svg>
       </div>
+      <div class="iiec-circuit-caption">
+        <span>IIEC</span> · WHERE VISION DRIVES VENTURE · <span>CSMU</span>
+      </div>
     </div>
   </div>
 
-  <!-- Particle Canvas -->
-  <canvas id="particle-canvas" aria-hidden="true"></canvas>
-  
-  <!-- Glow Orb -->
-  <div class="glow-orb-wrapper" aria-hidden="true">
-    <div class="glow-orb"></div>
-  </div>
-
-  <!-- Recruitment Top Announcement Bar -->
+  <!-- Top Recruitment Announcement Bar -->
   <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
     <span class="recruitment-topbar-badge">
-      <span class="recruitment-topbar-dot"></span>
+      <span class="pulse-dot" style="width: 6px; height: 6px; background: #ff7b4c;"></span>
       Recruitment Open
     </span>
-    <span>IIEC Core Team & Department Member Recruitments Are Live!</span>
+    <span>IIEC Core Team &amp; Department Member Recruitments Are Live!</span>
     <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
       <span>Apply on join.iiec.in</span>
-      <i class="fas fa-arrow-right"></i>
+      <span>→</span>
     </a>
   </aside>
 
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
+  <!-- Sticky Navbar Header -->
+  <header class="nav-header">
     <div class="container">
-      <a href="index.html" class="nav-logo" aria-label="IIEC Home">
-        <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
-        <span>IIEC</span>
-      </a>
-      
-      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" type="button">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      
-      <div class="nav-links" role="menu">
-        <a href="index.html" class="nav-link" role="menuitem">Home</a>
-        <a href="about.html" class="nav-link" role="menuitem">About</a>
-        <a href="team.html" class="nav-link" role="menuitem">Team</a>
-        <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-        <a href="blog.html" class="nav-link active" role="menuitem" aria-current="page">Blog</a>
-        <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
-      </div>
-    </div>
-  </nav>
+      <nav class="main-nav" role="navigation" aria-label="Main Navigation">
+        <a href="/" class="brand" aria-label="IIEC Home">
+          <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" />
+          <span>IIEC</span>
+        </a>
 
-  <!-- Mobile Navigation Drawer (Same as Team Page) -->
+        <div class="nav-right" role="menubar">
+          <a href="/" role="menuitem">Home</a>
+          <a href="about" role="menuitem">About</a>
+          <a href="team" role="menuitem">Team</a>
+          <a href="activities" role="menuitem">Activities</a>
+          <a href="blog" class="active" role="menuitem" aria-current="page">Blog</a>
+          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem">
+            <span class="nav-pulse-dot"></span>
+            Join IIEC (Recruiting)
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Trigger Button -->
+        <button class="hamburger-btn" id="hamburger-btn" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
   <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
     <div class="mobile-nav-panel">
@@ -225,27 +227,27 @@
       </div>
 
       <div class="mobile-nav-links">
-        <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+        <a href="/" class="mobile-nav-link" style="--item-index: 1;">
           <span class="link-num">01</span>
           <span class="link-text">Home</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+        <a href="about" class="mobile-nav-link" style="--item-index: 2;">
           <span class="link-num">02</span>
           <span class="link-text">About</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+        <a href="team" class="mobile-nav-link" style="--item-index: 3;">
           <span class="link-num">03</span>
           <span class="link-text">Team</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+        <a href="activities" class="mobile-nav-link" style="--item-index: 4;">
           <span class="link-num">04</span>
           <span class="link-text">Activities</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="blog.html" class="mobile-nav-link active" style="--item-index: 5;">
+        <a href="blog" class="mobile-nav-link active" style="--item-index: 5;">
           <span class="link-num">05</span>
           <span class="link-text">Blog</span>
           <span class="link-badge">Active</span>
@@ -255,12 +257,12 @@
 
       <div class="mobile-nav-highlight-box">
         <div class="mobile-highlight-tag">
-          <span class="pulse-dot"></span> Active Hackathon
+          <span class="dot" style="background: #157f4a; width: 7px; height: 7px; border-radius: 50%; display: inline-block;"></span> Event Concluded
         </div>
         <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
-        <p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
-        <a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
-          <span>Register Team ↗</span>
+        <p class="mobile-highlight-desc">Internal Hackathon concluded on 1 Sept 2026. Evaluations in progress.</p>
+        <a href="sih-2026" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 10px;">
+          <span>View SIH 2026 →</span>
         </a>
       </div>
 
@@ -272,7 +274,7 @@
         <div class="mobile-socials">
           <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
           <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="mailto:ecell-student-rep@csmu.ac.in">Email</a>
+          <a href="mailto:iiec@csmu.ac.in">Email</a>
         </div>
       </div>
     </div>
@@ -280,243 +282,402 @@
 
   <!-- Main Content -->
   <main id="main">
-    <div class="main-content">
-      <!-- Page Header -->
-      <section class="page-header" aria-labelledby="page-title">
-      <div class="container">
-        <h1 id="page-title" class="page-title" data-animate="fade-up">Our <span class="highlight">Blog</span></h1>
-        <p class="page-subtitle" data-animate="blur" data-animate-delay="1">Insights, startup stories, entrepreneurship lessons, and technology trends from the IIEC community at CSMU</p>
+    <!-- ================================================================
+         HERO SECTION: Editorial Eyebrow, Title & Search Toolbar
+         ================================================================ -->
+    <section class="container blog-hero-section">
+      <div class="blog-hero-content">
+        <div class="eyebrow">
+          <span class="pulse-dot"></span> IIEC INSIGHTS &amp; PLAYBOOKS
+        </div>
+        <h1 class="blog-hero-title">Ideas &amp; Stories That Drive <em>Venture.</em></h1>
+        <p class="blog-hero-subtitle">
+          Real perspectives on building student startups, early-stage execution, university innovation, and turning academic curiosity into high-impact businesses at CSMU.
+        </p>
+
+        <!-- Search Bar and Quick Stat Indicators -->
+        <div class="blog-hero-toolbar">
+          <div class="blog-search-box">
+            <svg class="blog-search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input type="text" id="blog-search" class="blog-search-input" placeholder="Search by title, topic, or keyword..." aria-label="Search articles">
+          </div>
+
+          <div class="blog-hero-stats">
+            <span class="hero-stat-pill">
+              <span class="stat-dot"></span> 4 Published Editions
+            </span>
+            <span class="hero-stat-pill">
+              <span class="stat-dot" style="background: #157f4a;"></span> 5 Min Avg Read
+            </span>
+            <span class="hero-stat-pill">
+              <span class="stat-dot" style="background: #0077b6;"></span> Student Driven
+            </span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Blog Grid Section -->
-    <section class="section" aria-labelledby="posts-title">
-      <div class="container">
-        <div class="blog-grid" id="blog-posts">
-          <!-- Blog posts will be loaded dynamically from API -->
-          <noscript><div class="blog-grid-static" style="display:grid; gap:20px;">
+    <!-- ================================================================
+         CATEGORY FILTER BAR
+         ================================================================ -->
+    <section class="container blog-filter-section">
+      <div class="blog-filter-bar" role="tablist" aria-label="Filter articles by category">
+        <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">
+          <span>All Articles</span>
+          <span class="filter-pill-count">4</span>
+        </button>
+        <button class="filter-pill" data-filter="entrepreneurship" role="tab" aria-selected="false">
+          <span>Entrepreneurship</span>
+          <span class="filter-pill-count">2</span>
+        </button>
+        <button class="filter-pill" data-filter="startup stories" role="tab" aria-selected="false">
+          <span>Startup Stories</span>
+          <span class="filter-pill-count">2</span>
+        </button>
+        <button class="filter-pill" data-filter="student life" role="tab" aria-selected="false">
+          <span>Student Life</span>
+        </button>
+        <button class="filter-pill" data-filter="innovation" role="tab" aria-selected="false">
+          <span>Tech &amp; Innovation</span>
+        </button>
+      </div>
+    </section>
 
-        <article class="blog-card" style="opacity:1; transform:none;">
-          <div class="blog-card-content">
-            <h2 class="blog-card-title">Gen- Z redefining Entrepreneurship</h2>
-            <p class="blog-card-excerpt">The arena where businesses compete now isn't just a playground to push each other behind - That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.</p>
-            <a href="blog-post-0.html" class="blog-card-link">Read More</a>
+    <!-- ================================================================
+         FEATURED ARTICLE SPOTLIGHT (Bento 2-Col Card)
+         ================================================================ -->
+    <section class="container blog-featured-section">
+      <a href="blog-post-0" class="blog-featured-card" aria-label="Read featured article: Gen-Z Redefining Entrepreneurship">
+        <div class="featured-media-wrapper">
+          <img src="assets/images/blog/blog-genz-entrepreneurship.jpg" alt="Gen-Z Redefining Entrepreneurship: Turning Business Ventures into Quests" loading="eager" decoding="async">
+          <span class="featured-badge-tag">
+            <span class="badge-dot"></span> Featured Edition
+          </span>
+        </div>
+        <div class="featured-content">
+          <div>
+            <div class="featured-meta-row">
+              <span class="featured-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Sept 2026
+              </span>
+              <span class="featured-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                5 min read
+              </span>
+              <span class="featured-meta-item" style="color: var(--accent); font-weight: 800;">
+                Entrepreneurship
+              </span>
+            </div>
+            <h2 class="featured-title">Gen-Z Redefining Entrepreneurship: Turning Business Ventures into Quests</h2>
+            <p class="featured-excerpt">
+              The arena where businesses compete now isn't just a playground to push each other behind — That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.
+            </p>
           </div>
-        </article>
-        
-        <article class="blog-card" style="opacity:1; transform:none;">
-          <div class="blog-card-content">
-            <h2 class="blog-card-title">Balancing Studies and Start-Up as a full-time student</h2>
-            <p class="blog-card-excerpt">There could be nothing more overwhelming than the constant juggling between start-up drive as an individual and managing the duties of a student at the college. This blog will explore some efficient and feasible hacks that could bring ease into the venture quest of every start-up student out there!</p>
-            <a href="blog-post-1.html" class="blog-card-link">Read More</a>
-          </div>
-        </article>
-        
-        <article class="blog-card" style="opacity:1; transform:none;">
-          <div class="blog-card-content">
-            <h2 class="blog-card-title">Side Hustle: Beyond just a culture, a stepping stone.</h2>
-            <p class="blog-card-excerpt">Hustling is an essential element to acquiring almost anything extraordinary or something even remotely close to it. Getting fuel ready for your own Start-Up is hardly any different- hustling while maintaning the several tasks as an acdemic weapon is how some young ventures excelled. In this blog, we shall explore the various ways where being a student- start-up owner isn't necessarily as glorious as it appears once product is delivered.</p>
-            <a href="blog-post-2.html" class="blog-card-link">Read More</a>
-          </div>
-        </article>
-        
-        <article class="blog-card" style="opacity:1; transform:none;">
-          <div class="blog-card-content">
-            <h2 class="blog-card-title">The Midterm Manoeuvre: Why Your &quot;Failed&quot; Startup is Your Best Grade Yet</h2>
-            <p class="blog-card-excerpt">Getting an idea and wanting to make it a reality is a canon event for most university students. Half of them manage to execute the said ideas- only barely. The first ever start-up doesn't necessarily boom at the first go. Nearly each student start-up is destined to face a failure. That first failure isn't meant to demotivate you from trying ever again- it is an essential area that needs be explored. We shall dsicuss FAILURE in this blog.</p>
-            <a href="blog-post-3.html" class="blog-card-link">Read More</a>
-          </div>
-        </article>
-        </div></noscript>
-<div class="blog-loading" id="blog-loading">
-            <!-- Skeleton Card 1 -->
-            <div class="skeleton-card">
-              <div class="skeleton-image"></div>
-              <div class="skeleton-content">
-                <div class="skeleton-line short"></div>
-                <div class="skeleton-line title"></div>
-                <div class="skeleton-line"></div>
-                <div class="skeleton-line medium"></div>
+          <div class="featured-footer-row">
+            <div class="featured-author-box">
+              <span class="author-avatar">IE</span>
+              <div>
+                <div class="author-info-name">IIEC Editorial</div>
+                <div class="author-info-sub">Incubation &amp; Startup Cell</div>
               </div>
             </div>
-            <!-- Skeleton Card 2 -->
-            <div class="skeleton-card">
-              <div class="skeleton-image"></div>
-              <div class="skeleton-content">
-                <div class="skeleton-line short"></div>
-                <div class="skeleton-line title"></div>
-                <div class="skeleton-line"></div>
-                <div class="skeleton-line medium"></div>
-              </div>
-            </div>
-            <!-- Skeleton Card 3 -->
-            <div class="skeleton-card">
-              <div class="skeleton-image"></div>
-              <div class="skeleton-content">
-                <div class="skeleton-line short"></div>
-                <div class="skeleton-line title"></div>
-                <div class="skeleton-line"></div>
-                <div class="skeleton-line medium"></div>
-              </div>
-            </div>
+            <span class="featured-read-action">
+              <span>Read Feature Story</span>
+              <span>→</span>
+            </span>
           </div>
         </div>
-        
-        <!-- More Posts Coming Soon -->
-        <div class="coming-soon-banner" data-animate="fade-up">
-          <div class="glass-card">
-            <h3>More Articles Coming Soon</h3>
-            <p>We're working on more content to help you on your entrepreneurial journey. Subscribe to get notified when new posts are published.</p>
-            <a href="index.html#newsletter" class="btn btn-primary">
-              <span>Subscribe</span>
+      </a>
+    </section>
+
+    <!-- ================================================================
+         MAIN ARTICLES GRID
+         ================================================================ -->
+    <section class="container blog-grid-section" aria-labelledby="articles-heading">
+      <div class="blog-grid-header">
+        <div>
+          <h2 id="articles-heading" class="blog-grid-title">
+            Latest Articles
+            <span class="articles-count-pill" id="articles-count">4</span>
+          </h2>
+        </div>
+      </div>
+
+      <div class="blog-grid" id="blog-posts">
+        <!-- Article 1: Gen Z Redefining Entrepreneurship -->
+        <article class="blog-card" data-category="entrepreneurship" data-post-index="0">
+          <div class="blog-card-image">
+            <img src="assets/images/blog/blog-genz-entrepreneurship.jpg" 
+                 alt="Gen- Z redefining Entrepreneurship" 
+                 width="400" height="250" loading="lazy">
+            <span class="blog-card-category">Entrepreneurship</span>
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span class="blog-card-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Sept 2026
+              </span>
+              <span class="blog-card-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                5 min read
+              </span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-post-0">Gen- Z redefining Entrepreneurship</a>
+            </h2>
+            <p class="blog-card-excerpt">
+              The arena where businesses compete now isn't just a playground to push each other behind - That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.
+            </p>
+            <div class="blog-card-footer">
+              <div class="blog-card-author-tag">
+                <span class="tag-avatar">IE</span>
+                <span>IIEC Editorial</span>
+              </div>
+              <a href="blog-post-0" class="blog-card-link" data-post-index="0">
+                <span>Read Article</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 2: Balancing Studies and Start-Up -->
+        <article class="blog-card" data-category="entrepreneurship" data-post-index="1">
+          <div class="blog-card-image">
+            <img src="assets/images/blog/blog-balancing-studies.jpg" 
+                 alt="Balancing Studies and Start-Up" 
+                 width="400" height="250" loading="lazy">
+            <span class="blog-card-category">Entrepreneurship</span>
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span class="blog-card-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Sept 2026
+              </span>
+              <span class="blog-card-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                5 min read
+              </span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-post-1">Balancing Studies and Start-Up as a full-time student</a>
+            </h2>
+            <p class="blog-card-excerpt">
+              There could be nothing more overwhelming than the constant juggling between start-up drive as an individual and managing the duties of a student at the college. Discover efficient and feasible hacks!
+            </p>
+            <div class="blog-card-footer">
+              <div class="blog-card-author-tag">
+                <span class="tag-avatar">IE</span>
+                <span>IIEC Editorial</span>
+              </div>
+              <a href="blog-post-1" class="blog-card-link" data-post-index="1">
+                <span>Read Article</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 3: Side Hustle -->
+        <article class="blog-card" data-category="startup stories" data-post-index="2">
+          <div class="blog-card-image">
+            <img src="assets/images/blog/blog-side-hustle.jpg" 
+                 alt="Side Hustle Stepping Stone" 
+                 width="400" height="250" loading="lazy">
+            <span class="blog-card-category">Startup Stories</span>
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span class="blog-card-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Sept 2026
+              </span>
+              <span class="blog-card-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                5 min read
+              </span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-post-2">Side Hustle: Beyond just a culture, a stepping stone.</a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Hustling is an essential element to acquiring almost anything extraordinary. Getting fuel ready for your own Start-Up is hardly any different — exploring how young student ventures excel behind the scenes.
+            </p>
+            <div class="blog-card-footer">
+              <div class="blog-card-author-tag">
+                <span class="tag-avatar">IE</span>
+                <span>IIEC Editorial</span>
+              </div>
+              <a href="blog-post-2" class="blog-card-link" data-post-index="2">
+                <span>Read Article</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 4: The Midterm Manoeuvre -->
+        <article class="blog-card" data-category="startup stories" data-post-index="3">
+          <div class="blog-card-image">
+            <img src="assets/images/blog/blog-failed-startup-pivot.jpg" 
+                 alt="The Midterm Manoeuvre" 
+                 width="400" height="250" loading="lazy">
+            <span class="blog-card-category">Startup Stories</span>
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-meta">
+              <span class="blog-card-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Sept 2026
+              </span>
+              <span class="blog-card-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                4 min read
+              </span>
+            </div>
+            <h2 class="blog-card-title">
+              <a href="blog-post-3">The Midterm Manoeuvre: Why Your "Failed" Startup is Your Best Grade Yet</a>
+            </h2>
+            <p class="blog-card-excerpt">
+              Getting an idea and wanting to make it a reality is a canon event for university students. Early failure isn't meant to demotivate you — it is the highest-value laboratory curriculum in entrepreneurship.
+            </p>
+            <div class="blog-card-footer">
+              <div class="blog-card-author-tag">
+                <span class="tag-avatar">IE</span>
+                <span>IIEC Editorial</span>
+              </div>
+              <a href="blog-post-3" class="blog-card-link" data-post-index="3">
+                <span>Read Article</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Empty State (Hidden by default, shown when search has 0 results) -->
+      <div class="blog-empty" id="blog-empty-state" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3>No Articles Found</h3>
+        <p>We couldn't find any articles matching your search or active filter. Try adjusting your keywords.</p>
+        <button class="btn btn-secondary btn-sm" id="reset-search-btn" type="button">
+          <span>Clear Search &amp; Filters</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ================================================================
+         BENTO COMMUNITY CONTRIBUTION & NEWSLETTER SECTION
+         ================================================================ -->
+    <section class="container blog-bento-section">
+      <div class="blog-bento-grid">
+        <!-- Bento Card 1: Write for IIEC -->
+        <div class="bento-editorial-card">
+          <div>
+            <span class="bento-card-badge">Guest Columnists &bull; IIEC Insights</span>
+            <h3 class="bento-card-title">Have a Startup Story or Campus Playbook to Share?</h3>
+            <p class="bento-card-desc">
+              We publish student founder teardowns, hackathon retrospective analyses, technical build logs, and venture experiments from across the CSMU ecosystem.
+            </p>
+            <div class="bento-topics-list">
+              <span class="bento-topic-chip">Founder Retrospectives</span>
+              <span class="bento-topic-chip">AI &amp; Tech Builds</span>
+              <span class="bento-topic-chip">Hackathon Hacks</span>
+              <span class="bento-topic-chip">Early Validation</span>
+            </div>
+          </div>
+          <div>
+            <a href="mailto:iiec@csmu.ac.in?subject=IIEC%20Blog%20Guest%20Column%20Pitch" class="btn btn-secondary" style="width: fit-content;">
+              <span>Pitch an Article to Editorial →</span>
             </a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Categories Section -->
-    <section class="section" aria-labelledby="categories-title">
-      <div class="container">
-        <header class="section-header" data-animate="fade-up">
-          <h2 id="posts-title" id="categories-title" class="section-title">Explore <span class="highlight">Topics</span></h2>
-          <p class="section-subtitle">Find articles by category</p>
-        </header>
-        
-        <div class="categories-grid" data-animate="scale" data-animate-delay="1">
-          <a href="javascript:void(0)" class="category-tag">
-            <span>Insights</span>
-            <span class="category-count">3</span>
-          </a>
-          <a href="javascript:void(0)" class="category-tag">
-            <span>Tutorials</span>
-            <span class="category-count">2</span>
-          </a>
-          <a href="javascript:void(0)" class="category-tag">
-            <span>Guides</span>
-            <span class="category-count">4</span>
-          </a>
-          <a href="javascript:void(0)" class="category-tag">
-            <span>Success Stories</span>
-            <span class="category-count">1</span>
-          </a>
-          <a href="javascript:void(0)" class="category-tag">
-            <span>Events</span>
-            <span class="category-count">2</span>
-          </a>
-          <a href="javascript:void(0)" class="category-tag">
-            <span>News</span>
-            <span class="category-count">5</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Newsletter CTA -->
-    <section class="section" aria-labelledby="newsletter-title">
-      <div class="container">
-        <div class="newsletter-section" data-animate="blur">
-          <h2 id="newsletter-title" class="section-title">Never Miss a <span class="highlight">Post</span></h2>
-          <p class="section-subtitle">Subscribe to get the latest articles and updates delivered to your inbox.</p>
-          
-          <form id="newsletter-form" class="newsletter-form">
-            <input 
-              type="email" 
-              class="newsletter-input" 
-              placeholder="Enter your email address" 
-              required
-              aria-label="Email address"
-            >
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-            <div class="form-message" role="alert"></div>
+        <!-- Bento Card 2: Newsletter -->
+        <div class="bento-editorial-card" style="background: #ffffff;">
+          <div>
+            <span class="bento-card-badge" style="background: rgba(21, 127, 74, 0.12); color: #157f4a; border-color: rgba(21, 127, 74, 0.3);">
+              Monthly Dispatch &bull; Zero Spam
+            </span>
+            <h3 class="bento-card-title">Never Miss an IIEC Playbook or Funding Alert</h3>
+            <p class="bento-card-desc">
+              Get curated student founder advice, university incubation updates, national competition alerts, and newly released articles delivered directly to your inbox.
+            </p>
+          </div>
+          <form id="newsletter-form" class="newsletter-box-form">
+            <div class="newsletter-form-row">
+              <input type="email" class="newsletter-input-field" placeholder="Enter your college or personal email" required aria-label="Email address">
+              <button type="submit" class="btn btn-primary">
+                <span>Subscribe Free</span>
+              </button>
+            </div>
+            <div class="newsletter-privacy-note">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+              <span>No spam ever. Unsubscribe anytime in 1 click.</span>
+            </div>
+            <div id="newsletter-message" class="form-message" role="alert"></div>
           </form>
         </div>
       </div>
     </section>
+  </main>
 
-    <!-- Footer -->
-    </main>
-	<footer class="footer" role="contentinfo" data-animate="fade-up">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="lazy" decoding="async">
-              <span>IIEC</span>
-            </div>
-            <p class="footer-desc">
-              IIEC — Incubation, Innovation & Entrepreneurship Cell. Where Vision Drives Venture. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University.
-            </p>
-            <div class="footer-socials">
-              <a href="https://linkedin.com/company/iiec-csmu" class="footer-social" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-              <a href="https://www.instagram.com/iiec.csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                </svg>
-              </a>
-              <a href="https://twitter.com/iiec_csmu" class="footer-social" target="_blank" rel="noopener" aria-label="Twitter/X">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
-              </a>
-              <a href="mailto:ecell-student-rep@csmu.ac.in" class="footer-social" aria-label="Email">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/>
-                  <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-          
-          <nav class="footer-nav" aria-label="Quick Links">
-            <h4 class="footer-title">Quick Links</h4>
-            <div class="footer-links">
-              <a href="index.html">Home</a>
-              <a href="about.html">About Us</a>
-              <a href="team.html">Team</a>
-              <a href="activities.html">Activities</a>
-              <a href="blog.html">Blog</a>
-            </div>
-          </nav>
-          
-          <nav class="footer-nav" aria-label="Programs">
-            <h4 class="footer-title">Programs</h4>
-            <div class="footer-links">
-              <a href="activities.html#workshops">Workshops</a>
-              <a href="activities.html#bootcamp">Startup Bootcamp</a>
-              <a href="activities.html#talks">Industry Talks</a>
-              <a href="activities.html#events">Events</a>
-            </div>
-          </nav>
-          
-          <nav class="footer-nav" aria-label="Contact">
-            <h4 class="footer-title">Contact</h4>
-            <div class="footer-links">
-              <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
-              <a href="https://join.iiec.in" target="_blank" rel="noopener">Join the Movement</a>
-              <a href="index.html#newsletter">Newsletter</a>
-            </div>
-          </nav>
-        </div>
-        
-        <div class="footer-bottom">
-          <p class="footer-copyright">
-            © 2026 IIEC. All rights reserved.
-          </p>
-          <span class="footer-credit">Website by <a href="https://novish.studio" target="_blank" rel="noopener">Novish Studio</a></span>
-          <a href="admin.html" class="footer-ops">Login to Post →</a>
-        </div>
-      </div>
-    </footer>
-  </div>
+  <!-- Official Footer -->
+  <footer class="container blog-footer" role="contentinfo">
+    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" width="32" height="32" style="object-fit: contain;" />
+      <span class="footer-home">IIEC · Incubation, Innovation &amp; Entrepreneurship Cell</span>
+      <span style="color: #999;">© 2026 CSMU</span>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:iiec@csmu.ac.in">iiec@csmu.ac.in</a>
+      <a href="sitemap.xml">Sitemap</a>
+      <a href="admin" class="footer-admin-link">Login to Post →</a>
+    </div>
+  </footer>
 
-  <!-- Main Scripts -->
+  <!-- Interactive JavaScript Engines -->
   <script src="js/iiec-loader.js"></script>
-  <script src="js/mobile-nav.js" defer></script>
-  <script src="js/script.js" defer></script>
+  <script src="js/mobile-nav.js"></script>
+  <script src="js/blog.js"></script>
 </body>
 </html>

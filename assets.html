@@ -45,7 +45,7 @@
   <meta name="format-detection" content="telephone=no">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://iiec.in/assets.html">
+  <link rel="canonical" href="https://iiec.in/assets">
   <link rel="help" type="text/plain" href="https://iiec.in/llms.txt" title="LLM Information">
 
   <!-- Open Graph -->
@@ -82,6 +82,7 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/iiec-loader.css">
+  <link rel="stylesheet" href="css/iiec-animations.css">
   <link rel="stylesheet" href="css/mobile-nav.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/assets.css">
@@ -179,6 +180,7 @@
           </g>
         </svg>
       </div>
+    </div>
   </div>
 
   <!-- Particle Canvas -->
@@ -207,7 +209,7 @@
     <!-- Navigation -->
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="container">
-        <a href="index.html" class="nav-logo" aria-label="IIEC Home">
+        <a href="/" class="nav-logo" aria-label="IIEC Home">
           <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager"
             decoding="async">
           <span>IIEC</span>
@@ -220,12 +222,12 @@
         </button>
 
         <div class="nav-links" role="menu">
-          <a href="index.html" class="nav-link" role="menuitem">Home</a>
-          <a href="about.html" class="nav-link" role="menuitem">About</a>
-          <a href="team.html" class="nav-link" role="menuitem">Team</a>
-          <a href="activities.html" class="nav-link" role="menuitem">Activities</a>
-          <a href="blog.html" class="nav-link" role="menuitem">Blog</a>
-          <a href="assets.html" class="nav-link active" role="menuitem" aria-current="page">Assets</a>
+          <a href="/" class="nav-link" role="menuitem">Home</a>
+          <a href="about" class="nav-link" role="menuitem">About</a>
+          <a href="team" class="nav-link" role="menuitem">Team</a>
+          <a href="activities" class="nav-link" role="menuitem">Activities</a>
+          <a href="blog" class="nav-link" role="menuitem">Blog</a>
+          <a href="assets" class="nav-link active" role="menuitem" aria-current="page">Assets</a>
           <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
         </div>
       </div>
@@ -246,27 +248,27 @@
         </div>
 
         <div class="mobile-nav-links">
-          <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+          <a href="/" class="mobile-nav-link" style="--item-index: 1;">
             <span class="link-num">01</span>
             <span class="link-text">Home</span>
             <span class="link-arrow">→</span>
           </a>
-          <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+          <a href="about" class="mobile-nav-link" style="--item-index: 2;">
             <span class="link-num">02</span>
             <span class="link-text">About</span>
             <span class="link-arrow">→</span>
           </a>
-          <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+          <a href="team" class="mobile-nav-link" style="--item-index: 3;">
             <span class="link-num">03</span>
             <span class="link-text">Team</span>
             <span class="link-arrow">→</span>
           </a>
-          <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+          <a href="activities" class="mobile-nav-link" style="--item-index: 4;">
             <span class="link-num">04</span>
             <span class="link-text">Activities</span>
             <span class="link-arrow">→</span>
           </a>
-          <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+          <a href="blog" class="mobile-nav-link" style="--item-index: 5;">
             <span class="link-num">05</span>
             <span class="link-text">Blog</span>
             <span class="link-arrow">→</span>
@@ -275,12 +277,12 @@
 
         <div class="mobile-nav-highlight-box">
           <div class="mobile-highlight-tag">
-            <span class="pulse-dot"></span> Active Hackathon
+            <span class="dot" style="background: #157f4a;"></span> Event Concluded
           </div>
           <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
-          <p class="mobile-highlight-desc">Registrations live for 6-member teams across 18 innovation tracks.</p>
-          <a href="sih-2026.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
-            <span>Register Team ↗</span>
+          <p class="mobile-highlight-desc">Internal Hackathon concluded on 1 Sept 2026. Evaluations in progress.</p>
+          <a href="sih-2026" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 10px;">
+            <span>View SIH 2026 →</span>
           </a>
         </div>
 
@@ -302,23 +304,23 @@
       <!-- Hero Section -->
       <section class="assets-hero" aria-labelledby="assets-hero-title">
         <div class="container">
-          <div class="assets-hero-badge" data-animate="fade-up">
+          <div class="assets-hero-badge animate-on-scroll" data-animate="fade-up">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
             </svg>
             <span>Official Brand Kit & Press Assets</span>
           </div>
 
-          <h1 id="assets-hero-title" class="assets-hero-title" data-animate="fade-up">
+          <h1 id="assets-hero-title" class="assets-hero-title animate-on-scroll delay-1" data-animate="fade-up">
             IIEC Brand Assets & <br><span class="highlight">Visual Identity</span>
           </h1>
 
-          <p class="assets-hero-subtitle" data-animate="fade-up">
+          <p class="assets-hero-subtitle animate-on-scroll delay-2" data-animate="fade-up">
             Official logos, vector SVGs, color specifications, typography, and media resources for organizers, sponsors, media partners, and student creators.
           </p>
 
           <!-- Quick Anchor Navigation -->
-          <div class="assets-quick-nav" data-animate="fade-up">
+          <div class="assets-quick-nav animate-on-scroll delay-3" data-animate="fade-up">
             <a href="#featured-logo" class="assets-nav-pill">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
               <span>Featured Logo (SVG)</span>
@@ -966,7 +968,7 @@ The Incubation, Innovation & Entrepreneurship Cell (IIEC) at Chhatrapati Shivaji
       <div class="container">
         <div class="footer-grid">
           <div class="footer-brand">
-            <a href="index.html" class="footer-logo" aria-label="IIEC Home">
+            <a href="/" class="footer-logo" aria-label="IIEC Home">
               <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="48" height="48" loading="lazy" decoding="async">
               <div class="footer-logo-text">
                 <span class="footer-logo-title">IIEC</span>
@@ -1004,23 +1006,23 @@ The Incubation, Innovation & Entrepreneurship Cell (IIEC) at Chhatrapati Shivaji
           <nav class="footer-nav" aria-label="Quick Links">
             <h4 class="footer-title">Quick Links</h4>
             <div class="footer-links">
-              <a href="index.html">Home</a>
-              <a href="about.html">About Us</a>
-              <a href="team.html">Team</a>
-              <a href="activities.html">Activities</a>
-              <a href="blog.html">Blog</a>
-              <a href="assets.html">Brand Assets</a>
+              <a href="/">Home</a>
+              <a href="about">About Us</a>
+              <a href="team">Team</a>
+              <a href="activities">Activities</a>
+              <a href="blog">Blog</a>
+              <a href="assets">Brand Assets</a>
             </div>
           </nav>
 
           <nav class="footer-nav" aria-label="Programs">
             <h4 class="footer-title">Programs</h4>
             <div class="footer-links">
-              <a href="activities.html#workshops">Workshops</a>
-              <a href="activities.html#bootcamp">Startup Bootcamp</a>
-              <a href="activities.html#talks">Industry Talks</a>
-              <a href="activities.html#events">Events</a>
-              <a href="certificates.html">Certificates</a>
+              <a href="activities#workshops">Workshops</a>
+              <a href="activities#bootcamp">Startup Bootcamp</a>
+              <a href="activities#talks">Industry Talks</a>
+              <a href="activities#events">Events</a>
+              <a href="certificates">Certificates</a>
             </div>
           </nav>
 
@@ -1029,7 +1031,7 @@ The Incubation, Innovation & Entrepreneurship Cell (IIEC) at Chhatrapati Shivaji
             <div class="footer-links">
               <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
               <a href="https://join.iiec.in" target="_blank" rel="noopener">Join Us</a>
-              <a href="index.html#newsletter">Newsletter</a>
+              <a href="/#newsletter">Newsletter</a>
             </div>
           </nav>
         </div>
@@ -1039,7 +1041,7 @@ The Incubation, Innovation & Entrepreneurship Cell (IIEC) at Chhatrapati Shivaji
             © 2026 IIEC. All rights reserved.
           </p>
           <span class="footer-credit">Website by <a href="https://novish.studio" target="_blank" rel="noopener">Novish Studio</a></span>
-          <a href="admin.html" class="footer-ops">OPS Portal →</a>
+          <a href="admin" class="footer-ops">OPS Portal →</a>
         </div>
       </div>
     </footer>
@@ -1151,6 +1153,7 @@ The Incubation, Innovation & Entrepreneurship Cell (IIEC) at Chhatrapati Shivaji
 
   <!-- Main Site Script -->
   <script src="js/iiec-loader.js"></script>
+  <script src="js/iiec-animations.js" defer></script>
   <script src="js/mobile-nav.js" defer></script>
   <script src="js/script.js" defer></script>
 </body>

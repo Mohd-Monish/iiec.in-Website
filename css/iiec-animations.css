@@ -1,0 +1,386 @@
+/* ================================================================
+   IIEC — Shared Animation & Micro-Interaction Library
+   Extracted from Next Gen Pitch Design System
+   Applied across all non-core pages (blog, events, utility)
+   ================================================================ */
+
+/* ----------------------------------------------------------------
+   1. Scroll-Reveal Entrance Animations
+   Usage: Add class "animate-on-scroll" to any element.
+          JS IntersectionObserver adds ".in-view" when visible.
+   ---------------------------------------------------------------- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Direction Variants */
+.animate-on-scroll.from-left {
+  transform: translateX(-50px);
+}
+.animate-on-scroll.from-left.in-view {
+  transform: translateX(0);
+}
+
+.animate-on-scroll.from-right {
+  transform: translateX(50px);
+}
+.animate-on-scroll.from-right.in-view {
+  transform: translateX(0);
+}
+
+.animate-on-scroll.from-bottom {
+  transform: translateY(50px);
+}
+.animate-on-scroll.from-bottom.in-view {
+  transform: translateY(0);
+}
+
+.animate-on-scroll.scale-in {
+  transform: scale(0.92);
+}
+.animate-on-scroll.scale-in.in-view {
+  transform: scale(1);
+}
+
+.animate-on-scroll.fade-only {
+  transform: none;
+}
+.animate-on-scroll.fade-only.in-view {
+  transform: none;
+}
+
+/* Stagger Delays (add delay-1, delay-2, etc.) */
+.animate-on-scroll.delay-1 { transition-delay: 0.1s; }
+.animate-on-scroll.delay-2 { transition-delay: 0.2s; }
+.animate-on-scroll.delay-3 { transition-delay: 0.3s; }
+.animate-on-scroll.delay-4 { transition-delay: 0.4s; }
+.animate-on-scroll.delay-5 { transition-delay: 0.5s; }
+.animate-on-scroll.delay-6 { transition-delay: 0.6s; }
+
+/* ----------------------------------------------------------------
+   2. Enhanced Glassmorphism Cards
+   Usage: Add class "ngp-glass-card" to any card/container
+   ---------------------------------------------------------------- */
+.ngp-glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
+              box-shadow 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
+              border-color 0.45s ease;
+}
+
+.ngp-glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 65px rgba(0, 0, 0, 0.22);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Light-theme variant for pages like startup-expo */
+.ngp-glass-card-light {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+  transition: transform 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
+              box-shadow 0.45s cubic-bezier(0.165, 0.84, 0.44, 1),
+              border-color 0.45s ease;
+}
+
+.ngp-glass-card-light:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ----------------------------------------------------------------
+   3. Pulsing Dot Indicator
+   Usage: <span class="ngp-pulse-dot"></span>
+   ---------------------------------------------------------------- */
+.ngp-pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 0 currentColor;
+  animation: ngpPulseRing 2s infinite;
+  flex-shrink: 0;
+}
+
+.ngp-pulse-dot.accent {
+  color: var(--color-accent, var(--accent, #ff5a1f));
+}
+
+.ngp-pulse-dot.success {
+  color: var(--color-success, #10b981);
+}
+
+.ngp-pulse-dot.live {
+  color: #ef4444;
+}
+
+@keyframes ngpPulseRing {
+  0%   { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
+  70%  { box-shadow: 0 0 0 10px transparent; opacity: 0.7; }
+  100% { box-shadow: 0 0 0 0 transparent; opacity: 1; }
+}
+
+/* ----------------------------------------------------------------
+   4. Infinite Ticker Marquee
+   Usage:
+   <div class="ngp-marquee">
+     <div class="ngp-marquee-track">
+       <span>TEXT</span> · <span>TEXT</span> · ...
+       (duplicate the content for seamless loop)
+     </div>
+   </div>
+   ---------------------------------------------------------------- */
+.ngp-marquee {
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 17px 0;
+  white-space: nowrap;
+}
+
+.ngp-marquee-track {
+  display: inline-block;
+  animation: ngpMarqueeMove 28s linear infinite;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  will-change: transform;
+}
+
+.ngp-marquee-track span {
+  margin: 0 28px;
+  color: var(--color-accent, var(--accent, #ff5a1f));
+}
+
+/* Light theme variant */
+.ngp-marquee.light {
+  border-top-color: rgba(0, 0, 0, 0.08);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+@keyframes ngpMarqueeMove {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ----------------------------------------------------------------
+   5. 3D Tilt Card (Desktop Only)
+   Usage: Add class "ngp-tilt-card" to card element.
+          JS will handle mousemove tilt on desktop.
+   ---------------------------------------------------------------- */
+.ngp-tilt-card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.ngp-tilt-card:hover {
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* ----------------------------------------------------------------
+   6. Float Animation (Decorative)
+   Usage: Add class "ngp-float" to decorative elements
+   ---------------------------------------------------------------- */
+.ngp-float {
+  animation: ngpFloat 3s ease-in-out infinite;
+}
+
+.ngp-float.slow {
+  animation-duration: 4.5s;
+}
+
+.ngp-float.fast {
+  animation-duration: 2s;
+}
+
+@keyframes ngpFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ----------------------------------------------------------------
+   7. Section Heading Underline Accent
+   Usage: <h2 class="ngp-section-heading">Title</h2>
+   ---------------------------------------------------------------- */
+.ngp-section-heading {
+  position: relative;
+  display: inline-block;
+}
+
+.ngp-section-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 48px;
+  height: 3px;
+  border-radius: 4px;
+  background: var(--color-accent, var(--accent, #ff5a1f));
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ngp-section-heading.in-view::after,
+.ngp-section-heading:hover::after {
+  width: 80px;
+}
+
+/* Centered variant */
+.ngp-section-heading.centered {
+  text-align: center;
+}
+
+.ngp-section-heading.centered::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ----------------------------------------------------------------
+   8. Shimmer / Skeleton Loading Glow
+   Usage: Add class "ngp-shimmer" for a pulsing glow effect
+   ---------------------------------------------------------------- */
+.ngp-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.ngp-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: ngpShimmer 2s ease-in-out infinite;
+}
+
+@keyframes ngpShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ----------------------------------------------------------------
+   9. Gradient Text Utility
+   Usage: <span class="ngp-gradient-text">Text</span>
+   ---------------------------------------------------------------- */
+.ngp-gradient-text {
+  background: linear-gradient(135deg,
+    var(--color-accent, var(--accent, #ff5a1f)) 0%,
+    var(--color-accent-hover, #F7B750) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ----------------------------------------------------------------
+   10. Keyframe Library (Reusable)
+   ---------------------------------------------------------------- */
+@keyframes ngpFadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ngpFadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ngpFadeInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ngpFadeInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes ngpScaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ngpSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+/* ----------------------------------------------------------------
+   11. Responsive Adjustments
+   ---------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .animate-on-scroll {
+    transform: translateY(25px);
+  }
+
+  .animate-on-scroll.from-left {
+    transform: translateX(-25px);
+  }
+
+  .animate-on-scroll.from-right {
+    transform: translateX(25px);
+  }
+
+  .ngp-glass-card,
+  .ngp-glass-card-light {
+    border-radius: 14px;
+  }
+
+  .ngp-marquee-track {
+    font-size: 11px;
+    animation-duration: 18s;
+  }
+}
+
+/* ----------------------------------------------------------------
+   12. Prefers Reduced Motion
+   ---------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .ngp-pulse-dot {
+    animation: none;
+  }
+
+  .ngp-marquee-track {
+    animation: none;
+  }
+
+  .ngp-float {
+    animation: none;
+  }
+
+  .ngp-shimmer::after {
+    animation: none;
+  }
+}

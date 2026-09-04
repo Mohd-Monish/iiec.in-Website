@@ -55,6 +55,7 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/iiec-loader.css" />
+  <link rel="stylesheet" href="css/iiec-animations.css" />
   <link rel="stylesheet" href="css/mobile-nav.css" />
   <link rel="stylesheet" href="css/sih-2026.css" />
 </head>
@@ -157,16 +158,16 @@
   <!-- Header Navigation -->
   <header class="container">
     <nav>
-      <a class="brand" href="index.html">
+      <a class="brand" href="/">
         <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" width="34" height="34" style="object-fit: contain;" />
         IIEC <span>SIH</span> 2026
       </a>
       <div class="nav-right">
-        <a href="index.html">Home</a>
+        <a href="/">Home</a>
         <a href="#rules">Guidelines</a>
         <a href="#register">Registration Status</a>
         <a href="https://sih.gov.in" target="_blank" rel="noopener">Official SIH Portal ↗</a>
-        <a class="nav-cta" href="activities.html">See Live Events →</a>
+        <a class="nav-cta" href="activities">See Live Events →</a>
       </div>
       <button class="hamburger-btn" id="hamburger-btn" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
         <span></span>
@@ -191,27 +192,27 @@
       </div>
 
       <div class="mobile-nav-links">
-        <a href="index.html" class="mobile-nav-link" style="--item-index: 1;">
+        <a href="/" class="mobile-nav-link" style="--item-index: 1;">
           <span class="link-num">01</span>
           <span class="link-text">Home</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="about.html" class="mobile-nav-link" style="--item-index: 2;">
+        <a href="about" class="mobile-nav-link" style="--item-index: 2;">
           <span class="link-num">02</span>
           <span class="link-text">About</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="team.html" class="mobile-nav-link" style="--item-index: 3;">
+        <a href="team" class="mobile-nav-link" style="--item-index: 3;">
           <span class="link-num">03</span>
           <span class="link-text">Team</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="activities.html" class="mobile-nav-link" style="--item-index: 4;">
+        <a href="activities" class="mobile-nav-link" style="--item-index: 4;">
           <span class="link-num">04</span>
           <span class="link-text">Activities</span>
           <span class="link-arrow">→</span>
         </a>
-        <a href="blog.html" class="mobile-nav-link" style="--item-index: 5;">
+        <a href="blog" class="mobile-nav-link" style="--item-index: 5;">
           <span class="link-num">05</span>
           <span class="link-text">Blog</span>
           <span class="link-arrow">→</span>
@@ -220,11 +221,11 @@
 
       <div class="mobile-nav-highlight-box">
         <div class="mobile-highlight-tag">
-          <span class="pulse-dot"></span> Active Hackathon
+          <span class="dot" style="background: #157f4a;"></span> Event Concluded
         </div>
         <div class="mobile-highlight-title">CSMU – SIH 2026 Hackathon</div>
         <p class="mobile-highlight-desc">Registrations are closed. The internal hackathon was held on 31 August &amp; 1 September 2026.</p>
-        <a href="activities.html" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
+        <a href="activities" class="btn btn-primary btn-sm" style="width: 100%; margin-top: 10px;">
           <span>See Live Events ↗</span>
         </a>
       </div>
@@ -247,12 +248,11 @@
     <!-- 2-Column Hero Section -->
     <section class="container hero">
       <div>
-        <div class="eyebrow"><span class="dot"></span> IIEC × SMART INDIA HACKATHON 2026</div>
+        <div class="eyebrow"><span class="dot" style="background: #157f4a;"></span> IIEC × SMART INDIA HACKATHON 2026 • CONCLUDED</div>
         <h1>CSMU – SIH 2026<br>Internal <em>Hackathon.</em></h1>
         <p class="hero-copy">
-          Chhatrapati Shivaji Maharaj University (CSMU) is organizing the <strong>Smart India Hackathon (SIH) 2026 –
-            Internal Hackathon</strong> on <strong>31st August &amp; 1st September 2026</strong>. Submit innovative
-          solutions to real-world problems and represent CSMU nationally.
+          Chhatrapati Shivaji Maharaj University (CSMU) successfully organized the <strong>Smart India Hackathon (SIH) 2026 –
+            Internal Hackathon</strong> on <strong>31st August &amp; 1st September 2026</strong>. Registrations and submissions are now officially closed.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#rules">View Guidelines</a>
@@ -264,13 +264,13 @@
       </div>
 
       <!-- Tilted 3D Hero Ticket Card with Logos -->
-      <aside class="hero-card">
-        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
-          <div class="card-brand-pill">
-            <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" />
+      <aside class="hero-card ngp-tilt-card animate-on-scroll scale-in">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: #fff;">
+            <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" width="28" height="28" style="object-fit: contain; width: 28px; height: 28px;" />
             <span>IIEC CSMU</span>
           </div>
-          <span style="font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); background: rgba(255, 90, 31, .15); border: 1px solid rgba(255, 90, 31, .3); padding: 4px 10px; border-radius: 999px;">SIH 2026</span>
+          <span style="font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #157f4a; background: rgba(21, 127, 74, .15); border: 1px solid rgba(21, 127, 74, .3); padding: 4px 10px; border-radius: 999px;">Concluded</span>
         </div>
         <div class="card-top">CSMU SIH 2026 / Internal Hackathon</div>
         <div class="date">
@@ -331,8 +331,8 @@
         </p>
       </div>
 
-      <div class="reasons">
-        <article class="reason">
+      <div class="reasons ngp-stagger-grid animate-on-scroll delay-1">
+        <article class="reason animate-on-scroll">
           <div class="number">01</div>
           <h3>Team Structure</h3>
           <p>Each team must have <strong>6 students</strong> (including Leader).</p>
@@ -355,8 +355,7 @@
       </div>
     </section>
 
-    <!-- Registration Section — CLOSED. The form below is retained for reference only
-         and is hidden from the page; see the notice panel. -->
+    <!-- Registration Section — CLOSED -->
     <section class="container" id="register">
       <div class="section-head">
         <div>
@@ -378,774 +377,35 @@
           have been evaluated for Smart India Hackathon 2026 nominations. For results or any queries, contact the IIEC
           team &mdash; and keep an eye on our current events for the next opportunity.
         </p>
+
+        <!-- Hackathon Snapshot Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 24px 0 28px; text-align: left;">
+          <div style="background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;">
+            <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 4px;">Internal Edition</div>
+            <div style="font-size: 19px; font-weight: 900; color: var(--ink);">SIH 2026</div>
+            <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">University Selection</div>
+          </div>
+          <div style="background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;">
+            <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 4px;">Hackathon Dates</div>
+            <div style="font-size: 19px; font-weight: 900; color: var(--ink);">31 Aug &amp; 1 Sept</div>
+            <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">Successfully Conducted</div>
+          </div>
+          <div style="background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;">
+            <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--accent); letter-spacing: 0.05em; margin-bottom: 4px;">Innovation Tracks</div>
+            <div style="font-size: 19px; font-weight: 900; color: var(--ink);">18 National Tracks</div>
+            <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">Software &amp; Hardware</div>
+          </div>
+          <div style="background: var(--bg); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px;">
+            <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #157f4a; letter-spacing: 0.05em; margin-bottom: 4px;">Current Phase</div>
+            <div style="font-size: 19px; font-weight: 900; color: #157f4a;">Jury Evaluation</div>
+            <div style="font-size: 12px; color: var(--muted); margin-top: 4px;">Nomination Pipeline</div>
+          </div>
+        </div>
+
         <div class="closed-panel-actions">
-          <a href="activities.html" class="btn btn-primary">See Live Events ↗</a>
+          <a href="activities" class="btn btn-primary">See Live Events ↗</a>
           <a href="mailto:ecell-student-rep@csmu.ac.in?subject=SIH%202026%20Query" class="btn btn-secondary">Contact IIEC</a>
         </div>
-      </div>
-
-      <div class="form-shell" hidden aria-hidden="true">
-        <!-- Top Wizard Controls -->
-        <div class="wizard-header">
-          <div class="controls-row">
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" width="34" height="34" style="object-fit: contain;" />
-              <img src="assets/logos/sih-logo.png" alt="SIH Logo" height="28" style="object-fit: contain;" />
-              <div>
-                <span style="font-size: 12px; color: var(--muted); font-weight: 700; text-transform: uppercase;">CSMU SIH 2026 Form</span>
-                <h3 style="font-size: 15px; color: var(--ink); font-weight: 800; margin-top: 2px;">Compulsory fields marked with (<i>*</i>)</h3>
-              </div>
-            </div>
-            <div style="display: flex; gap: 8px;">
-              <button type="button" class="form-mode-btn active" id="btnWizardMode">
-                <i class="fas fa-list-ol"></i> Step Wizard
-              </button>
-              <button type="button" class="form-mode-btn" id="btnSinglePageMode">
-                <i class="fas fa-align-justify"></i> Single Page View
-              </button>
-            </div>
-          </div>
-
-          <!-- Compliance Status Bar -->
-          <div class="compliance-box">
-            <div class="compliance-item invalid" id="compFemaleStatus">
-              <span class="status-dot"></span>
-              <span>Female Member: Required (At least 1)</span>
-            </div>
-            <div class="compliance-item invalid" id="compFulltimeStatus">
-              <span class="status-dot"></span>
-              <span>CSMU Students: Pending Verification</span>
-            </div>
-            <div style="font-size: 12px; color: var(--accent-dark); font-weight: 700;">
-              Team Size: 6 Required
-            </div>
-          </div>
-
-          <!-- Progress Bar -->
-          <div class="sih-progress-container">
-            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-weight: 700; margin-bottom: 6px;">
-              <span id="currentStepLabel">Step 1 of 6</span>
-              <span id="progressPercentLabel">17%</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" id="progressBarFill"></div>
-            </div>
-          </div>
-
-          <!-- Stepper Tabs -->
-          <div class="stepper-tabs sih-stepper-tabs">
-            <button type="button" class="stepper-tab sih-stepper-tab active" data-step="1">1. Team &amp; Problem</button>
-            <button type="button" class="stepper-tab sih-stepper-tab" data-step="2">2. Eligibility</button>
-            <button type="button" class="stepper-tab sih-stepper-tab" data-step="3">3. Team Members</button>
-            <button type="button" class="stepper-tab sih-stepper-tab" data-step="4">4. Deliverables</button>
-            <button type="button" class="stepper-tab sih-stepper-tab" data-step="5">5. Faculty Mentor</button>
-            <button type="button" class="stepper-tab sih-stepper-tab" data-step="6">6. Declarations</button>
-          </div>
-        </div>
-
-        <!-- Main Form Element -->
-        <form id="sihRegistrationForm" class="sih-form-body" novalidate>
-
-          <!-- STEP 1: Team & Problem Details -->
-          <div class="sih-section active" id="stepSection1">
-            <div class="step-title"><span class="step-badge">1</span> Team &amp; Problem Details</div>
-            <p class="step-desc">Enter team contact, problem category dropdown, SIH theme, and project synopsis.</p>
-
-            <div class="form-grid">
-              <!-- Email -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q0_email">Email <i>*</i></label>
-                <input type="email" id="q0_email" name="email" class="sih-input" placeholder="leader@csmu.ac.in" required />
-                <span class="error-msg sih-error-msg">Valid email is required.</span>
-              </div>
-
-              <!-- Team Name -->
-              <div class="field sih-group" data-required="true">
-                <label for="q1_team_name">Team Name <i>*</i></label>
-                <input type="text" id="q1_team_name" name="team_name" class="sih-input" placeholder="e.g. CyberKnights" required />
-                <span class="error-msg sih-error-msg">Team Name is required.</span>
-              </div>
-
-              <!-- Team Leader Name -->
-              <div class="field sih-group" data-required="true">
-                <label for="m1_name">Team Leader Name <i>*</i></label>
-                <input type="text" id="m1_name" name="team_leader_name" class="sih-input" placeholder="Full name of leader" required />
-                <span class="error-msg sih-error-msg">Team Leader Name is required.</span>
-              </div>
-
-              <!-- Problem Category Dropdown -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q3_category_select">Problem Statement Category <i>*</i></label>
-                <select id="q3_category_select" name="problem_category" class="sih-select" required>
-                  <option value="">-- Select Problem Category --</option>
-                  <option value="Official SIH 2026 Problem Statement">Official SIH 2026 Problem Statement</option>
-                  <option value="Institute-Level Problem Statement">Institute-Level Problem Statement</option>
-                  <option value="Societal / State-Level Problem">Societal / State-Level Problem</option>
-                  <option value="Student-Initiated Real-World Problem">Student-Initiated Real-World Problem</option>
-                </select>
-                <span class="error-msg sih-error-msg">Please select a Problem Category.</span>
-              </div>
-
-              <!-- SIH Theme Dropdown -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q4_sih_theme">SIH 2026 Theme <i>*</i></label>
-                <select id="q4_sih_theme" name="sih_theme" class="sih-select" required>
-                  <option value="">-- Select SIH Theme --</option>
-                  <option value="Smart Vehicles">Smart Vehicles</option>
-                  <option value="Transportation &amp; Logistics">Transportation &amp; Logistics</option>
-                  <option value="Robotics and Drones">Robotics and Drones</option>
-                  <option value="Blockchain &amp; Cybersecurity">Blockchain &amp; Cybersecurity</option>
-                  <option value="Smart Education">Smart Education</option>
-                  <option value="Disaster Management">Disaster Management</option>
-                  <option value="Games &amp; Toys">Games &amp; Toys</option>
-                  <option value="Miscellaneous">Miscellaneous</option>
-                  <option value="FinTech">FinTech</option>
-                  <option value="Smart Automation">Smart Automation</option>
-                  <option value="Fitness &amp; Sports">Fitness &amp; Sports</option>
-                  <option value="Space Technology">Space Technology</option>
-                  <option value="Heritage &amp; Culture">Heritage &amp; Culture</option>
-                  <option value="MedTech / BioTech / HealthTech">MedTech / BioTech / HealthTech</option>
-                  <option value="Agriculture, FoodTech &amp; Rural Development">Agriculture, FoodTech &amp; Rural Development</option>
-                  <option value="Clean &amp; Green Technology">Clean &amp; Green Technology</option>
-                  <option value="Renewable / Sustainable Energy">Renewable / Sustainable Energy</option>
-                  <option value="Travel &amp; Tourism">Travel &amp; Tourism</option>
-                </select>
-                <span class="error-msg sih-error-msg">Please select a theme.</span>
-              </div>
-
-              <!-- Problem ID -->
-              <div class="field sih-group" data-required="true">
-                <label for="q5_problem_id">Problem Statement / Problem ID <i>*</i></label>
-                <span class="hint">Example: SIH26001</span>
-                <input type="text" id="q5_problem_id" name="problem_id" class="sih-input" placeholder="SIH26001" required />
-                <span class="error-msg sih-error-msg">Problem ID is required.</span>
-              </div>
-
-              <!-- Problem Title -->
-              <div class="field sih-group" data-required="true">
-                <label for="q6_problem_title">Problem Statement Title <i>*</i></label>
-                <input type="text" id="q6_problem_title" name="problem_title" class="sih-input" placeholder="Full title of problem" required />
-                <span class="error-msg sih-error-msg">Problem Title is required.</span>
-              </div>
-
-              <!-- Idea Title -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q7_idea_title">Brief Idea Title <i>*</i></label>
-                <input type="text" id="q7_idea_title" name="idea_title" class="sih-input" placeholder="Short catchphrase or title of your solution" required />
-                <span class="error-msg sih-error-msg">Brief Idea Title is required.</span>
-              </div>
-
-              <!-- One-Line Definition -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q8_problem_definition">One-Line Problem Definition <i>*</i></label>
-                <span class="hint">Maximum 150 characters</span>
-                <input type="text" id="q8_problem_definition" name="problem_definition" class="sih-input" maxlength="150" placeholder="Summarize problem in one line..." required />
-                <div class="hint" id="probDefCounter" style="text-align: right;">0 / 150 characters</div>
-                <span class="error-msg sih-error-msg">Problem Definition is required (max 150 chars).</span>
-              </div>
-
-              <!-- Solution Summary -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q9_solution_summary">Proposed Solution Summary <i>*</i></label>
-                <span class="hint">Explain proposed solution, target users, and expected impact.</span>
-                <textarea id="q9_solution_summary" name="solution_summary" class="sih-textarea" placeholder="Detailed explanation of your proposed approach..." required></textarea>
-                <span class="error-msg sih-error-msg">Proposed Solution Summary is required.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 2: Team Eligibility & Department -->
-          <div class="sih-section" id="stepSection2">
-            <div class="step-title"><span class="step-badge">2</span> Team Eligibility &amp; Departments</div>
-            <p class="step-desc">Department affiliation and core SIH compliance checks.</p>
-
-            <div class="form-grid">
-              <!-- Department Name -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q10_dept_name">Department Name <i>*</i></label>
-                <span class="hint">Use official CAMU department names for easy export.</span>
-                <input type="text" id="q10_dept_name" name="department_name" class="sih-input" placeholder="e.g. Department of Computer Science &amp; Engineering" required />
-                <span class="error-msg sih-error-msg">Department Name is required.</span>
-              </div>
-
-              <!-- Full-Time CSMU Select -->
-              <div class="field sih-group" data-required="true">
-                <label for="q12_fulltime_select">Are all 6 members full-time students of CSMU? <i>*</i></label>
-                <select id="q12_fulltime_select" name="all_fulltime" class="sih-select" required>
-                  <option value="">-- Select Yes / No --</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-                <span class="error-msg sih-error-msg">Select Yes or No.</span>
-              </div>
-
-              <!-- Female Member Select -->
-              <div class="field sih-group" data-required="true">
-                <label for="q13_female_select">Does the team have at least one female member? <i>*</i></label>
-                <select id="q13_female_select" name="has_female_member" class="sih-select" required>
-                  <option value="">-- Select Yes / No --</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-                <span class="error-msg sih-error-msg">Select Yes or No.</span>
-              </div>
-
-              <!-- Multidisciplinary Select -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q14_multi_select">Is this a multidisciplinary team? <i>*</i></label>
-                <select id="q14_multi_select" name="is_multidisciplinary" class="sih-select" required>
-                  <option value="">-- Select Yes / No --</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
-                <span class="error-msg sih-error-msg">Select Yes or No.</span>
-              </div>
-
-              <!-- Represented Departments (Tag Chips) -->
-              <div class="field full sih-group" data-required="true">
-                <label>Departments represented in the team <i>*</i></label>
-                <span class="hint">Tick all that apply:</span>
-                <div class="chips-grid sih-chips-grid">
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="CSE / IT" /> CSE / IT</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="AI &amp; Data Science" /> AI &amp; Data Science</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="ECE" /> ECE</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Electrical" /> Electrical</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Mechanical" /> Mechanical</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Civil" /> Civil</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Pharmacy" /> Pharmacy</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Management" /> Management</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Commerce" /> Commerce</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Science" /> Science</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Humanities / Arts" /> Humanities / Arts</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Law" /> Law</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="departments_represented" value="Other" /> Other</label>
-                </div>
-                <span class="error-msg sih-error-msg">Select at least one department.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 3: Compact Member Details (Member 1 to 6) -->
-          <div class="sih-section" id="stepSection3">
-            <div class="step-title"><span class="step-badge">3</span> All 6 Team Member Details</div>
-            <p class="step-desc">Click member buttons below to quickly enter details for all 6 team members.</p>
-
-            <!-- Alert Banner for Incomplete Members -->
-            <div class="alert-banner sih-alert-banner" id="memberAlertBanner" style="display: none;">
-              <i class="fas fa-exclamation-triangle"></i>
-              <span id="memberAlertText">Please fill in details for all 6 team members before proceeding. Member 2 details are incomplete.</span>
-            </div>
-
-            <!-- Compact Member Tab Switcher -->
-            <div class="member-switcher sih-member-switcher">
-              <button type="button" class="member-switcher-btn sih-member-switcher-btn active" data-member="1">Member 1 (Leader)</button>
-              <button type="button" class="member-switcher-btn sih-member-switcher-btn" data-member="2">Member 2</button>
-              <button type="button" class="member-switcher-btn sih-member-switcher-btn" data-member="3">Member 3</button>
-              <button type="button" class="member-switcher-btn sih-member-switcher-btn" data-member="4">Member 4</button>
-              <button type="button" class="member-switcher-btn sih-member-switcher-btn" data-member="5">Member 5</button>
-              <button type="button" class="member-switcher-btn sih-member-switcher-btn" data-member="6">Member 6</button>
-            </div>
-
-            <!-- MEMBER 1: Team Leader -->
-            <fieldset class="member-block member-card sih-member-card active" id="memberCard1">
-              <legend style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; margin-bottom: 14px;">
-                <span class="member-tag">Leader</span> Member 1 (Team Leader)
-              </legend>
-              <div class="form-grid">
-                <div class="field sih-group" data-required="true">
-                  <label for="m1_fullname">Full Name <i>*</i></label>
-                  <input type="text" id="m1_fullname" name="member_1_name" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Name is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m1_enrollment">Enrollment <i>*</i></label>
-                  <input type="text" id="m1_enrollment" name="member_1_enrollment" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Enrollment is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m1_gender">Gender <i>*</i></label>
-                  <select id="m1_gender" name="member_1_gender" class="sih-select" required>
-                    <option value="">-- Select Gender --</option>
-                    <option value="M">Male (M)</option>
-                    <option value="F">Female (F)</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Gender.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m1_email">College Email / CAMU ID <i>*</i></label>
-                  <input type="text" id="m1_email" name="member_1_email" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">College Email is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m1_mobile">Mobile Number <i>*</i></label>
-                  <input type="tel" id="m1_mobile" name="member_1_mobile" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Mobile Number is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m1_program">Program Name <i>*</i></label>
-                  <span class="hint">(Ex: B. Tech CSE)</span>
-                  <input type="text" id="m1_program" name="member_1_program" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Program Name is required.</span>
-                </div>
-                <div class="field full sih-group" data-required="true">
-                  <label for="m1_year">Year <i>*</i></label>
-                  <select id="m1_year" name="member_1_year" class="sih-select" required>
-                    <option value="">-- Select Academic Year --</option>
-                    <option value="I Year">I Year</option>
-                    <option value="II Year">II Year</option>
-                    <option value="III Year">III Year</option>
-                    <option value="Final Year">Final Year</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Year.</span>
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- MEMBER 2 -->
-            <fieldset class="member-block member-card sih-member-card" id="memberCard2">
-              <legend style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; margin-bottom: 14px;">
-                <span class="member-tag">02</span> Member 2 Details
-              </legend>
-              <div class="form-grid">
-                <div class="field sih-group" data-required="true">
-                  <label for="m2_fullname">Full Name <i>*</i></label>
-                  <input type="text" id="m2_fullname" name="member_2_name" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Name is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m2_enrollment">Enrollment <i>*</i></label>
-                  <input type="text" id="m2_enrollment" name="member_2_enrollment" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Enrollment is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m2_gender">Gender <i>*</i></label>
-                  <select id="m2_gender" name="member_2_gender" class="sih-select" required>
-                    <option value="">-- Select Gender --</option>
-                    <option value="M">Male (M)</option>
-                    <option value="F">Female (F)</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Gender.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m2_email">College Email / CAMU ID <i>*</i></label>
-                  <input type="text" id="m2_email" name="member_2_email" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">College Email is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m2_mobile">Mobile Number <i>*</i></label>
-                  <input type="tel" id="m2_mobile" name="member_2_mobile" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Mobile Number is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m2_program">Program Name <i>*</i></label>
-                  <span class="hint">(Ex: B. Tech CSE)</span>
-                  <input type="text" id="m2_program" name="member_2_program" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Program Name is required.</span>
-                </div>
-                <div class="field full sih-group" data-required="true">
-                  <label for="m2_year">Year <i>*</i></label>
-                  <select id="m2_year" name="member_2_year" class="sih-select" required>
-                    <option value="">-- Select Academic Year --</option>
-                    <option value="I Year">I Year</option>
-                    <option value="II Year">II Year</option>
-                    <option value="III Year">III Year</option>
-                    <option value="Final Year">Final Year</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Year.</span>
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- MEMBER 3 -->
-            <fieldset class="member-block member-card sih-member-card" id="memberCard3">
-              <legend style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; margin-bottom: 14px;">
-                <span class="member-tag">03</span> Member 3 Details
-              </legend>
-              <div class="form-grid">
-                <div class="field sih-group" data-required="true">
-                  <label for="m3_fullname">Full Name <i>*</i></label>
-                  <input type="text" id="m3_fullname" name="member_3_name" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Name is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m3_enrollment">Enrollment <i>*</i></label>
-                  <input type="text" id="m3_enrollment" name="member_3_enrollment" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Enrollment is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m3_gender">Gender <i>*</i></label>
-                  <select id="m3_gender" name="member_3_gender" class="sih-select" required>
-                    <option value="">-- Select Gender --</option>
-                    <option value="M">Male (M)</option>
-                    <option value="F">Female (F)</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Gender.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m3_email">College Email / CAMU ID <i>*</i></label>
-                  <input type="text" id="m3_email" name="member_3_email" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">College Email is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m3_mobile">Mobile Number <i>*</i></label>
-                  <input type="tel" id="m3_mobile" name="member_3_mobile" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Mobile Number is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m3_program">Program Name <i>*</i></label>
-                  <span class="hint">(Ex: B. Tech CSE)</span>
-                  <input type="text" id="m3_program" name="member_3_program" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Program Name is required.</span>
-                </div>
-                <div class="field full sih-group" data-required="true">
-                  <label for="m3_year">Year <i>*</i></label>
-                  <select id="m3_year" name="member_3_year" class="sih-select" required>
-                    <option value="">-- Select Academic Year --</option>
-                    <option value="I Year">I Year</option>
-                    <option value="II Year">II Year</option>
-                    <option value="III Year">III Year</option>
-                    <option value="Final Year">Final Year</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Year.</span>
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- MEMBER 4 -->
-            <fieldset class="member-block member-card sih-member-card" id="memberCard4">
-              <legend style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; margin-bottom: 14px;">
-                <span class="member-tag">04</span> Member 4 Details
-              </legend>
-              <div class="form-grid">
-                <div class="field sih-group" data-required="true">
-                  <label for="m4_fullname">Full Name <i>*</i></label>
-                  <input type="text" id="m4_fullname" name="member_4_name" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Name is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m4_enrollment">Enrollment <i>*</i></label>
-                  <input type="text" id="m4_enrollment" name="member_4_enrollment" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Enrollment is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m4_gender">Gender <i>*</i></label>
-                  <select id="m4_gender" name="member_4_gender" class="sih-select" required>
-                    <option value="">-- Select Gender --</option>
-                    <option value="M">Male (M)</option>
-                    <option value="F">Female (F)</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Gender.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m4_email">College Email / CAMU ID <i>*</i></label>
-                  <input type="text" id="m4_email" name="member_4_email" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">College Email is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m4_mobile">Mobile Number <i>*</i></label>
-                  <input type="tel" id="m4_mobile" name="member_4_mobile" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Mobile Number is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m4_program">Program Name <i>*</i></label>
-                  <span class="hint">(Ex: B. Tech CSE)</span>
-                  <input type="text" id="m4_program" name="member_4_program" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Program Name is required.</span>
-                </div>
-                <div class="field full sih-group" data-required="true">
-                  <label for="m4_year">Year <i>*</i></label>
-                  <select id="m4_year" name="member_4_year" class="sih-select" required>
-                    <option value="">-- Select Academic Year --</option>
-                    <option value="I Year">I Year</option>
-                    <option value="II Year">II Year</option>
-                    <option value="III Year">III Year</option>
-                    <option value="Final Year">Final Year</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Year.</span>
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- MEMBER 5 -->
-            <fieldset class="member-block member-card sih-member-card" id="memberCard5">
-              <legend style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; margin-bottom: 14px;">
-                <span class="member-tag">05</span> Member 5 Details
-              </legend>
-              <div class="form-grid">
-                <div class="field sih-group" data-required="true">
-                  <label for="m5_fullname">Full Name <i>*</i></label>
-                  <input type="text" id="m5_fullname" name="member_5_name" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Name is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m5_enrollment">Enrollment <i>*</i></label>
-                  <input type="text" id="m5_enrollment" name="member_5_enrollment" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Enrollment is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m5_gender">Gender <i>*</i></label>
-                  <select id="m5_gender" name="member_5_gender" class="sih-select" required>
-                    <option value="">-- Select Gender --</option>
-                    <option value="M">Male (M)</option>
-                    <option value="F">Female (F)</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Gender.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m5_email">College Email / CAMU ID <i>*</i></label>
-                  <input type="text" id="m5_email" name="member_5_email" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">College Email is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m5_mobile">Mobile Number <i>*</i></label>
-                  <input type="tel" id="m5_mobile" name="member_5_mobile" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Mobile Number is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m5_program">Program Name <i>*</i></label>
-                  <span class="hint">(Ex: B. Tech CSE)</span>
-                  <input type="text" id="m5_program" name="member_5_program" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Program Name is required.</span>
-                </div>
-                <div class="field full sih-group" data-required="true">
-                  <label for="m5_year">Year <i>*</i></label>
-                  <select id="m5_year" name="member_5_year" class="sih-select" required>
-                    <option value="">-- Select Academic Year --</option>
-                    <option value="I Year">I Year</option>
-                    <option value="II Year">II Year</option>
-                    <option value="III Year">III Year</option>
-                    <option value="Final Year">Final Year</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Year.</span>
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- MEMBER 6 -->
-            <fieldset class="member-block member-card sih-member-card" id="memberCard6">
-              <legend style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; margin-bottom: 14px;">
-                <span class="member-tag">06</span> Member 6 Details
-              </legend>
-              <div class="form-grid">
-                <div class="field sih-group" data-required="true">
-                  <label for="m6_fullname">Full Name <i>*</i></label>
-                  <input type="text" id="m6_fullname" name="member_6_name" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Name is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m6_enrollment">Enrollment <i>*</i></label>
-                  <input type="text" id="m6_enrollment" name="member_6_enrollment" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Enrollment is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m6_gender">Gender <i>*</i></label>
-                  <select id="m6_gender" name="member_6_gender" class="sih-select" required>
-                    <option value="">-- Select Gender --</option>
-                    <option value="M">Male (M)</option>
-                    <option value="F">Female (F)</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Gender.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m6_email">College Email / CAMU ID <i>*</i></label>
-                  <input type="text" id="m6_email" name="member_6_email" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">College Email is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m6_mobile">Mobile Number <i>*</i></label>
-                  <input type="tel" id="m6_mobile" name="member_6_mobile" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Mobile Number is required.</span>
-                </div>
-                <div class="field sih-group" data-required="true">
-                  <label for="m6_program">Program Name <i>*</i></label>
-                  <span class="hint">(Ex: B. Tech CSE)</span>
-                  <input type="text" id="m6_program" name="member_6_program" class="sih-input" required />
-                  <span class="error-msg sih-error-msg">Program Name is required.</span>
-                </div>
-                <div class="field full sih-group" data-required="true">
-                  <label for="m6_year">Year <i>*</i></label>
-                  <select id="m6_year" name="member_6_year" class="sih-select" required>
-                    <option value="">-- Select Academic Year --</option>
-                    <option value="I Year">I Year</option>
-                    <option value="II Year">II Year</option>
-                    <option value="III Year">III Year</option>
-                    <option value="Final Year">Final Year</option>
-                  </select>
-                  <span class="error-msg sih-error-msg">Select Year.</span>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-
-          <!-- STEP 4: Deliverables & Hackathon Track -->
-          <div class="sih-section" id="stepSection4">
-            <div class="step-title"><span class="step-badge">4</span> Deliverables &amp; Hackathon Track</div>
-            <p class="step-desc">Project presentation links, preferred hackathon track, and prototype development status.</p>
-
-            <div class="form-grid">
-              <!-- Pitch Deck -->
-              <div class="field full sih-group">
-                <label for="q58_pitch_deck"><i class="fas fa-file-powerpoint" style="color: var(--accent);"></i> Pitch Deck Link (optional at registration)</label>
-                <span class="hint">Link to presentation deck (Google Slides, Canva, Drive link)</span>
-                <input type="url" id="q58_pitch_deck" name="pitch_deck_link" class="sih-input"
-                  placeholder="https://docs.google.com/presentation/d/..." />
-              </div>
-
-              <!-- GitHub/Drive link -->
-              <div class="field full sih-group">
-                <label for="q59_github_link"><i class="fab fa-github" style="color: var(--ink);"></i> GitHub / Prototype Repository Link (if any)</label>
-                <input type="url" id="q59_github_link" name="github_drive_link" class="sih-input"
-                  placeholder="https://github.com/your-username/repo-name" />
-              </div>
-
-              <!-- Preferred Hackathon Track -->
-              <div class="field full sih-group" data-required="true">
-                <label>Preferred Hackathon Track <i>*</i></label>
-                <span class="hint">Tick all that apply:</span>
-                <div class="chips-grid sih-chips-grid">
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="AI / Machine Learning" /> AI / Machine Learning</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Web Application" /> Web Application</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Mobile Application" /> Mobile Application</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="IoT" /> IoT</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Hardware" /> Hardware</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Cloud Computing" /> Cloud Computing</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Cybersecurity" /> Cybersecurity</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Blockchain" /> Blockchain</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Data Analytics" /> Data Analytics</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="AR / VR" /> AR / VR</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Robotics" /> Robotics</label>
-                  <label class="chip sih-chip"><input type="checkbox" name="preferred_track" value="Other" /> Other</label>
-                </div>
-                <span class="error-msg sih-error-msg">Select at least one track.</span>
-              </div>
-
-              <!-- Development Status Dropdown -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q61_dev_status">Current Development Status <i>*</i></label>
-                <select id="q61_dev_status" name="current_dev_status" class="sih-select" required>
-                  <option value="">-- Select Development Status --</option>
-                  <option value="Idea Only">Idea Only</option>
-                  <option value="Problem Identified + Initial Research">Problem Identified + Initial Research</option>
-                  <option value="Wireframe / UI Designed">Wireframe / UI Designed</option>
-                  <option value="Prototype in Development">Prototype in Development</option>
-                  <option value="Working Prototype">Working Prototype</option>
-                  <option value="Working Solution">Working Solution</option>
-                </select>
-                <span class="error-msg sih-error-msg">Select Development Status.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 5: Faculty Mentor Details -->
-          <div class="sih-section" id="stepSection5">
-            <div class="step-title"><span class="step-badge">5</span> Faculty Mentor Details</div>
-            <p class="step-desc">Information about your assigned faculty guide or mentor.</p>
-
-            <div class="form-grid">
-              <!-- Faculty Mentor Name -->
-              <div class="field sih-group" data-required="true">
-                <label for="q62_mentor_name">Faculty Mentor Name <i>*</i></label>
-                <input type="text" id="q62_mentor_name" name="faculty_mentor_name" class="sih-input"
-                  placeholder="Dr. / Prof. Full Name" required />
-                <span class="error-msg sih-error-msg">Faculty Mentor Name is required.</span>
-              </div>
-
-              <!-- Faculty Mentor Email -->
-              <div class="field sih-group" data-required="true">
-                <label for="q63_mentor_email">Faculty Mentor Email <i>*</i></label>
-                <input type="email" id="q63_mentor_email" name="faculty_mentor_email" class="sih-input"
-                  placeholder="mentor@csmu.ac.in" required />
-                <span class="error-msg sih-error-msg">Faculty Mentor Email is required.</span>
-              </div>
-
-              <!-- Faculty Mentor Mobile -->
-              <div class="field full sih-group" data-required="true">
-                <label for="q64_mentor_mobile">Faculty Mentor Mobile Number <i>*</i></label>
-                <input type="tel" id="q64_mentor_mobile" name="faculty_mentor_mobile" class="sih-input"
-                  placeholder="10-digit mobile number" required />
-                <span class="error-msg sih-error-msg">Faculty Mentor Mobile Number is required.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- STEP 6: Declarations & Consent -->
-          <div class="sih-section" id="stepSection6">
-            <div class="step-title"><span class="step-badge">6</span> Declaration &amp; Consent</div>
-            <p class="step-desc">Mandatory confirmation statements for SIH 2026 registration.</p>
-
-            <div class="dec-list sih-declarations-list">
-              <label class="dec-item sih-dec-item" data-required="true">
-                <input type="checkbox" id="dec65" name="declaration_student" value="Agreed" required />
-                <div class="sih-dec-content">
-                  <h5>Student Declaration <i>*</i></h5>
-                  <p>I confirm that the information provided in this registration form is true and correct. I confirm that all team members are full-time students of Chhatrapati Shivaji Maharaj University and agree to participate in the CSMU SIH 2026 Internal Hackathon.</p>
-                  <span class="error-msg sih-error-msg">Agreed checkbox is mandatory.</span>
-                </div>
-              </label>
-
-              <label class="dec-item sih-dec-item" data-required="true">
-                <input type="checkbox" id="dec66" name="declaration_eligibility" value="Agreed" required />
-                <div class="sih-dec-content">
-                  <h5>SIH Eligibility Declaration <i>*</i></h5>
-                  <p>I confirm that the team consists of 6 students and includes at least one female student, as required for SIH Senior Edition team formation.</p>
-                  <span class="error-msg sih-error-msg">Agreed checkbox is mandatory.</span>
-                </div>
-              </label>
-
-              <label class="dec-item sih-dec-item" data-required="true">
-                <input type="checkbox" id="dec67" name="declaration_participation" value="Agreed" required />
-                <div class="sih-dec-content">
-                  <h5>Hackathon Participation <i>*</i></h5>
-                  <p>I understand that shortlisted teams must participate in the CSMU Internal Hackathon on 1st September 2026 and present their solution before the evaluation panel.</p>
-                  <span class="error-msg sih-error-msg">Agreed checkbox is mandatory.</span>
-                </div>
-              </label>
-
-              <label class="dec-item sih-dec-item" data-required="true">
-                <input type="checkbox" id="dec68" name="declaration_conduct" value="Agreed" required />
-                <div class="sih-dec-content">
-                  <h5>Code of Conduct <i>*</i></h5>
-                  <p>I agree to follow the rules, time discipline, code of conduct, academic integrity, and instructions issued by CSMU during the Internal Hackathon.</p>
-                  <span class="error-msg sih-error-msg">Agreed checkbox is mandatory.</span>
-                </div>
-              </label>
-
-              <label class="dec-item sih-dec-item" data-required="true">
-                <input type="checkbox" id="dec69" name="declaration_ip" value="Agreed" required />
-                <div class="sih-dec-content">
-                  <h5>Intellectual Property <i>*</i></h5>
-                  <p>I understand that the submitted idea/project must be original or appropriately authorized, and that the team is responsible for complying with applicable intellectual-property and copyright requirements.</p>
-                  <span class="error-msg sih-error-msg">Agreed checkbox is mandatory.</span>
-                </div>
-              </label>
-
-              <label class="dec-item sih-dec-item" data-required="true">
-                <input type="checkbox" id="dec70" name="declaration_data_consent" value="Agreed" required />
-                <div class="sih-dec-content">
-                  <h5>Data Consent <i>*</i></h5>
-                  <p>I consent to CSMU using the information provided in this form for SIH 2026 registration, team verification, communication, evaluation, documentation, and related hackathon administration.</p>
-                  <span class="error-msg sih-error-msg">Agreed checkbox is mandatory.</span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <!-- Actions Buttons Row -->
-          <div class="wizard-actions sih-wizard-actions">
-            <button type="button" class="btn btn-secondary sih-btn sih-btn-draft" id="btnClearDraft">Clear Draft</button>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-              <button type="button" class="btn btn-secondary sih-btn sih-btn-prev" id="prevBtn" style="display: none;">
-                ← Previous
-              </button>
-              <button type="button" class="btn btn-primary sih-btn sih-btn-next" id="nextBtn">
-                Next Step →
-              </button>
-              <button type="submit" class="btn btn-primary sih-btn sih-btn-submit" id="submitBtn" style="display: none;">
-                Submit Team Registration ↗
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
     </section>
   </main>
@@ -1299,7 +559,7 @@
       <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" width="32" height="32" style="object-fit: contain;" />
       <img src="assets/logos/csmulogo.svg" alt="CSMU Logo" height="26" style="object-fit: contain;" />
       <img src="assets/logos/sih-logo.png" alt="SIH Logo" height="24" style="object-fit: contain;" />
-      <a class="footer-home" href="index.html">← iiec.in</a>
+      <a class="footer-home" href="/">← iiec.in</a>
     </div>
     <div class="socials">
       <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
@@ -1310,6 +570,7 @@
   </footer>
 
   <script src="js/iiec-loader.js"></script>
+  <script src="js/iiec-animations.js" defer></script>
   <script src="js/mobile-nav.js"></script>
   <script src="js/sih-2026.js"></script>
 </body>

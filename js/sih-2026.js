@@ -23,14 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize
   initMobileNavbar();
-  initStepWizard();
-  initFormModeToggle();
-  initMemberSwitcher();
-  initChipsSelection();
-  initCharCounters();
-  initComplianceChecker();
-  initDraftSaving();
-  initCustomSelects();
+  if (form) {
+    initStepWizard();
+    initFormModeToggle();
+    initMemberSwitcher();
+    initChipsSelection();
+    initCharCounters();
+    initComplianceChecker();
+    initDraftSaving();
+    initCustomSelects();
+  }
 
   // ---------------------------------------------------------
   // 0. Mobile Hamburger Menu Toggle
@@ -92,12 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-
         // Registrations are closed. The form is hidden on the page, but this guard
         // also stops a submission if the markup is re-enabled or edited in devtools.
         if (!REGISTRATION_OPEN) {
           console.warn('SIH 2026 registrations are closed. Submission blocked.');
-          return;
+          alert('Registrations for CSMU – Smart India Hackathon (SIH) 2026 Internal Hackathon are officially closed.');
+          return false;
         }
 
         if (validateAllSteps()) {
@@ -596,7 +598,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('btnCloseModal')?.addEventListener('click', () => {
       modal.classList.remove('show');
-      window.location.href = 'index.html';
+      window.location.href = '/';
     });
   }
 
