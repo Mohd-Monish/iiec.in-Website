@@ -33,6 +33,8 @@ var CONFIG = {
   FEE_AMOUNT:     749, // Special NEC discounted fee
   ORGANIZER_NAME: 'IIEC CSMU × E-Cell IIT Bombay',
   REPLY_TO_EMAIL: 'ecell-student-rep@csmu.ac.in',
+  UPI_ID:         'chavanbhumika1007@oksbi',
+  UPI_NAME:       'Bhumika Chavan',
   VENUE_NAME:     'Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai',
   NOTIFY_ADMIN:   '' // Optional: Add organizer email to receive new registration alerts (e.g. 'admin@iiec.in')
 };
@@ -142,6 +144,9 @@ function onEdit(e) {
 
 /**
  * Handles incoming POST requests from illuminate.html
+ * Supports two-stage submission:
+ * 1. Step 1 Lead Capture: saves personal/academic details immediately to the sheet.
+ * 2. Step 2 Payment Submission: updates UTR and timestamp for the existing attendee row.
  */
 function doPost(e) {
   try {
@@ -163,10 +168,23 @@ function doPost(e) {
 
       var existingRow = findExistingRow(sheet, data.regId, data.email);
       var rowNumber;
+      var isLeadOnly = (data.action === 'lead_capture' || !data.utrNumber);
 
       if (existingRow > 0) {
-        // Update existing registration (e.g. UTR submitted in step 2)
+        // Update existing registration
         rowNumber = existingRow;
+        
+        // Update contact details if provided
+        if (data.fullName) sheet.getRange(rowNumber, COL.NAME).setValue(data.fullName);
+        if (data.mobile) sheet.getRange(rowNumber, COL.MOBILE).setValue(data.mobile);
+        if (data.college) sheet.getRange(rowNumber, COL.COLLEGE).setValue(data.college);
+        if (data.course) sheet.getRange(rowNumber, COL.COURSE).setValue(data.course);
+        if (data.year) sheet.getRange(rowNumber, COL.YEAR).setValue(data.year);
+        if (data.hasIdea) sheet.getRange(rowNumber, COL.IDEA).setValue(data.hasIdea);
+        if (data.attendedBefore) sheet.getRange(rowNumber, COL.ATTENDED).setValue(data.attendedBefore);
+        if (data.expectations) sheet.getRange(rowNumber, COL.EXPECT).setValue(data.expectations);
+
+        // Update UTR if submitted in Step 2
         if (data.utrNumber) {
           sheet.getRange(rowNumber, COL.UTR).setValue(data.utrNumber);
           sheet.getRange(rowNumber, COL.PAY_TS).setValue(new Date());
@@ -190,7 +208,7 @@ function doPost(e) {
           data.expectations || '',
           CONFIG.FEE_AMOUNT,
           'Pending Verification',
-          data.utrNumber || '',
+          data.utrNumber || (isLeadOnly ? 'Pending / Step 1' : ''),
           data.utrNumber ? new Date() : '',
           'No', // Ticket Sent?
           '',   // Ticket Sent Timestamp
@@ -201,8 +219,46 @@ function doPost(e) {
         sheet.getRange(rowNumber, 1, 1, rowValues.length).setValues([rowValues]);
       }
 
+      // 1. If Step 1 Lead Capture: Send automated Draft Saved & Resume instructions email immediately!
+      if (isLeadOnly) {
+        try {
+          sendLeadDraftEmail({
+            regId: data.regId,
+            fullName: data.fullName,
+            email: data.email,
+            mobile: data.mobile,
+            college: data.college,
+            course: data.course,
+            year: data.year,
+            fee: CONFIG.FEE_AMOUNT
+          });
+        } catch (draftMailErr) {
+          console.log('Lead draft email error: ' + draftMailErr.message);
+        }
+      }
+
+      // 2. If Step 2 Payment Submission with UTR: Send "Payment Received — Verification in Progress" acknowledgement email
+      // NOTE: Official Ticket Pass with Entry QR is ONLY dispatched after manual payment verification by the organizers.
+      if (!isLeadOnly && data.utrNumber) {
+        try {
+          sendPaymentSubmittedAckEmail({
+            regId: data.regId,
+            fullName: data.fullName,
+            email: data.email,
+            mobile: data.mobile,
+            college: data.college,
+            course: data.course,
+            year: data.year,
+            utrNumber: data.utrNumber,
+            fee: CONFIG.FEE_AMOUNT
+          });
+        } catch (ackMailErr) {
+          console.log('Payment ack email dispatch error: ' + ackMailErr.message);
+        }
+      }
+
       // Optional organizer email alert
-      if (CONFIG.NOTIFY_ADMIN) {
+      if (CONFIG.NOTIFY_ADMIN && !isLeadOnly) {
         try {
           MailApp.sendEmail(
             CONFIG.NOTIFY_ADMIN,
@@ -218,8 +274,9 @@ function doPost(e) {
 
       return jsonResponse({
         ok: true,
+        lead: isLeadOnly,
         regId: data.regId,
-        message: 'Registration recorded successfully in database'
+        message: isLeadOnly ? 'Lead details captured in database & draft email sent' : 'Registration recorded successfully in database'
       });
 
     } finally {
@@ -233,18 +290,29 @@ function doPost(e) {
 
 /**
  * Handles GET requests:
- * 1. Verification API & Direct Scan: ?action=verify&id=ILL-XXXXXX (or ?id=ILL-XXXXXX / ?verify=ILL-XXXXXX)
- *    - If format === 'json' (or action === 'verify'): returns live JSON payload from Google Sheet.
- *    - If opened directly in browser without json format: renders official HTML verification card.
- * 2. System Diagnostics: ?diag=true -> Health check & total count.
+ * 1. Verification & Resume API: ?action=verify / ?action=get_registration / ?action=resume
+ * 2. Two-Stage Fallback Submission: ?action=lead_capture / ?action=payment_submit
+ * 3. Web Admin Management Console: ?admin=true / ?panel=true
  */
 function doGet(e) {
   var p = (e && e.parameter) || {};
-  var verifyId = (p.id || p.verify || '').trim().toUpperCase();
+  var verifyId = (p.id || p.verify || p.resume || p.query || p.regId || p.email || '').trim().toUpperCase();
 
-  if (verifyId) {
+  // 1. Fallback submission via GET
+  if (p.action === 'lead_capture' || p.action === 'payment_submit' || p.action === 'register') {
+    var payload = {};
+    if (p.data) {
+      try { payload = JSON.parse(p.data); } catch (err) { payload = p; }
+    } else {
+      payload = p;
+    }
+    return doPost({ postData: { contents: JSON.stringify(payload) } });
+  }
+
+  // 2. Verification & Resume Lookup
+  if (verifyId || p.action === 'get_registration' || p.action === 'resume') {
     var record = findRegistrationById(verifyId);
-    var isApi = (p.format === 'json' || p.action === 'verify' || p.api === 'true');
+    var isApi = (p.format === 'json' || p.action === 'verify' || p.action === 'get_registration' || p.action === 'resume' || p.api === 'true');
 
     if (isApi) {
       if (record) {
@@ -257,7 +325,7 @@ function doGet(e) {
         return jsonResponse({
           ok: true,
           found: false,
-          message: 'Registration ID ' + verifyId + ' was not found in the official illuminate database.'
+          message: 'Registration ID or Email (' + (verifyId || 'empty') + ') was not found in the official database.'
         });
       }
     }
@@ -288,22 +356,29 @@ function doGet(e) {
       .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
   }
 
-  // 4. Admin API actions via GET (for web panel dynamic AJAX)
+  // 4. Admin API actions via GET
   if (p.api_action) {
     return handleAdminApiGet(p);
   }
 
   return jsonResponse({
     ok: true,
-    service: 'illuminate 2026 Backend',
-    time: new Date().toISOString()
+    service: 'illuminate 2026 API',
+    endpoints: [
+      'POST /exec with JSON body { action: "lead_capture" | "payment_submit", regId, fullName, email, ... }',
+      'GET /exec?action=verify&id=ILL-XXXXXX',
+      'GET /exec?action=get_registration&id=ILL-XXXXXX',
+      'GET /exec?admin=true'
+    ]
   });
 }
 
 /**
- * Searches the 'illuminate Registrations' sheet for a specific Registration ID
+ * Searches the 'illuminate Registrations' sheet for a specific Registration ID, Email, or Mobile Number
  */
-function findRegistrationById(regId) {
+function findRegistrationById(query) {
+  if (!query) return null;
+  var q = String(query).trim().toUpperCase();
   var ss = targetSpreadsheet();
   var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
   if (!sheet) return null;
@@ -313,8 +388,11 @@ function findRegistrationById(regId) {
 
   var data = sheet.getRange(2, 1, lastRow - 1, HEADERS.length).getValues();
   for (var i = 0; i < data.length; i++) {
-    var rowRegId = String(data[i][COL.REG_ID - 1]).trim().toUpperCase();
-    if (rowRegId === regId) {
+    var rowRegId = String(data[i][COL.REG_ID - 1] || '').trim().toUpperCase();
+    var rowEmail = String(data[i][COL.EMAIL - 1] || '').trim().toUpperCase();
+    var rowMobile = String(data[i][COL.MOBILE - 1] || '').replace(/\D/g, '');
+
+    if (rowRegId === q || rowEmail === q || (q.length >= 10 && rowMobile === q)) {
       return {
         rowNumber: i + 2,
         timestamp: data[i][COL.TS - 1],
@@ -351,12 +429,12 @@ function buildStandaloneVerificationHtml(record, queryId) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Record Not Found — illuminate 2026</title>
   <style>
-    body { margin:0; padding:24px 16px; background:#f5f5f0; font-family:'Inter',system-ui,sans-serif; color:#111; display:flex; justify-content:center; align-items:center; min-height:100vh; }
-    .card { background:#fff; border:1px solid #d8d8d0; border-radius:18px; max-width:440px; width:100%; padding:32px 24px; text-align:center; box-shadow:0 10px 30px rgba(0,0,0,0.06); }
+    body { margin:0; padding:24px 16px; background:#f8fafc; font-family:-apple-system,BlinkMacSystemFont,sans-serif; color:#0f172a; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+    .card { background:#fff; border:1px solid #e2e8f0; border-radius:18px; max-width:440px; width:100%; padding:32px 24px; text-align:center; box-shadow:0 10px 30px rgba(15,23,42,0.06); }
     .tag { display:inline-block; background:#fee2e2; border:1px solid #fca5a5; color:#dc2626; font-size:11px; font-weight:800; padding:4px 12px; border-radius:999px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:14px; }
     h1 { font-size:20px; font-weight:900; margin:0 0 10px; }
-    p { font-size:13.5px; color:#666; line-height:1.55; margin:0 0 24px; }
-    .btn { display:inline-block; background:#111; color:#fff; text-decoration:none; font-size:13px; font-weight:700; padding:12px 24px; border-radius:999px; }
+    p { font-size:13.5px; color:#64748b; line-height:1.55; margin:0 0 24px; }
+    .btn { display:inline-block; background:#0f172a; color:#fff; text-decoration:none; font-size:13px; font-weight:700; padding:12px 24px; border-radius:999px; }
   </style>
 </head>
 <body>
@@ -373,7 +451,7 @@ function buildStandaloneVerificationHtml(record, queryId) {
   var isVerified = (record.status === 'Verified');
   var statusBg = isVerified ? '#ecfdf5' : '#fffbeb';
   var statusBorder = isVerified ? '#a7f3d0' : '#fde68a';
-  var statusColor = isVerified ? '#157f4a' : '#b45309';
+  var statusColor = isVerified ? '#047857' : '#b45309';
   var statusText = isVerified ? 'Official Registration Verified' : 'Payment Under Verification';
 
   return `
@@ -385,22 +463,22 @@ function buildStandaloneVerificationHtml(record, queryId) {
   <title>Verification: ${escapeHtml(record.regId)} — illuminate 2026</title>
   <style>
     * { box-sizing:border-box; }
-    body { margin:0; padding:28px 16px; background:#f5f5f0; font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif; color:#111; display:flex; justify-content:center; align-items:center; min-height:100vh; }
-    .card { background:#fff; border:1px solid #d8d8d0; border-radius:20px; max-width:460px; width:100%; padding:32px 26px; box-shadow:0 16px 40px rgba(17,17,17,0.08); text-align:center; }
-    .top-pill { font-size:10.5px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#ff5a1f; margin-bottom:8px; }
+    body { margin:0; padding:28px 16px; background:#f8fafc; font-family:-apple-system,BlinkMacSystemFont,sans-serif; color:#0f172a; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+    .card { background:#fff; border:1px solid #e2e8f0; border-radius:20px; max-width:460px; width:100%; padding:32px 26px; box-shadow:0 16px 40px rgba(15,23,42,0.08); text-align:center; }
+    .top-pill { font-size:10.5px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#4f46e5; margin-bottom:8px; }
     .brand { font-size:22px; font-weight:900; letter-spacing:-0.5px; margin-bottom:18px; }
     .brand span { color:#ff5a1f; }
     .status-badge { display:inline-block; background:${statusBg}; border:1px solid ${statusBorder}; color:${statusColor}; font-size:12px; font-weight:800; padding:6px 16px; border-radius:999px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:20px; }
-    .name { font-size:22px; font-weight:900; color:#111; margin:0 0 4px; }
-    .college { font-size:13.5px; font-weight:600; color:#666; margin:0 0 20px; }
-    .grid { background:#fafaf7; border:1px solid #e8e8e0; border-radius:14px; padding:16px; text-align:left; display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px; font-size:12.5px; }
-    .cell-label { font-size:10px; font-weight:700; text-transform:uppercase; color:#888; letter-spacing:0.5px; margin-bottom:2px; }
-    .cell-val { font-size:13px; font-weight:800; color:#111; word-break:break-word; }
-    .cell-accent { color:#ff5a1f; }
-    .cell-green { color:#157f4a; }
-    .meta-box { font-size:11.5px; color:#666; line-height:1.55; margin-bottom:24px; padding-top:14px; border-top:1px dashed #d8d8d0; }
+    .name { font-size:22px; font-weight:900; color:#0f172a; margin:0 0 4px; }
+    .college { font-size:13.5px; font-weight:600; color:#64748b; margin:0 0 20px; }
+    .grid { background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:16px; text-align:left; display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px; font-size:12.5px; }
+    .cell-label { font-size:10px; font-weight:700; text-transform:uppercase; color:#64748b; letter-spacing:0.5px; margin-bottom:2px; }
+    .cell-val { font-size:13px; font-weight:800; color:#0f172a; word-break:break-word; }
+    .cell-accent { color:#4f46e5; }
+    .cell-green { color:#047857; }
+    .meta-box { font-size:11.5px; color:#64748b; line-height:1.55; margin-bottom:24px; padding-top:14px; border-top:1px dashed #e2e8f0; }
     .btn-row { display:flex; gap:10px; justify-content:center; }
-    .btn { display:inline-block; background:#111; color:#fff; text-decoration:none; font-size:12.5px; font-weight:700; padding:11px 22px; border-radius:999px; }
+    .btn { display:inline-block; background:#0f172a; color:#fff; text-decoration:none; font-size:12.5px; font-weight:700; padding:11px 22px; border-radius:999px; }
     .btn:hover { background:#ff5a1f; }
   </style>
 </head>
@@ -421,7 +499,7 @@ function buildStandaloneVerificationHtml(record, queryId) {
       </div>
       <div>
         <div class="cell-label">Workshop Fee</div>
-        <div class="cell-val cell-green">&#8377;${escapeHtml(record.fee)} (NEC Subsidized)</div>
+        <div class="cell-val cell-green">&#8377;${escapeHtml(record.fee)} (Paid)</div>
       </div>
       <div>
         <div class="cell-label">UTR Reference</div>
@@ -448,6 +526,451 @@ function buildStandaloneVerificationHtml(record, queryId) {
 }
 
 /* ------------------------------ EMAIL AUTOMATION ------------------------------ */
+
+/**
+ * Sends automated Lead / Draft Saved email with Registration ID and resume link
+ */
+function sendLeadDraftEmail(attendee) {
+  if (!attendee.email || attendee.email.indexOf('@') === -1) {
+    throw new Error('Attendee has no valid email: ' + attendee.email);
+  }
+
+  var htmlBody = buildLeadDraftEmailHtml(attendee);
+  var subject = '[Saved Draft] Complete Your Registration for illuminate 2026 [' + attendee.regId + ']';
+
+  MailApp.sendEmail({
+    to: attendee.email,
+    subject: subject,
+    htmlBody: htmlBody,
+    name: 'illuminate 2026 — IIEC CSMU',
+    replyTo: CONFIG.REPLY_TO_EMAIL
+  });
+}
+
+/**
+ * Builds an ultra-premium Light Luxury email for Step 1 Draft / Resume instructions.
+ * Mobile-first responsive layout matching E-Cell IIT Bombay × IIEC CSMU branding.
+ */
+function buildLeadDraftEmailHtml(attendee) {
+  var resumeUrl = 'https://iiec.in/illuminate?resume=' + encodeURIComponent(attendee.regId);
+
+  return `
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light">
+  <title>Complete Your illuminate 2026 Registration — ${escapeHtml(attendee.regId)}</title>
+  <style>
+    body, table, td, p, a, li, blockquote { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; display: block; }
+    body { width: 100% !important; min-width: 100%; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    
+    @media only screen and (max-width: 580px) {
+      .email-outer-td { padding: 12px 8px !important; }
+      .main-table { width: 100% !important; border-radius: 14px !important; }
+      .header-cell { padding: 24px 16px 18px !important; }
+      .brand-title { font-size: 24px !important; }
+      .content-cell { padding: 18px 14px !important; }
+      .draft-box-inner { padding: 18px 14px !important; }
+      .col-cell { display: block !important; width: 100% !important; box-sizing: border-box !important; padding: 0 0 10px 0 !important; }
+      .col-cell:last-child { padding-bottom: 0 !important; }
+      .btn-action { display: block !important; width: 100% !important; box-sizing: border-box !important; text-align: center !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#f1f5f9;-webkit-font-smoothing:antialiased;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f1f5f9;">
+    <tr>
+      <td align="center" class="email-outer-td" style="padding:32px 14px;">
+        <!-- Main Email Container -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="main-table" style="max-width:580px;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;box-shadow:0 12px 36px rgba(15,23,42,0.07);">
+          
+          <!-- Top Multi-Gradient Bar -->
+          <tr>
+            <td style="height:6px;background:linear-gradient(90deg, #ff5a1f 0%, #6366f1 50%, #f59e0b 100%);"></td>
+          </tr>
+
+          <!-- Header Section -->
+          <tr>
+            <td class="header-cell" style="padding:28px 28px 20px;text-align:center;background:#ffffff;border-bottom:1px solid #f1f5f9;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
+                <tr>
+                  <td style="background:#eef2ff;border:1px solid #c7d2fe;padding:5px 16px;border-radius:999px;font-size:10.5px;font-weight:800;color:#4338ca;letter-spacing:1.5px;text-transform:uppercase;">
+                    E-CELL IIT BOMBAY &times; IIEC CSMU
+                  </td>
+                </tr>
+              </table>
+
+              <h1 class="brand-title" style="font-size:28px;font-weight:900;color:#0f172a;letter-spacing:-0.03em;line-height:1.15;margin:0 0 4px;">
+                illuminate <span style="color:#ff5a1f;">2026</span>
+              </h1>
+              
+              <div style="font-size:13px;font-weight:600;color:#64748b;line-height:1.4;">
+                Entrepreneurship Workshop &bull; Chhatrapati Shivaji Maharaj University
+              </div>
+            </td>
+          </tr>
+
+          <!-- Draft Saved Callout -->
+          <tr>
+            <td class="content-cell" style="padding:24px 28px 16px;text-align:center;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 12px;">
+                <tr>
+                  <td style="background:#fef3c7;border:1px solid #fde68a;padding:5px 16px;border-radius:999px;color:#b45309;font-size:11px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;">
+                    &#9888; ACTION REQUIRED &bull; REGISTRATION DRAFT SAVED
+                  </td>
+                </tr>
+              </table>
+              <h2 style="color:#0f172a;font-size:22px;font-weight:800;margin:0 0 6px;line-height:1.3;letter-spacing:-0.02em;">
+                Hi, ${escapeHtml(attendee.fullName)}!
+              </h2>
+              <p style="color:#475569;font-size:13.5px;line-height:1.6;margin:0 auto;max-width:490px;">
+                We have saved your registration details for <strong>illuminate 2026</strong>. Please finish your payment of <strong>₹749</strong> to confirm your seat and receive your official digital entry pass.
+              </p>
+            </td>
+          </tr>
+
+          <!-- REGISTRATION DRAFT DETAILS CARD -->
+          <tr>
+            <td style="padding:0 24px 22px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="draft-box-inner" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:20px 18px;">
+                <tr>
+                  <td>
+
+                    <!-- Reg ID Highlight Box -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#ffffff;border:1.5px dashed #6366f1;border-radius:12px;margin-bottom:16px;text-align:center;">
+                      <tr>
+                        <td style="padding:14px 16px;">
+                          <div style="font-size:10px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">
+                            YOUR OFFICIAL REGISTRATION ID
+                          </div>
+                          <div style="font-size:24px;font-weight:900;color:#4338ca;letter-spacing:1px;font-family:monospace;">
+                            ${escapeHtml(attendee.regId)}
+                          </div>
+                          <div style="font-size:11.5px;color:#64748b;margin-top:4px;">
+                            (Save this ID to resume your registration anytime on <a href="https://iiec.in/illuminate" style="color:#4f46e5;font-weight:700;text-decoration:none;">iiec.in/illuminate</a>)
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Attendee Details Summary -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:16px;font-size:12.5px;color:#334155;line-height:1.6;">
+                      <tr>
+                        <td style="padding:4px 0;width:110px;color:#64748b;font-weight:700;">Attendee:</td>
+                        <td style="padding:4px 0;font-weight:800;color:#0f172a;">${escapeHtml(attendee.fullName)}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;">College / Course:</td>
+                        <td style="padding:4px 0;font-weight:600;color:#0f172a;">${escapeHtml(attendee.college)}${attendee.course ? ' &bull; ' + escapeHtml(attendee.course) : ''}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;">Workshop Fee:</td>
+                        <td style="padding:4px 0;font-weight:800;color:#059669;">&#8377;${attendee.fee} (Special NEC Subsidized Fee)</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;">Status:</td>
+                        <td style="padding:4px 0;font-weight:700;color:#b45309;">Draft Saved &bull; Payment Pending</td>
+                      </tr>
+                    </table>
+
+                    <!-- 1-CLICK RESUME CTA BUTTON -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="text-align:center;margin:8px 0 16px;">
+                      <tr>
+                        <td align="center">
+                          <a href="${resumeUrl}" target="_blank" class="btn-action" style="display:inline-block;background:linear-gradient(135deg, #ff5a1f 0%, #e04b15 100%);color:#ffffff;text-decoration:none;font-size:13.5px;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;padding:14px 32px;border-radius:999px;box-shadow:0 6px 18px rgba(255,90,31,0.35);">
+                            Complete Registration &amp; Pay &#8377;749 &rarr;
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <div style="font-size:11.5px;color:#64748b;text-align:center;line-height:1.5;margin-bottom:14px;">
+                      Direct Link: <a href="${resumeUrl}" style="color:#4f46e5;word-break:break-all;">${resumeUrl}</a>
+                    </div>
+
+                    <!-- Payment Steps Box -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;">
+                      <tr>
+                        <td>
+                          <div style="font-size:11px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">
+                            Quick 3-Step Payment Instructions:
+                          </div>
+                          <ol style="margin:0;padding-left:18px;font-size:12px;color:#475569;line-height:1.6;">
+                            <li>Click the <strong>Complete Registration</strong> button above.</li>
+                            <li>Pay <strong>₹749</strong> via UPI (GPay / PhonePe / Paytm / BHIM) to:
+                              <br><strong style="color:#0f172a;">Bhumika Chavan</strong> &bull; UPI ID: <code style="color:#4338ca;font-weight:700;">chavanbhumika1007@oksbi</code>
+                            </li>
+                            <li>Enter your <strong>12-digit UTR / Reference Number</strong> on the payment screen to get your confirmed pass.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- EVENT DETAILS & HIGHLIGHTS -->
+          <tr>
+            <td style="padding:0 24px 18px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="venue-box" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:16px 18px;">
+                <tr>
+                  <td>
+                    <div style="font-size:11.5px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">
+                      Workshop Highlights
+                    </div>
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:12.5px;color:#334155;line-height:1.65;">
+                      <tr>
+                        <td style="padding:4px 0;width:95px;color:#64748b;font-weight:700;vertical-align:top;">Venue:</td>
+                        <td style="padding:4px 0;font-weight:600;color:#0f172a;">Chhatrapati Shivaji Maharaj University (CSMU), Panvel</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;vertical-align:top;">Certification:</td>
+                        <td style="padding:4px 0;font-weight:700;color:#4f46e5;">Official Participation Certificate by E-Cell, IIT Bombay</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;vertical-align:top;">Inclusions:</td>
+                        <td style="padding:4px 0;font-weight:600;color:#0f172a;">Physical Startup Kit &bull; BMC Canvas &bull; Networking</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="padding:22px 24px;background:#0f172a;color:#ffffff;text-align:center;">
+              <div style="font-size:12.5px;font-weight:800;color:#ffffff;margin-bottom:4px;letter-spacing:0.02em;">
+                Incubation, Innovation &amp; Entrepreneurship Cell (IIEC)
+              </div>
+              <div style="font-size:11.5px;color:#94a3b8;line-height:1.65;">
+                Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai<br>
+                Coordination Desk &bull; Helpline: <strong>+91 94666 05579</strong><br>
+                Official Portal: <a href="https://iiec.in/illuminate" style="color:#a5b4fc;text-decoration:none;font-weight:700;">iiec.in/illuminate</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `;
+}
+
+/**
+ * Sends automated Payment Submitted & Under Review acknowledgement email
+ */
+function sendPaymentSubmittedAckEmail(attendee) {
+  if (!attendee.email || attendee.email.indexOf('@') === -1) {
+    throw new Error('Attendee has no valid email: ' + attendee.email);
+  }
+
+  var htmlBody = buildPaymentSubmittedAckEmailHtml(attendee);
+  var subject = 'Payment Received: Verification in Progress [' + attendee.regId + '] — illuminate 2026';
+
+  MailApp.sendEmail({
+    to: attendee.email,
+    subject: subject,
+    htmlBody: htmlBody,
+    name: 'illuminate 2026 — IIEC CSMU',
+    replyTo: CONFIG.REPLY_TO_EMAIL
+  });
+}
+
+/**
+ * Builds an ultra-premium Light Luxury email acknowledging UTR submission.
+ * Informs student that payment is under manual verification before official ticket pass is issued.
+ */
+function buildPaymentSubmittedAckEmailHtml(attendee) {
+  var verifyUrl = 'https://iiec.in/illuminate?verify=' + encodeURIComponent(attendee.regId);
+
+  return `
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light">
+  <title>Payment Under Verification — ${escapeHtml(attendee.regId)}</title>
+  <style>
+    body, table, td, p, a, li, blockquote { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; display: block; }
+    body { width: 100% !important; min-width: 100%; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    
+    @media only screen and (max-width: 580px) {
+      .email-outer-td { padding: 12px 8px !important; }
+      .main-table { width: 100% !important; border-radius: 14px !important; }
+      .header-cell { padding: 24px 16px 18px !important; }
+      .brand-title { font-size: 24px !important; }
+      .content-cell { padding: 18px 14px !important; }
+      .ack-box-inner { padding: 18px 14px !important; }
+      .col-cell { display: block !important; width: 100% !important; box-sizing: border-box !important; padding: 0 0 10px 0 !important; }
+      .col-cell:last-child { padding-bottom: 0 !important; }
+      .btn-action { display: block !important; width: 100% !important; box-sizing: border-box !important; text-align: center !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;background-color:#f1f5f9;-webkit-font-smoothing:antialiased;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f1f5f9;">
+    <tr>
+      <td align="center" class="email-outer-td" style="padding:32px 14px;">
+        <!-- Main Email Container -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="main-table" style="max-width:580px;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;box-shadow:0 12px 36px rgba(15,23,42,0.07);">
+          
+          <!-- Top Multi-Gradient Bar -->
+          <tr>
+            <td style="height:6px;background:linear-gradient(90deg, #ff5a1f 0%, #6366f1 50%, #f59e0b 100%);"></td>
+          </tr>
+
+          <!-- Header Section -->
+          <tr>
+            <td class="header-cell" style="padding:28px 28px 20px;text-align:center;background:#ffffff;border-bottom:1px solid #f1f5f9;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
+                <tr>
+                  <td style="background:#eef2ff;border:1px solid #c7d2fe;padding:5px 16px;border-radius:999px;font-size:10.5px;font-weight:800;color:#4338ca;letter-spacing:1.5px;text-transform:uppercase;">
+                    E-CELL IIT BOMBAY &times; IIEC CSMU
+                  </td>
+                </tr>
+              </table>
+
+              <h1 class="brand-title" style="font-size:28px;font-weight:900;color:#0f172a;letter-spacing:-0.03em;line-height:1.15;margin:0 0 4px;">
+                illuminate <span style="color:#ff5a1f;">2026</span>
+              </h1>
+              
+              <div style="font-size:13px;font-weight:600;color:#64748b;line-height:1.4;">
+                Entrepreneurship Workshop &bull; Chhatrapati Shivaji Maharaj University
+              </div>
+            </td>
+          </tr>
+
+          <!-- Payment Ack Hero Callout -->
+          <tr>
+            <td class="content-cell" style="padding:24px 28px 16px;text-align:center;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 12px;">
+                <tr>
+                  <td style="background:#fef3c7;border:1px solid #fde68a;padding:5px 16px;border-radius:999px;color:#b45309;font-size:11px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;">
+                    &#9203; PAYMENT RECEIVED &bull; VERIFICATION IN PROGRESS
+                  </td>
+                </tr>
+              </table>
+              <h2 style="color:#0f172a;font-size:22px;font-weight:800;margin:0 0 6px;line-height:1.3;letter-spacing:-0.02em;">
+                Thank You, ${escapeHtml(attendee.fullName)}!
+              </h2>
+              <p style="color:#475569;font-size:13.5px;line-height:1.6;margin:0 auto;max-width:490px;">
+                We have received your payment reference for <strong>illuminate 2026</strong>. Our organizing team is currently verifying the transaction with our bank.
+              </p>
+            </td>
+          </tr>
+
+          <!-- SUBMISSION SUMMARY CARD -->
+          <tr>
+            <td style="padding:0 24px 22px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="ack-box-inner" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:20px 18px;">
+                <tr>
+                  <td>
+
+                    <!-- Reg ID Box -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;margin-bottom:16px;text-align:center;">
+                      <tr>
+                        <td style="padding:14px 16px;">
+                          <div style="font-size:10px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">
+                            REGISTRATION ID
+                          </div>
+                          <div style="font-size:22px;font-weight:900;color:#4338ca;letter-spacing:1px;font-family:monospace;">
+                            ${escapeHtml(attendee.regId)}
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Details Table -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:16px;font-size:12.5px;color:#334155;line-height:1.6;">
+                      <tr>
+                        <td style="padding:4px 0;width:120px;color:#64748b;font-weight:700;">Attendee:</td>
+                        <td style="padding:4px 0;font-weight:800;color:#0f172a;">${escapeHtml(attendee.fullName)}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;">College:</td>
+                        <td style="padding:4px 0;font-weight:600;color:#0f172a;">${escapeHtml(attendee.college)}${attendee.course ? ' &bull; ' + escapeHtml(attendee.course) : ''}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;">Submitted UTR:</td>
+                        <td style="padding:4px 0;font-weight:800;color:#0f172a;font-family:monospace;">${escapeHtml(attendee.utrNumber || 'N/A')}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;">Workshop Fee:</td>
+                        <td style="padding:4px 0;font-weight:800;color:#059669;">&#8377;${attendee.fee}</td>
+                      </tr>
+                      <tr>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;">Status:</td>
+                        <td style="padding:4px 0;font-weight:800;color:#b45309;">Payment Under Manual Verification</td>
+                      </tr>
+                    </table>
+
+                    <!-- What happens next box -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:14px 16px;">
+                      <tr>
+                        <td>
+                          <div style="font-size:11px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">
+                            What Happens Next?
+                          </div>
+                          <ol style="margin:0;padding-left:18px;font-size:12px;color:#475569;line-height:1.6;">
+                            <li>Our team verifies your 12-digit UTR against the bank statement.</li>
+                            <li>Once verified, your <strong>Official E-Cell IIT Bombay Delegate Pass &amp; Check-In QR Code</strong> will be sent to your email.</li>
+                            <li>You can also track your live verification status anytime on our website.</li>
+                          </ol>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <div style="text-align:center;margin-top:16px;">
+                      <a href="${verifyUrl}" target="_blank" class="btn-action" style="display:inline-block;background:#0f172a;color:#ffffff;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;padding:11px 24px;border-radius:999px;">
+                        Check Live Verification Status &rarr;
+                      </a>
+                    </div>
+
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- FOOTER -->
+          <tr>
+            <td style="padding:22px 24px;background:#0f172a;color:#ffffff;text-align:center;">
+              <div style="font-size:12.5px;font-weight:800;color:#ffffff;margin-bottom:4px;letter-spacing:0.02em;">
+                Incubation, Innovation &amp; Entrepreneurship Cell (IIEC)
+              </div>
+              <div style="font-size:11.5px;color:#94a3b8;line-height:1.65;">
+                Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai<br>
+                Coordination Desk &bull; Helpline: <strong>+91 94666 05579</strong><br>
+                Official Portal: <a href="https://iiec.in/illuminate" style="color:#a5b4fc;text-decoration:none;font-weight:700;">iiec.in/illuminate</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+  `;
+}
 
 /**
  * Sends the ticket confirmation email for a given sheet row
@@ -493,134 +1016,229 @@ function sendTicketEmailForRow(sheet, row) {
 }
 
 /**
- * Builds an ultra-crisp, mobile-responsive HTML email template.
- * Compatible with Gmail, Apple Mail, Outlook, iOS, and Android.
+ * Builds an ultra-premium, mobile-first responsive HTML email ticket pass.
+ * Optimized for Gmail, Apple Mail, Outlook, iOS Mail, and Android.
+ * LIGHT THEME LUXURY DESIGN.
  */
 function buildTicketEmailHtml(attendee, qrUrl) {
+  var verifyUrl = 'https://iiec.in/illuminate?verify=' + encodeURIComponent(attendee.regId);
+
   return `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>illuminate 2026 Pass</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light">
+  <title>illuminate 2026 Official Delegate Pass — ${escapeHtml(attendee.regId)}</title>
+  <style>
+    body, table, td, p, a, li, blockquote { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; display: block; }
+    body { width: 100% !important; min-width: 100%; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    
+    @media only screen and (max-width: 580px) {
+      .email-outer-td { padding: 12px 8px !important; }
+      .main-table { width: 100% !important; border-radius: 14px !important; }
+      .header-cell { padding: 24px 16px 18px !important; }
+      .brand-title { font-size: 24px !important; }
+      .content-cell { padding: 18px 14px !important; }
+      .pass-wrap { padding: 0 10px 18px !important; }
+      .pass-card-inner { padding: 18px 14px !important; border-radius: 14px !important; }
+      .col-cell { display: block !important; width: 100% !important; box-sizing: border-box !important; padding: 0 0 10px 0 !important; }
+      .col-cell:last-child { padding-bottom: 0 !important; }
+      .venue-box { padding: 14px 12px !important; }
+      .btn-action { display: block !important; width: 100% !important; box-sizing: border-box !important; text-align: center !important; }
+    }
+  </style>
 </head>
-<body style="margin:0;padding:0;background-color:#f5f5f0;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f5f5f0;padding:32px 14px;">
+<body style="margin:0;padding:0;background-color:#f1f5f9;-webkit-font-smoothing:antialiased;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f1f5f9;">
     <tr>
-      <td align="center">
-        <!-- Main Email Container (max 600px) -->
-        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;background-color:#ffffff;border:1px solid #d8d8d0;border-radius:18px;overflow:hidden;box-shadow:0 12px 32px rgba(17,17,17,0.06);">
+      <td align="center" class="email-outer-td" style="padding:32px 14px;">
+        <!-- Main Email Container -->
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="main-table" style="max-width:580px;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;box-shadow:0 12px 36px rgba(15,23,42,0.07);">
           
-          <!-- Top Accent Flame Bar -->
+          <!-- Top Multi-Gradient Bar -->
           <tr>
-            <td style="height:4px;background-color:#ff5a1f;"></td>
+            <td style="height:6px;background:linear-gradient(90deg, #ff5a1f 0%, #6366f1 50%, #f59e0b 100%);"></td>
           </tr>
 
-          <!-- Header / Branding Bar -->
+          <!-- Header Section -->
           <tr>
-            <td style="padding:28px 32px 20px;background-color:#ffffff;text-align:center;border-bottom:1px solid #e8e8e0;">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <td class="header-cell" style="padding:28px 28px 20px;text-align:center;background:#ffffff;border-bottom:1px solid #f1f5f9;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
                 <tr>
-                  <td align="center">
-                    <div style="font-size:11px;font-weight:800;color:#ff5a1f;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:6px;">
-                      E-CELL IIT BOMBAY &times; IIEC CSMU
-                    </div>
-                    <div style="font-size:26px;font-weight:900;color:#111111;letter-spacing:-0.5px;line-height:1.2;">
-                      illuminate <span style="color:#ff5a1f;">2026</span>
-                    </div>
-                    <div style="font-size:13px;color:#66665f;margin-top:4px;">
-                      Entrepreneurship Workshop &bull; Chhatrapati Shivaji Maharaj University
-                    </div>
+                  <td style="background:#eef2ff;border:1px solid #c7d2fe;padding:5px 16px;border-radius:999px;font-size:10.5px;font-weight:800;color:#4338ca;letter-spacing:1.5px;text-transform:uppercase;">
+                    E-CELL IIT BOMBAY &times; IIEC CSMU
                   </td>
                 </tr>
               </table>
+
+              <h1 class="brand-title" style="font-size:28px;font-weight:900;color:#0f172a;letter-spacing:-0.03em;line-height:1.15;margin:0 0 4px;">
+                illuminate <span style="color:#ff5a1f;">2026</span>
+              </h1>
+              
+              <div style="font-size:13px;font-weight:600;color:#64748b;line-height:1.4;">
+                Entrepreneurship Workshop &bull; Chhatrapati Shivaji Maharaj University
+              </div>
             </td>
           </tr>
 
-          <!-- Confirmed Hero Banner -->
+          <!-- Confirmation Hero Callout -->
           <tr>
-            <td style="padding:28px 32px 20px;text-align:center;">
-              <div style="display:inline-block;background-color:#ecfdf5;border:1px solid #a7f3d0;padding:5px 16px;border-radius:999px;color:#157f4a;font-size:11.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:16px;">
-                Payment Verified &bull; Seat Confirmed
-              </div>
-              <h1 style="color:#111111;font-size:22px;font-weight:900;margin:0 0 10px;line-height:1.3;letter-spacing:-0.03em;">
-                Welcome to illuminate, ${escapeHtml(attendee.fullName)}!
-              </h1>
-              <p style="color:#66665f;font-size:14px;line-height:1.6;margin:0 auto;max-width:480px;">
-                Your payment of &#8377;${attendee.fee} for the workshop has been verified. Here is your official registration confirmation and digital entry pass.
+            <td class="content-cell" style="padding:22px 28px 16px;text-align:center;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
+                <tr>
+                  <td style="background:#ecfdf5;border:1px solid #a7f3d0;padding:5px 16px;border-radius:999px;color:#047857;font-size:11.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;">
+                    &#10003; Payment Verified &bull; Official Pass Issued
+                  </td>
+                </tr>
+              </table>
+              <h2 style="color:#0f172a;font-size:22px;font-weight:800;margin:0 0 6px;line-height:1.3;letter-spacing:-0.02em;">
+                Welcome, ${escapeHtml(attendee.fullName)}!
+              </h2>
+              <p style="color:#475569;font-size:13.5px;line-height:1.6;margin:0 auto;max-width:480px;">
+                Your seat for <strong>illuminate 2026</strong> has been confirmed. Below is your official delegate credential and gate entry QR code.
               </p>
             </td>
           </tr>
 
-          <!-- Digital Pass Ticket Card (Deep Shell #111111) -->
+          <!-- LIGHT THEME EXECUTIVE DELEGATE PASS BADGE -->
           <tr>
-            <td style="padding:0 28px 28px;">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#111111;color:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 12px 28px rgba(17,17,17,0.25);">
+            <td class="pass-wrap" style="padding:0 24px 22px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="pass-card-inner" style="background:#ffffff;color:#0f172a;border-radius:18px;overflow:hidden;border:1px solid #e2e8f0;box-shadow:0 12px 30px rgba(15,23,42,0.08);">
                 <tr>
-                  <td style="padding:24px;">
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <td style="padding:20px 18px 20px;">
+
+                    <!-- Pass Top Bar -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:12px;border-bottom:1px solid #f1f5f9;padding-bottom:8px;">
                       <tr>
-                        <!-- Left: Pass Metadata -->
-                        <td valign="top" style="padding-right:16px;">
-                          <div style="font-size:10.5px;color:#a1a1aa;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Registration ID</div>
-                          <div style="font-size:20px;font-weight:900;color:#ff5a1f;margin-bottom:14px;letter-spacing:0.5px;">${escapeHtml(attendee.regId)}</div>
-
-                          <div style="font-size:10.5px;color:#a1a1aa;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Attendee Name</div>
-                          <div style="font-size:14px;font-weight:700;color:#ffffff;margin-bottom:14px;">${escapeHtml(attendee.fullName)}</div>
-
-                          <div style="font-size:10.5px;color:#a1a1aa;text-transform:uppercase;letter-spacing:1px;font-weight:700;">College / Program</div>
-                          <div style="font-size:13px;font-weight:600;color:#e4e4e7;margin-bottom:14px;">
-                            ${escapeHtml(attendee.college)}<br>
-                            <span style="font-size:12px;color:#a1a1aa;">${escapeHtml(attendee.course)} (${escapeHtml(attendee.year)})</span>
-                          </div>
-
-                          <div style="font-size:10.5px;color:#a1a1aa;text-transform:uppercase;letter-spacing:1px;font-weight:700;">Fee Status</div>
-                          <div style="font-size:13px;font-weight:700;color:#6ee7b7;">&#8377;${attendee.fee} (NEC Special Fee)</div>
+                        <td align="left" style="font-size:10px;font-weight:800;color:#64748b;letter-spacing:1px;text-transform:uppercase;">
+                          OFFICIAL DELEGATE PASS
                         </td>
+                        <td align="right" style="font-size:10px;font-weight:700;color:#4f46e5;letter-spacing:0.5px;">
+                          CSMU PANVEL EDITION
+                        </td>
+                      </tr>
+                    </table>
 
-                        <!-- Right: Entry QR Code -->
-                        <td valign="top" align="center" style="width:130px;border-left:1px dashed rgba(255,255,255,0.15);padding-left:16px;">
-                          <div style="background:#ffffff;padding:8px;border-radius:8px;display:inline-block;">
-                            <img src="${qrUrl}" alt="Entry QR" width="110" height="110" style="display:block;border:0;">
+                    <!-- Attendee Spotlight Block -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;margin-bottom:12px;">
+                      <tr>
+                        <td style="padding:14px 16px;">
+                          <div style="font-size:10px;font-weight:800;color:#4f46e5;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;">
+                            DELEGATE ATTENDEE
                           </div>
-                          <div style="font-size:10px;color:#ff986e;font-weight:800;letter-spacing:0.8px;margin-top:8px;text-align:center;">
-                            SCAN AT VENUE
+                          <div style="font-size:21px;font-weight:900;color:#0f172a;line-height:1.2;margin-bottom:3px;letter-spacing:-0.02em;">
+                            ${escapeHtml(attendee.fullName)}
+                          </div>
+                          <div style="font-size:13px;font-weight:500;color:#475569;line-height:1.4;">
+                            ${escapeHtml(attendee.college)}${attendee.course ? ' &bull; ' + escapeHtml(attendee.course) : ''}${attendee.year ? ' (' + escapeHtml(attendee.year) + ')' : ''}
                           </div>
                         </td>
                       </tr>
                     </table>
+
+                    <!-- 2x2 Clean Credential Tiles -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:12px;">
+                      <tr>
+                        <!-- Tile 1: Reg ID -->
+                        <td width="50%" class="col-cell" valign="top" style="padding:0 5px 10px 0;">
+                          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;">
+                            <div style="font-size:9.5px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;">REGISTRATION ID</div>
+                            <div style="font-size:14px;font-weight:800;color:#4f46e5;font-family:monospace;margin-top:2px;">${escapeHtml(attendee.regId)}</div>
+                          </div>
+                        </td>
+                        <!-- Tile 2: Fee Status -->
+                        <td width="50%" class="col-cell" valign="top" style="padding:0 0 10px 5px;">
+                          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;">
+                            <div style="font-size:9.5px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;">WORKSHOP FEE</div>
+                            <div style="font-size:14px;font-weight:800;color:#059669;margin-top:2px;">&#8377;${attendee.fee} (Paid)</div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <!-- Tile 3: UTR -->
+                        <td width="50%" class="col-cell" valign="top" style="padding:0 5px 0 0;">
+                          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;">
+                            <div style="font-size:9.5px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;">UTR REFERENCE</div>
+                            <div style="font-size:12.5px;font-weight:700;color:#0f172a;font-family:monospace;margin-top:2px;word-break:break-all;">${escapeHtml(attendee.utrNumber || 'Verified')}</div>
+                          </div>
+                        </td>
+                        <!-- Tile 4: Certification -->
+                        <td width="50%" class="col-cell" valign="top" style="padding:0 0 0 5px;">
+                          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px;">
+                            <div style="font-size:9.5px;font-weight:800;color:#64748b;text-transform:uppercase;letter-spacing:0.8px;">CERTIFIED BY</div>
+                            <div style="font-size:12.5px;font-weight:800;color:#b45309;margin-top:2px;">E-Cell, IIT Bombay</div>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Perforated Tear Divider -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:10px 0 14px;">
+                      <tr>
+                        <td align="center" style="border-top:1.5px dashed #cbd5e1;height:0;"></td>
+                      </tr>
+                    </table>
+
+                    <!-- PROMINENT CENTERED GATE QR BOX -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:18px 14px;text-align:center;">
+                      <tr>
+                        <td align="center">
+                          <div style="background:#ffffff;padding:10px;border-radius:12px;display:inline-block;border:1px solid #e2e8f0;box-shadow:0 4px 14px rgba(15,23,42,0.08);">
+                            <img src="${qrUrl}" alt="Gate Entry Security QR" width="130" height="130" style="width:130px;height:130px;border:0;display:block;">
+                          </div>
+                          
+                          <div style="font-size:11px;font-weight:800;color:#ff5a1f;letter-spacing:1px;text-transform:uppercase;margin-top:12px;">
+                            GATE ENTRY CHECK-IN QR
+                          </div>
+                          <div style="font-size:12px;color:#64748b;margin-top:3px;max-width:360px;line-height:1.45;">
+                            Show this QR code at the CSMU auditorium desk for instant gate entry and kit collection.
+                          </div>
+
+                          <div style="margin-top:14px;">
+                            <a href="${verifyUrl}" target="_blank" class="btn-action" style="display:inline-block;background:linear-gradient(135deg, #ff5a1f 0%, #e04b15 100%);color:#ffffff;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;padding:11px 24px;border-radius:999px;box-shadow:0 4px 12px rgba(255,90,31,0.35);">
+                              View Live Digital Pass &rarr;
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- Workshop Highlights & Venue -->
+          <!-- EVENT DETAILS & HIGHLIGHTS -->
           <tr>
-            <td style="padding:0 28px 20px;">
-              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#fafaf7;border:1px solid #e8e8e0;border-radius:12px;padding:18px;">
+            <td style="padding:0 24px 18px;">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="venue-box" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:16px 18px;">
                 <tr>
                   <td>
-                    <div style="font-size:13px;font-weight:800;color:#111111;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.06em;">
-                      Event Details &amp; Venue
+                    <div style="font-size:11.5px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px;">
+                      Workshop Logistics &amp; Details
                     </div>
-                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:13px;color:#444440;line-height:1.7;">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:12.5px;color:#334155;line-height:1.65;">
                       <tr>
-                        <td style="padding-bottom:6px;width:95px;color:#66665f;"><strong>Venue:</strong></td>
-                        <td style="padding-bottom:6px;color:#111111;">Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai</td>
+                        <td style="padding:4px 0;width:95px;color:#64748b;font-weight:700;vertical-align:top;">Venue:</td>
+                        <td style="padding:4px 0;font-weight:600;color:#0f172a;">Chhatrapati Shivaji Maharaj University (CSMU), Panvel</td>
                       </tr>
                       <tr>
-                        <td style="padding-bottom:6px;color:#66665f;"><strong>Format:</strong></td>
-                        <td style="padding-bottom:6px;color:#111111;">1-Day Intensive Entrepreneurship Workshop</td>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;vertical-align:top;">Format:</td>
+                        <td style="padding:4px 0;font-weight:600;color:#0f172a;">1-Day Hands-on Entrepreneurship Training</td>
                       </tr>
                       <tr>
-                        <td style="padding-bottom:6px;color:#66665f;"><strong>Certification:</strong></td>
-                        <td style="padding-bottom:6px;color:#ff5a1f;"><strong>Certified by E-Cell, IIT Bombay</strong></td>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;vertical-align:top;">Certificate:</td>
+                        <td style="padding:4px 0;font-weight:700;color:#4f46e5;">Official Participation Certificate by E-Cell, IIT Bombay</td>
                       </tr>
                       <tr>
-                        <td style="padding-bottom:6px;color:#66665f;"><strong>Takeaway:</strong></td>
-                        <td style="padding-bottom:6px;color:#111111;">Startup Kit + Business Model Canvas</td>
+                        <td style="padding:4px 0;color:#64748b;font-weight:700;vertical-align:top;">Takeaways:</td>
+                        <td style="padding:4px 0;font-weight:600;color:#0f172a;">Physical Startup Kit &bull; Business Canvas &bull; Networking</td>
                       </tr>
                     </table>
                   </td>
@@ -629,42 +1247,39 @@ function buildTicketEmailHtml(attendee, qrUrl) {
             </td>
           </tr>
 
-          <!-- Important Guidelines -->
+          <!-- ATTENDEE GUIDELINES -->
           <tr>
-            <td style="padding:0 28px 24px;">
-              <div style="font-size:13px;font-weight:800;color:#111111;margin-bottom:10px;text-transform:uppercase;letter-spacing:0.06em;">
-                Important Attendee Guidelines
+            <td style="padding:0 24px 20px;">
+              <div style="font-size:11.5px;font-weight:800;color:#0f172a;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">
+                Important Guidelines for Event Day
               </div>
-              <ul style="margin:0;padding-left:18px;color:#66665f;font-size:13px;line-height:1.7;">
-                <li>Please carry your valid <strong>College Photo ID Card</strong> along with this digital pass.</li>
-                <li>Show the QR code on your mobile phone at the registration desk for seamless check-in.</li>
-                <li>Your physical <strong>Startup Kit</strong> (featuring the Business Model Canvas) will be handed over at the venue.</li>
-                <li>Participate in all sessions to receive your official <strong>E-Cell IIT Bombay Certificate of Participation</strong>.</li>
-              </ul>
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:12.5px;color:#475569;line-height:1.65;">
+                <tr>
+                  <td style="padding:4px 0;vertical-align:top;width:22px;color:#4f46e5;font-weight:800;">1.</td>
+                  <td style="padding:4px 0;">Please bring your valid <strong>College Photo ID Card</strong> along with this pass.</td>
+                </tr>
+                <tr>
+                  <td style="padding:4px 0;vertical-align:top;color:#4f46e5;font-weight:800;">2.</td>
+                  <td style="padding:4px 0;">Have your QR code ready on your phone or keep a printout for fast gate check-in.</td>
+                </tr>
+                <tr>
+                  <td style="padding:4px 0;vertical-align:top;color:#4f46e5;font-weight:800;">3.</td>
+                  <td style="padding:4px 0;">Your physical <strong>Startup Delegate Kit</strong> will be handed over at the auditorium desk.</td>
+                </tr>
+              </table>
             </td>
           </tr>
 
-          <!-- Email Delivery Notice -->
+          <!-- FOOTER -->
           <tr>
-            <td style="padding:0 28px 24px;">
-              <div style="background-color:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;text-align:center;">
-                <span style="color:#c78000;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.05em;">Important Inbox Notice</span>
-                <p style="color:#78350f;font-size:12px;margin:4px 0 0;line-height:1.5;">
-                  If this email arrived in your <strong>Spam / Promotions</strong> folder, please click <strong>"Not Spam"</strong> to receive critical event updates.
-                </p>
-              </div>
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="padding:24px 28px;background-color:#111111;color:#ffffff;text-align:center;">
-              <div style="font-size:13px;font-weight:800;color:#ffffff;margin-bottom:4px;">
+            <td style="padding:22px 24px;background:#0f172a;color:#ffffff;text-align:center;">
+              <div style="font-size:12.5px;font-weight:800;color:#ffffff;margin-bottom:4px;letter-spacing:0.02em;">
                 Incubation, Innovation &amp; Entrepreneurship Cell (IIEC)
               </div>
-              <div style="font-size:11.5px;color:#a1a1aa;line-height:1.6;">
-                Chhatrapati Shivaji Maharaj University, Panvel, Navi Mumbai<br>
-                Helpline: +91 94666 05579 &bull; <a href="https://iiec.in" style="color:#ff986e;text-decoration:none;">iiec.in</a> &bull; <a href="mailto:${CONFIG.REPLY_TO_EMAIL}" style="color:#ff986e;text-decoration:none;">${CONFIG.REPLY_TO_EMAIL}</a>
+              <div style="font-size:11.5px;color:#94a3b8;line-height:1.65;">
+                Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai<br>
+                Student Coordination Desk &bull; Helpline: <strong>+91 94666 05579</strong><br>
+                Official Portal: <a href="https://iiec.in/illuminate" style="color:#a5b4fc;text-decoration:none;font-weight:700;">iiec.in/illuminate</a>
               </div>
             </td>
           </tr>
@@ -1586,35 +2201,113 @@ function buildAdminSidebarHtml(isStandaloneWeb) {
 }
 
 function buildBroadcastEmailHtml(subject, messageText) {
-  var formatted = escapeHtml(messageText).replace(/\\n/g, '<br>');
+  var formatted = escapeHtml(messageText).replace(/\n/g, '<br>');
   return `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light">
   <title>${escapeHtml(subject)}</title>
+  <style>
+    body, table, td, p, a, li, blockquote { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; display: block; }
+    body { width: 100% !important; min-width: 100%; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    @media only screen and (max-width: 580px) {
+      .email-outer-td { padding: 12px 8px !important; }
+      .main-table { width: 100% !important; border-radius: 14px !important; }
+      .header-cell { padding: 24px 16px 18px !important; }
+      .brand-title { font-size: 24px !important; }
+      .content-cell { padding: 20px 16px !important; }
+      .venue-box { padding: 14px 12px !important; }
+      .btn-action { display: block !important; width: 100% !important; box-sizing: border-box !important; text-align: center !important; }
+    }
+  </style>
 </head>
-<body style="margin:0;padding:24px 14px;background:#f5f5f0;font-family:'Inter',system-ui,sans-serif;color:#111;">
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;margin:0 auto;background:#fff;border:1px solid #d8d8d0;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.06);">
-    <tr><td style="height:4px;background:#ff5a1f;"></td></tr>
+<body style="margin:0;padding:0;background-color:#f1f5f9;-webkit-font-smoothing:antialiased;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f1f5f9;">
     <tr>
-      <td style="padding:24px 28px;text-align:center;border-bottom:1px solid #f0f0ea;">
-        <div style="font-size:11px;font-weight:800;color:#ff5a1f;letter-spacing:1.5px;text-transform:uppercase;">E-CELL IIT BOMBAY &times; IIEC CSMU</div>
-        <div style="font-size:24px;font-weight:900;color:#111;margin-top:4px;">illuminate <span style="color:#ff5a1f;">2026</span></div>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:28px;">
-        <h2 style="font-size:18px;font-weight:800;margin:0 0 16px;color:#111;">${escapeHtml(subject)}</h2>
-        <div style="font-size:14px;line-height:1.7;color:#444;">${formatted}</div>
-        <div style="margin-top:28px;padding:16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:12.5px;color:#92400e;">
-          <strong>Venue:</strong> CSMU Campus, Panvel &bull; Carry your College Photo ID Card.
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:20px 28px;background:#111;color:#fff;text-align:center;font-size:11.5px;color:#a1a1aa;">
-        IIEC CSMU &bull; <a href="https://iiec.in/illuminate" style="color:#ff986e;text-decoration:none;">iiec.in/illuminate</a> &bull; Helpline: +91 94666 05579
+      <td align="center" class="email-outer-td" style="padding:32px 14px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="main-table" style="max-width:580px;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;box-shadow:0 12px 36px rgba(15,23,42,0.07);">
+          
+          <!-- Top Indigo Gradient Bar -->
+          <tr>
+            <td style="height:6px;background:linear-gradient(90deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);"></td>
+          </tr>
+
+          <!-- Header -->
+          <tr>
+            <td class="header-cell" style="padding:30px 28px 20px;text-align:center;background:#ffffff;border-bottom:1px solid #f1f5f9;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
+                <tr>
+                  <td style="background:#eef2ff;border:1px solid #c7d2fe;padding:5px 16px;border-radius:999px;font-size:10.5px;font-weight:800;color:#4f46e5;letter-spacing:1.5px;text-transform:uppercase;">
+                    E-CELL IIT BOMBAY &times; IIEC CSMU
+                  </td>
+                </tr>
+              </table>
+              <h1 class="brand-title" style="font-size:28px;font-weight:900;color:#0f172a;letter-spacing:-0.03em;line-height:1.15;margin:0 0 6px;">
+                illuminate <span style="color:#6366f1;">2026</span>
+              </h1>
+              <div style="font-size:13px;font-weight:600;color:#64748b;line-height:1.4;">
+                Important Workshop Update &amp; Announcement
+              </div>
+            </td>
+          </tr>
+
+          <!-- Content Body -->
+          <tr>
+            <td class="content-cell" style="padding:28px 28px 24px;">
+              <h2 style="font-size:19px;font-weight:800;color:#0f172a;line-height:1.35;margin:0 0 16px;letter-spacing:-0.02em;">
+                ${escapeHtml(subject)}
+              </h2>
+              
+              <div style="font-size:14.5px;line-height:1.75;color:#334155;margin-bottom:24px;">
+                ${formatted}
+              </div>
+
+              <!-- Venue Info Pill Box -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" class="venue-box" style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:16px 18px;margin-bottom:20px;">
+                <tr>
+                  <td>
+                    <div style="font-size:11px;font-weight:800;color:#4f46e5;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
+                      WORKSHOP LOCATION
+                    </div>
+                    <div style="font-size:13px;font-weight:600;color:#0f172a;line-height:1.45;">
+                      Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai
+                    </div>
+                    <div style="font-size:12px;color:#64748b;margin-top:2px;">
+                      Please arrive 15 minutes prior to start time and carry your College Photo ID Card.
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Portal Link CTA -->
+              <div style="text-align:center;margin-top:24px;">
+                <a href="https://iiec.in/illuminate" target="_blank" class="btn-action" style="display:inline-block;background:linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);color:#ffffff;text-decoration:none;font-size:13px;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;padding:12px 28px;border-radius:999px;box-shadow:0 6px 18px rgba(99,102,241,0.35);">
+                  Visit Workshop Portal &rarr;
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:22px 24px;background:#090d16;color:#ffffff;text-align:center;">
+              <div style="font-size:12.5px;font-weight:800;color:#ffffff;margin-bottom:4px;letter-spacing:0.02em;">
+                Incubation, Innovation &amp; Entrepreneurship Cell (IIEC)
+              </div>
+              <div style="font-size:11.5px;color:#94a3b8;line-height:1.6;">
+                Chhatrapati Shivaji Maharaj University (CSMU), Panvel &bull; Helpline: <strong>+91 94666 05579</strong><br>
+                Official Site: <a href="https://iiec.in/illuminate" style="color:#a5b4fc;text-decoration:none;font-weight:700;">iiec.in/illuminate</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
       </td>
     </tr>
   </table>
@@ -1625,42 +2318,109 @@ function buildBroadcastEmailHtml(subject, messageText) {
 function buildRejectionEmailHtml(attendee, reason) {
   return `
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 <head>
   <meta charset="utf-8">
-  <title>Payment Update: illuminate 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light">
+  <title>Payment Update: illuminate 2026 — ${escapeHtml(attendee.regId)}</title>
+  <style>
+    body, table, td, p, a, li, blockquote { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; margin: 0; padding: 0; }
+    table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; }
+    img { -ms-interpolation-mode: bicubic; border: 0; outline: none; text-decoration: none; display: block; }
+    body { width: 100% !important; min-width: 100%; background-color: #f1f5f9; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    @media only screen and (max-width: 580px) {
+      .email-outer-td { padding: 12px 8px !important; }
+      .main-table { width: 100% !important; border-radius: 14px !important; }
+      .header-cell { padding: 24px 16px 18px !important; }
+      .content-cell { padding: 20px 16px !important; }
+      .btn-action { display: block !important; width: 100% !important; box-sizing: border-box !important; text-align: center !important; }
+    }
+  </style>
 </head>
-<body style="margin:0;padding:24px 14px;background:#f5f5f0;font-family:'Inter',system-ui,sans-serif;color:#111;">
-  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:580px;margin:0 auto;background:#fff;border:1px solid #d8d8d0;border-radius:18px;overflow:hidden;">
-    <tr><td style="height:4px;background:#dc2626;"></td></tr>
+<body style="margin:0;padding:0;background-color:#f1f5f9;-webkit-font-smoothing:antialiased;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#f1f5f9;">
     <tr>
-      <td style="padding:24px 28px;text-align:center;border-bottom:1px solid #f0f0ea;">
-        <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1.5px;text-transform:uppercase;">Registration Action Required</div>
-        <div style="font-size:22px;font-weight:900;color:#111;margin-top:4px;">illuminate <span style="color:#ff5a1f;">2026</span></div>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:28px;">
-        <h2 style="font-size:17px;font-weight:800;margin:0 0 12px;color:#111;">Hello ${escapeHtml(attendee.fullName)},</h2>
-        <p style="font-size:13.5px;color:#555;line-height:1.65;margin:0 0 16px;">
-          We reviewed your submitted payment details for Registration ID <strong>${escapeHtml(attendee.regId)}</strong>. Unfortunately, we were unable to verify your payment with our bank records.
-        </p>
-        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:14px;margin-bottom:20px;font-size:13px;color:#991b1b;">
-          <strong>Reason Noted:</strong> ${escapeHtml(reason)}
-        </div>
-        <p style="font-size:13.5px;color:#555;line-height:1.65;margin:0 0 24px;">
-          If you have completed the payment of ₹${CONFIG.FEE_AMOUNT} via UPI, please resubmit your 12-digit UTR on our portal or contact the coordination desk with your payment screenshot.
-        </p>
-        <div style="text-align:center;">
-          <a href="https://iiec.in/illuminate#register" style="display:inline-block;background:#ff5a1f;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:12px 24px;border-radius:999px;">
-            Go to illuminate Portal
-          </a>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td style="padding:18px 24px;background:#111;color:#a1a1aa;text-align:center;font-size:11.5px;">
-        IIEC CSMU &bull; Student Coordination Desk &bull; Helpline: +91 94666 05579
+      <td align="center" class="email-outer-td" style="padding:32px 14px;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" class="main-table" style="max-width:580px;background-color:#ffffff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden;box-shadow:0 12px 36px rgba(15,23,42,0.07);">
+          
+          <!-- Top Alert Red Accent Bar -->
+          <tr>
+            <td style="height:6px;background:linear-gradient(90deg, #f43f5e 0%, #e11d48 100%);"></td>
+          </tr>
+
+          <!-- Header -->
+          <tr>
+            <td class="header-cell" style="padding:30px 28px 20px;text-align:center;background:#ffffff;border-bottom:1px solid #f1f5f9;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
+                <tr>
+                  <td style="background:#fff1f2;border:1px solid #fecdd3;padding:5px 16px;border-radius:999px;font-size:10.5px;font-weight:800;color:#e11d48;letter-spacing:1.5px;text-transform:uppercase;">
+                    REGISTRATION ACTION REQUIRED
+                  </td>
+                </tr>
+              </table>
+              <h1 style="font-size:26px;font-weight:900;color:#0f172a;letter-spacing:-0.03em;line-height:1.15;margin:0 0 6px;">
+                illuminate <span style="color:#6366f1;">2026</span>
+              </h1>
+              <div style="font-size:13px;font-weight:600;color:#64748b;line-height:1.4;">
+                Payment Verification Notice &bull; Pass Pending
+              </div>
+            </td>
+          </tr>
+
+          <!-- Content Body -->
+          <tr>
+            <td class="content-cell" style="padding:28px 28px 24px;">
+              <h2 style="font-size:18px;font-weight:800;color:#0f172a;line-height:1.35;margin:0 0 12px;letter-spacing:-0.02em;">
+                Hello ${escapeHtml(attendee.fullName)},
+              </h2>
+              
+              <p style="font-size:14px;color:#475569;line-height:1.7;margin:0 0 16px;">
+                We reviewed your submitted payment details for Registration ID <strong style="color:#0f172a;font-family:monospace;">${escapeHtml(attendee.regId)}</strong>. Unfortunately, we were unable to match the transaction with our bank statements.
+              </p>
+
+              <!-- Reason Box -->
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#fff1f2;border:1px solid #fecdd3;border-radius:12px;padding:16px 18px;margin-bottom:20px;">
+                <tr>
+                  <td>
+                    <div style="font-size:11px;font-weight:800;color:#be123c;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;">
+                      REASON NOTED BY DESK
+                    </div>
+                    <div style="font-size:13.5px;font-weight:700;color:#881337;line-height:1.5;">
+                      ${escapeHtml(reason)}
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="font-size:14px;color:#475569;line-height:1.7;margin:0 0 24px;">
+                If you have completed the payment of <strong>₹${CONFIG.FEE_AMOUNT}</strong> via UPI, please resubmit your correct 12-digit UTR on our portal or contact our student coordination helpline with your payment receipt screenshot.
+              </p>
+
+              <!-- Action Button -->
+              <div style="text-align:center;">
+                <a href="https://iiec.in/illuminate#register" target="_blank" class="btn-action" style="display:inline-block;background:linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);color:#ffffff;text-decoration:none;font-size:13px;font-weight:800;letter-spacing:0.04em;text-transform:uppercase;padding:12px 28px;border-radius:999px;box-shadow:0 6px 18px rgba(225,29,72,0.35);">
+                  Update Payment Details &rarr;
+                </a>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding:22px 24px;background:#090d16;color:#ffffff;text-align:center;">
+              <div style="font-size:12.5px;font-weight:800;color:#ffffff;margin-bottom:4px;letter-spacing:0.02em;">
+                IIEC CSMU Coordination Desk
+              </div>
+              <div style="font-size:11.5px;color:#94a3b8;line-height:1.6;">
+                Helpline: <strong>+91 94666 05579</strong> &bull; Email: <a href="mailto:${CONFIG.REPLY_TO_EMAIL}" style="color:#a5b4fc;text-decoration:none;">${CONFIG.REPLY_TO_EMAIL}</a><br>
+                Official Portal: <a href="https://iiec.in/illuminate" style="color:#a5b4fc;text-decoration:none;font-weight:700;">iiec.in/illuminate</a>
+              </div>
+            </td>
+          </tr>
+
+        </table>
       </td>
     </tr>
   </table>
@@ -1826,3 +2586,33 @@ function escapeHtml(str) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 }
+
+/**
+ * Trigger: Automatically dispatches the Official Ticket Pass with Entry QR Code
+ * when an organizer manually changes the Status column to 'Verified' in Google Sheets.
+ */
+function onEdit(e) {
+  try {
+    if (!e || !e.range) return;
+    var sheet = e.range.getSheet();
+    if (sheet.getName() !== CONFIG.SHEET_NAME) return;
+
+    var row = e.range.getRow();
+    var col = e.range.getColumn();
+
+    // If edit occurred in Column 14 (Status)
+    if (col === COL.STATUS && row > 1) {
+      var newStatus = String(e.value || sheet.getRange(row, COL.STATUS).getValue()).trim();
+      var ticketSent = String(sheet.getRange(row, COL.TICKET_SENT).getValue()).trim();
+
+      if (newStatus === 'Verified' && ticketSent !== 'Yes') {
+        var userEmail = Session.getActiveUser().getEmail() || 'Admin';
+        sheet.getRange(row, COL.VERIFIER).setValue(userEmail);
+        sendTicketEmailForRow(sheet, row);
+      }
+    }
+  } catch (err) {
+    console.log('onEdit error: ' + err.message);
+  }
+}
+

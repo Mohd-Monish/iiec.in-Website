@@ -2,7 +2,8 @@
  * ILLUMINATE 2026 — Client-side Application Script
  * E-Cell IIT Bombay × IIEC CSMU
  * Handles multi-step registration, dynamic UPI QR generation (₹749),
- * live field validation, UTR verification submission, and digital pass rendering.
+ * live field validation, two-stage lead capture, UTR verification submission,
+ * draft auto-restore, light-theme digital pass rendering & live database verification.
  */
 
 (function () {
@@ -13,9 +14,10 @@
     EVENT_NAME: 'illuminate 2026',
     ORGANIZER: 'IIEC CSMU × E-Cell IIT Bombay',
     FEE_AMOUNT: 749, // Special NEC discounted fee in INR
-    UPI_ID: 'iiec-csmu@okhdfcbank', // Replace with university/cell official UPI ID
-    UPI_NAME: 'IIEC CSMU',
-    // Paste published Apps Script /exec URL here:
+    UPI_ID: 'chavanbhumika1007@oksbi', // Receiver Official UPI ID
+    UPI_NAME: 'Bhumika Chavan',
+    PAYMENT_QR_SRC: './assets/illuminate payment qr.jpeg',
+    // Published Apps Script /exec Webhook Endpoint:
     APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycby7QscQp692FD9ut0Gh-QbmuoktP4YKYzyObS1acqLdMznEsA-E4cXP_e4dcePSVEEM/exec'
   };
 
@@ -72,7 +74,6 @@
     trigger.addEventListener('click', function () {
       var isOpen = card.classList.contains('active');
 
-      // Close other accordions
       faqCards.forEach(function (other) {
         if (other !== card) {
           other.classList.remove('active');
@@ -95,7 +96,7 @@
     });
   });
 
-  // ── 3. FORM VALIDATION ─────────────────────────────────────────
+  // ── 3. FORM VALIDATION & DRAFT RECOVERY ────────────────────────
   var form = document.getElementById('illuminateRegForm');
   if (!form) return;
 
@@ -231,9 +232,11 @@
     });
     el.addEventListener('input', function () {
       clearFieldError(id);
+      saveFormStateToDraft();
     });
     el.addEventListener('change', function () {
       clearFieldError(id);
+      saveFormStateToDraft();
     });
   });
 
@@ -241,12 +244,14 @@
   form.querySelectorAll('input[name="hasIdea"]').forEach(function (radio) {
     radio.addEventListener('change', function () {
       clearFieldError('hasIdeaGroup');
+      saveFormStateToDraft();
     });
   });
 
   form.querySelectorAll('input[name="attendedBefore"]').forEach(function (radio) {
     radio.addEventListener('change', function () {
       clearFieldError('attendedGroup');
+      saveFormStateToDraft();
     });
   });
 
@@ -264,7 +269,267 @@
     }
   });
 
-  // ── 4. STEP 1 SUBMISSION → GO TO STEP 2 (PAYMENT) ──────────────
+  // Auto-save form inputs to localStorage draft as user types
+  function saveFormStateToDraft() {
+    try {
+      var draft = {
+        regId: state.regId || '',
+        fullName: document.getElementById('fullName')?.value.trim() || '',
+        email: document.getElementById('email')?.value.trim() || '',
+        mobile: document.getElementById('mobile')?.value.trim() || '',
+        college: document.getElementById('college')?.value.trim() || '',
+        course: document.getElementById('course')?.value.trim() || '',
+        year: document.getElementById('year')?.value || '',
+        hasIdea: form.querySelector('input[name="hasIdea"]:checked')?.value || '',
+        attendedBefore: form.querySelector('input[name="attendedBefore"]:checked')?.value || '',
+        expectations: document.getElementById('expectations')?.value.trim() || '',
+        draftTimestamp: new Date().toISOString()
+      };
+      if (draft.fullName || draft.email || draft.mobile) {
+        localStorage.setItem('illuminate_pending_reg', JSON.stringify(draft));
+      }
+    } catch (e) {}
+  }
+
+  // Populate form fields from data object
+  function populateStep1Fields(data) {
+    if (!data) return;
+    if (data.fullName && document.getElementById('fullName')) document.getElementById('fullName').value = data.fullName;
+    if (data.email && document.getElementById('email')) document.getElementById('email').value = data.email;
+    if (data.mobile && document.getElementById('mobile')) document.getElementById('mobile').value = data.mobile;
+    if (data.college && document.getElementById('college')) document.getElementById('college').value = data.college;
+    if (data.course && document.getElementById('course')) document.getElementById('course').value = data.course;
+    if (data.year && document.getElementById('year')) document.getElementById('year').value = data.year;
+    if (data.expectations && document.getElementById('expectations')) document.getElementById('expectations').value = data.expectations;
+
+    if (data.hasIdea) {
+      var ideaRadio = form.querySelector('input[name="hasIdea"][value="' + data.hasIdea + '"]');
+      if (ideaRadio) ideaRadio.checked = true;
+    }
+    if (data.attendedBefore) {
+      var attRadio = form.querySelector('input[name="attendedBefore"][value="' + data.attendedBefore + '"]');
+      if (attRadio) attRadio.checked = true;
+    }
+
+    var a1 = document.getElementById('agreeAccurate');
+    var a2 = document.getElementById('agreeRules');
+    var a3 = document.getElementById('agreePayment');
+    if (a1) a1.checked = true;
+    if (a2) a2.checked = true;
+    if (a3) a3.checked = true;
+
+    if (data.regId) state.regId = data.regId;
+    if (data.fullName) state.fullName = data.fullName;
+    if (data.email) state.email = data.email;
+    if (data.mobile) state.mobile = data.mobile;
+    if (data.college) state.college = data.college;
+    if (data.course) state.course = data.course;
+    if (data.year) state.year = data.year;
+    if (data.hasIdea) state.hasIdea = data.hasIdea;
+    if (data.attendedBefore) state.attendedBefore = data.attendedBefore;
+    if (data.expectations) state.expectations = data.expectations;
+  }
+
+  // Navigate to Step 2 Payment station
+  function transitionToStep2(showMessage) {
+    var regIdDisplay = document.getElementById('regIdDisplay');
+    if (regIdDisplay) regIdDisplay.textContent = state.regId || 'ILL-PENDING';
+
+    var payPayerName = document.getElementById('payPayerName');
+    if (payPayerName) payPayerName.textContent = state.fullName || 'Attendee';
+
+    var qrImg = document.getElementById('paymentQrImage');
+    if (qrImg) {
+      qrImg.src = CONFIG.PAYMENT_QR_SRC;
+      qrImg.alt = 'Google Pay QR Code for ' + state.regId + ' (Bhumika Chavan)';
+    }
+
+    var upiUri = 'upi://pay?pa=' + encodeURIComponent(CONFIG.UPI_ID) +
+                 '&pn=' + encodeURIComponent(CONFIG.UPI_NAME) +
+                 '&am=' + CONFIG.FEE_AMOUNT +
+                 '&tn=' + encodeURIComponent('illuminate 2026 ' + state.regId) +
+                 '&cu=INR';
+
+    var mobilePayBtn = document.getElementById('mobileUpiIntentBtn');
+    if (mobilePayBtn) mobilePayBtn.href = upiUri;
+
+    // Switch step panes
+    step1Pane.classList.remove('active');
+    step2Pane.classList.add('active');
+
+    stepper1.classList.remove('active');
+    stepper1.classList.add('completed');
+    stepper2.classList.add('active');
+
+    var station = document.getElementById('register');
+    if (station) {
+      station.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    if (showMessage) {
+      showToast('Registration loaded: ' + state.regId);
+    }
+  }
+
+  // Restore saved draft on load
+  function initDraftAutoRestore() {
+    try {
+      var saved = JSON.parse(localStorage.getItem('illuminate_pending_reg') || 'null');
+      if (!saved || (!saved.fullName && !saved.email)) return;
+
+      populateStep1Fields(saved);
+
+      // Show resume notification banner
+      var resumeBanner = document.getElementById('regResumeBanner');
+      var draftName = document.getElementById('savedDraftName');
+      var draftId = document.getElementById('savedDraftId');
+      if (resumeBanner && draftName && draftId) {
+        draftName.textContent = saved.fullName || 'Attendee';
+        draftId.textContent = saved.regId || 'In Progress';
+        resumeBanner.style.display = 'block';
+
+        var jumpBtn = document.getElementById('jumpToPayBtn');
+        if (jumpBtn) {
+          jumpBtn.addEventListener('click', function () {
+            if (validateStep1()) {
+              step1SubmitBtn.click();
+            } else {
+              showToast('Please verify all required fields.');
+            }
+          });
+        }
+      }
+    } catch (e) {}
+  }
+
+  initDraftAutoRestore();
+
+  // ── RESUME REGISTRATION BY ID OR EMAIL (LOCAL + LIVE BACKEND) ───
+  async function resumeRegistrationById(query) {
+    if (!query) return;
+    var q = query.trim().toUpperCase();
+
+    var errBox = document.getElementById('resumeLookupError');
+    if (errBox) errBox.style.display = 'none';
+
+    // 1. Check localStorage first for instant restore
+    try {
+      var localPending = JSON.parse(localStorage.getItem('illuminate_pending_reg') || 'null');
+      if (localPending && (localPending.regId === q || (localPending.email && localPending.email.toUpperCase() === q))) {
+        populateStep1Fields(localPending);
+        transitionToStep2(true);
+        return;
+      }
+    } catch (e) {}
+
+    // 2. Fetch from Google Apps Script Backend
+    try {
+      var sep = CONFIG.APPS_SCRIPT_URL.indexOf('?') === -1 ? '?' : '&';
+      var lookupUrl = CONFIG.APPS_SCRIPT_URL + sep + 'action=get_registration&id=' + encodeURIComponent(q) + '&format=json';
+
+      var res = await fetch(lookupUrl, { headers: { 'Accept': 'application/json' } });
+      var json = await res.json();
+
+      if (json && json.ok && json.found && json.attendee) {
+        var rec = json.attendee;
+        populateStep1Fields(rec);
+
+        // If already paid and verified, show pass directly
+        if (rec.status === 'Verified' && rec.utrNumber) {
+          state.utrNumber = rec.utrNumber;
+          renderConfirmationScreen(rec);
+          showToast('Registration is already verified for ' + rec.fullName);
+        } else {
+          transitionToStep2(true);
+          showToast('Welcome back, ' + rec.fullName + '! Complete payment to confirm your seat.');
+        }
+
+        // Hide lookup box on success
+        var lookupBox = document.getElementById('resumeLookupBox');
+        if (lookupBox) lookupBox.style.display = 'none';
+
+      } else {
+        if (errBox) {
+          errBox.textContent = 'Registration ID or Email "' + query + '" was not found. Please check or register below.';
+          errBox.style.display = 'block';
+        }
+        showToast('Registration not found.');
+      }
+    } catch (fetchErr) {
+      console.warn('Lookup error:', fetchErr);
+      if (errBox) {
+        errBox.textContent = 'Could not reach database. Please check your internet or enter details manually.';
+        errBox.style.display = 'block';
+      }
+    }
+  }
+
+  // ── URL QUERY RESUME HANDLER (?resume=ILL-XXXXXX) ───────────────
+  (function checkUrlForResume() {
+    try {
+      var urlParams = new URLSearchParams(window.location.search);
+      var resumeId = urlParams.get('resume') || urlParams.get('continue') || urlParams.get('regId');
+      if (resumeId) {
+        setTimeout(function () {
+          resumeRegistrationById(resumeId);
+        }, 300);
+      }
+    } catch (e) {}
+  })();
+
+  // ── RESUME TRIGGER & LOOKUP EVENT LISTENERS ─────────────────────
+  var toggleResumeBtn = document.getElementById('toggleResumeLookupBtn');
+  var resumeLookupBox = document.getElementById('resumeLookupBox');
+  if (toggleResumeBtn && resumeLookupBox) {
+    toggleResumeBtn.addEventListener('click', function () {
+      var isVisible = resumeLookupBox.style.display === 'block';
+      resumeLookupBox.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible) {
+        var input = document.getElementById('resumeLookupInput');
+        if (input) input.focus();
+      }
+    });
+  }
+
+  var lookupSubmitBtn = document.getElementById('lookupResumeSubmitBtn');
+  var resumeInput = document.getElementById('resumeLookupInput');
+  if (lookupSubmitBtn && resumeInput) {
+    lookupSubmitBtn.addEventListener('click', function () {
+      var val = resumeInput.value.trim();
+      if (!val) {
+        var errBox = document.getElementById('resumeLookupError');
+        if (errBox) {
+          errBox.textContent = 'Please enter your Registration ID (e.g. ILL-685263) or email.';
+          errBox.style.display = 'block';
+        }
+        return;
+      }
+      lookupSubmitBtn.disabled = true;
+      lookupSubmitBtn.innerHTML = `
+        <svg class="animate-spin btn-icon btn-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width:14px;height:14px;animation:spin 1s linear infinite;flex-shrink:0;">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"></circle>
+          <path class="opacity-75" fill="currentColor" opacity="0.75" d="M4 12a8 8 0 018-8v8H4z"></path>
+        </svg>
+        <span>Searching…</span>
+      `;
+      resumeRegistrationById(val).finally(function () {
+        lookupSubmitBtn.disabled = false;
+        lookupSubmitBtn.innerHTML = `
+          <span>Find &amp; Resume</span>
+          <svg class="btn-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:14px;height:14px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        `;
+      });
+    });
+
+    resumeInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        lookupSubmitBtn.click();
+      }
+    });
+  }
+
+  // ── 4. STEP 1 SUBMISSION → LEAD CAPTURE & STEP 2 (PAYMENT) ─────
   var step1SubmitBtn = document.getElementById('step1SubmitBtn');
   step1SubmitBtn.addEventListener('click', function (e) {
     e.preventDefault();
@@ -278,8 +543,12 @@
       return;
     }
 
+    // Ensure Reg ID
+    if (!state.regId) {
+      state.regId = generateRegistrationId();
+    }
+
     // Populate state
-    state.regId = generateRegistrationId();
     state.fullName = document.getElementById('fullName').value.trim();
     state.email = document.getElementById('email').value.trim();
     state.mobile = document.getElementById('mobile').value.trim();
@@ -291,52 +560,23 @@
     state.expectations = document.getElementById('expectations')?.value.trim() || 'Learn entrepreneurship fundamentals';
     state.submittedAt = new Date().toISOString();
 
-    // Update Step 2 UI elements
-    var regIdDisplay = document.getElementById('regIdDisplay');
-    if (regIdDisplay) regIdDisplay.textContent = state.regId;
+    // 1. Save locally so student can continue anytime
+    try {
+      localStorage.setItem('illuminate_pending_reg', JSON.stringify(state));
+    } catch (err) {}
 
-    var payPayerName = document.getElementById('payPayerName');
-    if (payPayerName) payPayerName.textContent = state.fullName;
+    // 2. CRITICAL: Immediately send Stage 1 Lead Capture to Google Sheets & trigger draft resume email!
+    var leadPayload = Object.assign({}, state, { action: 'lead_capture' });
+    submitRegistrationToBackend(leadPayload).catch(function (err) {
+      console.log('Stage 1 background lead sync status:', err);
+    });
 
-    // Generate Dynamic UPI QR Code
-    // Format: upi://pay?pa={UPI_ID}&pn={NAME}&am={AMOUNT}&tn={NOTE}&cu=INR
-    var upiUri = 'upi://pay?pa=' + encodeURIComponent(CONFIG.UPI_ID) +
-                 '&pn=' + encodeURIComponent(CONFIG.UPI_NAME) +
-                 '&am=' + CONFIG.FEE_AMOUNT +
-                 '&tn=' + encodeURIComponent('illuminate 2026 ' + state.regId) +
-                 '&cu=INR';
-
-    var qrImg = document.getElementById('paymentQrImage');
-    if (qrImg) {
-      // Using fast, reliable QR API
-      qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=10&data=' + encodeURIComponent(upiUri);
-      qrImg.alt = 'UPI Payment QR Code for ' + state.regId;
-    }
-
-    // Setup Mobile Intent Button
-    var mobilePayBtn = document.getElementById('mobileUpiIntentBtn');
-    if (mobilePayBtn) {
-      mobilePayBtn.href = upiUri;
-    }
-
-    // Switch step panes
-    step1Pane.classList.remove('active');
-    step2Pane.classList.add('active');
-
-    stepper1.classList.remove('active');
-    stepper1.classList.add('completed');
-    stepper2.classList.add('active');
-
-    // Scroll smoothly to payment station
-    var station = document.getElementById('register');
-    if (station) {
-      station.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
+    // 3. Transition to Step 2
+    transitionToStep2(false);
     showToast('Registration ID assigned: ' + state.regId);
   });
 
-  // ── 5. COPY UPI ID & REGISTRATION ID ────────────────────────────
+  // ── 5. COPY UPI ID & REGISTRATION ID & RESUME LINK ──────────────
   var copyUpiBtn = document.getElementById('copyUpiIdBtn');
   if (copyUpiBtn) {
     copyUpiBtn.addEventListener('click', function () {
@@ -353,6 +593,37 @@
     copyRegIdBtn.addEventListener('click', function () {
       navigator.clipboard.writeText(state.regId).then(function () {
         showToast('Registration ID copied: ' + state.regId);
+      });
+    });
+  }
+
+  // Save Draft & Finish Later Button
+  var saveDraftBtn = document.getElementById('saveDraftFinishLaterBtn');
+  if (saveDraftBtn) {
+    saveDraftBtn.addEventListener('click', function () {
+      try {
+        localStorage.setItem('illuminate_pending_reg', JSON.stringify(state));
+      } catch (e) {}
+
+      // Background sync to ensure email is dispatched
+      var leadPayload = Object.assign({}, state, { action: 'lead_capture' });
+      submitRegistrationToBackend(leadPayload);
+
+      var alertBox = document.getElementById('draftSavedAlert');
+      if (alertBox) alertBox.style.display = 'block';
+
+      showToast('Draft saved! We also sent a resume link to ' + (state.email || 'your email'));
+    });
+  }
+
+  var copyResumeBtn = document.getElementById('copyResumeLinkBtn');
+  if (copyResumeBtn) {
+    copyResumeBtn.addEventListener('click', function () {
+      var resumeLink = 'https://iiec.in/illuminate?resume=' + encodeURIComponent(state.regId);
+      navigator.clipboard.writeText(resumeLink).then(function () {
+        showToast('Resume link copied: ' + resumeLink);
+      }).catch(function () {
+        showToast('Resume ID: ' + state.regId);
       });
     });
   }
@@ -396,51 +667,74 @@
       <span>Submitting Verification…</span>
     `;
 
-    // Send payload to backend
-    submitRegistrationToBackend(state)
+    // Send payload to backend with action: payment_submit
+    var paymentPayload = Object.assign({}, state, { action: 'payment_submit' });
+
+    submitRegistrationToBackend(paymentPayload)
       .then(function (res) {
+        // Clear pending draft
+        try { localStorage.removeItem('illuminate_pending_reg'); } catch (e) {}
         renderConfirmationScreen(state);
       })
       .catch(function (err) {
-        console.warn('Backend warning:', err);
+        console.warn('Backend note:', err);
+        try { localStorage.removeItem('illuminate_pending_reg'); } catch (e) {}
         renderConfirmationScreen(state);
       })
       .finally(function () {
         confirmPaymentBtn.disabled = false;
         confirmPaymentBtn.innerHTML = `
-          <span>Submit Payment Verification</span>
+          <span>Submit Verification</span>
           <svg class="btn-icon btn-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:16px;height:16px;max-width:16px;max-height:16px;flex-shrink:0;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         `;
       });
   });
 
-  // ── 7. BACKEND API SUBMISSION ───────────────────────────────────
+  // ── 7. BACKEND API SUBMISSION (ROBUST MULTI-FALLBACK) ───────────
   async function submitRegistrationToBackend(payload) {
     var endpoint = CONFIG.APPS_SCRIPT_URL;
 
-    if (endpoint && endpoint.startsWith('http')) {
-      // Use text/plain to avoid CORS preflight issues on Google Apps Script
-      var response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      });
-      return await response.json();
-    }
-
-    // Fallback: Local demo storage simulation
-    console.log('[illuminate 2026] Registration saved locally (Apps Script pending):', payload);
+    // 1. Cache to localStorage record
     try {
-      var stored = JSON.parse(localStorage.getItem('illuminate_registrations') || '[]');
-      stored.push(payload);
-      localStorage.setItem('illuminate_registrations', JSON.stringify(stored));
+      localStorage.setItem('illuminate_record_' + payload.regId, JSON.stringify({
+        regId: payload.regId,
+        fullName: payload.fullName,
+        email: payload.email,
+        mobile: payload.mobile,
+        college: payload.college,
+        course: payload.course,
+        year: payload.year,
+        fee: CONFIG.FEE_AMOUNT,
+        status: 'Pending Verification',
+        utrNumber: payload.utrNumber || 'Pending / Step 1',
+        checkinStatus: 'Not Checked In',
+        timestamp: new Date().toISOString()
+      }));
     } catch (e) {}
 
-    await new Promise(function (resolve) { setTimeout(resolve, 800); });
-    return { ok: true, message: 'Saved successfully' };
+    if (endpoint && endpoint.startsWith('http')) {
+      try {
+        // Use text/plain to avoid CORS preflight failures on Google Apps Script
+        var response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        return await response.json();
+      } catch (postErr) {
+        console.warn('POST failed, attempting GET fallback beacon:', postErr);
+        // Fallback GET ping in case browser strict CORS blocked redirect
+        var sep = endpoint.indexOf('?') === -1 ? '?' : '&';
+        var getUrl = endpoint + sep + 'action=' + encodeURIComponent(payload.action || 'register') + '&data=' + encodeURIComponent(JSON.stringify(payload));
+        fetch(getUrl, { mode: 'no-cors' }).catch(function () {});
+        return { ok: true, fallback: true, regId: payload.regId };
+      }
+    }
+
+    return { ok: true, localOnly: true, regId: payload.regId };
   }
 
-  // ── 8. RENDER CONFIRMATION SCREEN & DIGITAL PASS ───────────────
+  // ── 8. RENDER CONFIRMATION SCREEN & LIGHT DIGITAL PASS ──────────
   function renderConfirmationScreen(data) {
     // Populate Digital Pass Fields
     var passId = document.getElementById('passRegId');
@@ -467,7 +761,7 @@
     }
 
     // Generate Check-in verification QR code on the pass
-    // Points directly to illuminate page with query verify=ILL-XXXXXX (NOT verify.html)
+    // Points directly to illuminate page with query verify=ILL-XXXXXX
     var passQr = document.getElementById('passQrImage');
     var verifyUrl = window.location.origin + window.location.pathname.replace(/\/+$/, '') + '?verify=' + encodeURIComponent(data.regId);
     if (passQr) {
@@ -475,23 +769,6 @@
       passQr.src = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=6&data=' + encodeURIComponent(verifyUrl);
       passQr.alt = 'Scan to verify registration record ' + data.regId;
     }
-
-    // Cache record in localStorage for instant retrieval & offline scan
-    try {
-      localStorage.setItem('illuminate_record_' + data.regId, JSON.stringify({
-        regId: data.regId,
-        fullName: data.fullName,
-        email: data.email,
-        college: data.college,
-        course: data.course,
-        year: data.year,
-        fee: CONFIG.FEE_AMOUNT,
-        status: 'Pending Verification',
-        utrNumber: data.utrNumber,
-        checkinStatus: 'Not Checked In',
-        timestamp: new Date().toISOString()
-      }));
-    } catch (e) {}
 
     // Switch panes
     step2Pane.classList.remove('active');
@@ -510,7 +787,7 @@
     showToast('Registration Confirmed for ' + data.regId + '!');
   }
 
-  // ── 9. DIRECT PASS DOWNLOAD (HIGH-DPI CANVAS PNG) ──────────────
+  // ── 9. DIRECT LIGHT THEME PASS DOWNLOAD (HIGH-DPI CANVAS PNG) ──
   function downloadPassAsPNG() {
     var regId = state.regId || 'ILL-PASS';
     var fullName = state.fullName || 'Registered Attendee';
@@ -530,136 +807,136 @@
       return;
     }
 
-    // 1. Dark executive background
-    ctx.fillStyle = '#0d1117';
+    // 1. Light Pristine Background
+    ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, w, h);
 
-    // Accent radial glow
-    var radGlow = ctx.createRadialGradient(w / 2, 0, 10, w / 2, 0, 520);
-    radGlow.addColorStop(0, 'rgba(255, 90, 31, 0.22)');
-    radGlow.addColorStop(1, 'rgba(13, 17, 23, 0)');
-    ctx.fillStyle = radGlow;
+    // Subtle luxury background gradient
+    var bgGrad = ctx.createLinearGradient(0, 0, 0, h);
+    bgGrad.addColorStop(0, '#f8fafc');
+    bgGrad.addColorStop(1, '#ffffff');
+    ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, w, h);
 
     // Border
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.16)';
+    ctx.strokeStyle = '#e2e8f0';
     ctx.lineWidth = 3;
-    ctx.strokeRect(12, 12, w - 24, h - 24);
+    ctx.strokeRect(16, 16, w - 32, h - 32);
 
-    // 2. Lanyard Hole simulation
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+    // 2. Lanyard Hole Simulation
+    ctx.fillStyle = '#e2e8f0';
     ctx.beginPath();
-    ctx.roundRect((w - 120) / 2, 28, 120, 16, 8);
+    ctx.roundRect((w - 120) / 2, 32, 120, 16, 8);
     ctx.fill();
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+    ctx.strokeStyle = '#cbd5e1';
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // 3. Flame bar
+    // 3. Flame Accent Bar
     var flameGrad = ctx.createLinearGradient(40, 0, w - 40, 0);
     flameGrad.addColorStop(0, '#ff5a1f');
-    flameGrad.addColorStop(0.5, '#ffb703');
-    flameGrad.addColorStop(1, '#ff5a1f');
+    flameGrad.addColorStop(0.5, '#6366f1');
+    flameGrad.addColorStop(1, '#f59e0b');
     ctx.fillStyle = flameGrad;
-    ctx.fillRect(40, 68, w - 80, 8);
+    ctx.fillRect(40, 72, w - 80, 8);
 
     // 4. Header Top Meta
-    ctx.fillStyle = '#8b949e';
+    ctx.fillStyle = '#64748b';
     ctx.font = '800 18px Inter, -apple-system, sans-serif';
     ctx.textAlign = 'left';
-    ctx.fillText('E-CELL IIT BOMBAY  ×  IIEC CSMU', 48, 118);
+    ctx.fillText('E-CELL IIT BOMBAY  ×  IIEC CSMU', 48, 124);
 
     // Badge Pill
-    ctx.fillStyle = 'rgba(255, 90, 31, 0.16)';
+    ctx.fillStyle = '#eef2ff';
     ctx.beginPath();
-    ctx.roundRect(w - 280, 96, 232, 34, 17);
+    ctx.roundRect(w - 280, 100, 232, 36, 18);
     ctx.fill();
-    ctx.strokeStyle = 'rgba(255, 90, 31, 0.45)';
+    ctx.strokeStyle = '#c7d2fe';
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
-    ctx.fillStyle = '#ff986e';
-    ctx.font = '800 13.5px Inter, -apple-system, sans-serif';
+    ctx.fillStyle = '#4338ca';
+    ctx.font = '800 13px Inter, -apple-system, sans-serif';
     ctx.textAlign = 'center';
-    ctx.fillText('OFFICIAL DELEGATE PASS', w - 164, 118);
+    ctx.fillText('OFFICIAL DELEGATE PASS', w - 164, 123);
 
     // 5. Title Row
     ctx.textAlign = 'left';
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = '#0f172a';
     ctx.font = '900 46px Inter, -apple-system, sans-serif';
-    ctx.fillText('illuminate ', 48, 185);
+    ctx.fillText('illuminate ', 48, 192);
     var illWidth = ctx.measureText('illuminate ').width;
     ctx.fillStyle = '#ff5a1f';
-    ctx.fillText('2026', 48 + illWidth, 185);
+    ctx.fillText('2026', 48 + illWidth, 192);
 
     ctx.textAlign = 'right';
-    ctx.fillStyle = '#a1a1aa';
-    ctx.font = '600 20px Inter, -apple-system, sans-serif';
-    ctx.fillText('CSMU Panvel Edition', w - 48, 182);
+    ctx.fillStyle = '#64748b';
+    ctx.font = '700 20px Inter, -apple-system, sans-serif';
+    ctx.fillText('CSMU Panvel Edition', w - 48, 188);
 
     // Separator line
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
-    ctx.lineWidth = 1.5;
+    ctx.strokeStyle = '#f1f5f9';
+    ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(48, 208);
-    ctx.lineTo(w - 48, 208);
+    ctx.moveTo(48, 218);
+    ctx.lineTo(w - 48, 218);
     ctx.stroke();
 
-    // 6. Attendee Spotlight Card
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.05)';
+    // 6. Attendee Spotlight Card (Light)
+    ctx.fillStyle = '#f8fafc';
     ctx.beginPath();
-    ctx.roundRect(48, 232, w - 96, 150, 16);
+    ctx.roundRect(48, 242, w - 96, 150, 16);
     ctx.fill();
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+    ctx.strokeStyle = '#e2e8f0';
     ctx.lineWidth = 1.5;
     ctx.stroke();
 
     ctx.textAlign = 'left';
-    ctx.fillStyle = '#8b949e';
+    ctx.fillStyle = '#4f46e5';
     ctx.font = '800 15px Inter, -apple-system, sans-serif';
-    ctx.fillText('DELEGATE ATTENDEE', 76, 270);
+    ctx.fillText('DELEGATE ATTENDEE', 76, 280);
 
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = '#0f172a';
     ctx.font = '900 36px Inter, -apple-system, sans-serif';
-    ctx.fillText(fullName, 76, 320);
+    ctx.fillText(fullName, 76, 330);
 
-    ctx.fillStyle = '#cbd5e1';
+    ctx.fillStyle = '#475569';
     ctx.font = '600 20px Inter, -apple-system, sans-serif';
-    ctx.fillText(college + '  •  ' + courseYear, 76, 355);
+    ctx.fillText(college + '  •  ' + courseYear, 76, 365);
 
-    // 7. 2x2 Credential Grid
+    // 7. 2x2 Credential Grid (Light Tiles)
     var gridX = 48;
-    var gridY = 405;
+    var gridY = 415;
     var cellW = (w - 96 - 20) / 2;
-    var cellH = 92;
+    var cellH = 94;
 
     function drawCell(x, y, label, val, valColor) {
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
+      ctx.fillStyle = '#f8fafc';
       ctx.beginPath();
       ctx.roundRect(x, y, cellW, cellH, 12);
       ctx.fill();
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+      ctx.strokeStyle = '#e2e8f0';
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
-      ctx.fillStyle = '#8b949e';
+      ctx.fillStyle = '#64748b';
       ctx.font = '800 14px Inter, -apple-system, sans-serif';
       ctx.textAlign = 'left';
-      ctx.fillText(label, x + 20, y + 32);
+      ctx.fillText(label, x + 20, y + 34);
 
-      ctx.fillStyle = valColor || '#ffffff';
+      ctx.fillStyle = valColor || '#0f172a';
       ctx.font = '800 21px Inter, -apple-system, sans-serif';
-      ctx.fillText(val, x + 20, y + 68);
+      ctx.fillText(val, x + 20, y + 70);
     }
 
-    drawCell(gridX, gridY, 'REGISTRATION ID', regId, '#ff986e');
-    drawCell(gridX + cellW + 20, gridY, 'WORKSHOP FEE', '₹749 (Paid)', '#34d399');
-    drawCell(gridX, gridY + cellH + 16, 'UTR REFERENCE', utr, '#ffffff');
-    drawCell(gridX + cellW + 20, gridY + cellH + 16, 'CERTIFIED BY', 'E-Cell, IIT Bombay', '#ffc7b0');
+    drawCell(gridX, gridY, 'REGISTRATION ID', regId, '#4f46e5');
+    drawCell(gridX + cellW + 20, gridY, 'WORKSHOP FEE', '₹749 (Paid)', '#059669');
+    drawCell(gridX, gridY + cellH + 16, 'UTR REFERENCE', utr, '#0f172a');
+    drawCell(gridX + cellW + 20, gridY + cellH + 16, 'CERTIFIED BY', 'E-Cell, IIT Bombay', '#b45309');
 
     // 8. Perforated Notch Divider
-    var tearY = 645;
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+    var tearY = 660;
+    ctx.strokeStyle = '#cbd5e1';
     ctx.setLineDash([10, 8]);
     ctx.lineWidth = 2.5;
     ctx.beginPath();
@@ -670,13 +947,16 @@
 
     // 9. QR Code & Security Row
     var qrBoxX = 54;
-    var qrBoxY = 680;
+    var qrBoxY = 695;
     var qrSize = 190;
 
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
     ctx.roundRect(qrBoxX, qrBoxY, qrSize, qrSize, 14);
     ctx.fill();
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
 
     if (qrImg && qrImg.complete && qrImg.naturalWidth > 0) {
       try {
@@ -701,28 +981,28 @@
     ctx.font = '800 16px Inter, -apple-system, sans-serif';
     ctx.fillText('SCAN FOR LIVE DATABASE RECORD', metaX, qrBoxY + 36);
 
-    ctx.fillStyle = '#ffffff';
+    ctx.fillStyle = '#0f172a';
     ctx.font = '700 20px Inter, -apple-system, sans-serif';
     ctx.fillText('Venue: CSMU Campus, Panvel', metaX, qrBoxY + 76);
 
-    ctx.fillStyle = '#8b949e';
+    ctx.fillStyle = '#64748b';
     ctx.font = '500 16px Inter, -apple-system, sans-serif';
     ctx.fillText('Valid for single student entry  •  Carry College Photo ID', metaX, qrBoxY + 112);
 
     // Status Pill beside QR
-    ctx.fillStyle = 'rgba(253, 230, 138, 0.15)';
+    ctx.fillStyle = '#fffbeb';
     ctx.beginPath();
     ctx.roundRect(metaX, qrBoxY + 136, 320, 36, 18);
     ctx.fill();
-    ctx.strokeStyle = 'rgba(253, 230, 138, 0.35)';
+    ctx.strokeStyle = '#fde68a';
     ctx.stroke();
 
-    ctx.fillStyle = '#fbbf24';
+    ctx.fillStyle = '#b45309';
     ctx.font = '800 14px Inter, -apple-system, sans-serif';
     ctx.fillText('STATUS: PAYMENT VERIFICATION PENDING', metaX + 18, qrBoxY + 160);
 
     // 10. Bottom Security Watermark
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+    ctx.strokeStyle = '#f1f5f9';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(48, h - 70);
@@ -730,7 +1010,7 @@
     ctx.stroke();
 
     ctx.textAlign = 'center';
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+    ctx.fillStyle = '#94a3b8';
     ctx.font = '800 13px Inter, -apple-system, sans-serif';
     ctx.fillText('IIEC CSMU  •  WHERE VISION DRIVES VENTURE  •  E-CELL IIT BOMBAY', w / 2, h - 36);
 
@@ -794,7 +1074,7 @@
     });
   }
 
-  // ── 12. LIVE DATABASE VERIFICATION VIA URL SCAN ────────────────
+  // ── 12. LIVE DATABASE VERIFICATION & SEARCH MODAL ───────────────
   function initLiveVerificationModal() {
     var modal = document.getElementById('illVerifyModal');
     var modalBody = document.getElementById('verifyModalBody');
@@ -821,65 +1101,113 @@
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
 
-    var params = new URLSearchParams(window.location.search);
-    var verifyId = (params.get('verify') || params.get('id') || '').trim().toUpperCase();
-    if (!verifyId) return;
-
-    openModal();
-    modalBody.innerHTML = `
-      <div class="verify-loading-state">
-        <svg class="animate-spin btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width:32px;height:32px;color:var(--ill-accent);animation:spin 1s linear infinite;margin:0 auto 14px;">
-          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"></circle>
-          <path class="opacity-75" fill="currentColor" opacity="0.75" d="M4 12a8 8 0 018-8v8H4z"></path>
-        </svg>
-        <p style="font-weight:700;color:var(--ill-ink);margin:0 0 6px;">Querying Google Sheets Registry...</p>
-        <p style="font-size:12px;color:var(--ill-muted);margin:0;">Verifying Registration ID: <code style="color:var(--ill-accent);">${escapeHtml(verifyId)}</code></p>
-      </div>
-    `;
-
-    // Fetch from Apps Script Backend
-    var verifyUrl = CONFIG.APPS_SCRIPT_URL;
-    var fetchPromise;
-
-    if (verifyUrl && verifyUrl.startsWith('http')) {
-      var sep = verifyUrl.indexOf('?') === -1 ? '?' : '&';
-      var queryEndpoint = verifyUrl + sep + 'action=verify&id=' + encodeURIComponent(verifyId) + '&format=json';
-      fetchPromise = fetch(queryEndpoint).then(function (r) { return r.json(); });
-    } else {
-      // Local demo fallback
-      fetchPromise = Promise.reject('Apps Script URL pending');
-    }
-
-    fetchPromise
-      .then(function (res) {
-        if (res && res.found && res.attendee) {
-          renderVerificationResult(res.attendee);
-        } else {
-          renderVerificationNotFound(verifyId);
-        }
-      })
-      .catch(function (err) {
-        // Check localStorage fallback
-        try {
-          var localRec = JSON.parse(localStorage.getItem('illuminate_record_' + verifyId) || 'null');
-          if (localRec) {
-            renderVerificationResult(localRec);
-            return;
-          }
-          var all = JSON.parse(localStorage.getItem('illuminate_registrations') || '[]');
-          var match = all.find(function (item) { return item.regId && item.regId.toUpperCase() === verifyId; });
-          if (match) {
-            renderVerificationResult(match);
-            return;
-          }
-        } catch (e) {}
-
-        renderVerificationNotFound(verifyId);
+    // Expose open trigger on any button or navbar link
+    var openVerifyTriggers = document.querySelectorAll('#openVerifyModalBtn, [href="#verify-pass"]');
+    openVerifyTriggers.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal();
+        renderSearchPrompt();
       });
+    });
 
     function escapeHtml(str) {
       if (!str) return '';
       return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function renderSearchPrompt() {
+      modalBody.innerHTML = `
+        <div style="padding:10px 0;">
+          <p style="font-size:13.5px;color:var(--ill-muted);margin:0 0 16px;line-height:1.5;">
+            Enter your <strong>Registration ID</strong> (e.g. <code>ILL-123456</code>) or registered email to verify your workshop credentials.
+          </p>
+          <div style="display:flex;gap:8px;margin-bottom:16px;">
+            <input type="text" id="manualVerifyInput" class="field-input" placeholder="e.g. ILL-784912 or student@csmu.ac.in" style="flex:1;" autofocus>
+            <button type="button" class="btn-iiec btn-iiec-primary" id="manualVerifyBtn" style="padding:10px 20px;">
+              Verify
+            </button>
+          </div>
+          <div id="manualVerifyResult"></div>
+        </div>
+      `;
+
+      var btn = document.getElementById('manualVerifyBtn');
+      var inp = document.getElementById('manualVerifyInput');
+      if (btn && inp) {
+        btn.addEventListener('click', function () {
+          var val = inp.value.trim().toUpperCase();
+          if (val) executeVerificationQuery(val);
+        });
+        inp.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            var val = inp.value.trim().toUpperCase();
+            if (val) executeVerificationQuery(val);
+          }
+        });
+      }
+    }
+
+    function executeVerificationQuery(queryId) {
+      modalBody.innerHTML = `
+        <div class="verify-loading-state">
+          <svg class="animate-spin btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style="width:32px;height:32px;color:var(--ill-accent);animation:spin 1s linear infinite;margin:0 auto 14px;">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"></circle>
+            <path class="opacity-75" fill="currentColor" opacity="0.75" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+          <p style="font-weight:700;color:var(--ill-ink);margin:0 0 6px;">Querying Google Sheet Database...</p>
+          <p style="font-size:12px;color:var(--ill-muted);margin:0;">Checking record: <code style="color:var(--ill-accent);">${escapeHtml(queryId)}</code></p>
+        </div>
+      `;
+
+      var verifyUrl = CONFIG.APPS_SCRIPT_URL;
+      var fetchPromise;
+
+      if (verifyUrl && verifyUrl.startsWith('http')) {
+        var sep = verifyUrl.indexOf('?') === -1 ? '?' : '&';
+        var queryEndpoint = verifyUrl + sep + 'action=verify&id=' + encodeURIComponent(queryId) + '&format=json';
+        fetchPromise = fetch(queryEndpoint).then(function (r) { return r.json(); });
+      } else {
+        fetchPromise = Promise.reject('Apps Script URL pending');
+      }
+
+      fetchPromise
+        .then(function (res) {
+          if (res && res.found && res.attendee) {
+            renderVerificationResult(res.attendee);
+          } else {
+            // Check local fallback
+            checkLocalFallback(queryId);
+          }
+        })
+        .catch(function () {
+          checkLocalFallback(queryId);
+        });
+    }
+
+    function checkLocalFallback(queryId) {
+      try {
+        var localRec = JSON.parse(localStorage.getItem('illuminate_record_' + queryId) || 'null');
+        if (localRec) {
+          renderVerificationResult(localRec);
+          return;
+        }
+        var pendingDraft = JSON.parse(localStorage.getItem('illuminate_pending_reg') || 'null');
+        if (pendingDraft && (pendingDraft.regId === queryId || pendingDraft.email.toUpperCase() === queryId)) {
+          renderVerificationResult(pendingDraft);
+          return;
+        }
+        var all = JSON.parse(localStorage.getItem('illuminate_registrations') || '[]');
+        var match = all.find(function (item) {
+          return (item.regId && item.regId.toUpperCase() === queryId) || (item.email && item.email.toUpperCase() === queryId);
+        });
+        if (match) {
+          renderVerificationResult(match);
+          return;
+        }
+      } catch (e) {}
+
+      renderVerificationNotFound(queryId);
     }
 
     function renderVerificationResult(data) {
@@ -948,15 +1276,18 @@
             <button type="button" class="btn-iiec btn-iiec-ink" id="modalCloseBtn" style="padding:10px 24px;font-size:12px;">
               Close Verification
             </button>
-            <a href="illuminate" class="btn-iiec btn-iiec-ghost" style="padding:10px 20px;font-size:12px;">
-              Workshop Portal
-            </a>
+            <button type="button" class="btn-iiec btn-iiec-ghost" id="modalSearchAnotherBtn" style="padding:10px 20px;font-size:12px;">
+              Check Another ID
+            </button>
           </div>
         </div>
       `;
 
       var modalClose = document.getElementById('modalCloseBtn');
       if (modalClose) modalClose.addEventListener('click', closeModal);
+
+      var anotherBtn = document.getElementById('modalSearchAnotherBtn');
+      if (anotherBtn) anotherBtn.addEventListener('click', renderSearchPrompt);
     }
 
     function renderVerificationNotFound(id) {
@@ -968,15 +1299,15 @@
             </svg>
             <div>
               <strong style="font-size:14px;display:block;">Record Not Found</strong>
-              <span style="font-size:12px;">No attendee record matches ID: ${escapeHtml(id)}</span>
+              <span style="font-size:12px;">No attendee record matches: ${escapeHtml(id)}</span>
             </div>
           </div>
           <p style="font-size:13.5px;color:var(--ill-muted);margin:16px 0 20px;line-height:1.55;">
-            The scanned Registration ID was not found in the official database. Please ensure you registered on the official IIEC portal.
+            The entered ID was not found in the official database. Please verify the ID or register for your seat on the official portal.
           </p>
           <div style="display:flex;gap:10px;justify-content:center;">
-            <button type="button" class="btn-iiec btn-iiec-ink" id="modalNotFoundCloseBtn" style="padding:10px 24px;font-size:12px;">
-              Close
+            <button type="button" class="btn-iiec btn-iiec-ghost" id="modalTryAgainBtn" style="padding:10px 20px;font-size:12px;">
+              Try Again
             </button>
             <a href="illuminate#register" class="btn-iiec btn-iiec-primary" style="padding:10px 20px;font-size:12px;">
               Register Now (₹749)
@@ -985,12 +1316,20 @@
         </div>
       `;
 
-      var notFoundClose = document.getElementById('modalNotFoundCloseBtn');
-      if (notFoundClose) notFoundClose.addEventListener('click', closeModal);
+      var tryAgain = document.getElementById('modalTryAgainBtn');
+      if (tryAgain) tryAgain.addEventListener('click', renderSearchPrompt);
+    }
+
+    // Auto-trigger if URL has ?verify=ILL-XXXXXX or ?id=ILL-XXXXXX
+    var params = new URLSearchParams(window.location.search);
+    var urlVerifyId = (params.get('verify') || params.get('id') || '').trim().toUpperCase();
+    if (urlVerifyId) {
+      openModal();
+      executeVerificationQuery(urlVerifyId);
     }
   }
 
-  // Initialize URL query verification on load
+  // Initialize verification listener on load
   initLiveVerificationModal();
 
 })();
