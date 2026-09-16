@@ -39,7 +39,7 @@ IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entreprene
 - **Tagline**: Where Vision Drives Venture
 - **Website**: https://iiec.in
 - **Domain**: iiec.in
-- **Email**: ecell-student-rep@csmu.ac.in
+- **Email**: iiec@csmu.ac.in
 - **Join URL**: https://join.ecellcsmu.in
 - **Collaboration Partner**: GeeksforGeeks (for GENESIS orientation event and learning resources)
 - **Copyright Year**: 2026
@@ -244,7 +244,7 @@ The IIEC Blog publishes articles and insights on innovation, entrepreneurship, s
 - **LinkedIn**: https://www.linkedin.com/company/iiec-csmu
 - **Instagram**: https://www.instagram.com/iiec.csmu
 - **TechAstra Instagram**: https://www.instagram.com/techastra.csmu
-- **Email**: ecell-student-rep@csmu.ac.in
+- **Email**: iiec@csmu.ac.in
 - **Join IIEC**: https://join.ecellcsmu.in
 - **Newsletter**: Available on the homepage at https://iiec.in/#newsletter
 

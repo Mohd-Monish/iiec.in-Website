@@ -47,62 +47,11 @@
   }
 
   // ---------------------------------------------------------
-  // 2. Mobile Navigation Drawer & Morphing Hamburger
-  // ---------------------------------------------------------
-  function initMobileNavDrawer() {
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const drawer = document.getElementById('mobile-nav-drawer');
-    const closeBtn = document.getElementById('mobile-drawer-close');
-    const backdrop = document.getElementById('mobile-nav-backdrop');
-    const drawerLinks = document.querySelectorAll('.mobile-nav-link');
-
-    if (!hamburgerBtn || !drawer) return;
-
-    function openDrawer() {
-      drawer.classList.add('open');
-      drawer.setAttribute('aria-hidden', 'false');
-      hamburgerBtn.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeDrawer() {
-      drawer.classList.remove('open');
-      drawer.setAttribute('aria-hidden', 'true');
-      hamburgerBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-
-    hamburgerBtn.addEventListener('click', () => {
-      const isOpen = drawer.classList.contains('open');
-      if (isOpen) {
-        closeDrawer();
-      } else {
-        openDrawer();
-      }
-    });
-
-    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
-    if (backdrop) backdrop.addEventListener('click', closeDrawer);
-
-    drawerLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        closeDrawer();
-      });
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && drawer.classList.contains('open')) {
-        closeDrawer();
-      }
-    });
-  }
-
   // ---------------------------------------------------------
   // Initialization on DOM Ready
   // ---------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
     initPortfolioFilters();
-    initMobileNavDrawer();
   });
 
 })();
