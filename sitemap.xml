@@ -73,6 +73,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://iiec.in/illuminate</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
     <loc>https://iiec.in/blog-post-0</loc>
     <lastmod>2026-09-04</lastmod>
     <changefreq>monthly</changefreq>
