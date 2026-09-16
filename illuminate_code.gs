@@ -32,7 +32,7 @@ var CONFIG = {
   EVENT_NAME:     'illuminate 2026',
   FEE_AMOUNT:     749, // Special NEC discounted fee
   ORGANIZER_NAME: 'IIEC CSMU × E-Cell IIT Bombay',
-  REPLY_TO_EMAIL: 'ecell-student-rep@csmu.ac.in',
+  REPLY_TO_EMAIL: 'iiec@csmu.ac.in',
   UPI_ID:         'chavanbhumika1007@oksbi',
   UPI_NAME:       'Bhumika Chavan',
   VENUE_NAME:     'Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai',
@@ -597,6 +597,14 @@ function buildLeadDraftEmailHtml(attendee) {
           <!-- Header Section -->
           <tr>
             <td class="header-cell" style="padding:28px 28px 20px;text-align:center;background:#ffffff;border-bottom:1px solid #f1f5f9;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 12px;">
+                <tr>
+                  <td align="center">
+                    <img src="https://iiec.in/assets/logos/iiec-logo.webp" alt="IIEC Logo" width="48" height="48" style="display:block;margin:0 auto;width:48px;height:48px;object-fit:contain;" />
+                  </td>
+                </tr>
+              </table>
+
               <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
                 <tr>
                   <td style="background:#eef2ff;border:1px solid #c7d2fe;padding:5px 16px;border-radius:999px;font-size:10.5px;font-weight:800;color:#4338ca;letter-spacing:1.5px;text-transform:uppercase;">
@@ -754,7 +762,7 @@ function buildLeadDraftEmailHtml(attendee) {
               </div>
               <div style="font-size:11.5px;color:#94a3b8;line-height:1.65;">
                 Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai<br>
-                Coordination Desk &bull; Helpline: <strong>+91 94666 05579</strong><br>
+                Official Email: <a href="mailto:iiec@csmu.ac.in" style="color:#a5b4fc;text-decoration:none;">iiec@csmu.ac.in</a> &bull; Helpline: <strong>+91 94666 05579</strong><br>
                 Official Portal: <a href="https://iiec.in/illuminate" style="color:#a5b4fc;text-decoration:none;font-weight:700;">iiec.in/illuminate</a>
               </div>
             </td>
@@ -839,6 +847,14 @@ function buildPaymentSubmittedAckEmailHtml(attendee) {
           <!-- Header Section -->
           <tr>
             <td class="header-cell" style="padding:28px 28px 20px;text-align:center;background:#ffffff;border-bottom:1px solid #f1f5f9;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 12px;">
+                <tr>
+                  <td align="center">
+                    <img src="https://iiec.in/assets/logos/iiec-logo.webp" alt="IIEC Logo" width="48" height="48" style="display:block;margin:0 auto;width:48px;height:48px;object-fit:contain;" />
+                  </td>
+                </tr>
+              </table>
+
               <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
                 <tr>
                   <td style="background:#eef2ff;border:1px solid #c7d2fe;padding:5px 16px;border-radius:999px;font-size:10.5px;font-weight:800;color:#4338ca;letter-spacing:1.5px;text-transform:uppercase;">
@@ -957,7 +973,7 @@ function buildPaymentSubmittedAckEmailHtml(attendee) {
               </div>
               <div style="font-size:11.5px;color:#94a3b8;line-height:1.65;">
                 Chhatrapati Shivaji Maharaj University (CSMU), Panvel, Navi Mumbai<br>
-                Coordination Desk &bull; Helpline: <strong>+91 94666 05579</strong><br>
+                Official Email: <a href="mailto:iiec@csmu.ac.in" style="color:#a5b4fc;text-decoration:none;">iiec@csmu.ac.in</a> &bull; Helpline: <strong>+91 94666 05579</strong><br>
                 Official Portal: <a href="https://iiec.in/illuminate" style="color:#a5b4fc;text-decoration:none;font-weight:700;">iiec.in/illuminate</a>
               </div>
             </td>
@@ -1068,6 +1084,14 @@ function buildTicketEmailHtml(attendee, qrUrl) {
           <!-- Header Section -->
           <tr>
             <td class="header-cell" style="padding:28px 28px 20px;text-align:center;background:#ffffff;border-bottom:1px solid #f1f5f9;">
+              <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 12px;">
+                <tr>
+                  <td align="center">
+                    <img src="https://iiec.in/assets/logos/iiec-logo.webp" alt="IIEC Logo" width="48" height="48" style="display:block;margin:0 auto;width:48px;height:48px;object-fit:contain;" />
+                  </td>
+                </tr>
+              </table>
+
               <table border="0" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 10px;">
                 <tr>
                   <td style="background:#eef2ff;border:1px solid #c7d2fe;padding:5px 16px;border-radius:999px;font-size:10.5px;font-weight:800;color:#4338ca;letter-spacing:1.5px;text-transform:uppercase;">

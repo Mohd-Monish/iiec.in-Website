@@ -253,7 +253,7 @@
     }
 
     if (!FORM_ENDPOINT) {
-      setStatus("Submission endpoint is not configured yet. Please email your deck to ecell-student-rep@csmu.ac.in.", "err");
+      setStatus("Submission endpoint is not configured yet. Please email your deck to iiec@csmu.ac.in.", "err");
       return;
     }
 
@@ -296,7 +296,7 @@
       document.getElementById("success").classList.add("show");
       window.scrollTo({ top: 0, behavior: "smooth" });
     }).catch(function (err) {
-      setStatus((err && err.message) || "Something went wrong. Please retry or email ecell-student-rep@csmu.ac.in.", "err");
+      setStatus((err && err.message) || "Something went wrong. Please retry or email iiec@csmu.ac.in.", "err");
       submitBtn.disabled = false;
     });
   });

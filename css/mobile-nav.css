@@ -188,11 +188,12 @@
 }
 
 .mobile-nav-highlight-box {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(255, 90, 31, 0.1) 0%, rgba(18, 22, 32, 0.95) 100%);
+  border: 1px solid rgba(255, 90, 31, 0.28);
   border-radius: 16px;
-  padding: 16px;
+  padding: 14px 16px;
   margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 .mobile-highlight-tag {
@@ -202,9 +203,13 @@
   font-size: 10px;
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #ff5a1f;
-  margin-bottom: 6px;
+  letter-spacing: 0.08em;
+  color: #ff7b4c;
+  margin-bottom: 8px;
+  background: rgba(255, 90, 31, 0.14);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 90, 31, 0.3);
 }
 
 .mobile-highlight-title {
@@ -216,7 +221,7 @@
 
 .mobile-highlight-desc {
   font-size: 12px;
-  color: #aaaaaa;
+  color: #cbd5e1;
   line-height: 1.45;
 }
 

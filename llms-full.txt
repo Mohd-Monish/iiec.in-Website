@@ -68,7 +68,7 @@ IIEC (Incubation, Innovation & Entrepreneurship Cell) is the official entreprene
 - **Tagline**: Where Vision Drives Venture
 - **Website**: https://iiec.in
 - **Domain**: iiec.in
-- **Email**: ecell-student-rep@csmu.ac.in
+- **Email**: iiec@csmu.ac.in
 - **Join URL**: https://join.ecellcsmu.in
 - **Collaboration Partner**: GeeksforGeeks (for GENESIS orientation event and learning resources)
 - **Copyright Year**: 2026
@@ -278,7 +278,7 @@ The IIEC Blog publishes articles and insights on innovation, entrepreneurship, s
 - **Instagram**: https://www.instagram.com/iiec.csmu
 - **Twitter/X**: https://twitter.com/iiec_csmu
 - **TechAstra Instagram**: https://www.instagram.com/techastra.csmu
-- **Email**: ecell-student-rep@csmu.ac.in
+- **Email**: iiec@csmu.ac.in
 - **Join IIEC**: https://join.ecellcsmu.in
 - **Newsletter**: Available on the homepage at https://iiec.in/#newsletter
 - **TechAstra Volunteer WhatsApp**: https://chat.whatsapp.com/LKfRXSRsxfmFho4sQ8XhwF
@@ -389,7 +389,7 @@ Stay Updated. Subscribe for weekly updates on events, opportunities, and startup
 - Socials: LinkedIn | Instagram | Twitter/X | Email
 - Quick Links: Home, About Us, Team, Activities, Blog
 - Programs: Workshops, Startup Bootcamp, Industry Talks, Events
-- Contact: ecell-student-rep@csmu.ac.in, Join Us, Newsletter
+- Contact: iiec@csmu.ac.in, Join Us, Newsletter
 - © 2025 IIEC. All rights reserved.
 - OPS Portal →
 
@@ -824,7 +824,7 @@ All pages share a consistent footer with:
 - Social Links: LinkedIn, Instagram, Twitter/X, Email
 - Quick Links: Home, About Us, Team, Activities, Blog
 - Programs: Workshops, Startup Bootcamp, Industry Talks, Events
-- Contact: ecell-student-rep@csmu.ac.in, Join the Movement / Join Us, Newsletter
+- Contact: iiec@csmu.ac.in, Join the Movement / Join Us, Newsletter
 - Copyright: © 2025 IIEC. All rights reserved.
 - Some pages include: OPS Portal → (link to admin.html)
 

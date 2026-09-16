@@ -187,43 +187,71 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer (Matches Site Standard) -->
+  <!-- Mobile Navigation Drawer (Matches Site Standard) -->
   <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
     <div class="mobile-nav-panel">
       <div class="mobile-nav-panel-top">
         <div class="brand">
-          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo-img" width="32" height="32">
-          <span style="color:#ffffff;">IIEC</span>
+          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" width="32" height="32">
+          <span>IIEC</span>
         </div>
         <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close Menu">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          ✕
         </button>
       </div>
+
       <div class="mobile-nav-links">
-        <a href="/" class="mobile-nav-link">
+        <a href="/" class="mobile-nav-link" style="--item-index: 1;">
           <span class="link-num">01</span>
           <span class="link-text">Home</span>
+          <span class="link-arrow">→</span>
         </a>
-        <a href="about" class="mobile-nav-link">
+        <a href="about" class="mobile-nav-link" style="--item-index: 2;">
           <span class="link-num">02</span>
           <span class="link-text">About</span>
+          <span class="link-arrow">→</span>
         </a>
-        <a href="team" class="mobile-nav-link">
+        <a href="team" class="mobile-nav-link" style="--item-index: 3;">
           <span class="link-num">03</span>
           <span class="link-text">Team</span>
+          <span class="link-arrow">→</span>
         </a>
-        <a href="activities" class="mobile-nav-link active">
+        <a href="activities" class="mobile-nav-link active" style="--item-index: 4;">
           <span class="link-num">04</span>
           <span class="link-text">Activities</span>
+          <span class="link-badge">Active</span>
+          <span class="link-arrow">→</span>
         </a>
-        <a href="blog" class="mobile-nav-link">
+        <a href="blog" class="mobile-nav-link" style="--item-index: 5;">
           <span class="link-num">05</span>
           <span class="link-text">Blog</span>
+          <span class="link-arrow">→</span>
         </a>
-        <a href="#register" class="mobile-nav-cta" style="margin-top:14px;">Register for illuminate (₹749)</a>
+      </div>
+
+      <div class="mobile-nav-highlight-box">
+        <div class="mobile-highlight-tag">
+          <span class="pulse-dot"></span>
+          <span>Official Collaboration</span>
+        </div>
+        <div class="mobile-highlight-title">illuminate 2026 Workshop</div>
+        <p class="mobile-highlight-desc">Flagship Entrepreneurship Workshop at CSMU with E-Cell IIT Bombay. Special fee ₹749.</p>
+        <a href="#register" class="btn-iiec btn-iiec-primary btn-iiec-block" style="padding: 10px 16px; font-size: 12px; margin-top: 10px; text-decoration: none;">
+          <span>Register Now (₹749) →</span>
+        </a>
+      </div>
+
+      <div class="mobile-nav-bottom">
+        <a href="https://join.iiec.in" target="_blank" rel="noopener" class="mobile-join-link">
+          <span>Apply to Join IIEC Core Team</span>
+          <span>→</span>
+        </a>
+        <div class="mobile-socials">
+          <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:iiec@csmu.ac.in">Email</a>
+        </div>
       </div>
     </div>
   </div>
@@ -463,13 +491,11 @@
             What is <span class="accent-text">illuminate</span>?
           </h2>
           <p class="ill-subtitle">
-            <strong>illuminate</strong> is an initiative by <strong>E-Cell, IIT Bombay</strong> created to spark the
-            entrepreneurial spirit among students across India. The workshop focuses on developing practical business
-            understanding through structured foundational sessions.
+            <strong>illuminate</strong> is a flagship nationwide initiative by <strong>E-Cell, IIT Bombay</strong> designed to spark the entrepreneurial mindset and teach students how to transform raw ideas into viable, scalable ventures.
           </p>
         </div>
 
-        <div class="reasons-grid" style="margin-top:36px;">
+        <div class="reasons-grid" style="margin-top:32px;">
           <div class="card-surface">
             <div class="icon-badge">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
@@ -477,9 +503,8 @@
                   d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
             </div>
-            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Business Models</h3>
-            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Frameworks explaining how companies
-              structure revenue and value delivery.</p>
+            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Business Architecture</h3>
+            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Master how modern startups structure revenue, value delivery, and customer segmentation.</p>
           </div>
 
           <div class="card-surface">
@@ -489,9 +514,8 @@
                   d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Finance &amp; Fundamentals</h3>
-            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Unit economics, financial
-              sustainability, and runway planning.</p>
+            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Unit Economics &amp; Finance</h3>
+            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Understand cash flow, startup runway planning, pricing psychology, and sustainability.</p>
           </div>
 
           <div class="card-surface">
@@ -500,9 +524,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
             </div>
-            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Startup Principles</h3>
-            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Core methodologies to develop MVPs and
-              iterate rapidly.</p>
+            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">MVP &amp; Validation</h3>
+            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Rapid prototyping techniques, validating customer problem statements, and iterative testing.</p>
           </div>
 
           <div class="card-surface">
@@ -512,33 +535,8 @@
                   d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
             </div>
-            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Entrepreneurial Thinking</h3>
-            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Approaching problems and market
-              uncertainty with a founder lens.</p>
-          </div>
-
-          <div class="card-surface">
-            <div class="icon-badge">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Understanding Opportunities</h3>
-            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Identifying market gaps and validating
-              consumer demand.</p>
-          </div>
-
-          <div class="card-surface">
-            <div class="icon-badge">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-            </div>
-            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Evaluating Ideas</h3>
-            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Testing assumptions, identifying risks,
-              and crafting pitches.</p>
+            <h3 style="font-size:16px;font-weight:800;margin-bottom:6px;">Founder Mindset</h3>
+            <p style="font-size:13.5px;color:var(--ill-muted);line-height:1.5;">Frameworks for calculated risk-taking, structured problem solving, and strategic execution.</p>
           </div>
         </div>
       </div>
@@ -555,11 +553,11 @@
             Why Should You <span class="accent-text">Attend</span>?
           </h2>
           <p class="ill-subtitle">
-            Beyond theoretical textbooks: five pillars that make illuminate an indispensable campus experience.
+            Beyond theoretical textbooks: 4 signature advantages that make illuminate an indispensable experience.
           </p>
         </div>
 
-        <div class="reasons-grid">
+        <div class="reasons-grid" style="margin-top:32px;">
           <div class="card-surface reason-card">
             <div class="icon-badge">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
@@ -567,56 +565,30 @@
                   d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <h3>Learn From Industry Professionals</h3>
-            <p>Gain insights directly from seasoned entrepreneurs and professionals who have launched, managed, and
-              scaled real ventures.</p>
-          </div>
-
-          <div class="card-surface reason-card">
-            <div class="icon-badge">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-            </div>
-            <h3>Build Your Business Understanding</h3>
-            <p>Master the fundamentals of business models, startup finances, and unit economics through structured,
-              practical modules.</p>
+            <h3>Direct Industry Mentorship</h3>
+            <p>Learn from seasoned entrepreneurs who have built and scaled real startups in high-growth markets.</p>
           </div>
 
           <div class="card-surface reason-card" style="border-color:var(--ill-accent-border);background-color:#ffffff;">
             <div class="icon-badge">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                  d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
               </svg>
             </div>
-            <h3>Get Your Exclusive Startup Kit</h3>
-            <p>Every registered student receives a physical startup kit, including a <strong>Business Model
-                Canvas</strong> and event incentives.</p>
+            <h3>Certified by E-Cell IIT Bombay</h3>
+            <p>Earn an official Certificate of Participation certified by E-Cell, IIT Bombay to elevate your resume.</p>
           </div>
 
           <div class="card-surface reason-card">
             <div class="icon-badge">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                  d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
               </svg>
             </div>
-            <h3>Get Certified by E-Cell IIT Bombay</h3>
-            <p>All participating students receive an official <strong>Certificate of Participation certified by E-Cell,
-                IIT Bombay</strong>.</p>
-          </div>
-
-          <div class="card-surface reason-card">
-            <div class="icon-badge">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
-            </div>
-            <h3>Experience Real Entrepreneurship</h3>
-            <p>Move beyond abstract theories and discover actionable frameworks to evaluate problems, pivot concepts,
-              and launch projects.</p>
+            <h3>Physical Startup Kit &amp; BMC</h3>
+            <p>Every delegate receives an exclusive workbook and printed Business Model Canvas toolkit.</p>
           </div>
 
           <div class="card-surface reason-card">
@@ -627,8 +599,7 @@
               </svg>
             </div>
             <h3>Ongoing Incubation at CSMU</h3>
-            <p>Connect with the IIEC student founder ecosystem, access startup mentorship, pitching opportunities, and
-              national hackathons.</p>
+            <p>Direct pipeline into the IIEC campus incubator, seed funding avenues, and national competitions.</p>
           </div>
         </div>
       </div>
@@ -864,8 +835,8 @@
               </svg>
             </span>
             <div>
-              <h4>Entrepreneurship Training</h4>
-              <p>Fundamental concepts of business models, startup finances, and ideation.</p>
+              <h4>1-Day Intensive Masterclass</h4>
+              <p>Practical sessions covering business models, startup finances, and MVP launch strategies.</p>
             </div>
           </div>
 
@@ -876,8 +847,8 @@
               </svg>
             </span>
             <div>
-              <h4>Certified Certificate</h4>
-              <p>Official <strong>Certificate of Participation certified by E-Cell, IIT Bombay</strong>.</p>
+              <h4>Official IIT Bombay Certificate</h4>
+              <p>Recognized <strong>Certificate of Participation certified by E-Cell, IIT Bombay</strong>.</p>
             </div>
           </div>
 
@@ -888,8 +859,8 @@
               </svg>
             </span>
             <div>
-              <h4>Exclusive Startup Kit</h4>
-              <p>Tangible founder toolkit with a physical Business Model Canvas and incentives.</p>
+              <h4>Physical Startup Kit &amp; Canvas</h4>
+              <p>Tangible founder toolkit with workbook, printed Business Model Canvas, and resources.</p>
             </div>
           </div>
 
@@ -900,20 +871,8 @@
               </svg>
             </span>
             <div>
-              <h4>Learning From Professionals</h4>
-              <p>Direct interaction and Q&amp;A sessions with experienced entrepreneurs.</p>
-            </div>
-          </div>
-
-          <div class="takeaway-card">
-            <span class="takeaway-check">
-              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:14px;height:14px;">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
-              </svg>
-            </span>
-            <div>
-              <h4>Practical Frameworks</h4>
-              <p>Practical takeaways and frameworks you can apply directly to your own ideas.</p>
+              <h4>CSMU IIEC Incubation Access</h4>
+              <p>Direct priority access to future founder bootcamps, venture funding, and pitching competitions.</p>
             </div>
           </div>
         </div>
@@ -1525,9 +1484,12 @@
                     <!-- Flame Accent Strip -->
                     <div class="pass-flame-bar" aria-hidden="true"></div>
 
-                    <!-- Top Collaboration Metadata -->
+                    <!-- Top Collaboration Metadata with Official IIEC Logo -->
                     <div class="pass-top-meta">
-                      <span>E-CELL IIT BOMBAY &times; IIEC CSMU</span>
+                      <div style="display:flex;align-items:center;gap:7px;">
+                        <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="18" height="18" style="width:18px;height:18px;object-fit:contain;" />
+                        <span>IIEC CSMU &times; E-CELL IIT BOMBAY</span>
+                      </div>
                       <span class="pass-badge-pill">OFFICIAL DELEGATE PASS</span>
                     </div>
 
@@ -1841,7 +1803,7 @@
             <p>+91 94666 05579</p>
           </a>
 
-          <a href="mailto:ecell-student-rep@csmu.ac.in" class="contact-card-box">
+          <a href="mailto:iiec@csmu.ac.in" class="contact-card-box">
             <div class="icon-badge">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" style="width:20px;height:20px;">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1849,7 +1811,7 @@
               </svg>
             </div>
             <h4>Official Email</h4>
-            <p>ecell-student-rep@csmu.ac.in</p>
+            <p>iiec@csmu.ac.in</p>
           </a>
 
           <a href="https://iiec.in" target="_blank" rel="noopener" class="contact-card-box">
@@ -1869,7 +1831,7 @@
 
   <!-- Global Footer -->
   <footer class="footer" role="contentinfo">
-    <div class="container">
+    <div class="ill-wrap footer-wrap">
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo">
@@ -1914,7 +1876,7 @@
           <h4 class="footer-title">Contact</h4>
           <div class="footer-links">
             <a href="tel:+919466605579">+91 94666 05579</a>
-            <a href="mailto:ecell-student-rep@csmu.ac.in">ecell-student-rep@csmu.ac.in</a>
+            <a href="mailto:iiec@csmu.ac.in">iiec@csmu.ac.in</a>
             <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
             <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
           </div>

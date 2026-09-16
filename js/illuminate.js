@@ -840,11 +840,11 @@
     ctx.fillStyle = flameGrad;
     ctx.fillRect(40, 72, w - 80, 8);
 
-    // 4. Header Top Meta
+    // 4. Header Top Meta with IIEC Branding
     ctx.fillStyle = '#64748b';
     ctx.font = '800 18px Inter, -apple-system, sans-serif';
     ctx.textAlign = 'left';
-    ctx.fillText('E-CELL IIT BOMBAY  ×  IIEC CSMU', 48, 124);
+    ctx.fillText('IIEC CSMU  ×  E-CELL IIT BOMBAY', 48, 124);
 
     // Badge Pill
     ctx.fillStyle = '#eef2ff';

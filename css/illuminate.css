@@ -159,66 +159,71 @@
 }
 
 /* ----------------------------------------------------------------
-   TOP COLLABORATIVE ANNOUNCEMENT STRIP
+   TOP COLLABORATIVE ANNOUNCEMENT STRIP (Sleek Dark Theme)
    ---------------------------------------------------------------- */
 .collab-strip {
-  background: var(--ill-card);
-  border-bottom: 1px solid var(--ill-line);
-  padding: 10px 18px;
+  background: #090d16;
+  border-bottom: 1px solid rgba(255, 90, 31, 0.25);
+  padding: 8px 18px;
   position: relative;
   z-index: 50;
+  color: #e2e8f0;
 }
 
 .collab-strip-in {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
   font-size: 12.5px;
   font-weight: 600;
-  color: var(--ill-ink);
+  color: #cbd5e1;
 }
 
 .collab-strip-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--ill-accent-light);
-  border: 1px solid var(--ill-accent-border);
-  color: var(--ill-accent-dark);
-  padding: 3px 10px;
+  gap: 6px;
+  background: rgba(255, 90, 31, 0.14);
+  border: 1px solid rgba(255, 90, 31, 0.4);
+  color: #ff7b4c;
+  padding: 3px 9px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .collab-strip-dot {
   width: 6px;
   height: 6px;
-  background-color: var(--ill-accent);
+  background-color: #ff5a1f;
   border-radius: 50%;
-  box-shadow: 0 0 6px var(--ill-accent);
+  box-shadow: 0 0 6px #ff5a1f;
 }
 
 .collab-strip-cta {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--ill-accent);
-  font-weight: 700;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ff5a1f, #e04810);
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 800;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 11.5px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  transition: transform 0.2s ease;
+  letter-spacing: 0.05em;
+  box-shadow: 0 2px 8px rgba(255, 90, 31, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .collab-strip-cta:hover {
-  transform: translateX(3px);
-  color: var(--ill-accent-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 90, 31, 0.5);
 }
 
 /* ----------------------------------------------------------------
@@ -2205,24 +2210,65 @@ svg.btn-svg, svg.btn-icon, svg.module-bullet-icon, svg.faq-icon-arrow {
   margin: 0;
 }
 
-.footer-credit {
-  color: #ff986e;
-  font-weight: 600;
+/* Hide floating team recruitment pill on illuminate registration page to prevent overlapping footer & form */
+#iiec-recruitment-pill {
+  display: none !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  .footer {
+    padding: 44px 0 28px;
+  }
+  .footer .footer-wrap {
+    padding: 0 24px;
+  }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 28px 16px;
+    margin-bottom: 28px;
   }
-}
-
-@media (max-width: 600px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
+  .footer-brand {
+    grid-column: 1 / -1;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .footer-desc {
+    max-width: 100%;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+  .footer-title {
+    font-size: 11.5px;
+    margin-bottom: 12px;
+    color: #f1f5f9;
+    letter-spacing: 0.08em;
+  }
+  .footer-links {
+    gap: 9px;
+  }
+  .footer-links a {
+    font-size: 12.5px;
+    color: #a1a1aa;
   }
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
+    padding-top: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer .footer-wrap {
+    padding: 0 20px;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 14px;
+  }
+  .footer-grid > nav:nth-of-type(3) {
+    grid-column: 1 / -1;
+    padding-top: 8px;
   }
 }
 
@@ -2278,37 +2324,279 @@ svg.btn-svg, svg.btn-icon, svg.module-bullet-icon, svg.faq-icon-arrow {
 }
 
 @media (max-width: 768px) {
+  .hero-sec {
+    padding: 38px 0 32px;
+  }
+  .ill-sec {
+    padding: 38px 0;
+  }
+  .ill-wrap {
+    padding: 0 16px;
+  }
+  .ill-label {
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    margin-bottom: 8px;
+    padding: 4px 12px;
+  }
+  .ill-title {
+    font-size: clamp(1.45rem, 5.5vw, 1.85rem);
+    margin-bottom: 8px;
+    letter-spacing: -0.03em;
+  }
+  .ill-subtitle {
+    font-size: 13px;
+    line-height: 1.55;
+    margin-bottom: 0;
+  }
+  .collab-strip {
+    padding: 9px 12px;
+  }
+  .collab-strip-in {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    font-size: 11.5px;
+  }
+  .collab-strip-in > div {
+    justify-content: center;
+    text-align: center;
+    gap: 6px;
+  }
+  .collab-strip-cta {
+    font-size: 10.5px;
+    padding: 3px 12px;
+  }
+  .hero-partner-chips {
+    font-size: 11px;
+    padding: 5px 12px;
+    gap: 4px 6px;
+    margin: 0 auto 16px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+  .hero-h1 {
+    font-size: clamp(2.3rem, 8.5vw, 3.2rem);
+    margin: 0 0 14px;
+    line-height: 0.98;
+  }
+  .hero-tagline {
+    font-size: 1.1rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+  .hero-desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin-bottom: 22px;
+  }
+  .hero-ctas-row {
+    margin-bottom: 28px;
+    gap: 10px;
+  }
+  .btn-iiec {
+    padding: 13px 22px;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
   .hero-specs-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding-top: 18px;
   }
-  .reasons-grid, .contact-row-grid {
+  .spec-label {
+    font-size: 10px;
+  }
+  .spec-val {
+    font-size: 13px;
+  }
+  .hero-ticket {
+    padding: 22px 18px;
+    border-radius: 16px;
+  }
+  .ticket-top-row {
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+  }
+  .ticket-category-tag {
+    font-size: 10.5px;
+  }
+  .ticket-strike {
+    font-size: 11px;
+  }
+  .ticket-amount {
+    font-size: 34px;
+  }
+  .ticket-features-list {
+    margin-bottom: 20px;
+    gap: 8px;
+  }
+  .ticket-feature-item {
+    font-size: 12px;
+  }
+  .quote-editorial-box {
+    padding: 16px 18px;
+    margin-bottom: 16px;
+  }
+  .quote-editorial-box h3 {
+    font-size: 15px;
+  }
+  .reasons-grid, .contact-row-grid, .takeaways-grid {
     grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .card-surface {
+    padding: 18px 16px;
+    border-radius: 14px;
+  }
+  .card-surface h3 {
+    font-size: 15px !important;
+  }
+  .card-surface p {
+    font-size: 12.5px !important;
+  }
+  .module-card {
+    padding: 18px 16px;
+  }
+  .module-top {
+    margin-bottom: 12px;
+  }
+  .module-num {
+    font-size: 20px;
+  }
+  .module-card h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+  .module-card p {
+    font-size: 12.5px;
+    margin-bottom: 14px;
+  }
+  .module-bullets li {
+    font-size: 12px;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .takeaway-card {
+    padding: 14px 14px;
+    border-radius: 12px;
+    gap: 12px;
+  }
+  .takeaway-card h4 {
+    font-size: 13.5px;
+    margin-bottom: 3px;
+  }
+  .takeaway-card p {
+    font-size: 12px;
   }
   .personas-row {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .persona-card {
+    padding: 16px 14px;
   }
   .roadmap-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .roadmap-card {
+    padding: 16px 14px;
   }
   .fields-row-2 {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
   .stepper-nav .step-title {
     display: none;
   }
+  .stepper-nav .step-item {
+    padding: 6px 12px;
+    font-size: 11.5px;
+  }
   .station-shell {
-    padding: 24px 18px;
+    padding: 20px 14px;
+    border-radius: 16px;
+  }
+  .form-group {
+    margin-bottom: 14px;
+  }
+  .form-group label {
+    font-size: 11.5px;
+    margin-bottom: 4px;
+  }
+  .form-input, .form-select {
+    padding: 10px 12px;
+    font-size: 13px;
+    border-radius: 9px;
+  }
+  .radio-option-card {
+    padding: 10px 12px;
+    font-size: 12px;
+  }
+  .quick-actions-bar {
+    padding: 10px 12px;
+    font-size: 11.5px;
+  }
+  .pass-preview-card {
+    padding: 18px 14px;
+    border-radius: 14px;
+  }
+  .pass-attendee-name {
+    font-size: 19px;
+  }
+  .pass-grid-cell {
+    padding: 8px 10px;
+  }
+  .pass-cell-label {
+    font-size: 9px;
+  }
+  .pass-cell-val {
+    font-size: 13px;
+  }
+  .pass-security-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+  .guidelines-box {
+    padding: 14px 14px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 480px) {
-  .personas-row {
-    grid-template-columns: 1fr;
+  .hero-partner-chips {
+    font-size: 10.5px;
+    padding: 5px 10px;
+    gap: 3px 5px;
+    border-radius: 999px;
   }
   .hero-ctas-row {
     flex-direction: column;
   }
   .hero-ctas-row .btn-iiec {
+    width: 100%;
+  }
+  .hero-h1 {
+    font-size: clamp(2.1rem, 9vw, 2.7rem);
+  }
+  .hero-specs-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .btn-action-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .btn-action-row .btn-iiec {
     width: 100%;
   }
 }
