@@ -79,13 +79,33 @@ var WIDTHS = [
  * Creates custom spreadsheet menu on open
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('illuminate Workshop')
-    .addItem('Verify & Send Ticket (Selected Row)', 'verifyAndSendSelectedRow')
-    .addItem('Send Tickets to ALL Verified (Unsent)', 'sendAllUnsentVerifiedTickets')
+  var ui = SpreadsheetApp.getUi();
+  ui.createMenu('⚡ illuminate Admin')
+    .addItem('📱 Open Admin Console (Sidebar)', 'showAdminSidebar')
     .addSeparator()
-    .addItem('Run Sheet Setup (Format & Formulas)', 'setupSheet')
-    .addItem('Send Test Ticket Email to Me', 'testSendTicketToMyself')
+    .addSubMenu(ui.createMenu('💳 Payment & Verification')
+      .addItem('✅ Verify & Send Ticket (Selected Row)', 'verifyAndSendSelectedRow')
+      .addItem('🚀 Send Tickets to ALL Verified (Unsent)', 'sendAllUnsentVerifiedTickets')
+      .addItem('🔄 Resend Ticket Email (by Reg ID / Email)', 'resendTicketDialog')
+      .addItem('⏳ Set as Pending Verification (Selected Row)', 'markPendingVerificationSelectedRow')
+      .addItem('❌ Reject Registration (Selected Row)', 'rejectSelectedRow')
+    )
+    .addSubMenu(ui.createMenu('🎟️ Check-In & Gate Attendance')
+      .addItem('⚡ Rapid Check-In (Enter / Scan Reg ID)', 'checkinAttendeeDialog')
+      .addItem('🔘 Toggle Check-In Status (Selected Row)', 'toggleCheckinSelectedRow')
+      .addItem('🔄 Reset Check-In to Not Checked In (Selected Row)', 'resetCheckinSelectedRow')
+    )
+    .addSubMenu(ui.createMenu('🔍 Search & Attendee Details')
+      .addItem('🔎 Lookup Attendee by Reg ID / Email / UTR', 'lookupRegistrationDialog')
+    )
+    .addSeparator()
+    .addItem('📢 Broadcast Announcement / Reminder Email', 'broadcastEmailDialog')
+    .addSeparator()
+    .addSubMenu(ui.createMenu('⚙️ Maintenance & Tools')
+      .addItem('📊 Refresh Dashboard & Stats Formulas', 'refreshDashboard')
+      .addItem('🛠️ Run Full Sheet Setup (Format & Rules)', 'setupSheet')
+      .addItem('🧪 Send Test Ticket Email to Me', 'testSendTicketToMyself')
+    )
     .addToUi();
 }
 
@@ -259,6 +279,18 @@ function doGet(e) {
       totalRegistrations: rows,
       spreadsheetUrl: ss.getUrl()
     });
+  }
+
+  // 3. Web Admin Management Console (?admin=true or ?panel=true)
+  if (p.admin || p.panel) {
+    return HtmlService.createHtmlOutput(buildAdminWebHtml())
+      .setTitle('⚡ illuminate 2026 — Admin Management Hub')
+      .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  }
+
+  // 4. Admin API actions via GET (for web panel dynamic AJAX)
+  if (p.api_action) {
+    return handleAdminApiGet(p);
   }
 
   return jsonResponse({
@@ -646,7 +678,24 @@ function buildTicketEmailHtml(attendee, qrUrl) {
   `;
 }
 
-/* ------------------------------ MENU ACTIONS ------------------------------ */
+/* ------------------------------ ADMIN PANEL & MENU ACTIONS ------------------------------ */
+
+/**
+ * Opens the interactive illuminate Admin Sidebar Console inside Google Sheets
+ */
+function showAdminSidebar() {
+  var html = HtmlService.createHtmlOutput(buildAdminSidebarHtml(false))
+    .setTitle('⚡ illuminate 2026 Admin Hub')
+    .setWidth(360);
+  SpreadsheetApp.getUi().showSidebar(html);
+}
+
+/**
+ * Returns standalone Web Admin Console for browser access (?admin=true)
+ */
+function buildAdminWebHtml() {
+  return buildAdminSidebarHtml(true);
+}
 
 /**
  * Menu action: Verifies and sends ticket email to the currently selected row
@@ -658,21 +707,25 @@ function verifyAndSendSelectedRow() {
   var row = cell.getRow();
 
   if (row <= 1) {
-    SpreadsheetApp.getUi().alert('Please select a student registration row (row 2 or below).');
+    SpreadsheetApp.getUi().alert('⚠️ Please select a student registration row (row 2 or below).');
     return;
   }
 
-  var currentStatus = sheet.getRange(row, COL.STATUS).getValue();
   var attendeeName = sheet.getRange(row, COL.NAME).getValue();
   var attendeeEmail = sheet.getRange(row, COL.EMAIL).getValue();
+  var regId = sheet.getRange(row, COL.REG_ID).getValue();
+  var utr = sheet.getRange(row, COL.UTR).getValue() || 'Pending';
 
   var ui = SpreadsheetApp.getUi();
   var response = ui.alert(
-    'Confirm Verification',
-    'Verify payment and send ticket email to:\n\n' +
-    'Name: ' + attendeeName + '\n' +
-    'Email: ' + attendeeEmail + '\n' +
-    'Row: ' + row + '\n\nProceed?',
+    'Verify Payment & Dispatch Ticket',
+    'Delegate Details:\n' +
+    '• Name: ' + attendeeName + '\n' +
+    '• Reg ID: ' + regId + '\n' +
+    '• Email: ' + attendeeEmail + '\n' +
+    '• UTR: ' + utr + '\n' +
+    '• Sheet Row: ' + row + '\n\n' +
+    'Confirm verification and dispatch official ticket email?',
     ui.ButtonSet.YES_NO
   );
 
@@ -680,12 +733,15 @@ function verifyAndSendSelectedRow() {
     sheet.getRange(row, COL.STATUS).setValue('Verified');
     var userEmail = Session.getActiveUser().getEmail() || 'Admin';
     sheet.getRange(row, COL.VERIFIER).setValue(userEmail);
+    if (!sheet.getRange(row, COL.PAY_TS).getValue()) {
+      sheet.getRange(row, COL.PAY_TS).setValue(new Date());
+    }
 
     try {
       sendTicketEmailForRow(sheet, row);
-      ui.alert('Success! Ticket email has been sent to ' + attendeeEmail);
+      ui.alert('✅ Success! Payment marked Verified and ticket emailed to ' + attendeeEmail);
     } catch (err) {
-      ui.alert('Error sending ticket email: ' + err.message);
+      ui.alert('⚠️ Status marked Verified, but failed to send email: ' + err.message);
     }
   }
 }
@@ -699,34 +755,396 @@ function sendAllUnsentVerifiedTickets() {
   var lastRow = sheet.getLastRow();
 
   if (lastRow <= 1) {
-    SpreadsheetApp.getUi().alert('No registrations found.');
+    SpreadsheetApp.getUi().alert('No registrations found in database.');
     return;
   }
 
   var data = sheet.getRange(2, 1, lastRow - 1, HEADERS.length).getValues();
-  var sentCount = 0;
-  var errors = [];
+  var unsentRows = [];
 
   for (var i = 0; i < data.length; i++) {
-    var rowNum = i + 2;
     var status = String(data[i][COL.STATUS - 1]).trim();
     var ticketSent = String(data[i][COL.TICKET_SENT - 1]).trim();
-
     if (status === 'Verified' && ticketSent !== 'Yes') {
-      try {
-        sendTicketEmailForRow(sheet, rowNum);
-        sentCount++;
-      } catch (err) {
-        errors.push('Row ' + rowNum + ': ' + err.message);
-      }
+      unsentRows.push(i + 2);
     }
   }
 
-  var msg = 'Sent ' + sentCount + ' ticket email(s).';
-  if (errors.length > 0) {
-    msg += '\n\nErrors encountered:\n' + errors.join('\n');
+  if (unsentRows.length === 0) {
+    SpreadsheetApp.getUi().alert('✅ All verified attendees have already received their tickets.');
+    return;
   }
-  SpreadsheetApp.getUi().alert(msg);
+
+  var ui = SpreadsheetApp.getUi();
+  var proceed = ui.alert(
+    'Batch Send Tickets',
+    'Found ' + unsentRows.length + ' verified attendee(s) who have NOT received tickets.\n\nSend official ticket emails now?',
+    ui.ButtonSet.YES_NO
+  );
+
+  if (proceed !== ui.Button.YES) return;
+
+  var sentCount = 0;
+  var errors = [];
+
+  for (var j = 0; j < unsentRows.length; j++) {
+    var rowNum = unsentRows[j];
+    try {
+      sendTicketEmailForRow(sheet, rowNum);
+      sentCount++;
+      Utilities.sleep(400); // Prevent email quota throttling
+    } catch (err) {
+      errors.push('Row ' + rowNum + ': ' + err.message);
+    }
+  }
+
+  var msg = 'Successfully sent ' + sentCount + ' of ' + unsentRows.length + ' ticket email(s).';
+  if (errors.length > 0) {
+    msg += '\n\nErrors encountered:\n' + errors.slice(0, 5).join('\n');
+  }
+  ui.alert(msg);
+}
+
+/**
+ * Menu action: Resends ticket by prompting for Registration ID or Email
+ */
+function resendTicketDialog() {
+  var ui = SpreadsheetApp.getUi();
+  var prompt = ui.prompt('Resend Ticket Email', 'Enter Registration ID (e.g. ILL-123456) or Attendee Email:', ui.ButtonSet.OK_CANCEL);
+  if (prompt.getSelectedButton() !== ui.Button.OK) return;
+
+  var query = prompt.getResponseText().trim();
+  if (!query) return;
+
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = findRowByQuery(sheet, query);
+
+  if (row === 0) {
+    ui.alert('⚠️ Attendee not found for query: ' + query);
+    return;
+  }
+
+  var name = sheet.getRange(row, COL.NAME).getValue();
+  var email = sheet.getRange(row, COL.EMAIL).getValue();
+  var regId = sheet.getRange(row, COL.REG_ID).getValue();
+  var status = sheet.getRange(row, COL.STATUS).getValue();
+
+  var confirm = ui.alert(
+    'Confirm Resend',
+    'Attendee: ' + name + '\nReg ID: ' + regId + '\nEmail: ' + email + '\nPayment Status: ' + status + '\n\nResend official ticket email now?',
+    ui.ButtonSet.YES_NO
+  );
+
+  if (confirm === ui.Button.YES) {
+    try {
+      sendTicketEmailForRow(sheet, row);
+      ui.alert('✅ Official ticket successfully resent to ' + email);
+    } catch (err) {
+      ui.alert('⚠️ Failed to send ticket: ' + err.message);
+    }
+  }
+}
+
+/**
+ * Menu action: Sets selected row payment status back to 'Pending Verification'
+ */
+function markPendingVerificationSelectedRow() {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = sheet.getActiveCell().getRow();
+  if (row <= 1) {
+    SpreadsheetApp.getUi().alert('Please select a student row (row 2 or below).');
+    return;
+  }
+
+  sheet.getRange(row, COL.STATUS).setValue('Pending Verification');
+  sheet.getRange(row, COL.VERIFIER).setValue('');
+  SpreadsheetApp.getUi().alert('Row ' + row + ' reverted to "Pending Verification".');
+}
+
+/**
+ * Menu action: Rejects registration with reason and optional notification email
+ */
+function rejectSelectedRow() {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = sheet.getActiveCell().getRow();
+  if (row <= 1) {
+    SpreadsheetApp.getUi().alert('Please select a student row (row 2 or below).');
+    return;
+  }
+
+  var ui = SpreadsheetApp.getUi();
+  var name = sheet.getRange(row, COL.NAME).getValue();
+  var email = sheet.getRange(row, COL.EMAIL).getValue();
+  var regId = sheet.getRange(row, COL.REG_ID).getValue();
+
+  var prompt = ui.prompt(
+    'Reject Registration',
+    'Enter rejection reason for ' + name + ' (' + regId + '):\n(e.g. Invalid UTR / Payment not credited / Duplicate submission)',
+    ui.ButtonSet.OK_CANCEL
+  );
+
+  if (prompt.getSelectedButton() !== ui.Button.OK) return;
+  var reason = prompt.getResponseText().trim() || 'Payment verification failed. Invalid or unverified UTR.';
+
+  sheet.getRange(row, COL.STATUS).setValue('Rejected');
+  var userEmail = Session.getActiveUser().getEmail() || 'Admin';
+  sheet.getRange(row, COL.VERIFIER).setValue(userEmail + ' (Rejected: ' + reason + ')');
+
+  var sendMail = ui.alert('Send Notification Email?', 'Send polite rejection notification to ' + email + ' with instructions to resubmit?', ui.ButtonSet.YES_NO);
+  if (sendMail === ui.Button.YES) {
+    try {
+      var attendee = { fullName: name, email: email, regId: regId };
+      var html = buildRejectionEmailHtml(attendee, reason);
+      MailApp.sendEmail({
+        to: email,
+        subject: 'illuminate 2026 Registration Update — ' + regId,
+        htmlBody: html,
+        name: 'illuminate 2026 — IIEC CSMU',
+        replyTo: CONFIG.REPLY_TO_EMAIL
+      });
+      ui.alert('✅ Status set to Rejected and notification sent to ' + email);
+    } catch (err) {
+      ui.alert('Status set to Rejected. Email error: ' + err.message);
+    }
+  } else {
+    ui.alert('✅ Status set to Rejected.');
+  }
+}
+
+/**
+ * Menu action: Rapid Gate Check-In by entering or scanning Registration ID
+ */
+function checkinAttendeeDialog() {
+  var ui = SpreadsheetApp.getUi();
+  var prompt = ui.prompt('Event Day Rapid Check-In', 'Scan or Enter Registration ID (e.g. ILL-123456):', ui.ButtonSet.OK_CANCEL);
+  if (prompt.getSelectedButton() !== ui.Button.OK) return;
+
+  var id = prompt.getResponseText().trim();
+  if (!id) return;
+
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = findRowByQuery(sheet, id);
+
+  if (row === 0) {
+    ui.alert('❌ Registration ID ' + id + ' not found in database.');
+    return;
+  }
+
+  var name = sheet.getRange(row, COL.NAME).getValue();
+  var college = sheet.getRange(row, COL.COLLEGE).getValue();
+  var status = sheet.getRange(row, COL.STATUS).getValue();
+  var currentCheckin = sheet.getRange(row, COL.CHECKIN).getValue();
+
+  if (currentCheckin === 'Checked In') {
+    ui.alert('⚠️ ALREADY CHECKED IN!\n\nAttendee: ' + name + '\nCollege: ' + college + '\nStatus: Already Marked Checked In');
+    return;
+  }
+
+  sheet.getRange(row, COL.CHECKIN).setValue('Checked In');
+  sheet.getRange(row, COL.CHECKIN).setBackground('#d1fae5').setFontColor('#065f46').setFontWeight('bold');
+
+  ui.alert('✅ CHECK-IN SUCCESSFUL!\n\n• Attendee: ' + name + '\n• College: ' + college + '\n• Payment Status: ' + status + '\n• Seat Confirmed!');
+}
+
+/**
+ * Menu action: Toggles Check-In status on the active row
+ */
+function toggleCheckinSelectedRow() {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = sheet.getActiveCell().getRow();
+  if (row <= 1) {
+    SpreadsheetApp.getUi().alert('Please select a student row (row 2 or below).');
+    return;
+  }
+
+  var current = sheet.getRange(row, COL.CHECKIN).getValue();
+  var newCheckin = (current === 'Checked In') ? 'Not Checked In' : 'Checked In';
+  var name = sheet.getRange(row, COL.NAME).getValue();
+
+  sheet.getRange(row, COL.CHECKIN).setValue(newCheckin);
+  if (newCheckin === 'Checked In') {
+    sheet.getRange(row, COL.CHECKIN).setBackground('#d1fae5').setFontColor('#065f46').setFontWeight('bold');
+  } else {
+    sheet.getRange(row, COL.CHECKIN).setBackground('#ffffff').setFontColor('#111111').setFontWeight('normal');
+  }
+
+  SpreadsheetApp.getUi().alert('Check-in status for ' + name + ' updated to: ' + newCheckin);
+}
+
+/**
+ * Menu action: Resets Check-In status on active row
+ */
+function resetCheckinSelectedRow() {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = sheet.getActiveCell().getRow();
+  if (row <= 1) {
+    SpreadsheetApp.getUi().alert('Please select a student row (row 2 or below).');
+    return;
+  }
+
+  sheet.getRange(row, COL.CHECKIN).setValue('Not Checked In');
+  sheet.getRange(row, COL.CHECKIN).setBackground('#ffffff').setFontColor('#111111').setFontWeight('normal');
+  SpreadsheetApp.getUi().alert('Row ' + row + ' reset to "Not Checked In".');
+}
+
+/**
+ * Menu action: Displays full attendee lookup card with action buttons
+ */
+function lookupRegistrationDialog() {
+  var ui = SpreadsheetApp.getUi();
+  var prompt = ui.prompt('Attendee Record Lookup', 'Enter Registration ID, Email, Mobile, or UTR:', ui.ButtonSet.OK_CANCEL);
+  if (prompt.getSelectedButton() !== ui.Button.OK) return;
+
+  var query = prompt.getResponseText().trim();
+  if (!query) return;
+
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = findRowByQuery(sheet, query);
+
+  if (row === 0) {
+    ui.alert('⚠️ No attendee record matched: ' + query);
+    return;
+  }
+
+  var data = sheet.getRange(row, 1, 1, HEADERS.length).getValues()[0];
+  var card = [
+    '═══════════════════════════════════════',
+    'DELEGATE: ' + data[COL.NAME - 1],
+    '═══════════════════════════════════════',
+    '• Reg ID: ' + data[COL.REG_ID - 1],
+    '• Email: ' + data[COL.EMAIL - 1],
+    '• Mobile: ' + data[COL.MOBILE - 1],
+    '• College: ' + data[COL.COLLEGE - 1],
+    '• Program: ' + data[COL.COURSE - 1] + ' (' + data[COL.YEAR - 1] + ')',
+    '• Fee: ₹' + (data[COL.FEE - 1] || CONFIG.FEE_AMOUNT),
+    '• Payment Status: ' + data[COL.STATUS - 1],
+    '• UTR Reference: ' + (data[COL.UTR - 1] || 'Not submitted'),
+    '• Ticket Sent: ' + data[COL.TICKET_SENT - 1],
+    '• Check-In: ' + data[COL.CHECKIN - 1],
+    '• Verified By: ' + (data[COL.VERIFIER - 1] || 'Pending'),
+    '• Sheet Row: ' + row,
+    '═══════════════════════════════════════'
+  ].join('\n');
+
+  var action = ui.alert('Attendee Record (Row ' + row + ')', card + '\n\nSelect action to perform:', ui.ButtonSet.YES_NO_CANCEL);
+
+  // YES = Verify & Send Ticket, NO = Toggle Check-In, CANCEL = Close
+  if (action === ui.Button.YES) {
+    sheet.getRange(row, COL.STATUS).setValue('Verified');
+    sheet.getRange(row, COL.VERIFIER).setValue(Session.getActiveUser().getEmail() || 'Admin');
+    try {
+      sendTicketEmailForRow(sheet, row);
+      ui.alert('✅ Verified and ticket sent to ' + data[COL.EMAIL - 1]);
+    } catch (e) {
+      ui.alert('Error sending ticket: ' + e.message);
+    }
+  } else if (action === ui.Button.NO) {
+    var nextCheckin = (data[COL.CHECKIN - 1] === 'Checked In') ? 'Not Checked In' : 'Checked In';
+    sheet.getRange(row, COL.CHECKIN).setValue(nextCheckin);
+    ui.alert('Check-In updated to: ' + nextCheckin);
+  }
+}
+
+/**
+ * Menu action: Broadcasts official announcement or reminder email to attendees
+ */
+function broadcastEmailDialog() {
+  var ui = SpreadsheetApp.getUi();
+
+  var audPrompt = ui.prompt(
+    '1/3: Target Audience',
+    'Choose recipient segment:\n' +
+    '1 = Verified Attendees Only (Recommended for ticket holders)\n' +
+    '2 = Pending Verification Only (Payment reminder)\n' +
+    '3 = ALL Registered Students',
+    ui.ButtonSet.OK_CANCEL
+  );
+  if (audPrompt.getSelectedButton() !== ui.Button.OK) return;
+  var choice = audPrompt.getResponseText().trim();
+
+  var filterStatus = '';
+  if (choice === '1') filterStatus = 'Verified';
+  else if (choice === '2') filterStatus = 'Pending Verification';
+  else if (choice !== '3') {
+    ui.alert('Invalid option. Operation cancelled.');
+    return;
+  }
+
+  var subjPrompt = ui.prompt('2/3: Email Subject', 'Enter announcement subject:\n(e.g. Important: Reporting Time & Venue Instructions for illuminate 2026)', ui.ButtonSet.OK_CANCEL);
+  if (subjPrompt.getSelectedButton() !== ui.Button.OK) return;
+  var subject = subjPrompt.getResponseText().trim();
+  if (!subject) return;
+
+  var msgPrompt = ui.prompt('3/3: Email Message Body', 'Enter your message text (plain text or paragraphs):', ui.ButtonSet.OK_CANCEL);
+  if (msgPrompt.getSelectedButton() !== ui.Button.OK) return;
+  var message = msgPrompt.getResponseText().trim();
+  if (!message) return;
+
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var lastRow = sheet.getLastRow();
+  if (lastRow <= 1) return;
+
+  var data = sheet.getRange(2, 1, lastRow - 1, HEADERS.length).getValues();
+  var recipients = [];
+
+  for (var i = 0; i < data.length; i++) {
+    var email = String(data[i][COL.EMAIL - 1]).trim();
+    var status = String(data[i][COL.STATUS - 1]).trim();
+    if (!email || email.indexOf('@') === -1) continue;
+
+    if (!filterStatus || status === filterStatus) {
+      recipients.push({ email: email, name: data[i][COL.NAME - 1] });
+    }
+  }
+
+  var confirm = ui.alert(
+    'Confirm Broadcast Dispatch',
+    'Target Audience: ' + (filterStatus || 'ALL Registrations') + '\n' +
+    'Total Recipients: ' + recipients.length + '\n' +
+    'Subject: ' + subject + '\n\n' +
+    'Proceed with broadcasting to ' + recipients.length + ' students?',
+    ui.ButtonSet.YES_NO
+  );
+
+  if (confirm !== ui.Button.YES) return;
+
+  var sent = 0;
+  var errors = [];
+  var html = buildBroadcastEmailHtml(subject, message);
+
+  for (var k = 0; k < recipients.length; k++) {
+    try {
+      MailApp.sendEmail({
+        to: recipients[k].email,
+        subject: subject,
+        htmlBody: html,
+        name: 'illuminate 2026 — IIEC CSMU',
+        replyTo: CONFIG.REPLY_TO_EMAIL
+      });
+      sent++;
+      Utilities.sleep(350); // Respect Google quota
+    } catch (err) {
+      errors.push(recipients[k].email + ': ' + err.message);
+    }
+  }
+
+  ui.alert('✅ Broadcast finished!\nSent to ' + sent + ' of ' + recipients.length + ' recipients.');
+}
+
+/**
+ * Menu action: Refreshes the Dashboard & Stats sheet formulas and summary
+ */
+function refreshDashboard() {
+  setupSheet();
+  SpreadsheetApp.getUi().alert('✅ Dashboard formulas, counts, and formatting have been refreshed!');
 }
 
 /**
@@ -763,6 +1181,491 @@ function testSendTicketToMyself() {
   });
 
   SpreadsheetApp.getUi().alert('Test ticket email successfully sent to: ' + myEmail);
+}
+
+/* ------------------------------ SIDEBAR & WEB ADMIN APIS ------------------------------ */
+
+function apiGetStats() {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  if (!sheet || sheet.getLastRow() <= 1) {
+    return { total: 0, verified: 0, pending: 0, rejected: 0, checkedIn: 0, unsent: 0, revenue: 0 };
+  }
+
+  var data = sheet.getRange(2, 1, sheet.getLastRow() - 1, HEADERS.length).getValues();
+  var total = data.length;
+  var verified = 0, pending = 0, rejected = 0, checkedIn = 0, unsent = 0;
+
+  for (var i = 0; i < total; i++) {
+    var status = String(data[i][COL.STATUS - 1]).trim();
+    var check = String(data[i][COL.CHECKIN - 1]).trim();
+    var sent = String(data[i][COL.TICKET_SENT - 1]).trim();
+
+    if (status === 'Verified') {
+      verified++;
+      if (sent !== 'Yes') unsent++;
+    } else if (status === 'Rejected') {
+      rejected++;
+    } else {
+      pending++;
+    }
+
+    if (check === 'Checked In') checkedIn++;
+  }
+
+  return {
+    total: total,
+    verified: verified,
+    pending: pending,
+    rejected: rejected,
+    checkedIn: checkedIn,
+    unsent: unsent,
+    revenue: verified * CONFIG.FEE_AMOUNT
+  };
+}
+
+function apiSearchAttendee(query) {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = findRowByQuery(sheet, query);
+  if (row === 0) return { found: false };
+
+  var d = sheet.getRange(row, 1, 1, HEADERS.length).getValues()[0];
+  return {
+    found: true,
+    row: row,
+    regId: d[COL.REG_ID - 1],
+    fullName: d[COL.NAME - 1],
+    email: d[COL.EMAIL - 1],
+    mobile: d[COL.MOBILE - 1],
+    college: d[COL.COLLEGE - 1],
+    course: d[COL.COURSE - 1],
+    year: d[COL.YEAR - 1],
+    status: d[COL.STATUS - 1],
+    utrNumber: d[COL.UTR - 1],
+    ticketSent: d[COL.TICKET_SENT - 1],
+    checkinStatus: d[COL.CHECKIN - 1],
+    fee: d[COL.FEE - 1] || CONFIG.FEE_AMOUNT
+  };
+}
+
+function apiVerifyAttendee(regId) {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = findRowByQuery(sheet, regId);
+  if (row === 0) return { ok: false, error: 'Attendee not found' };
+
+  sheet.getRange(row, COL.STATUS).setValue('Verified');
+  var user = Session.getActiveUser().getEmail() || 'Admin';
+  sheet.getRange(row, COL.VERIFIER).setValue(user);
+  if (!sheet.getRange(row, COL.PAY_TS).getValue()) {
+    sheet.getRange(row, COL.PAY_TS).setValue(new Date());
+  }
+
+  sendTicketEmailForRow(sheet, row);
+  return { ok: true, message: 'Verified and ticket emailed' };
+}
+
+function apiCheckinAttendee(regId) {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = findRowByQuery(sheet, regId);
+  if (row === 0) return { ok: false, error: 'Registration ID not found' };
+
+  var current = sheet.getRange(row, COL.CHECKIN).getValue();
+  if (current === 'Checked In') {
+    return { ok: true, already: true, name: sheet.getRange(row, COL.NAME).getValue() };
+  }
+
+  sheet.getRange(row, COL.CHECKIN).setValue('Checked In');
+  sheet.getRange(row, COL.CHECKIN).setBackground('#d1fae5').setFontColor('#065f46');
+  return { ok: true, name: sheet.getRange(row, COL.NAME).getValue(), college: sheet.getRange(row, COL.COLLEGE).getValue() };
+}
+
+function apiResendTicket(regId) {
+  var ss = targetSpreadsheet();
+  var sheet = ss.getSheetByName(CONFIG.SHEET_NAME);
+  var row = findRowByQuery(sheet, regId);
+  if (row === 0) return { ok: false, error: 'Attendee not found' };
+
+  sendTicketEmailForRow(sheet, row);
+  return { ok: true, email: sheet.getRange(row, COL.EMAIL).getValue() };
+}
+
+function handleAdminApiGet(p) {
+  var action = (p.api_action || '').toLowerCase();
+  try {
+    if (action === 'stats') return jsonResponse(apiGetStats());
+    if (action === 'search') return jsonResponse(apiSearchAttendee(p.q || ''));
+    if (action === 'verify') return jsonResponse(apiVerifyAttendee(p.id || ''));
+    if (action === 'checkin') return jsonResponse(apiCheckinAttendee(p.id || ''));
+    if (action === 'resend') return jsonResponse(apiResendTicket(p.id || ''));
+    return jsonResponse({ ok: false, error: 'Unknown action: ' + action });
+  } catch (err) {
+    return jsonResponse({ ok: false, error: err.message });
+  }
+}
+
+/**
+ * Universal query finder (Reg ID, Email, Phone, or UTR)
+ */
+function findRowByQuery(sheet, query) {
+  if (!query) return 0;
+  var lastRow = sheet.getLastRow();
+  if (lastRow <= 1) return 0;
+
+  var q = String(query).trim().toUpperCase();
+  var data = sheet.getRange(2, 1, lastRow - 1, HEADERS.length).getValues();
+
+  for (var i = 0; i < data.length; i++) {
+    var regId = String(data[i][COL.REG_ID - 1]).trim().toUpperCase();
+    var email = String(data[i][COL.EMAIL - 1]).trim().toUpperCase();
+    var mobile = String(data[i][COL.MOBILE - 1]).trim();
+    var utr = String(data[i][COL.UTR - 1]).trim().toUpperCase();
+
+    if (regId === q || email === q || mobile === q || (utr && utr === q)) {
+      return i + 2;
+    }
+  }
+  return 0;
+}
+
+/* ------------------------------ HTML SIDEBAR & TEMPLATES ------------------------------ */
+
+function buildAdminSidebarHtml(isStandaloneWeb) {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>illuminate 2026 Admin Hub</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 14px; background: #0d1117; color: #f0f6fc; font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; line-height: 1.45; }
+    .header { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 12px; margin-bottom: 14px; }
+    .brand { font-size: 15px; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+    .brand span { color: #ff5a1f; }
+    .tag { font-size: 9.5px; font-weight: 800; background: rgba(255,90,31,0.15); color: #ff986e; border: 1px solid rgba(255,90,31,0.35); padding: 2px 7px; border-radius: 999px; text-transform: uppercase; }
+    .tabs { display: flex; gap: 4px; border-bottom: 1px solid rgba(255,255,255,0.12); margin-bottom: 14px; }
+    .tab-btn { flex: 1; padding: 8px 4px; background: transparent; border: none; color: #8b949e; font-size: 11.5px; font-weight: 700; cursor: pointer; border-bottom: 2px solid transparent; text-align: center; }
+    .tab-btn.active { color: #ff5a1f; border-bottom-color: #ff5a1f; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+    .stat-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 10px; }
+    .stat-num { font-size: 18px; font-weight: 900; color: #fff; line-height: 1.1; margin-top: 2px; }
+    .stat-lbl { font-size: 9.5px; font-weight: 700; color: #8b949e; text-transform: uppercase; letter-spacing: 0.05em; }
+    .stat-green { color: #34d399; }
+    .stat-orange { color: #fbbf24; }
+    .stat-accent { color: #ff986e; }
+    .btn { display: block; width: 100%; padding: 9px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; border: none; cursor: pointer; margin-bottom: 8px; text-align: center; transition: all 0.2s; }
+    .btn-primary { background: #ff5a1f; color: #fff; }
+    .btn-primary:hover { background: #e04b15; }
+    .btn-green { background: #059669; color: #fff; }
+    .btn-green:hover { background: #047857; }
+    .btn-dark { background: rgba(255,255,255,0.08); color: #f0f6fc; border: 1px solid rgba(255,255,255,0.12); }
+    .btn-dark:hover { background: rgba(255,255,255,0.14); }
+    .input-box { width: 100%; padding: 9px 11px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 8px; color: #fff; font-size: 12.5px; margin-bottom: 8px; outline: none; }
+    .input-box:focus { border-color: #ff5a1f; background: rgba(255,255,255,0.09); }
+    .card-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+    .toast { position: fixed; bottom: 12px; left: 14px; right: 14px; padding: 9px 12px; border-radius: 6px; font-size: 11.5px; font-weight: 700; background: #1f2937; color: #fff; border: 1px solid #374151; display: none; text-align: center; z-index: 100; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">⚡ illuminate <span>Admin</span></div>
+    <span class="tag">IIT Bombay × CSMU</span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('tab-stats')">Dashboard</button>
+    <button class="tab-btn" onclick="switchTab('tab-search')">Lookup</button>
+    <button class="tab-btn" onclick="switchTab('tab-gate')">Gate Entry</button>
+  </div>
+
+  <!-- TAB 1: STATS & BATCH ACTIONS -->
+  <div class="panel active" id="tab-stats">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-lbl">Registrations</div><div class="stat-num" id="s-total">-</div></div>
+      <div class="stat-card"><div class="stat-lbl">Verified Paid</div><div class="stat-num stat-green" id="s-verified">-</div></div>
+      <div class="stat-card"><div class="stat-lbl">Pending UTR</div><div class="stat-num stat-orange" id="s-pending">-</div></div>
+      <div class="stat-card"><div class="stat-lbl">Gate Checked-In</div><div class="stat-num stat-accent" id="s-checkin">-</div></div>
+    </div>
+    <div class="card-box">
+      <div class="stat-lbl" style="margin-bottom:6px;">Confirmed Collections</div>
+      <div style="font-size:20px;font-weight:900;color:#34d399;" id="s-revenue">₹0</div>
+    </div>
+    <button class="btn btn-green" onclick="sendAllUnsentTickets()">🚀 Send All Unsent Tickets (<span id="s-unsent">0</span>)</button>
+    <button class="btn btn-dark" onclick="refreshLiveStats()">🔄 Refresh Live Statistics</button>
+  </div>
+
+  <!-- TAB 2: LOOKUP & ATTENDEE ACTIONS -->
+  <div class="panel" id="tab-search">
+    <input type="text" id="searchInput" class="input-box" placeholder="Enter Reg ID / Email / UTR..." onkeydown="if(event.key==='Enter')doSearch()">
+    <button class="btn btn-primary" onclick="doSearch()">Search Attendee</button>
+    <div id="searchResult" style="display:none;" class="card-box">
+      <div id="resName" style="font-size:15px;font-weight:800;color:#fff;margin-bottom:2px;"></div>
+      <div id="resId" style="font-size:11px;font-family:monospace;color:#ff986e;margin-bottom:8px;"></div>
+      <div style="font-size:12px;color:#cbd5e1;line-height:1.6;margin-bottom:10px;" id="resMeta"></div>
+      <button class="btn btn-green" id="btnVerifyAct" onclick="doVerifyFromSearch()">Verify & Send Ticket</button>
+      <button class="btn btn-primary" id="btnCheckinAct" onclick="doCheckinFromSearch()">Mark Checked In</button>
+      <button class="btn btn-dark" onclick="doResendFromSearch()">Resend Ticket Email</button>
+    </div>
+  </div>
+
+  <!-- TAB 3: GATE CHECK-IN -->
+  <div class="panel" id="tab-gate">
+    <div style="font-size:11.5px;color:#8b949e;margin-bottom:8px;">Fast Gate Desk Scanner: Scan QR or type ID and press Enter.</div>
+    <input type="text" id="gateInput" class="input-box" placeholder="Scan or Type Reg ID (e.g. ILL-123456)..." autofocus onkeydown="if(event.key==='Enter')doGateCheckin()">
+    <button class="btn btn-green" onclick="doGateCheckin()">Check-In Delegate</button>
+    <div id="gateFeedback" style="display:none;margin-top:10px;padding:12px;border-radius:8px;"></div>
+  </div>
+
+  <div class="toast" id="toastMsg"></div>
+
+  <script>
+    var currentRecord = null;
+
+    function switchTab(id) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(id).classList.add('active');
+      if (id === 'tab-gate') document.getElementById('gateInput').focus();
+    }
+
+    function showToast(msg, bg) {
+      var t = document.getElementById('toastMsg');
+      t.textContent = msg;
+      t.style.background = bg || '#1f2937';
+      t.style.display = 'block';
+      setTimeout(() => t.style.display = 'none', 3000);
+    }
+
+    function refreshLiveStats() {
+      showToast('Refreshing stats...');
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.withSuccessHandler(renderStats).apiGetStats();
+      } else {
+        fetch('?api_action=stats').then(r => r.json()).then(renderStats);
+      }
+    }
+
+    function renderStats(s) {
+      document.getElementById('s-total').textContent = s.total;
+      document.getElementById('s-verified').textContent = s.verified;
+      document.getElementById('s-pending').textContent = s.pending;
+      document.getElementById('s-checkin').textContent = s.checkedIn;
+      document.getElementById('s-unsent').textContent = s.unsent;
+      document.getElementById('s-revenue').textContent = '₹' + (s.revenue || 0);
+      showToast('Statistics updated', '#065f46');
+    }
+
+    function doSearch() {
+      var q = document.getElementById('searchInput').value.trim();
+      if (!q) return;
+      showToast('Searching database...');
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.withSuccessHandler(renderSearchResult).apiSearchAttendee(q);
+      } else {
+        fetch('?api_action=search&q=' + encodeURIComponent(q)).then(r => r.json()).then(renderSearchResult);
+      }
+    }
+
+    function renderSearchResult(res) {
+      var box = document.getElementById('searchResult');
+      if (!res || !res.found) {
+        box.style.display = 'none';
+        showToast('No record found', '#991b1b');
+        return;
+      }
+      currentRecord = res;
+      document.getElementById('resName').textContent = res.fullName;
+      document.getElementById('resId').textContent = res.regId + ' • Row ' + res.row;
+      document.getElementById('resMeta').innerHTML = 
+        'College: <b>' + res.college + '</b><br>' +
+        'Status: <b style="color:' + (res.status === 'Verified' ? '#34d399' : '#fbbf24') + '">' + res.status + '</b><br>' +
+        'UTR: <code>' + (res.utrNumber || 'Pending') + '</code><br>' +
+        'Check-In: <b>' + res.checkinStatus + '</b>';
+      box.style.display = 'block';
+      showToast('Found: ' + res.fullName, '#065f46');
+    }
+
+    function doVerifyFromSearch() {
+      if (!currentRecord) return;
+      showToast('Verifying payment and sending ticket...');
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.withSuccessHandler(() => {
+          showToast('Verified & Ticket Sent!', '#065f46');
+          doSearch();
+          refreshLiveStats();
+        }).apiVerifyAttendee(currentRecord.regId);
+      } else {
+        fetch('?api_action=verify&id=' + encodeURIComponent(currentRecord.regId)).then(r => r.json()).then(() => {
+          showToast('Verified & Ticket Sent!', '#065f46');
+          doSearch();
+          refreshLiveStats();
+        });
+      }
+    }
+
+    function doCheckinFromSearch() {
+      if (!currentRecord) return;
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.withSuccessHandler(() => {
+          showToast('Checked in successfully!', '#065f46');
+          doSearch();
+          refreshLiveStats();
+        }).apiCheckinAttendee(currentRecord.regId);
+      } else {
+        fetch('?api_action=checkin&id=' + encodeURIComponent(currentRecord.regId)).then(r => r.json()).then(() => {
+          showToast('Checked in successfully!', '#065f46');
+          doSearch();
+          refreshLiveStats();
+        });
+      }
+    }
+
+    function doResendFromSearch() {
+      if (!currentRecord) return;
+      showToast('Resending ticket...');
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.withSuccessHandler(() => showToast('Ticket resent!', '#065f46')).apiResendTicket(currentRecord.regId);
+      } else {
+        fetch('?api_action=resend&id=' + encodeURIComponent(currentRecord.regId)).then(r => r.json()).then(() => showToast('Ticket resent!', '#065f46'));
+      }
+    }
+
+    function doGateCheckin() {
+      var id = document.getElementById('gateInput').value.trim().toUpperCase();
+      if (!id) return;
+      var fb = document.getElementById('gateFeedback');
+
+      function showCheckinRes(r) {
+        document.getElementById('gateInput').value = '';
+        document.getElementById('gateInput').focus();
+        fb.style.display = 'block';
+        if (!r.ok) {
+          fb.style.background = '#7f1d1d';
+          fb.innerHTML = '❌ <b>Attendee Not Found!</b> ID: ' + id;
+        } else if (r.already) {
+          fb.style.background = '#78350f';
+          fb.innerHTML = '⚠️ <b>Already Checked In!</b><br>' + r.name;
+        } else {
+          fb.style.background = '#064e3b';
+          fb.innerHTML = '✅ <b>SUCCESSFUL ENTRY!</b><br><b>' + r.name + '</b><br><span style="font-size:11px;">' + r.college + '</span>';
+          refreshLiveStats();
+        }
+      }
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.withSuccessHandler(showCheckinRes).apiCheckinAttendee(id);
+      } else {
+        fetch('?api_action=checkin&id=' + encodeURIComponent(id)).then(r => r.json()).then(showCheckinRes);
+      }
+    }
+
+    function sendAllUnsentTickets() {
+      if (!confirm('Batch send tickets to all verified attendees who have not received them?')) return;
+      showToast('Dispatching ticket batch...');
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.withSuccessHandler(() => {
+          showToast('Batch tickets sent!', '#065f46');
+          refreshLiveStats();
+        }).sendAllUnsentVerifiedTickets();
+      }
+    }
+
+    // Auto-refresh stats on load
+    window.onload = refreshLiveStats;
+  </script>
+</body>
+</html>
+  `;
+}
+
+function buildBroadcastEmailHtml(subject, messageText) {
+  var formatted = escapeHtml(messageText).replace(/\\n/g, '<br>');
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>${escapeHtml(subject)}</title>
+</head>
+<body style="margin:0;padding:24px 14px;background:#f5f5f0;font-family:'Inter',system-ui,sans-serif;color:#111;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:600px;margin:0 auto;background:#fff;border:1px solid #d8d8d0;border-radius:18px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.06);">
+    <tr><td style="height:4px;background:#ff5a1f;"></td></tr>
+    <tr>
+      <td style="padding:24px 28px;text-align:center;border-bottom:1px solid #f0f0ea;">
+        <div style="font-size:11px;font-weight:800;color:#ff5a1f;letter-spacing:1.5px;text-transform:uppercase;">E-CELL IIT BOMBAY &times; IIEC CSMU</div>
+        <div style="font-size:24px;font-weight:900;color:#111;margin-top:4px;">illuminate <span style="color:#ff5a1f;">2026</span></div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:28px;">
+        <h2 style="font-size:18px;font-weight:800;margin:0 0 16px;color:#111;">${escapeHtml(subject)}</h2>
+        <div style="font-size:14px;line-height:1.7;color:#444;">${formatted}</div>
+        <div style="margin-top:28px;padding:16px;background:#fffbeb;border:1px solid #fde68a;border-radius:10px;font-size:12.5px;color:#92400e;">
+          <strong>Venue:</strong> CSMU Campus, Panvel &bull; Carry your College Photo ID Card.
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:20px 28px;background:#111;color:#fff;text-align:center;font-size:11.5px;color:#a1a1aa;">
+        IIEC CSMU &bull; <a href="https://iiec.in/illuminate" style="color:#ff986e;text-decoration:none;">iiec.in/illuminate</a> &bull; Helpline: +91 94666 05579
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
+
+function buildRejectionEmailHtml(attendee, reason) {
+  return `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Payment Update: illuminate 2026</title>
+</head>
+<body style="margin:0;padding:24px 14px;background:#f5f5f0;font-family:'Inter',system-ui,sans-serif;color:#111;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:580px;margin:0 auto;background:#fff;border:1px solid #d8d8d0;border-radius:18px;overflow:hidden;">
+    <tr><td style="height:4px;background:#dc2626;"></td></tr>
+    <tr>
+      <td style="padding:24px 28px;text-align:center;border-bottom:1px solid #f0f0ea;">
+        <div style="font-size:11px;font-weight:800;color:#dc2626;letter-spacing:1.5px;text-transform:uppercase;">Registration Action Required</div>
+        <div style="font-size:22px;font-weight:900;color:#111;margin-top:4px;">illuminate <span style="color:#ff5a1f;">2026</span></div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:28px;">
+        <h2 style="font-size:17px;font-weight:800;margin:0 0 12px;color:#111;">Hello ${escapeHtml(attendee.fullName)},</h2>
+        <p style="font-size:13.5px;color:#555;line-height:1.65;margin:0 0 16px;">
+          We reviewed your submitted payment details for Registration ID <strong>${escapeHtml(attendee.regId)}</strong>. Unfortunately, we were unable to verify your payment with our bank records.
+        </p>
+        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:14px;margin-bottom:20px;font-size:13px;color:#991b1b;">
+          <strong>Reason Noted:</strong> ${escapeHtml(reason)}
+        </div>
+        <p style="font-size:13.5px;color:#555;line-height:1.65;margin:0 0 24px;">
+          If you have completed the payment of ₹${CONFIG.FEE_AMOUNT} via UPI, please resubmit your 12-digit UTR on our portal or contact the coordination desk with your payment screenshot.
+        </p>
+        <div style="text-align:center;">
+          <a href="https://iiec.in/illuminate#register" style="display:inline-block;background:#ff5a1f;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:12px 24px;border-radius:999px;">
+            Go to illuminate Portal
+          </a>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td style="padding:18px 24px;background:#111;color:#a1a1aa;text-align:center;font-size:11.5px;">
+        IIEC CSMU &bull; Student Coordination Desk &bull; Helpline: +91 94666 05579
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
 }
 
 /* ------------------------------ SETUP & FORMATTING ------------------------------ */

@@ -90,32 +90,57 @@ Automated Responsive HTML Ticket Email Sent to Attendee
 
 ---
 
-## Step 6: Verifying Payments & Sending Ticket Emails
+## Step 6: Using the illuminate Admin Panel
 
-You have two easy ways to verify payments and send tickets:
+You have a complete suite of organizer tools right inside your Google Sheet and on the web:
 
-### Method A: Automatic on Edit (Recommended)
-1. In the Google Sheet, open the **"illuminate Registrations"** tab.
-2. Find the row with the student's submitted UTR.
-3. In Column N (**Payment Status**), click the dropdown and change it to **`Verified`**.
-4. The backend script will automatically:
-   - Record who verified the row in Column S (**Verified By**).
-   - Generate and email the participant their official HTML ticket with dynamic check-in QR code.
-   - Mark Column Q (**Ticket Sent?**) to **`Yes`** and record the exact timestamp in Column R.
-
-### Method B: Custom Menu Action
-1. Click on the student's row in the sheet.
-2. In the top spreadsheet menu, click **illuminate Workshop** ➔ **Verify & Send Ticket (Selected Row)**.
-3. Confirm the popup dialog.
-
-### Batch Sending Unsent Tickets
-If you have verified multiple rows at once, click:
-**illuminate Workshop** ➔ **Send Tickets to ALL Verified (Unsent)**.
+### 📱 1. Interactive Admin Console (Sidebar)
+Click **⚡ illuminate Admin** ➔ **📱 Open Admin Console (Sidebar)** to open the organizer hub inside your sheet:
+- **Real-Time Live Counters**: Submissions, Verified Paid, Pending UTR, Checked-In Attendees, and Total Collections (₹).
+- **Attendee Lookup**: Search any attendee by Registration ID, Email, Phone, or UTR with 1-click **[Verify & Send Ticket]**, **[Mark Checked In]**, and **[Resend Ticket]**.
+- **Gate Entry Desk**: Auto-focused rapid check-in box for barcode/QR scanners on event day.
+- **1-Click Batch Actions**: Dispatch tickets to all unsent verified participants in one click.
 
 ---
 
-## Testing Your Setup
+### 💳 2. Payment Verification & Ticket Dispatch
+- **Automatic on Edit**: In the **"illuminate Registrations"** tab, change Column N (**Payment Status**) to **`Verified`**. The script automatically records your email in Column S, dispatches the branded HTML ticket pass, and marks Column Q (**Ticket Sent?**) to `Yes`.
+- **Selected Row Action**: Highlight a student row and click **⚡ illuminate Admin** ➔ **💳 Payment & Verification** ➔ **✅ Verify & Send Ticket (Selected Row)**.
+- **Batch Send Tickets**: Click **⚡ illuminate Admin** ➔ **💳 Payment & Verification** ➔ **🚀 Send Tickets to ALL Verified (Unsent)**.
+- **Resend Ticket**: Click **⚡ illuminate Admin** ➔ **💳 Payment & Verification** ➔ **🔄 Resend Ticket Email (by Reg ID / Email)**.
+- **Reject Registration**: Click **⚡ illuminate Admin** ➔ **💳 Payment & Verification** ➔ **❌ Reject Registration (Selected Row)**. Enter reason (e.g. invalid UTR) and optionally send a polite rejection email instructing the student how to resubmit.
 
-1. In Apps Script, select `testSendTicketToMyself` from the function dropdown and click **Run**.
-2. Check your inbox to preview the HTML ticket and QR code.
-3. Submit a test registration from `illuminate.html` in your browser. Verify that the row appears in your Google Sheet with status `Pending Verification` and your submitted UTR!
+---
+
+### 🎟️ 3. Event Day Gate Check-In & Attendance
+- **Rapid Scanner Tool**: Click **⚡ illuminate Admin** ➔ **🎟️ Check-In & Gate Attendance** ➔ **⚡ Rapid Check-In (Enter / Scan Reg ID)**. Scans or takes an ID and marks them `Checked In` with green highlight, alerting if already checked in!
+- **Toggle Check-In**: Highlight a row and click **⚡ illuminate Admin** ➔ **🎟️ Check-In & Gate Attendance** ➔ **🔘 Toggle Check-In Status (Selected Row)**.
+
+---
+
+### 📢 4. Email Broadcast Tool
+Need to notify attendees about reporting time, venue instructions, or payment reminders?
+1. Click **⚡ illuminate Admin** ➔ **📢 Broadcast Announcement / Reminder Email**.
+2. Select target audience:
+   - `1` = Verified Attendees Only (ticket holders)
+   - `2` = Pending Verification Only (payment reminder)
+   - `3` = ALL Registered Students
+3. Enter email subject and announcement body.
+4. Confirm preview to broadcast the branded IIEC × E-Cell IIT Bombay email!
+
+---
+
+### 🌐 5. Standalone Web Admin View (Mobile / Tablet)
+Organizers on event day can access the full admin console in their mobile browser without opening Google Sheets:
+```text
+https://script.google.com/macros/s/AKfycby7QscQp692FD9ut0Gh-QbmuoktP4YKYzyObS1acqLdMznEsA-E4cXP_e4dcePSVEEM/exec?admin=true
+```
+
+---
+
+## Updating Google Apps Script with New Version
+1. Open your Google Sheet ➔ **Extensions** ➔ **Apps Script**.
+2. Copy the full contents of [`illuminate_code.gs`](file:///d:/E-Cell%20Website/IIEC.in/iiec.in%20Website/illuminate_code.gs) and paste it into the editor, replacing old code.
+3. Click **Save** (`Ctrl + S`).
+4. Click **Deploy** ➔ **Manage deployments** ➔ Click the **Pencil icon (Edit)** ➔ Under Version choose **New version** ➔ Click **Deploy**.
+5. Refresh your Google Sheet. The new **⚡ illuminate Admin** menu and sidebar console are active!
