@@ -17,9 +17,13 @@
       // Views & Navigation
       this.mainView = document.getElementById('admin-main-view');
       this.studioSection = document.getElementById('admin-blog-studio-section');
+      this.articleManagerSection = document.getElementById('admin-article-manager-section');
       this.openStudioCta = document.getElementById('open-blog-studio-cta');
       this.openStudioLink = document.getElementById('open-blog-studio-link');
       this.closeStudioBtn = document.getElementById('close-blog-studio-btn');
+      this.openArticleManagerCta = document.getElementById('open-article-manager-cta');
+      this.openArticleManagerLink = document.getElementById('open-article-manager-link');
+      this.closeArticleManagerBtn = document.getElementById('close-article-manager-btn');
 
       // Form Inputs
       this.blogForm = document.getElementById('blog-post-form');
@@ -87,13 +91,16 @@
       // Check URL Hash for direct view
       if (window.location.hash === '#blog-studio') {
         this.openStudio();
+      } else if (window.location.hash === '#article-manager' || window.location.hash === '#curate-articles') {
+        this.openArticleManager();
       }
     }
 
     /* ------------------------------------------------------------
-       1. VIEW NAVIGATION (Overview <-> Dedicated Blog Studio)
+       1. VIEW NAVIGATION (Overview <-> Blog Studio <-> Article Manager)
        ------------------------------------------------------------ */
     initViewToggles() {
+      // Open Blog Studio
       if (this.openStudioCta) {
         this.openStudioCta.addEventListener('click', () => this.openStudio());
       }
@@ -106,10 +113,25 @@
       if (this.closeStudioBtn) {
         this.closeStudioBtn.addEventListener('click', () => this.closeStudio());
       }
+
+      // Open Article Manager / Editorial Curation
+      if (this.openArticleManagerCta) {
+        this.openArticleManagerCta.addEventListener('click', () => this.openArticleManager());
+      }
+      if (this.openArticleManagerLink) {
+        this.openArticleManagerLink.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.openArticleManager();
+        });
+      }
+      if (this.closeArticleManagerBtn) {
+        this.closeArticleManagerBtn.addEventListener('click', () => this.closeArticleManager());
+      }
     }
 
     openStudio() {
       if (this.mainView) this.mainView.style.display = 'none';
+      if (this.articleManagerSection) this.articleManagerSection.style.display = 'none';
       if (this.studioSection) {
         this.studioSection.style.display = 'block';
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -118,6 +140,27 @@
     }
 
     closeStudio() {
+      if (this.studioSection) this.studioSection.style.display = 'none';
+      if (this.articleManagerSection) this.articleManagerSection.style.display = 'none';
+      if (this.mainView) {
+        this.mainView.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      history.replaceState(null, '', window.location.pathname);
+    }
+
+    openArticleManager() {
+      if (this.mainView) this.mainView.style.display = 'none';
+      if (this.studioSection) this.studioSection.style.display = 'none';
+      if (this.articleManagerSection) {
+        this.articleManagerSection.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      history.replaceState(null, '', '#article-manager');
+    }
+
+    closeArticleManager() {
+      if (this.articleManagerSection) this.articleManagerSection.style.display = 'none';
       if (this.studioSection) this.studioSection.style.display = 'none';
       if (this.mainView) {
         this.mainView.style.display = 'block';
@@ -526,14 +569,22 @@
       ];
 
       let rawPosts = DEFAULT_POSTS;
+      let remoteFeaturedId = null;
+      let remoteOrderedIds = null;
 
-      // Try fetching live from Google Sheets CMS
+      // Fetch live from Google Sheets CMS
       try {
         const SCRIPT_URL = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3MEtKazhPYkR3LVhwejlUSmxQWExDWE9Fb3ZXeDBJM2JTVWxjVG1CTFdiX0tMb0w0QXZ0QWtHNW9FbnZ4TUZOdnJ5QS9leGVj');
         const response = await fetch(SCRIPT_URL, { method: 'GET', redirect: 'follow' });
         const data = await response.json();
         if (data && data.success && Array.isArray(data.posts) && data.posts.length > 0) {
           rawPosts = data.posts;
+          if (data.featuredPostId || data.featuredId) {
+            remoteFeaturedId = data.featuredPostId || data.featuredId;
+          }
+          if (Array.isArray(data.orderedIds)) {
+            remoteOrderedIds = data.orderedIds;
+          }
         }
       } catch (err) {
         console.log('Using default articles dataset for curation:', err);
@@ -545,40 +596,39 @@
         id: p.id || `post_${idx}_${p.title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}`
       }));
 
-      // Load saved layout & featured setting
-      const savedLayoutRaw = localStorage.getItem('iiec_blog_layout_v1');
-      if (savedLayoutRaw) {
-        try {
-          const config = JSON.parse(savedLayoutRaw);
-          if (config.featuredId) {
-            this.currentFeaturedId = config.featuredId;
-          }
-          if (Array.isArray(config.orderedIds) && config.orderedIds.length > 0) {
-            // Sort by orderedIds
-            const postMap = new Map(rawPosts.map(p => [p.id, p]));
-            const ordered = [];
-            config.orderedIds.forEach(id => {
-              if (postMap.has(id)) {
-                ordered.push(postMap.get(id));
-                postMap.delete(id);
-              }
-            });
-            // Append any new posts not in orderedIds
-            postMap.forEach(p => ordered.push(p));
-            this.managedPosts = ordered;
-          } else {
-            this.managedPosts = [...rawPosts];
-          }
-        } catch (e) {
-          this.managedPosts = [...rawPosts];
+      // Check if any post in rawPosts is marked as isFeatured
+      if (!remoteFeaturedId) {
+        const marked = rawPosts.find(p => p.isFeatured === true || String(p.isFeatured).toLowerCase() === 'true');
+        if (marked) {
+          remoteFeaturedId = marked.id;
         }
-      } else {
-        this.managedPosts = [...rawPosts];
       }
 
-      // If no featured ID is set, default to first item
-      if (!this.currentFeaturedId && this.managedPosts.length > 0) {
-        this.currentFeaturedId = this.managedPosts[0].id;
+      // Load saved layout & featured setting (Remote Google Sheet Priority -> LocalStorage Fallback)
+      const savedLayoutRaw = localStorage.getItem('iiec_blog_layout_v1');
+      let localConfig = null;
+      if (savedLayoutRaw) {
+        try { localConfig = JSON.parse(savedLayoutRaw); } catch (e) {}
+      }
+
+      const activeFeaturedId = remoteFeaturedId || localConfig?.featuredId || (rawPosts.length > 0 ? rawPosts[0].id : null);
+      const activeOrderedIds = remoteOrderedIds || localConfig?.orderedIds || null;
+
+      this.currentFeaturedId = activeFeaturedId;
+
+      if (Array.isArray(activeOrderedIds) && activeOrderedIds.length > 0) {
+        const postMap = new Map(rawPosts.map(p => [p.id, p]));
+        const ordered = [];
+        activeOrderedIds.forEach(id => {
+          if (postMap.has(id)) {
+            ordered.push(postMap.get(id));
+            postMap.delete(id);
+          }
+        });
+        postMap.forEach(p => ordered.push(p));
+        this.managedPosts = ordered;
+      } else {
+        this.managedPosts = [...rawPosts];
       }
 
       this.renderArticlesList();
@@ -762,34 +812,69 @@
       this.showToast(`★ Set "${target ? target.title : 'Article'}" as the Spotlight Featured Edition!`, 'success');
     }
 
-    saveLayout(silent = false) {
+    async saveLayout(silent = false) {
       const config = {
+        action: 'update_layout',
         featuredId: this.currentFeaturedId,
         orderedIds: this.managedPosts.map(p => p.id),
         updatedAt: Date.now()
       };
 
+      // 1. Local Cache for instant feedback
       try {
         localStorage.setItem('iiec_blog_layout_v1', JSON.stringify(config));
         this.hasUnsavedOrder = false;
         if (this.layoutStateEl) {
-          this.layoutStateEl.textContent = 'Live Synced';
+          this.layoutStateEl.textContent = 'Saving to Sheet...';
+          this.layoutStateEl.style.background = '#fff3e0';
+          this.layoutStateEl.style.color = '#e65100';
+        }
+      } catch (err) {}
+
+      // 2. Remote Save to Google Sheet CMS
+      const SCRIPT_URL = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3MEtKazhPYkR3LVhwejlUSmxQWExDWE9Fb3ZXeDBJM2JTVWxjVG1CTFdiX0tMb0w0QXZ0QWtHNW9FbnZ4TUZOdnJ5QS9leGVj');
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(config)
+        });
+
+        if (this.layoutStateEl) {
+          this.layoutStateEl.textContent = 'Saved in Sheet';
           this.layoutStateEl.style.background = '#e8f5e9';
           this.layoutStateEl.style.color = '#1b5e20';
         }
         if (!silent) {
-          this.showToast('✓ Blog sequence & Featured Edition saved and live!', 'success');
+          this.showToast('✓ Layout and Featured Edition saved to Google Sheet for all visitors!', 'success');
         }
       } catch (err) {
-        console.error('Failed to save blog layout:', err);
-        this.showToast('Error saving layout to local storage', 'error');
+        console.warn('Google Sheet remote sync notice:', err);
+        if (this.layoutStateEl) {
+          this.layoutStateEl.textContent = 'Saved Locally';
+        }
+        if (!silent) {
+          this.showToast('✓ Layout updated locally. Please verify network connection.', 'success');
+        }
       }
     }
 
-    resetLayout() {
+    async resetLayout() {
       if (confirm('Reset blog order to default chronological order?')) {
         localStorage.removeItem('iiec_blog_layout_v1');
         this.hasUnsavedOrder = false;
+
+        const SCRIPT_URL = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3MEtKazhPYkR3LVhwejlUSmxQWExDWE9Fb3ZXeDBJM2JTVWxjVG1CTFdiX0tMb0w0QXZ0QWtHNW9FbnZ4TUZOdnJ5QS9leGVj');
+        try {
+          fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'update_layout', featuredId: '', orderedIds: [] })
+          }).catch(function() {});
+        } catch (e) {}
+
         this.fetchAndSetupArticles();
         this.showToast('Reset blog layout to default chronological sequence.', 'success');
       }

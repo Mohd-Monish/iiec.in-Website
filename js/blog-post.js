@@ -498,15 +498,29 @@
     try {
       const response = await fetch(API_URL, { method: 'GET', redirect: 'follow' });
       const data = await response.json();
-      if (data.success && data.posts && data.posts.length > 0) {
-        allPosts = data.posts;
+      if (data && data.success && Array.isArray(data.posts) && data.posts.length > 0) {
+        let sortedPosts = data.posts;
+        if (Array.isArray(data.orderedIds) && data.orderedIds.length > 0) {
+          const map = new Map(data.posts.map(p => [p.id, p]));
+          const arranged = [];
+          data.orderedIds.forEach(id => {
+            if (map.has(id)) {
+              arranged.push(map.get(id));
+              map.delete(id);
+            }
+          });
+          map.forEach(p => arranged.push(p));
+          sortedPosts = arranged;
+        }
+
+        allPosts = sortedPosts;
         let post = null;
         if (postId) {
-          post = data.posts.find(p => p.id === postId);
-        } else if (detectedIndex !== null && data.posts[detectedIndex]) {
-          post = data.posts[detectedIndex];
+          post = sortedPosts.find(p => p.id === postId);
+        } else if (detectedIndex !== null && sortedPosts[detectedIndex]) {
+          post = sortedPosts[detectedIndex];
         } else {
-          post = data.posts[0];
+          post = sortedPosts[0];
           detectedIndex = 0;
         }
 
@@ -535,8 +549,21 @@
     try {
       const response = await fetch(API_URL, { method: 'GET', redirect: 'follow' });
       const data = await response.json();
-      if (data.success && data.posts && data.posts.length > 0) {
-        allPosts = data.posts;
+      if (data && data.success && Array.isArray(data.posts) && data.posts.length > 0) {
+        let sortedPosts = data.posts;
+        if (Array.isArray(data.orderedIds) && data.orderedIds.length > 0) {
+          const map = new Map(data.posts.map(p => [p.id, p]));
+          const arranged = [];
+          data.orderedIds.forEach(id => {
+            if (map.has(id)) {
+              arranged.push(map.get(id));
+              map.delete(id);
+            }
+          });
+          map.forEach(p => arranged.push(p));
+          sortedPosts = arranged;
+        }
+        allPosts = sortedPosts;
         // Re-render related posts if active post is set
         if (activePost) {
           const relatedGrid = document.getElementById('related-grid');
