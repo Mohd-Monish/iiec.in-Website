@@ -31,25 +31,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="format-detection" content="telephone=no">
   <meta name="robots" content="noindex, nofollow">
   <meta name="description" content="IIEC Operations Portal - Admin access only">
-  <meta name="theme-color" content="#05070f">
+  <meta name="theme-color" content="#f5f5f0">
   
   <title>OPS Portal | IIEC</title>
   
+  <!-- Fonts: Outfit & Inter from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="icon" type="image/webp" href="./assets/favicon.webp">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
   
-  <link rel="stylesheet" href="css/iiec-animations.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/admin.css">
-  <!-- Page Loader Script -->
+  
   <script>
     document.documentElement.classList.add('js-loading');
     window.addEventListener('load', () => {
@@ -57,173 +57,239 @@
       document.documentElement.classList.add('js-loaded');
     });
   </script>
-<meta property="og:locale" content="en_IN" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@iiec_csmu" />
-	<meta name="twitter:creator" content="@iiec_csmu" />
 </head>
-<body>
+<body class="admin-page">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58G63L54"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Page Loader -->
-  <div class="page-loader" id="page-loader" aria-hidden="true">
-    <div class="loader-content">
-      <div class="loader-logo">
-        <img src="./assets/logos/iiec-logo.webp" alt="IIEC" width="80" height="80" loading="eager" decoding="async">
-      </div>
-      <div class="loader-bar-container">
-        <div class="loader-dots-wrapper">
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-          <div class="loader-dot"></div>
-        </div>
-        <div class="loader-info-row">
-          <div class="loader-percentage">
-            <span class="loader-percentage-num" id="loader-percent">0</span>
-            <span class="loader-percentage-symbol">%</span>
-          </div>
-          <span class="loader-divider">-</span>
-          <div class="loader-text">Where Vision Drives Venture</div>
-        </div>
-        <div id="loader-bar" style="display:none;"></div>
+  <!-- Ambient Light Glow Background -->
+  <div class="admin-ambient-glow" aria-hidden="true"></div>
+
+  <!-- Navigation (visible on password screen only) -->
+  <nav class="admin-public-navbar" id="admin-navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <a href="/" class="nav-brand" aria-label="IIEC Home">
+        <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="36" height="36">
+        <span class="nav-brand-title">IIEC <span>OPS</span></span>
+        <span class="nav-badge">Admin</span>
+      </a>
+      <div class="nav-links">
+        <a href="/" class="nav-back-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          <span>Back to Site</span>
+        </a>
       </div>
     </div>
-  </div>
+  </nav>
 
-  <!-- Particle Canvas -->
-  <canvas id="particle-canvas" aria-hidden="true"></canvas>
-  
-  <!-- Glow Orb -->
-  <div class="glow-orb-wrapper" aria-hidden="true">
-    <div class="glow-orb"></div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Navigation (visible on password screen only) -->
-    <nav class="navbar" id="admin-navbar" role="navigation" aria-label="Main navigation">
-      <div class="container">
-        <a href="/" class="nav-logo" aria-label="IIEC Home">
-          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
-          <span>IIEC</span>
-        </a>
-        <div class="nav-links" role="menu">
-          <a href="/" class="nav-link" role="menuitem">Back to Site</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- PASSWORD SCREEN -->
-    <section class="admin-section" id="password-screen" aria-labelledby="password-title">
-      <div class="container">
-        <div class="admin-card glass-card" data-animate>
-          <div class="admin-header">
-            <div class="admin-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h1 id="password-title" class="admin-title">OPS <span class="highlight">Portal</span></h1>
-            <p class="admin-subtitle">Enter admin password to continue</p>
+  <!-- ============================================================
+       PASSWORD AUTHENTICATION SCREEN
+       ============================================================ -->
+  <section class="admin-auth-section" id="password-screen" aria-labelledby="password-title">
+    <div class="container">
+      <div class="admin-auth-card">
+        <div class="admin-auth-header">
+          <div class="admin-auth-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
           </div>
-          
-          <form id="password-form" class="admin-form">
-            <div class="form-group">
-              <label for="admin-password" class="form-label">Password</label>
-              <input type="password" id="admin-password" class="form-input" placeholder="Enter admin password" required autocomplete="current-password">
-            </div>
-            <button type="submit" class="btn btn-primary btn-full">
-              <span>Access Portal</span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </button>
-            <div class="form-message" role="alert"></div>
-          </form>
-          
-          <p class="admin-note">For authorized IIEC team members only.</p>
+          <h1 id="password-title" class="admin-auth-title">OPS <span>Portal</span></h1>
+          <p class="admin-auth-subtitle">Enter administrator password to continue</p>
         </div>
+        
+        <form id="password-form" class="admin-auth-form" novalidate>
+          <div class="form-group">
+            <label for="admin-password" class="form-label">Password</label>
+            <div class="input-wrapper">
+              <input type="password" id="admin-password" class="form-input" placeholder="Enter admin password" required autocomplete="current-password" autofocus>
+            </div>
+          </div>
+          <button type="submit" class="admin-submit-btn">
+            <span>Access Portal</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+          <div class="form-message" role="alert"></div>
+        </form>
+        
+        <p class="admin-auth-note">For authorized IIEC team members only.</p>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ============================================================
-         ADMIN DASHBOARD (Hidden by default)
-         ============================================================ -->
-    <div id="admin-dashboard" style="display: none;">
+  <!-- ============================================================
+       AUTHENTICATED ADMIN DASHBOARD
+       ============================================================ -->
+  <div id="admin-dashboard" class="admin-dashboard-wrapper" style="display: none;">
 
-      <!-- Top Bar -->
-      <header class="admin-topbar">
+    <!-- Top Bar -->
+    <header class="admin-topbar">
+      <div class="container admin-topbar-inner">
         <div class="admin-topbar-left">
           <img src="./assets/logos/iiec-logo.webp" alt="IIEC" width="36" height="36" class="admin-topbar-logo">
           <div class="admin-topbar-title">
-            <h2>OPS <span class="highlight">Portal</span></h2>
+            <h2>IIEC <span>OPS</span></h2>
             <span class="admin-topbar-badge">Admin</span>
           </div>
         </div>
         <div class="admin-topbar-right">
-          <a href="/" class="admin-topbar-link">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          <a href="/" class="admin-topbar-link" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
             <span>Back to Site</span>
           </a>
-          <button class="admin-logout-btn" id="logout-btn">
+          <button class="admin-logout-btn" id="logout-btn" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
             <span>Logout</span>
           </button>
         </div>
-        <div class="admin-topbar-accent"></div>
-      </header>
+      </div>
+    </header>
 
-      <!-- Dashboard Body -->
-      <main class="admin-body">
-        <div class="admin-container">
+    <!-- Dashboard Body -->
+    <main class="admin-body">
+      <div class="container">
 
-          <!-- Welcome Section -->
-          <div class="admin-welcome">
-            <h1>Welcome back, <span class="highlight">Admin</span></h1>
-            <p>Manage your blog, access spreadsheets, and monitor analytics.</p>
+        <!-- ========================================================
+             1. MAIN DASHBOARD OVERVIEW VIEW
+             ======================================================== -->
+        <div id="admin-main-view" class="admin-view-section">
+          
+          <!-- Welcome Banner with Primary CTA -->
+          <div class="admin-welcome-card">
+            <div class="welcome-text-group">
+              <h1>Welcome back, <span>Admin</span></h1>
+              <p>Manage blog publications, curate featured editions, and arrange public articles.</p>
+            </div>
+            <div class="welcome-action-group">
+              <button type="button" id="open-blog-studio-cta" class="welcome-studio-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                <span>Compose New Article</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Quick Links Grid -->
+          <!-- ========================================================
+               ARTICLE MANAGER & FEATURED EDITION ORGANIZER
+               ======================================================== -->
+          <section class="admin-manager-panel" id="admin-article-manager" aria-labelledby="manager-title">
+            <div class="manager-header">
+              <div class="manager-title-group">
+                <div class="panel-tag">EDITORIAL CURATION</div>
+                <h2 id="manager-title" class="manager-title">Featured Edition &amp; <span>Article Order</span></h2>
+                <p class="manager-subtitle">Select which story shines in the top Spotlight Featured Edition banner and rearrange the publication sequence across the public blog feed.</p>
+              </div>
+              <div class="manager-actions">
+                <button type="button" id="reset-article-order-btn" class="btn-ghost-manager" title="Reset to default chronological order">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                  <span>Reset Order</span>
+                </button>
+                <button type="button" id="save-article-layout-btn" class="btn-save-manager">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                  <span>Save &amp; Publish Layout</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="manager-status-bar">
+              <div class="manager-status-item">
+                <span class="status-dot"></span>
+                <span class="status-label">Active Spotlight:</span>
+                <strong id="active-featured-title" class="status-value">Loading active featured edition...</strong>
+              </div>
+              <div class="manager-status-meta">
+                <span id="manager-articles-count">4 Articles</span>
+                <span class="meta-sep">&bull;</span>
+                <span id="manager-layout-state" class="layout-state-pill">Live Synced</span>
+              </div>
+            </div>
+
+            <!-- List of Articles with Arrange Controls and Featured Toggle -->
+            <div id="admin-articles-sortable-list" class="manager-articles-list" role="list" aria-label="Sortable articles list">
+              <!-- Populated dynamically by JavaScript -->
+              <div class="manager-loading-state">
+                <div class="spinner-small"></div>
+                <span>Loading published articles &amp; layout...</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Operations Cards Grid -->
           <section class="admin-cards-grid">
 
-            <!-- Certificates Card -->
+            <!-- 1. Blog & Publisher Card -->
+            <div class="admin-card-panel admin-card-panel--featured">
+              <div class="admin-card-header">
+                <div class="admin-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                </div>
+                <div>
+                  <div class="panel-tag">STUDIO</div>
+                  <h3>Blog &amp; Publisher</h3>
+                  <p>Write, format and publish articles</p>
+                </div>
+              </div>
+              <div class="admin-card-links">
+                <a href="#blog-studio" id="open-blog-studio-link" class="admin-action-link admin-action-link--primary">
+                  <div class="admin-action-link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+                  </div>
+                  <div class="admin-action-link-text">
+                    <span>Open Blog Studio</span>
+                    <small>Live split markdown &amp; bidirectional preview</small>
+                  </div>
+                  <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <a href="blog" class="admin-action-link" target="_blank">
+                  <div class="admin-action-link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                  </div>
+                  <div class="admin-action-link-text">
+                    <span>View Public Blog Feed</span>
+                    <small>Live articles on IIEC website</small>
+                  </div>
+                  <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 2. Certificates Card -->
             <div class="admin-card-panel">
               <div class="admin-card-header">
-                <div class="admin-card-icon admin-card-icon--gold">
+                <div class="admin-card-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
                 </div>
                 <div>
                   <h3>Certificates</h3>
-                  <p>Manage & track certificates</p>
+                  <p>Manage &amp; track certificates</p>
                 </div>
               </div>
               <div class="admin-card-links">
-                <a href="certificate-dashboard" class="admin-action-link">
-                  <div class="admin-action-link-icon admin-action-link-icon--accent">
+                <a href="certificate-dashboard" class="admin-action-link" target="_blank">
+                  <div class="admin-action-link-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                   </div>
                   <div class="admin-action-link-text">
                     <span>Activity Dashboard</span>
-                    <small>Track searches, downloads & verifications</small>
+                    <small>Track searches, downloads &amp; verifications</small>
                   </div>
                   <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
-                <a href="certificates" class="admin-action-link">
+                <a href="certificates" class="admin-action-link" target="_blank">
                   <div class="admin-action-link-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                   </div>
                   <div class="admin-action-link-text">
                     <span>Certificate Search</span>
-                    <small>Search & download certificates</small>
+                    <small>Search &amp; download certificates</small>
                   </div>
                   <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
-                <a href="verify" class="admin-action-link">
+                <a href="verify" class="admin-action-link" target="_blank">
                   <div class="admin-action-link-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                   </div>
@@ -236,15 +302,15 @@
               </div>
             </div>
 
-            <!-- Spreadsheets Card -->
+            <!-- 3. Spreadsheets Card -->
             <div class="admin-card-panel">
               <div class="admin-card-header">
-                <div class="admin-card-icon admin-card-icon--green">
+                <div class="admin-card-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                 </div>
                 <div>
                   <h3>Spreadsheets</h3>
-                  <p>Access IIEC data sheets</p>
+                  <p>Access live Google Sheets</p>
                 </div>
               </div>
               <div class="admin-card-links">
@@ -254,7 +320,7 @@
                   </div>
                   <div class="admin-action-link-text">
                     <span>Blog Posts Sheet</span>
-                    <small>View & manage blog data</small>
+                    <small>View &amp; manage published blog data</small>
                   </div>
                   <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
@@ -264,79 +330,171 @@
                   </div>
                   <div class="admin-action-link-text">
                     <span>Newsletter Subscribers</span>
-                    <small>Email subscriber list</small>
+                    <small>Active email subscriber database</small>
                   </div>
                   <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
               </div>
             </div>
 
-            <!-- Analytics Card -->
+            <!-- 4. Analytics Card -->
             <div class="admin-card-panel">
               <div class="admin-card-header">
-                <div class="admin-card-icon admin-card-icon--blue">
+                <div class="admin-card-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                 </div>
                 <div>
                   <h3>Analytics</h3>
-                  <p>Traffic & performance data</p>
+                  <p>Traffic &amp; performance data</p>
                 </div>
               </div>
               <div class="admin-card-links">
-                <a href="analytics" class="admin-action-link">
-                  <div class="admin-action-link-icon admin-action-link-icon--accent">
+                <a href="analytics" class="admin-action-link" target="_blank">
+                  <div class="admin-action-link-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
                   </div>
                   <div class="admin-action-link-text">
                     <span>IIEC Analytics</span>
-                    <small>Custom analytics dashboard</small>
+                    <small>Custom on-site analytics dashboard</small>
                   </div>
                   <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
-                <a href="https://search.google.com/search-console" target="_blank" rel="noopener noreferrer" class="admin-action-link">
+                <a href="https://clarity.microsoft.com" target="_blank" rel="noopener noreferrer" class="admin-action-link">
                   <div class="admin-action-link-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
                   </div>
                   <div class="admin-action-link-text">
-                    <span>Search Console</span>
-                    <small>Google Search performance</small>
+                    <span>Microsoft Clarity</span>
+                    <small>Heatmaps &amp; user session recordings</small>
                   </div>
                   <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+                <a href="https://analytics.google.com" target="_blank" rel="noopener noreferrer" class="admin-action-link">
+                  <div class="admin-action-link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                  </div>
+                  <div class="admin-action-link-text">
+                    <span>Google Analytics</span>
+                    <small>Measurement ID: G-N75CFCW014</small>
+                  </div>
+                  <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- 5. Quick Actions / Events Card -->
+            <div class="admin-card-panel">
+              <div class="admin-card-header">
+                <div class="admin-card-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                </div>
+                <div>
+                  <h3>Quick Actions</h3>
+                  <p>Event portals &amp; assets</p>
+                </div>
+              </div>
+              <div class="admin-card-links">
+                <a href="next_gen_pitch" class="admin-action-link" target="_blank">
+                  <div class="admin-action-link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                  </div>
+                  <div class="admin-action-link-text">
+                    <span>Next Gen Pitch 2026</span>
+                    <small>CSMU &times; NEC IIT Bombay Startup Competition</small>
+                  </div>
+                  <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <a href="assets" class="admin-action-link" target="_blank">
+                  <div class="admin-action-link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                  </div>
+                  <div class="admin-action-link-text">
+                    <span>Brand &amp; Media Assets</span>
+                    <small>Official logos, banners &amp; brand files</small>
+                  </div>
+                  <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                </a>
+                <a href="team" class="admin-action-link" target="_blank">
+                  <div class="admin-action-link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                  </div>
+                  <div class="admin-action-link-text">
+                    <span>Team Directory</span>
+                    <small>IIEC leadership &amp; domain heads</small>
+                  </div>
+                  <svg class="admin-action-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                 </a>
               </div>
             </div>
 
           </section>
+        </div>
 
-          <!-- Blog Editor Section -->
-          <section class="admin-blog-editor">
-            <div class="admin-blog-editor-header">
-              <div class="admin-blog-editor-title">
-                <div class="admin-card-icon admin-card-icon--purple">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+        <!-- ========================================================
+             2. DEDICATED BLOG PUBLISHER STUDIO VIEW (Hidden by default)
+             ======================================================== -->
+        <div id="admin-blog-studio-section" class="admin-view-section" style="display: none;">
+          
+          <!-- Back Navigation Strip -->
+          <div class="studio-top-nav">
+            <button type="button" id="close-blog-studio-btn" class="studio-back-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              </svg>
+              <span>Back to Dashboard</span>
+            </button>
+            <div class="studio-nav-right">
+              <span id="blog-draft-indicator" class="blog-draft-status">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>Draft auto-saved</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="admin-blog-card">
+            
+            <!-- Studio Header -->
+            <div class="admin-blog-card-header">
+              <div class="blog-header-left">
+                <div class="blog-badge-row">
+                  <span class="blog-studio-badge">
+                    <span class="badge-dot"></span>
+                    ARTICLE PUBLISHER STUDIO
+                  </span>
                 </div>
-                <div>
-                  <h3>Blog Editor</h3>
-                  <p>Write and publish posts to the IIEC blog</p>
+                <h2 class="blog-studio-title">Create &amp; Publish <span>Article</span></h2>
+                <p class="blog-studio-subtitle">Bidirectional editor: Edit directly from Markdown on left, or click &amp; type right on the live preview!</p>
+              </div>
+              <div class="blog-header-right">
+                <div class="blog-stats-pill">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+                  <span id="blog-live-word-count">0 words</span>
+                  <span class="stats-sep">&bull;</span>
+                  <span id="blog-live-read-time">1 min read</span>
                 </div>
               </div>
             </div>
 
-            <form id="blog-post-form" class="admin-blog-form">
+            <form id="blog-post-form" class="admin-blog-form" novalidate>
               <!-- Title -->
               <div class="form-group">
-                <label class="form-label" for="post-title">Post Title <span class="form-required">*</span></label>
-                <input type="text" id="post-title" class="form-input form-input--title" placeholder="Enter your blog post title..." required>
+                <div class="form-label-row">
+                  <label class="form-label" for="post-title">Article Headline <span class="form-required">*</span></label>
+                  <span class="form-hint">Make it catchy and descriptive</span>
+                </div>
+                <div class="input-glow-wrapper">
+                  <input type="text" id="post-title" class="form-input form-input--title" placeholder="e.g. Building India's Next Billion-Dollar Student Startup..." required>
+                </div>
               </div>
 
-              <!-- Meta Row -->
-              <div class="form-grid form-grid--4">
+              <!-- Meta Row (3 Columns - Auto Read Time) -->
+              <div class="form-grid form-grid--3">
                 <div class="form-group">
                   <label class="form-label" for="post-category">Category <span class="form-required">*</span></label>
                   <select id="post-category" class="form-input" required>
-                    <option value="">Select</option>
+                    <option value="">Select Category</option>
                     <option value="Innovation">Innovation</option>
-                    <option value="Entrepreneurship">Entrepreneurship</option>
+                    <option value="Entrepreneurship" selected>Entrepreneurship</option>
                     <option value="Technology">Technology</option>
                     <option value="Events">Events</option>
                     <option value="Workshops">Workshops</option>
@@ -350,26 +508,44 @@
                   <input type="text" id="post-author" class="form-input" placeholder="Author name" value="IIEC Team" required>
                 </div>
                 <div class="form-group">
-                  <label class="form-label" for="post-read-time">Read Time</label>
-                  <input type="text" id="post-read-time" class="form-input" placeholder="e.g. 5 min read" value="5 min read">
-                </div>
-                <div class="form-group">
                   <label class="form-label" for="post-image">Cover Image URL</label>
-                  <input type="url" id="post-image" class="form-input" placeholder="https://...">
+                  <input type="url" id="post-image" class="form-input" placeholder="https://iiec.in/assets/...">
+                </div>
+              </div>
+              <input type="hidden" id="post-read-time" name="readTime" value="1 min read">
+
+              <!-- Live Cover Image Preview Strip -->
+              <div id="post-image-preview-card" class="cover-image-preview-card" style="display: none;">
+                <div class="cover-preview-thumb">
+                  <img id="post-image-preview-img" src="" alt="Cover thumbnail preview">
+                </div>
+                <div class="cover-preview-meta">
+                  <span class="cover-preview-tag">COVER IMAGE ACTIVE</span>
+                  <span id="post-image-preview-url" class="cover-preview-link"></span>
                 </div>
               </div>
 
               <!-- Excerpt -->
               <div class="form-group">
-                <label class="form-label" for="post-excerpt">Excerpt <span class="form-required">*</span></label>
-                <textarea id="post-excerpt" class="form-input form-textarea" placeholder="Brief summary shown on the blog listing..." required></textarea>
+                <div class="form-label-row">
+                  <label class="form-label" for="post-excerpt">Short Excerpt / Summary <span class="form-required">*</span></label>
+                  <span class="form-hint">Displayed on blog feed and search previews</span>
+                </div>
+                <textarea id="post-excerpt" class="form-input form-textarea" placeholder="A compelling 1-2 sentence hook summarizing the article..." required></textarea>
               </div>
 
               <!-- Content Editor -->
               <div class="form-group">
-                <label class="form-label" for="post-content">Content <span class="form-required">*</span> <span class="form-hint">(Markdown supported)</span></label>
+                <div class="form-label-row">
+                  <label class="form-label" for="post-content">Article Body Content <span class="form-required">*</span> <span class="form-hint">(Markdown &amp; Direct Preview Editing Supported)</span></label>
+                  <div class="editor-view-pills">
+                    <button type="button" class="view-mode-btn active" data-view="split">Split</button>
+                    <button type="button" class="view-mode-btn" data-view="editor">Editor Only</button>
+                    <button type="button" class="view-mode-btn" data-view="preview">Preview Only</button>
+                  </div>
+                </div>
                 
-                <!-- Toolbar -->
+                <!-- Formatting Toolbar -->
                 <div class="formatter-toolbar">
                   <div class="formatter-group">
                     <button type="button" class="formatter-btn" data-format="bold" title="Bold (Ctrl+B)"><strong>B</strong></button>
@@ -401,24 +577,28 @@
                     </button>
                   </div>
                   <div class="formatter-spacer"></div>
-                  <button type="button" class="formatter-btn formatter-btn--preview" id="toggle-preview" title="Toggle Preview">
+                  <button type="button" class="formatter-btn formatter-btn--preview active" id="toggle-preview" title="Toggle Preview">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                    <span>Preview</span>
+                    <span>Live Preview</span>
                   </button>
                 </div>
 
-                <!-- Editor + Preview Split -->
-                <div class="editor-container">
+                <!-- Editor + Bidirectional Preview Split Workspace -->
+                <div id="blog-editor-container" class="editor-container">
                   <div class="editor-pane">
-                    <textarea id="post-content" class="form-input form-textarea form-textarea--code" placeholder="Write your blog post content here using Markdown..." required></textarea>
+                    <textarea id="post-content" class="form-input form-textarea form-textarea--code" placeholder="# Write your article headline here&#10;&#10;Start writing your blog post using Markdown. Use **bold**, *italics*, quotes, code blocks, and bullet lists..." required></textarea>
                   </div>
-                  <div class="preview-pane" id="preview-pane">
+                  <div class="preview-pane active" id="preview-pane">
                     <div class="preview-header">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                      Live Preview
+                      <div class="preview-header-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <span>Live Editorial Preview</span>
+                      </div>
+                      <span class="preview-editable-badge">✏️ Click to edit directly</span>
                     </div>
-                    <div class="preview-content" id="preview-content">
-                      <p class="preview-placeholder">Start typing to see preview...</p>
+                    <!-- Bidirectional ContentEditable Preview -->
+                    <div class="preview-content" id="preview-content" contenteditable="true" spellcheck="true" role="textbox" aria-multiline="true" aria-label="Editable article live preview">
+                      <p class="preview-placeholder">Start typing in the editor on the left (or click here to type directly) to compose your article...</p>
                     </div>
                   </div>
                 </div>
@@ -427,26 +607,31 @@
               <!-- Action Bar -->
               <div class="admin-blog-actions">
                 <div class="form-message" role="alert"></div>
-                <button type="submit" class="admin-publish-btn">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-                  <span>Publish Post</span>
-                </button>
+                <div class="blog-actions-right">
+                  <button type="button" id="clear-blog-draft-btn" class="btn-clear-draft">Clear Form</button>
+                  <button type="submit" class="admin-publish-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                    <span>Publish Post Live</span>
+                  </button>
+                </div>
               </div>
             </form>
-          </section>
-
+          </div>
         </div>
-      </main>
 
-      <!-- Footer -->
-      <footer class="admin-footer">
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="admin-footer">
+      <div class="container">
         <p>&copy; 2026 IIEC &mdash; Incubation, Innovation &amp; Entrepreneurship Cell, CSMU</p>
-      </footer>
-    </div>
+      </div>
+    </footer>
   </div>
 
-  <!-- Main Script -->
-  <script src="js/iiec-animations.js" defer></script>
+  <!-- Scripts -->
+  <script src="js/admin-editor.js" defer></script>
   <script src="js/script.js" defer></script>
 </body>
 </html>

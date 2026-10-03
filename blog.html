@@ -306,10 +306,10 @@
 
           <div class="blog-hero-stats">
             <span class="hero-stat-pill">
-              <span class="stat-dot"></span> 4 Published Editions
+              <span class="stat-dot"></span> <span id="blog-editions-count">4</span> Published Editions
             </span>
             <span class="hero-stat-pill">
-              <span class="stat-dot" style="background: #157f4a;"></span> 5 Min Avg Read
+              <span class="stat-dot" style="background: #157f4a;"></span> <span id="blog-read-avg">5 Min</span> Avg Read
             </span>
             <span class="hero-stat-pill">
               <span class="stat-dot" style="background: #0077b6;"></span> Student Driven
@@ -320,81 +320,21 @@
     </section>
 
     <!-- ================================================================
-         CATEGORY FILTER BAR
+         CATEGORY FILTER BAR (Dynamic from Google Sheet)
          ================================================================ -->
     <section class="container blog-filter-section">
-      <div class="blog-filter-bar" role="tablist" aria-label="Filter articles by category">
+      <div class="blog-filter-bar" id="blog-category-filter-bar" role="tablist" aria-label="Filter articles by category">
         <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">
           <span>All Articles</span>
           <span class="filter-pill-count">4</span>
-        </button>
-        <button class="filter-pill" data-filter="entrepreneurship" role="tab" aria-selected="false">
-          <span>Entrepreneurship</span>
-          <span class="filter-pill-count">2</span>
-        </button>
-        <button class="filter-pill" data-filter="startup stories" role="tab" aria-selected="false">
-          <span>Startup Stories</span>
-          <span class="filter-pill-count">2</span>
-        </button>
-        <button class="filter-pill" data-filter="student life" role="tab" aria-selected="false">
-          <span>Student Life</span>
-        </button>
-        <button class="filter-pill" data-filter="innovation" role="tab" aria-selected="false">
-          <span>Tech &amp; Innovation</span>
         </button>
       </div>
     </section>
 
     <!-- ================================================================
-         FEATURED ARTICLE SPOTLIGHT (Bento 2-Col Card)
+         FEATURED ARTICLE SPOTLIGHT (Dynamic Featured Edition)
          ================================================================ -->
-    <section class="container blog-featured-section">
-      <a href="blog-post-0" class="blog-featured-card" aria-label="Read featured article: Gen-Z Redefining Entrepreneurship">
-        <div class="featured-media-wrapper">
-          <img src="assets/images/blog/blog-genz-entrepreneurship.jpg" alt="Gen-Z Redefining Entrepreneurship: Turning Business Ventures into Quests" loading="eager" decoding="async">
-          <span class="featured-badge-tag">
-            <span class="badge-dot"></span> Featured Edition
-          </span>
-        </div>
-        <div class="featured-content">
-          <div>
-            <div class="featured-meta-row">
-              <span class="featured-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Sept 2026
-              </span>
-              <span class="featured-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                5 min read
-              </span>
-              <span class="featured-meta-item" style="color: var(--accent); font-weight: 800;">
-                Entrepreneurship
-              </span>
-            </div>
-            <h2 class="featured-title">Gen-Z Redefining Entrepreneurship: Turning Business Ventures into Quests</h2>
-            <p class="featured-excerpt">
-              The arena where businesses compete now isn't just a playground to push each other behind — That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.
-            </p>
-          </div>
-          <div class="featured-footer-row">
-            <div class="featured-author-box">
-              <span class="author-avatar">IE</span>
-              <div>
-                <div class="author-info-name">IIEC Editorial</div>
-                <div class="author-info-sub">Incubation &amp; Startup Cell</div>
-              </div>
-            </div>
-            <span class="featured-read-action">
-              <span>Read Feature Story</span>
-              <span>→</span>
-            </span>
-          </div>
-        </div>
-      </a>
+    <section class="container blog-featured-section" id="blog-featured-section">
     </section>
 
     <!-- ================================================================
@@ -435,7 +375,7 @@
               </span>
             </div>
             <h2 class="blog-card-title">
-              <a href="blog-post-0">Gen- Z redefining Entrepreneurship</a>
+              <a href="blog-post.html?index=0">Gen- Z redefining Entrepreneurship</a>
             </h2>
             <p class="blog-card-excerpt">
               The arena where businesses compete now isn't just a playground to push each other behind - That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.
@@ -445,7 +385,7 @@
                 <span class="tag-avatar">IE</span>
                 <span>IIEC Editorial</span>
               </div>
-              <a href="blog-post-0" class="blog-card-link" data-post-index="0">
+              <a href="blog-post.html?index=0" class="blog-card-link" data-post-index="0">
                 <span>Read Article</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -479,7 +419,7 @@
               </span>
             </div>
             <h2 class="blog-card-title">
-              <a href="blog-post-1">Balancing Studies and Start-Up as a full-time student</a>
+              <a href="blog-post.html?index=1">Balancing Studies and Start-Up as a full-time student</a>
             </h2>
             <p class="blog-card-excerpt">
               There could be nothing more overwhelming than the constant juggling between start-up drive as an individual and managing the duties of a student at the college. Discover efficient and feasible hacks!
@@ -489,7 +429,7 @@
                 <span class="tag-avatar">IE</span>
                 <span>IIEC Editorial</span>
               </div>
-              <a href="blog-post-1" class="blog-card-link" data-post-index="1">
+              <a href="blog-post.html?index=1" class="blog-card-link" data-post-index="1">
                 <span>Read Article</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -523,7 +463,7 @@
               </span>
             </div>
             <h2 class="blog-card-title">
-              <a href="blog-post-2">Side Hustle: Beyond just a culture, a stepping stone.</a>
+              <a href="blog-post.html?index=2">Side Hustle: Beyond just a culture, a stepping stone.</a>
             </h2>
             <p class="blog-card-excerpt">
               Hustling is an essential element to acquiring almost anything extraordinary. Getting fuel ready for your own Start-Up is hardly any different — exploring how young student ventures excel behind the scenes.
@@ -533,7 +473,7 @@
                 <span class="tag-avatar">IE</span>
                 <span>IIEC Editorial</span>
               </div>
-              <a href="blog-post-2" class="blog-card-link" data-post-index="2">
+              <a href="blog-post.html?index=2" class="blog-card-link" data-post-index="2">
                 <span>Read Article</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -567,7 +507,7 @@
               </span>
             </div>
             <h2 class="blog-card-title">
-              <a href="blog-post-3">The Midterm Manoeuvre: Why Your "Failed" Startup is Your Best Grade Yet</a>
+              <a href="blog-post.html?index=3">The Midterm Manoeuvre: Why Your "Failed" Startup is Your Best Grade Yet</a>
             </h2>
             <p class="blog-card-excerpt">
               Getting an idea and wanting to make it a reality is a canon event for university students. Early failure isn't meant to demotivate you — it is the highest-value laboratory curriculum in entrepreneurship.
@@ -577,7 +517,7 @@
                 <span class="tag-avatar">IE</span>
                 <span>IIEC Editorial</span>
               </div>
-              <a href="blog-post-3" class="blog-card-link" data-post-index="3">
+              <a href="blog-post.html?index=3" class="blog-card-link" data-post-index="3">
                 <span>Read Article</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

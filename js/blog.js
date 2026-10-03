@@ -1,6 +1,6 @@
 /**
  * IIEC Blog & Insights — JavaScript Engine
- * Dynamic post rendering, instant category filtering, live search & newsletter
+ * Dynamic post rendering, automatic live category generator & counts, instant search & newsletter
  */
 
 (function () {
@@ -10,7 +10,7 @@
   const SCRIPT_URL = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3MEtKazhPYkR3LVhwejlUSmxQWExDWE9Fb3ZXeDBJM2JTVWxjVG1CTFdiX0tMb0w0QXZ0QWtHNW9FbnZ4TUZOdnJ5QS9leGVj');
   const NEWSLETTER_URL = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J5ZEVLWDVhR2t0bEttekNoQmtzcFdWR1N0SmtISGdWYlkyaUE4YkNQNzYxVTQ4cmhDVV92bHMteTNvN0x2akEyWlMvZXhlYw==');
 
-  // Curated article visual assets tailored to each article topic
+  // Curated article visual assets tailored to each topic
   const CURATED_ARTICLE_IMAGES = [
     'assets/images/blog/blog-genz-entrepreneurship.jpg', // Post 0: Gen Z
     'assets/images/blog/blog-balancing-studies.jpg',      // Post 1: Balancing Studies & Startup
@@ -18,16 +18,59 @@
     'assets/images/blog/blog-failed-startup-pivot.jpg'   // Post 3: Failed Startup / Midterm
   ];
 
+  // Default published dataset
+  const DEFAULT_POSTS = [
+    {
+      id: "b7e4521a-4712-4fbc-b40b-46bf8d8e5900",
+      timestamp: "2026-03-04T12:08:44.839Z",
+      title: "Gen- Z redefining Entrepreneurship",
+      category: "Entrepreneurship",
+      excerpt: "The arena where businesses compete now isn't just a playground to push each other behind - That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.",
+      author: "Sarah Sameer",
+      readTime: "5 min read"
+    },
+    {
+      id: "9144387c-ac86-4d3b-9624-c22198050133",
+      timestamp: "2026-03-04T16:30:26.894Z",
+      title: "Balancing Studies and Start-Up as a full-time student",
+      category: "Entrepreneurship",
+      excerpt: "There could be nothing more overwhelming than the constant juggling between start-up drive as an individual and managing the duties of a student at the college. Discover efficient and feasible hacks!",
+      author: "Sarah Sameer",
+      readTime: "5 min read"
+    },
+    {
+      id: "945a638a-9f8d-4fc9-9045-9cf05ffd8b82",
+      timestamp: "2026-03-29T20:44:34.079Z",
+      title: "Side Hustle: Beyond just a culture, a stepping stone.",
+      category: "Startup Stories",
+      excerpt: "Hustling is an essential element to acquiring almost anything extraordinary. Getting fuel ready for your own Start-Up is hardly any different — exploring how young student ventures excel behind the scenes.",
+      author: "Sarah Sameer",
+      readTime: "5 min read"
+    },
+    {
+      id: "3b021725-a990-4a13-807f-44a65624e432",
+      timestamp: "2026-03-30T06:47:19.477Z",
+      title: "The Midterm Manoeuvre: Why Your \"Failed\" Startup is Your Best Grade Yet",
+      category: "Startup Stories",
+      excerpt: "Getting an idea and wanting to make it a reality is a canon event for university students. Early failure isn't meant to demotivate you — it is the highest-value laboratory curriculum in entrepreneurship.",
+      author: "Sarah Sameer",
+      readTime: "4 min read"
+    }
+  ];
+
   // State
   let currentFilter = 'all';
   let searchQuery = '';
-  let postsData = [];
+  let postsData = DEFAULT_POSTS;
 
   // DOM Elements
   const postsContainer = document.getElementById('blog-posts');
   const searchInput = document.getElementById('blog-search');
-  const filterPills = document.querySelectorAll('.filter-pill');
+  const categoryFilterBar = document.getElementById('blog-category-filter-bar');
+  const featuredSection = document.getElementById('blog-featured-section');
   const articlesCountEl = document.getElementById('articles-count');
+  const editionsCountEl = document.getElementById('blog-editions-count');
+  const readAvgEl = document.getElementById('blog-read-avg');
   const newsletterForm = document.getElementById('newsletter-form');
   const newsletterMessage = document.getElementById('newsletter-message');
 
@@ -63,125 +106,253 @@
    * Get image for post with smart fallback
    */
   function getPostImage(post, index) {
-    // Ignore empty images or mock Next Gen Pitch photos
-    if (post.imageUrl && post.imageUrl.trim() !== '' && !post.imageUrl.includes('Next_Gen_Pitch')) {
+    if (post.imageUrl && post.imageUrl.trim() !== '' && !post.imageUrl.includes('Next_Gen_Pitch') && !post.imageUrl.includes('default-blog')) {
       return post.imageUrl;
     }
-    if (post.image && post.image.trim() !== '' && !post.image.includes('Next_Gen_Pitch')) {
+    if (post.image && post.image.trim() !== '' && !post.image.includes('Next_Gen_Pitch') && !post.image.includes('default-blog')) {
       return post.image;
     }
     
     if (index !== undefined && index !== null && CURATED_ARTICLE_IMAGES[index % CURATED_ARTICLE_IMAGES.length]) {
       return CURATED_ARTICLE_IMAGES[index % CURATED_ARTICLE_IMAGES.length];
     }
-    return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
+    return CURATED_ARTICLE_IMAGES[0];
   }
 
   /**
-   * Filter and Search execution
+   * Dynamically build category pills and calculate counts
    */
-  function applyFilterAndSearch() {
-    const cards = document.querySelectorAll('.blog-card');
-    const emptyState = document.getElementById('blog-empty-state');
-    let visibleCount = 0;
+  function renderDynamicCategoryPills(posts) {
+    if (!categoryFilterBar || !posts) return;
 
-    cards.forEach(card => {
-      const category = (card.getAttribute('data-category') || '').toLowerCase();
-      const title = (card.querySelector('.blog-card-title')?.textContent || '').toLowerCase();
-      const excerpt = (card.querySelector('.blog-card-excerpt')?.textContent || '').toLowerCase();
+    const categoryMap = new Map();
+    let totalCount = posts.length;
 
-      const matchesFilter = currentFilter === 'all' || category.includes(currentFilter);
-      const matchesSearch = !searchQuery || title.includes(searchQuery) || excerpt.includes(searchQuery);
-
-      if (matchesFilter && matchesSearch) {
-        card.style.display = 'flex';
-        card.style.opacity = '1';
-        card.style.transform = 'translateY(0)';
-        visibleCount++;
-      } else {
-        card.style.display = 'none';
-      }
+    posts.forEach(post => {
+      const cat = (post.category || 'General').trim();
+      const count = categoryMap.get(cat) || 0;
+      categoryMap.set(cat, count + 1);
     });
 
-    // Update count
-    if (articlesCountEl) {
-      articlesCountEl.textContent = visibleCount;
-    }
+    let pillsHtml = `
+      <button class="filter-pill ${currentFilter === 'all' ? 'active' : ''}" data-filter="all" role="tab" aria-selected="${currentFilter === 'all'}">
+        <span>All Articles</span>
+        <span class="filter-pill-count">${totalCount}</span>
+      </button>
+    `;
 
-    // Toggle empty state
-    if (emptyState) {
-      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
-    }
-  }
+    categoryMap.forEach((count, cat) => {
+      const filterKey = cat.toLowerCase();
+      const isActive = currentFilter === filterKey;
+      pillsHtml += `
+        <button class="filter-pill ${isActive ? 'active' : ''}" data-filter="${escapeHtml(filterKey)}" role="tab" aria-selected="${isActive}">
+          <span>${escapeHtml(cat)}</span>
+          <span class="filter-pill-count">${count}</span>
+        </button>
+      `;
+    });
 
-  /**
-   * Initialize Category Pills
-   */
-  function initFilters() {
-    filterPills.forEach(pill => {
+    categoryFilterBar.innerHTML = pillsHtml;
+
+    // Attach click listeners
+    const pills = categoryFilterBar.querySelectorAll('.filter-pill');
+    pills.forEach(pill => {
       pill.addEventListener('click', () => {
-        filterPills.forEach(p => p.classList.remove('active'));
+        pills.forEach(p => {
+          p.classList.remove('active');
+          p.setAttribute('aria-selected', 'false');
+        });
         pill.classList.add('active');
+        pill.setAttribute('aria-selected', 'true');
         currentFilter = (pill.getAttribute('data-filter') || 'all').toLowerCase();
         applyFilterAndSearch();
       });
     });
+
+    // Update Hero Stats
+    if (editionsCountEl) {
+      editionsCountEl.textContent = totalCount;
+    }
+    if (articlesCountEl) {
+      articlesCountEl.textContent = totalCount;
+    }
+    if (readAvgEl && posts.length > 0) {
+      let totalMins = 0;
+      posts.forEach(p => {
+        const readStr = p.readTime || '5 min read';
+        const num = parseInt(readStr) || 5;
+        totalMins += num;
+      });
+      const avg = Math.max(1, Math.round(totalMins / posts.length));
+      readAvgEl.textContent = `${avg} Min`;
+    }
   }
 
   /**
-   * Initialize Live Search
+   * Dynamically build featured spotlight article (newest article)
    */
-  function initSearch() {
-    if (!searchInput) return;
+  /**
+   * Dynamically build featured spotlight article
+   */
+  function renderFeaturedArticle(post, featuredIndex = 0) {
+    if (!featuredSection || !post) return;
 
-    searchInput.addEventListener('input', (e) => {
-      searchQuery = e.target.value.trim().toLowerCase();
-      applyFilterAndSearch();
-    });
+    const img = getPostImage(post, featuredIndex);
+    const cat = post.category || 'Featured';
+    const date = formatDate(post.timestamp);
+    const read = post.readTime || '5 min read';
+    const author = post.author || 'IIEC Editorial';
+    const authorInitials = author.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'IE';
+    const postUrl = `blog-post.html?index=${featuredIndex}`;
 
-    const resetBtn = document.getElementById('reset-search-btn');
-    if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        searchQuery = '';
-        currentFilter = 'all';
-        filterPills.forEach(p => {
-          if (p.getAttribute('data-filter') === 'all') p.classList.add('active');
-          else p.classList.remove('active');
-        });
-        applyFilterAndSearch();
+    featuredSection.innerHTML = `
+      <a href="${postUrl}" class="blog-featured-card" aria-label="Read featured article: ${escapeHtml(post.title)}" data-post-index="${featuredIndex}">
+        <div class="featured-media-wrapper">
+          <img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" loading="eager" decoding="async">
+          <span class="featured-badge-tag">
+            <span class="badge-dot"></span> Featured Edition
+          </span>
+        </div>
+        <div class="featured-content">
+          <div>
+            <div class="featured-meta-row">
+              <span class="featured-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                ${date}
+              </span>
+              <span class="featured-meta-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                ${escapeHtml(read)}
+              </span>
+              <span class="featured-meta-item" style="color: var(--accent); font-weight: 800;">
+                ${escapeHtml(cat)}
+              </span>
+            </div>
+            <h2 class="featured-title">${escapeHtml(post.title)}</h2>
+            <p class="featured-excerpt">
+              ${escapeHtml(post.excerpt || '')}
+            </p>
+          </div>
+          <div class="featured-footer-row">
+            <div class="featured-author-box">
+              <span class="author-avatar">${authorInitials}</span>
+              <div>
+                <div class="author-info-name">${escapeHtml(author)}</div>
+                <div class="author-info-sub">IIEC CSMU &bull; Author</div>
+              </div>
+            </div>
+            <span class="featured-read-action">
+              <span>Read Feature Story</span>
+              <span>&rarr;</span>
+            </span>
+          </div>
+        </div>
+      </a>
+    `;
+
+    // Cache to localStorage on click
+    const featuredLink = featuredSection.querySelector('.blog-featured-card');
+    if (featuredLink) {
+      featuredLink.addEventListener('click', () => {
+        try {
+          localStorage.setItem('currentBlogPost', JSON.stringify(post));
+        } catch (e) {}
       });
     }
   }
 
   /**
-   * Render dynamic posts from API
+   * Apply Admin Custom Order and Featured Choice
+   */
+  function applyAdminLayout(posts) {
+    if (!posts || posts.length === 0) return { orderedPosts: posts, featuredPost: posts[0], featuredIndex: 0 };
+
+    // Ensure IDs exist
+    const standardized = posts.map((p, idx) => ({
+      ...p,
+      id: p.id || `post_${idx}_${p.title.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}`
+    }));
+
+    let orderedPosts = [...standardized];
+    let featuredPost = standardized[0];
+    let featuredIndex = 0;
+
+    const savedLayoutRaw = localStorage.getItem('iiec_blog_layout_v1');
+    if (savedLayoutRaw) {
+      try {
+        const layout = JSON.parse(savedLayoutRaw);
+
+        // 1. Arrange Posts according to orderedIds
+        if (Array.isArray(layout.orderedIds) && layout.orderedIds.length > 0) {
+          const postMap = new Map(standardized.map(p => [p.id, p]));
+          const arranged = [];
+          layout.orderedIds.forEach(id => {
+            if (postMap.has(id)) {
+              arranged.push(postMap.get(id));
+              postMap.delete(id);
+            }
+          });
+          // Add remaining newly fetched posts
+          postMap.forEach(p => arranged.push(p));
+          orderedPosts = arranged;
+        }
+
+        // 2. Select Spotlight Featured Story
+        if (layout.featuredId) {
+          const foundIndex = orderedPosts.findIndex(p => p.id === layout.featuredId);
+          if (foundIndex !== -1) {
+            featuredPost = orderedPosts[foundIndex];
+            featuredIndex = foundIndex;
+          }
+        }
+      } catch (err) {
+        console.warn('Could not parse admin blog layout:', err);
+      }
+    }
+
+    return { orderedPosts, featuredPost, featuredIndex };
+  }
+
+  /**
+   * Render dynamic posts into the grid
    */
   function renderDynamicPosts(posts) {
     if (!postsContainer || !posts || posts.length === 0) return;
 
-    postsData = posts;
+    // Apply custom curation from Admin
+    const { orderedPosts, featuredPost, featuredIndex } = applyAdminLayout(posts);
+    postsData = orderedPosts;
 
-    const cardsHtml = posts.map((post, index) => {
+    // Render dynamic category filter bar & stats
+    renderDynamicCategoryPills(orderedPosts);
+
+    // Render chosen featured spotlight article
+    renderFeaturedArticle(featuredPost, featuredIndex);
+
+    // Render main articles grid
+    const cardsHtml = orderedPosts.map((post, index) => {
       const img = getPostImage(post, index);
       const cat = post.category || 'Insights';
       const cleanCat = cat.toLowerCase();
       const read = post.readTime || '5 min read';
       const date = formatDate(post.timestamp);
       const author = post.author || 'IIEC Team';
-      const authorInitials = author.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'II';
-
-      // Use clean URLs: blog-post-0 or blog-post?index=${index}
-      const postUrl = index < 4 ? `blog-post-${index}` : `blog-post?index=${index}`;
+      const authorInitials = author.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'IE';
+      const postUrl = `blog-post.html?index=${index}`;
+      const isFeatured = post.id === featuredPost.id;
 
       return `
-        <article class="blog-card" data-category="${escapeHtml(cleanCat)}" data-post-index="${index}">
+        <article class="blog-card ${isFeatured ? 'blog-card--featured-spotlight' : ''}" data-category="${escapeHtml(cleanCat)}" data-post-index="${index}">
           <div class="blog-card-image">
             <img src="${escapeHtml(img)}" 
                  alt="${escapeHtml(post.title)}" 
                  width="400" height="250" 
                  loading="lazy"
-                 onerror="this.src='assets/images/default-blog.webp'">
+                 onerror="this.src='assets/images/blog/blog-genz-entrepreneurship.jpg'">
             <span class="blog-card-category">${escapeHtml(cat)}</span>
           </div>
           <div class="blog-card-content">
@@ -202,7 +373,7 @@
             <h2 class="blog-card-title">
               <a href="${postUrl}">${escapeHtml(post.title)}</a>
             </h2>
-            <p class="blog-card-excerpt">${escapeHtml(post.excerpt)}</p>
+            <p class="blog-card-excerpt">${escapeHtml(post.excerpt || '')}</p>
             <div class="blog-card-footer">
               <div class="blog-card-author-tag">
                 <span class="tag-avatar">${authorInitials}</span>
@@ -222,22 +393,92 @@
 
     postsContainer.innerHTML = cardsHtml;
 
-    // Attach click listeners for seamless state caching
+    // Attach click listeners for instant local cache handover
     postsContainer.querySelectorAll('.blog-card-link, .blog-card-title a').forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', () => {
         const card = link.closest('.blog-card');
         const idx = parseInt(card?.dataset.postIndex || '-1');
         if (idx >= 0 && postsData[idx]) {
           try {
             localStorage.setItem('currentBlogPost', JSON.stringify(postsData[idx]));
-          } catch (err) {
-            console.warn('Could not store blog post:', err);
-          }
+          } catch (err) {}
         }
       });
     });
 
     applyFilterAndSearch();
+  }
+
+  /**
+   * Filter and Search execution
+   */
+  function applyFilterAndSearch() {
+    const cards = document.querySelectorAll('.blog-card');
+    const emptyState = document.getElementById('blog-empty-state');
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const category = (card.getAttribute('data-category') || '').toLowerCase();
+      const title = (card.querySelector('.blog-card-title')?.textContent || '').toLowerCase();
+      const excerpt = (card.querySelector('.blog-card-excerpt')?.textContent || '').toLowerCase();
+      const author = (card.querySelector('.blog-card-author-tag')?.textContent || '').toLowerCase();
+
+      const matchesFilter = currentFilter === 'all' || category === currentFilter || category.includes(currentFilter);
+      const matchesSearch = !searchQuery || title.includes(searchQuery) || excerpt.includes(searchQuery) || author.includes(searchQuery);
+
+      if (matchesFilter && matchesSearch) {
+        card.style.display = 'flex';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Update count in header
+    if (articlesCountEl) {
+      articlesCountEl.textContent = visibleCount;
+    }
+
+    // Toggle empty state
+    if (emptyState) {
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+  }
+
+  /**
+   * Initialize Live Search
+   */
+  function initSearch() {
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      applyFilterAndSearch();
+    });
+
+    const resetBtn = document.getElementById('reset-search-btn');
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        currentFilter = 'all';
+        if (categoryFilterBar) {
+          const pills = categoryFilterBar.querySelectorAll('.filter-pill');
+          pills.forEach(p => {
+            if (p.getAttribute('data-filter') === 'all') {
+              p.classList.add('active');
+              p.setAttribute('aria-selected', 'true');
+            } else {
+              p.classList.remove('active');
+              p.setAttribute('aria-selected', 'false');
+            }
+          });
+        }
+        applyFilterAndSearch();
+      });
+    }
   }
 
   /**
@@ -252,8 +493,7 @@
         renderDynamicPosts(data.posts);
       }
     } catch (err) {
-      console.warn('Using pre-rendered static articles (live fetch skipped):', err);
-      // Pre-rendered markup is already active and pristine!
+      console.warn('Live fetch note (using fallback posts):', err);
     }
   }
 
@@ -308,9 +548,11 @@
 
   // Initialize all engines on DOM load
   document.addEventListener('DOMContentLoaded', () => {
-    initFilters();
+    // Initial instant render
+    renderDynamicPosts(DEFAULT_POSTS);
     initSearch();
     initNewsletter();
+    // Live refresh
     fetchLivePosts();
   });
 })();
