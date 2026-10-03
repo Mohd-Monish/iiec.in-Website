@@ -266,9 +266,9 @@
   }
 
   /**
-   * Apply Admin Custom Order and Featured Choice
+   * Apply Custom Order and Featured Choice from Google Sheet CMS (Universal across all devices)
    */
-  function applyAdminLayout(posts) {
+  function applyAdminLayout(posts, apiFeaturedId = null, apiOrderedIds = null) {
     if (!posts || posts.length === 0) return { orderedPosts: posts, featuredPost: posts[0], featuredIndex: 0 };
 
     // Ensure IDs exist
@@ -278,39 +278,47 @@
     }));
 
     let orderedPosts = [...standardized];
-    let featuredPost = standardized[0];
+
+    // Check if any post from sheet has isFeatured=true
+    const sheetFeaturedPost = standardized.find(p => p.isFeatured === true || String(p.isFeatured).toLowerCase() === 'true');
+    let targetFeaturedId = apiFeaturedId || (sheetFeaturedPost ? sheetFeaturedPost.id : null);
+    let targetOrderedIds = (Array.isArray(apiOrderedIds) && apiOrderedIds.length > 0) ? apiOrderedIds : null;
+
+    // Fallback to local storage only if remote API didn't provide custom layout
+    if (!targetFeaturedId || !targetOrderedIds) {
+      const savedLayoutRaw = localStorage.getItem('iiec_blog_layout_v1');
+      if (savedLayoutRaw) {
+        try {
+          const layout = JSON.parse(savedLayoutRaw);
+          if (!targetFeaturedId && layout.featuredId) targetFeaturedId = layout.featuredId;
+          if (!targetOrderedIds && Array.isArray(layout.orderedIds)) targetOrderedIds = layout.orderedIds;
+        } catch (err) {}
+      }
+    }
+
+    // 1. Arrange Posts according to targetOrderedIds
+    if (Array.isArray(targetOrderedIds) && targetOrderedIds.length > 0) {
+      const postMap = new Map(standardized.map(p => [p.id, p]));
+      const arranged = [];
+      targetOrderedIds.forEach(id => {
+        if (postMap.has(id)) {
+          arranged.push(postMap.get(id));
+          postMap.delete(id);
+        }
+      });
+      // Add remaining newly fetched posts
+      postMap.forEach(p => arranged.push(p));
+      orderedPosts = arranged;
+    }
+
+    // 2. Select Spotlight Featured Story
+    let featuredPost = orderedPosts[0];
     let featuredIndex = 0;
-
-    const savedLayoutRaw = localStorage.getItem('iiec_blog_layout_v1');
-    if (savedLayoutRaw) {
-      try {
-        const layout = JSON.parse(savedLayoutRaw);
-
-        // 1. Arrange Posts according to orderedIds
-        if (Array.isArray(layout.orderedIds) && layout.orderedIds.length > 0) {
-          const postMap = new Map(standardized.map(p => [p.id, p]));
-          const arranged = [];
-          layout.orderedIds.forEach(id => {
-            if (postMap.has(id)) {
-              arranged.push(postMap.get(id));
-              postMap.delete(id);
-            }
-          });
-          // Add remaining newly fetched posts
-          postMap.forEach(p => arranged.push(p));
-          orderedPosts = arranged;
-        }
-
-        // 2. Select Spotlight Featured Story
-        if (layout.featuredId) {
-          const foundIndex = orderedPosts.findIndex(p => p.id === layout.featuredId);
-          if (foundIndex !== -1) {
-            featuredPost = orderedPosts[foundIndex];
-            featuredIndex = foundIndex;
-          }
-        }
-      } catch (err) {
-        console.warn('Could not parse admin blog layout:', err);
+    if (targetFeaturedId) {
+      const foundIndex = orderedPosts.findIndex(p => p.id === targetFeaturedId);
+      if (foundIndex !== -1) {
+        featuredPost = orderedPosts[foundIndex];
+        featuredIndex = foundIndex;
       }
     }
 
@@ -320,11 +328,11 @@
   /**
    * Render dynamic posts into the grid
    */
-  function renderDynamicPosts(posts) {
+  function renderDynamicPosts(posts, apiFeaturedId = null, apiOrderedIds = null) {
     if (!postsContainer || !posts || posts.length === 0) return;
 
-    // Apply custom curation from Admin
-    const { orderedPosts, featuredPost, featuredIndex } = applyAdminLayout(posts);
+    // Apply custom curation from Google Sheet CMS
+    const { orderedPosts, featuredPost, featuredIndex } = applyAdminLayout(posts, apiFeaturedId, apiOrderedIds);
     postsData = orderedPosts;
 
     // Render dynamic category filter bar & stats
@@ -489,8 +497,8 @@
       const response = await fetch(SCRIPT_URL, { method: 'GET', redirect: 'follow' });
       const data = await response.json();
 
-      if (data.success && data.posts && data.posts.length > 0) {
-        renderDynamicPosts(data.posts);
+      if (data && data.success && Array.isArray(data.posts) && data.posts.length > 0) {
+        renderDynamicPosts(data.posts, data.featuredPostId || data.featuredId, data.orderedIds);
       }
     } catch (err) {
       console.warn('Live fetch note (using fallback posts):', err);
