@@ -75,11 +75,10 @@
         <span class="nav-badge">Admin</span>
       </a>
       <div class="nav-links">
-        <a href="/" class="nav-back-btn">
+        <a href="/" class="nav-back-btn" title="Back to Site" aria-label="Back to Site">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
           </svg>
-          <span>Back to Site</span>
         </a>
       </div>
     </div>
@@ -138,13 +137,11 @@
           </div>
         </div>
         <div class="admin-topbar-right">
-          <a href="/" class="admin-topbar-link" target="_blank" rel="noopener noreferrer">
+          <a href="/" class="admin-topbar-link" target="_blank" rel="noopener noreferrer" title="Back to Site" aria-label="Back to Site">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            <span>Back to Site</span>
           </a>
-          <button class="admin-logout-btn" id="logout-btn" type="button">
+          <button class="admin-logout-btn" id="logout-btn" type="button" title="Logout" aria-label="Logout">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
-            <span>Logout</span>
           </button>
         </div>
       </div>
@@ -408,16 +405,15 @@
           
           <!-- Back Navigation Strip -->
           <div class="studio-top-nav">
-            <button type="button" id="close-article-manager-btn" class="studio-back-btn">
+            <button type="button" id="close-article-manager-btn" class="studio-back-btn" title="Back to Dashboard" aria-label="Back to Dashboard">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              <span>Back to Dashboard</span>
             </button>
             <div class="studio-nav-right">
               <span class="blog-draft-status">
                 <span class="status-dot" style="width: 7px; height: 7px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
-                <span>Google Sheet Live Connected</span>
+                <span>Live Connected</span>
               </span>
             </div>
           </div>
@@ -473,16 +469,15 @@
           
           <!-- Back Navigation Strip -->
           <div class="studio-top-nav">
-            <button type="button" id="close-blog-studio-btn" class="studio-back-btn">
+            <button type="button" id="close-blog-studio-btn" class="studio-back-btn" title="Back to Dashboard" aria-label="Back to Dashboard">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              <span>Back to Dashboard</span>
             </button>
             <div class="studio-nav-right">
               <span id="blog-draft-indicator" class="blog-draft-status">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                <span>Draft auto-saved</span>
+                <span class="status-dot" style="width: 7px; height: 7px; background: #10b981; border-radius: 50%; display: inline-block;"></span>
+                <span>Saved</span>
               </span>
             </div>
           </div>
@@ -492,14 +487,9 @@
             <!-- Studio Header -->
             <div class="admin-blog-card-header">
               <div class="blog-header-left">
-                <div class="blog-badge-row">
-                  <span class="blog-studio-badge">
-                    <span class="badge-dot"></span>
-                    ARTICLE PUBLISHER STUDIO
-                  </span>
-                </div>
-                <h2 class="blog-studio-title">Create &amp; Publish <span>Article</span></h2>
-                <p class="blog-studio-subtitle">Bidirectional editor: Edit directly from Markdown on left, or click &amp; type right on the live preview!</p>
+                <div class="panel-tag">STUDIO</div>
+                <h2 class="blog-studio-title">Compose &amp; <span>Publish Article</span></h2>
+                <p class="blog-studio-subtitle">Bidirectional Markdown workspace with instant live editorial preview.</p>
               </div>
               <div class="blog-header-right">
                 <div class="blog-stats-pill">
@@ -512,18 +502,17 @@
             </div>
 
             <form id="blog-post-form" class="admin-blog-form" novalidate>
-              <!-- Title -->
+              
+              <!-- Title Input -->
               <div class="form-group">
                 <div class="form-label-row">
-                  <label class="form-label" for="post-title">Article Headline <span class="form-required">*</span></label>
+                  <label class="form-label" for="post-title">Headline <span class="form-required">*</span></label>
                   <span class="form-hint">Make it catchy and descriptive</span>
                 </div>
-                <div class="input-glow-wrapper">
-                  <input type="text" id="post-title" class="form-input form-input--title" placeholder="e.g. Building India's Next Billion-Dollar Student Startup..." required>
-                </div>
+                <input type="text" id="post-title" class="form-input form-input--title" placeholder="e.g. Building India's Next Student-Led Unicorn..." required>
               </div>
 
-              <!-- Meta Row (3 Columns - Auto Read Time) -->
+              <!-- Metadata 3-Column Grid -->
               <div class="form-grid form-grid--3">
                 <div class="form-group">
                   <label class="form-label" for="post-category">Category <span class="form-required">*</span></label>
@@ -541,11 +530,11 @@
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="post-author">Author <span class="form-required">*</span></label>
-                  <input type="text" id="post-author" class="form-input" placeholder="Author name" value="IIEC Team" required>
+                  <input type="text" id="post-author" class="form-input" placeholder="e.g. IIEC Editorial" value="IIEC Team" required>
                 </div>
                 <div class="form-group">
                   <label class="form-label" for="post-image">Cover Image URL</label>
-                  <input type="url" id="post-image" class="form-input" placeholder="https://iiec.in/assets/...">
+                  <input type="url" id="post-image" class="form-input" placeholder="https://images.unsplash.com/...">
                 </div>
               </div>
               <input type="hidden" id="post-read-time" name="readTime" value="1 min read">
@@ -556,28 +545,28 @@
                   <img id="post-image-preview-img" src="" alt="Cover thumbnail preview">
                 </div>
                 <div class="cover-preview-meta">
-                  <span class="cover-preview-tag">COVER IMAGE ACTIVE</span>
+                  <span class="cover-preview-tag">COVER ACTIVE</span>
                   <span id="post-image-preview-url" class="cover-preview-link"></span>
                 </div>
               </div>
 
-              <!-- Excerpt -->
+              <!-- Excerpt Input -->
               <div class="form-group">
                 <div class="form-label-row">
                   <label class="form-label" for="post-excerpt">Short Excerpt / Summary <span class="form-required">*</span></label>
-                  <span class="form-hint">Displayed on blog feed and search previews</span>
+                  <span class="form-hint">Hook shown on public feed cards</span>
                 </div>
-                <textarea id="post-excerpt" class="form-input form-textarea" placeholder="A compelling 1-2 sentence hook summarizing the article..." required></textarea>
+                <textarea id="post-excerpt" class="form-input form-textarea form-textarea--short" placeholder="A compelling 1-2 sentence preview hook summarizing the article..." required></textarea>
               </div>
 
-              <!-- Content Editor -->
-              <div class="form-group">
+              <!-- Body Content Workspace -->
+              <div class="form-group form-group--editor">
                 <div class="form-label-row">
-                  <label class="form-label" for="post-content">Article Body Content <span class="form-required">*</span> <span class="form-hint">(Markdown &amp; Direct Preview Editing Supported)</span></label>
+                  <label class="form-label" for="post-content">Article Content <span class="form-required">*</span></label>
                   <div class="editor-view-pills">
                     <button type="button" class="view-mode-btn active" data-view="split">Split</button>
-                    <button type="button" class="view-mode-btn" data-view="editor">Editor Only</button>
-                    <button type="button" class="view-mode-btn" data-view="preview">Preview Only</button>
+                    <button type="button" class="view-mode-btn" data-view="editor">Editor</button>
+                    <button type="button" class="view-mode-btn" data-view="preview">Preview</button>
                   </div>
                 </div>
                 
@@ -613,28 +602,25 @@
                     </button>
                   </div>
                   <div class="formatter-spacer"></div>
-                  <button type="button" class="formatter-btn formatter-btn--preview active" id="toggle-preview" title="Toggle Preview">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                    <span>Live Preview</span>
-                  </button>
+                  <span class="preview-editable-hint">✏️ Edit Markdown on left or live on right</span>
                 </div>
 
                 <!-- Editor + Bidirectional Preview Split Workspace -->
                 <div id="blog-editor-container" class="editor-container">
                   <div class="editor-pane">
-                    <textarea id="post-content" class="form-input form-textarea form-textarea--code" placeholder="# Write your article headline here&#10;&#10;Start writing your blog post using Markdown. Use **bold**, *italics*, quotes, code blocks, and bullet lists..." required></textarea>
+                    <textarea id="post-content" class="form-input form-textarea form-textarea--code" placeholder="# Write your article headline here&#10;&#10;Start writing using Markdown. Use **bold**, *italics*, quotes, headings, and bullet points..." required></textarea>
                   </div>
                   <div class="preview-pane active" id="preview-pane">
                     <div class="preview-header">
                       <div class="preview-header-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        <span>Live Editorial Preview</span>
+                        <span class="preview-dot"></span>
+                        <span>Live Preview</span>
                       </div>
-                      <span class="preview-editable-badge">✏️ Click to edit directly</span>
+                      <span class="preview-editable-badge">Direct Edit Enabled</span>
                     </div>
                     <!-- Bidirectional ContentEditable Preview -->
                     <div class="preview-content" id="preview-content" contenteditable="true" spellcheck="true" role="textbox" aria-multiline="true" aria-label="Editable article live preview">
-                      <p class="preview-placeholder">Start typing in the editor on the left (or click here to type directly) to compose your article...</p>
+                      <p class="preview-placeholder">Start typing in the Markdown editor or click here to type directly...</p>
                     </div>
                   </div>
                 </div>
@@ -644,10 +630,10 @@
               <div class="admin-blog-actions">
                 <div class="form-message" role="alert"></div>
                 <div class="blog-actions-right">
-                  <button type="button" id="clear-blog-draft-btn" class="btn-clear-draft">Clear Form</button>
+                  <button type="button" id="clear-blog-draft-btn" class="btn-clear-draft">Clear</button>
                   <button type="submit" class="admin-publish-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-                    <span>Publish Post Live</span>
+                    <span>Publish Post</span>
                   </button>
                 </div>
               </div>
