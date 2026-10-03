@@ -348,8 +348,8 @@
 
       return `
         <article class="blog-card" style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: transform 0.2s ease, box-shadow 0.2s ease;">
-          <div style="position: relative; width: 100%; height: 190px; overflow: hidden; background: var(--bg-subtle);">
-            <img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" style="width: 100%; height: 100%; object-fit: cover;" loading="lazy">
+          <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-subtle);">
+            <img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" loading="lazy">
             <span style="position: absolute; top: 12px; left: 12px; padding: 3px 10px; background: rgba(245, 245, 240, 0.94); backdrop-filter: blur(8px); border-radius: 999px; font-family: var(--font-mono); font-size: 10px; font-weight: 800; color: var(--accent-dark); border: 1px solid var(--accent-border); text-transform: uppercase;">
               ${escapeHtml(cat)}
             </span>

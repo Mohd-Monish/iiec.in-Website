@@ -363,20 +363,21 @@ a {
 /* Hero Cover Artwork Image */
 .article-hero-cover {
   width: 100%;
+  aspect-ratio: 16 / 9;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--bg-subtle);
   border: 1px solid var(--line);
   margin-bottom: 2.5rem;
-  max-height: 440px;
   box-shadow: var(--shadow-sm);
 }
 
 .article-hero-cover img {
   width: 100%;
-  height: 440px;
+  height: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
   transition: transform 0.4s ease;
 }
 
@@ -670,18 +671,70 @@ a {
 @media (max-width: 680px) {
   .related-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .article-breadcrumb-bar {
+    padding: 0.6rem 0.95rem;
+  }
+  .btn-back-articles {
+    padding: 0.45rem 0.95rem;
+    font-size: 12px;
+  }
+  .btn-article-share {
+    padding: 0.4rem 0.85rem;
+    font-size: 11.5px;
   }
   .article-main-card {
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.15rem 2rem;
+    border-radius: var(--radius-lg);
+  }
+  .article-headline {
+    font-size: clamp(20px, 5.5vw, 26px);
+    line-height: 1.2;
+  }
+  .article-lead-excerpt {
+    font-size: 13.5px;
+    padding-left: 0.85rem;
+    line-height: 1.55;
+  }
+  .article-body-content {
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+  .article-body-content p {
+    font-size: 14.5px;
+    line-height: 1.65;
+    margin-bottom: 1.1rem;
+  }
+  .article-body-content h1 {
+    font-size: 20px;
+  }
+  .article-body-content h2 {
+    font-size: 18px;
+  }
+  .article-body-content h3 {
+    font-size: 16px;
   }
   .article-meta-bar {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+  }
+  .article-hero-cover {
+    margin-bottom: 1.75rem;
   }
   .article-author-card {
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  .author-card-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
   }
 }
 
@@ -692,7 +745,9 @@ a {
 }
 
 .post-skeleton-hero {
-  height: 360px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
   background: linear-gradient(90deg, #eaeae4 25%, #f2f2ee 50%, #eaeae4 75%);
   background-size: 200% 100%;
   border-radius: var(--radius-xl);

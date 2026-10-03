@@ -451,7 +451,7 @@
       if (!draft.title && !draft.content) return;
       localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
       if (this.draftStatusPill) {
-        this.draftStatusPill.textContent = 'Auto-saved locally';
+        this.draftStatusPill.textContent = 'Saved';
         this.draftStatusPill.classList.add('saved');
       }
     }
