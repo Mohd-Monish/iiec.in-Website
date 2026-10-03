@@ -2,6 +2,37 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/blog-post-:index", "destination": "/blog-post.html?index=:index" }
+    {
+      "source": "/blog-post-:index",
+      "destination": "/blog-post.html?index=:index"
+    },
+    {
+      "source": "/illuminate",
+      "destination": "/illuminate.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
+      "source": "/workshop",
+      "destination": "/workshop.html"
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio.html"
+    },
+    {
+      "source": "/members",
+      "destination": "/members.html"
+    },
+    {
+      "source": "/blogs",
+      "destination": "/blogs.html"
+    }
   ]
 }
