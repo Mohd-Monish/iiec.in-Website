@@ -31,20 +31,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="format-detection" content="telephone=no">
-  <meta name="description" content="Read this article from IIEC — Incubation, Innovation & Entrepreneurship Cell at CSMU, Navi Mumbai. Insights on innovation, entrepreneurship, startups, and...">
-  <meta name="keywords" content="IIEC blog post, entrepreneurship article, startup insights, innovation article, student startup blog, E-Cell CSMU blog, technology article, incubation cell insights, college startup story, business innovation, Navi Mumbai university blog, startup tips, how to start a startup, entrepreneurship advice, student business article, startup guide India, innovation trends, lean startup, product development, college entrepreneurship">
+  <meta name="description" content="Read this article from IIEC — Incubation, Innovation &amp; Entrepreneurship Cell at CSMU, Navi Mumbai. Insights on student innovation, startup stories, and venture playbooks.">
+  <meta name="keywords" content="IIEC blog post, entrepreneurship article, startup insights, innovation article, student startup blog, E-Cell CSMU blog, technology article, incubation cell insights">
   <meta name="author" content="IIEC">
-  <meta name="theme-color" content="#05070f">
+  <meta name="theme-color" content="#f5f5f0">
   
   <!-- Canonical -->
   <link rel="canonical" href="https://iiec.in/blog-post">
   <link rel="help" type="text/plain" href="https://iiec.in/llms.txt" title="LLM Information">
   
-  <!-- Open Graph (will be updated dynamically) -->
-  <meta property="og:title" content="Blog Post | IIEC">
-  <meta property="og:description" content="Read this article from IIEC.">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blog Post | IIEC Insights">
+  <meta property="og:description" content="Read the latest student startup and innovation playbooks from IIEC CSMU.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://iiec.in/blog-post">
   <meta property="og:image" content="https://iiec.in/assets/og-image.webp">
@@ -52,243 +52,161 @@
   
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Blog Post | IIEC">
-  <meta name="twitter:description" content="Read this article from IIEC on innovation, entrepreneurship, and startups.">
+  <meta name="twitter:title" content="Blog Post | IIEC Insights">
+  <meta name="twitter:description" content="Read the latest student startup and innovation playbooks from IIEC CSMU.">
   <meta name="twitter:image" content="https://iiec.in/assets/og-image.webp">
   
-  <title>Blog Post | IIEC</title>
+  <title>Blog Post | IIEC Insights</title>
   
+  <!-- Fonts: Outfit & Inter from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <link rel="icon" type="image/webp" href="./assets/favicon.webp">
   <link rel="apple-touch-icon" href="./assets/apple-touch-icon.webp">
   
-  <link rel="stylesheet" href="css/iiec-loader.css">
-  <link rel="stylesheet" href="css/iiec-animations.css">
-  <link rel="stylesheet" href="css/style.css">
+  <!-- Next Gen Pitch Light Theme & Reader Styles -->
+  <link rel="stylesheet" href="css/mobile-nav.css">
+  <link rel="stylesheet" href="css/blog.css">
   <link rel="stylesheet" href="css/blog-post.css">
 </head>
-<body>
+<body class="blog-reader-page">
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58G63L54"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
+  <!-- End Google Tag Manager -->
 
   <!-- Top Scroll Reading Hairline -->
-  <div id="iiec-top-hairline"
-    style="position: fixed; top: 0; left: 0; height: 3px; background: var(--accent, #ff5a1f); width: 0%; z-index: 99999; transition: width 0.1s ease-out;"
-    aria-hidden="true"></div>
+  <div id="iiec-top-hairline" aria-hidden="true"></div>
 
-  <!-- IIEC Customized Circuit Chip Preloader -->
-  <div class="page-loader" id="page-loader" aria-hidden="true">
-    <div class="main-container">
-      <div class="loader">
-        <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="chipGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#1c1d24"></stop>
-              <stop offset="100%" stop-color="#0c0d12"></stop>
-            </linearGradient>
-            <linearGradient id="pinGradient" x1="1" y1="0" x2="0" y2="0">
-              <stop offset="0%" stop-color="#ffb703"></stop>
-              <stop offset="50%" stop-color="#ff7b4c"></stop>
-              <stop offset="100%" stop-color="#8a3000"></stop>
-            </linearGradient>
-            <linearGradient id="iiecTextGradient" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#ffffff"></stop>
-              <stop offset="100%" stop-color="#ffb703"></stop>
-            </linearGradient>
-          </defs>
-          <g id="traces">
-            <path d="M100 100 H200 V210 H326" class="trace-bg"></path>
-            <path d="M100 100 H200 V210 H326" class="trace-flow orange"></path>
-            <path d="M80 180 H180 V230 H326" class="trace-bg"></path>
-            <path d="M80 180 H180 V230 H326" class="trace-flow cyan"></path>
-            <path d="M60 260 H150 V250 H326" class="trace-bg"></path>
-            <path d="M60 260 H150 V250 H326" class="trace-flow gold"></path>
-            <path d="M100 350 H200 V270 H326" class="trace-bg"></path>
-            <path d="M100 350 H200 V270 H326" class="trace-flow flame"></path>
-            <path d="M700 90 H560 V210 H474" class="trace-bg"></path>
-            <path d="M700 90 H560 V210 H474" class="trace-flow cyan"></path>
-            <path d="M740 160 H580 V230 H474" class="trace-bg"></path>
-            <path d="M740 160 H580 V230 H474" class="trace-flow gold"></path>
-            <path d="M720 250 H590 V250 H474" class="trace-bg"></path>
-            <path d="M720 250 H590 V250 H474" class="trace-flow orange"></path>
-            <path d="M680 340 H570 V270 H474" class="trace-bg"></path>
-            <path d="M680 340 H570 V270 H474" class="trace-flow flame"></path>
-          </g>
-          <rect x="328" y="185" width="144" height="110" rx="18" ry="18" fill="url(#chipGradient)" stroke="#ff5a1f"
-            stroke-width="1.8" stroke-opacity="0.85" filter="drop-shadow(0 0 16px rgba(255, 90, 31, 0.45))"></rect>
-          <rect x="334" y="191" width="132" height="98" rx="12" ry="12" fill="none" stroke="rgba(255, 255, 255, 0.1)"
-            stroke-width="1"></rect>
-          <g>
-            <rect x="320" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
-            <rect x="320" y="225" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
-            <rect x="320" y="245" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
-            <rect x="320" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
-          </g>
-          <g>
-            <rect x="472" y="205" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
-            <rect x="472" y="225" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
-            <rect x="472" y="245" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
-            <rect x="472" y="265" width="8" height="10" fill="url(#pinGradient)" rx="2"></rect>
-          </g>
-          <text x="400" y="233" font-family="'Inter', -apple-system, sans-serif" font-size="24" font-weight="900"
-            letter-spacing="2.5" fill="url(#iiecTextGradient)" text-anchor="middle"
-            alignment-baseline="middle">IIEC</text>
-          <text x="400" y="258" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="800"
-            letter-spacing="2" fill="#ff7b4c" text-anchor="middle" alignment-baseline="middle">INNOVATION CELL</text>
-          <g>
-            <circle cx="100" cy="100" r="7" fill="#1c1d24" stroke="#ff5a1f" stroke-width="1.5"></circle>
-            <circle cx="100" cy="100" r="3" fill="#ff5a1f"></circle>
-            <circle cx="80" cy="180" r="7" fill="#1c1d24" stroke="#00ccff" stroke-width="1.5"></circle>
-            <circle cx="80" cy="180" r="3" fill="#00ccff"></circle>
-            <circle cx="60" cy="260" r="7" fill="#1c1d24" stroke="#ffb703" stroke-width="1.5"></circle>
-            <circle cx="60" cy="260" r="3" fill="#ffb703"></circle>
-            <circle cx="100" cy="350" r="7" fill="#1c1d24" stroke="#ff7b4c" stroke-width="1.5"></circle>
-            <circle cx="100" cy="350" r="3" fill="#ff7b4c"></circle>
-          </g>
-          <g>
-            <circle cx="700" cy="90" r="7" fill="#1c1d24" stroke="#00ccff" stroke-width="1.5"></circle>
-            <circle cx="700" cy="90" r="3" fill="#00ccff"></circle>
-            <circle cx="740" cy="160" r="7" fill="#1c1d24" stroke="#ffb703" stroke-width="1.5"></circle>
-            <circle cx="740" cy="160" r="3" fill="#ffb703"></circle>
-            <circle cx="720" cy="250" r="7" fill="#1c1d24" stroke="#ff5a1f" stroke-width="1.5"></circle>
-            <circle cx="720" cy="250" r="3" fill="#ff5a1f"></circle>
-            <circle cx="680" cy="340" r="7" fill="#1c1d24" stroke="#ff7b4c" stroke-width="1.5"></circle>
-            <circle cx="680" cy="340" r="3" fill="#ff7b4c"></circle>
-          </g>
-        </svg>
-      </div>
-    </div>
-  </div>
+  <!-- Top Recruitment Announcement Bar -->
+  <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
+    <span class="recruitment-topbar-badge">
+      <span class="pulse-dot" style="width: 6px; height: 6px; background: #ff7b4c;"></span>
+      Recruitment Open
+    </span>
+    <span>IIEC Core Team &amp; Department Member Recruitments Are Live!</span>
+    <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
+      <span>Apply on join.iiec.in</span>
+      <span>&rarr;</span>
+    </a>
+  </aside>
 
-  <!-- Particle Canvas -->
-  <canvas id="particle-canvas" aria-hidden="true"></canvas>
-  
-  <!-- Glow Orb -->
-  <div class="glow-orb-wrapper" aria-hidden="true">
-    <div class="glow-orb"></div>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <!-- Recruitment Top Announcement Bar -->
-    <aside class="recruitment-topbar" aria-label="Recruitment Announcement">
-      <span class="recruitment-topbar-badge">
-        <span class="recruitment-topbar-dot"></span>
-        Recruitment Open
-      </span>
-      <span>IIEC Core Team & Department Member Recruitments Are Live!</span>
-      <a href="https://join.iiec.in" target="_blank" rel="noopener" class="recruitment-topbar-link">
-        <span>Apply on join.iiec.in</span>
-        <i class="fas fa-arrow-right"></i>
-      </a>
-    </aside>
-
-    <!-- Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Main navigation">
-      <div class="container">
-        <a href="/" class="nav-logo" aria-label="IIEC Home">
-          <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="eager" decoding="async">
+  <!-- Sticky Navbar Header -->
+  <header class="nav-header">
+    <div class="container">
+      <nav class="main-nav" role="navigation" aria-label="Main Navigation">
+        <a href="/" class="brand" aria-label="IIEC Home">
+          <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" width="36" height="36" />
           <span>IIEC</span>
         </a>
-        
-        <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+
+        <div class="nav-right" role="menubar">
+          <a href="/" role="menuitem">Home</a>
+          <a href="about" role="menuitem">About</a>
+          <a href="team" role="menuitem">Team</a>
+          <a href="activities" role="menuitem">Activities</a>
+          <a href="blog" class="active" role="menuitem" aria-current="page">Blog</a>
+          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem">
+            <span class="nav-pulse-dot"></span>
+            Join IIEC (Recruiting)
+          </a>
+        </div>
+
+        <!-- Mobile Hamburger Trigger Button -->
+        <button class="hamburger-btn" id="hamburger-btn" type="button" aria-label="Toggle Navigation Menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        
-        <div class="nav-links" role="menu">
-          <a href="/" class="nav-link" role="menuitem">Home</a>
-          <a href="about" class="nav-link" role="menuitem">About</a>
-          <a href="team" class="nav-link" role="menuitem">Team</a>
-          <a href="activities" class="nav-link" role="menuitem">Activities</a>
-          <a href="blog" class="nav-link active" role="menuitem">Blog</a>
-          <a href="https://join.iiec.in" target="_blank" rel="noopener" class="nav-cta" role="menuitem"><span class="nav-pulse-dot"></span>Join IIEC (Recruiting)</a>
-        </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Blog Post Content (Loaded Dynamically) -->
-    <main id="blog-post-main">
-      <!-- Loading State -->
-      <div class="blog-post-loading" id="loading-state">
-        <div class="post-skeleton-hero"></div>
-        <div class="post-skeleton-header">
-          <div class="post-skeleton-meta">
-            <div class="skeleton-line"></div>
-            <div class="skeleton-line"></div>
-          </div>
-          <div class="post-skeleton-title"></div>
-          <div class="post-skeleton-subtitle"></div>
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-nav-drawer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop"></div>
+    <div class="mobile-nav-panel">
+      <div class="mobile-nav-panel-top">
+        <div class="brand">
+          <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" class="brand-logo" width="32" height="32" />
+          <span>IIEC</span>
         </div>
-        <div class="post-skeleton-content">
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line"></div>
-          <div class="skeleton-line"></div>
-        </div>
+        <button class="mobile-drawer-close" id="mobile-drawer-close" type="button" aria-label="Close Menu">
+          &times;
+        </button>
       </div>
-    </main>
 
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <img src="./assets/logos/iiec-logo.webp" alt="IIEC Logo" width="40" height="40" loading="lazy" decoding="async">
-              <span>IIEC</span>
-            </div>
-            <p class="footer-desc">
-              IIEC — Incubation, Innovation & Entrepreneurship Cell. Where Vision Drives Venture. Building the startup ecosystem at Chhatrapati Shivaji Maharaj University.
-            </p>
-          </div>
-          
-          <nav class="footer-nav" aria-label="Quick Links">
-            <h4 class="footer-title">Quick Links</h4>
-            <div class="footer-links">
-              <a href="/">Home</a>
-              <a href="about">About Us</a>
-              <a href="team">Team</a>
-              <a href="activities">Activities</a>
-              <a href="blog">Blog</a>
-            </div>
-          </nav>
-          
-          <nav class="footer-nav" aria-label="Contact">
-            <h4 class="footer-title">Contact</h4>
-            <div class="footer-links">
-              <a href="mailto:iiec@csmu.ac.in">iiec@csmu.ac.in</a>
-              <a href="https://join.iiec.in" target="_blank" rel="noopener">Join the Movement</a>
-            </div>
-          </nav>
-        </div>
-        
-        <div class="footer-bottom">
-          <p class="footer-copyright">
-            © 2026 IIEC. All rights reserved.
-          </p>
-          <span class="footer-credit">Website by <a href="https://novish.studio" target="_blank" rel="noopener">Novish Studio</a></span>
-        </div>
+      <div class="mobile-nav-links">
+        <a href="/" class="mobile-nav-link" style="--item-index: 1;">
+          <span class="link-num">01</span>
+          <span class="link-text">Home</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="about" class="mobile-nav-link" style="--item-index: 2;">
+          <span class="link-num">02</span>
+          <span class="link-text">About</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="team" class="mobile-nav-link" style="--item-index: 3;">
+          <span class="link-num">03</span>
+          <span class="link-text">Team</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="activities" class="mobile-nav-link" style="--item-index: 4;">
+          <span class="link-num">04</span>
+          <span class="link-text">Activities</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
+        <a href="blog" class="mobile-nav-link active" style="--item-index: 5;">
+          <span class="link-num">05</span>
+          <span class="link-text">Blog</span>
+          <span class="link-badge">Active</span>
+          <span class="link-arrow">&rarr;</span>
+        </a>
       </div>
-    </footer>
+
+      <div class="mobile-nav-bottom">
+        <a href="https://join.iiec.in" target="_blank" rel="noopener" class="mobile-join-link">
+          <span>Apply to Join IIEC Core Team</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+    </div>
   </div>
 
-  <!-- Main Script -->
-  <script src="js/iiec-loader.js"></script>
-  <script src="js/iiec-animations.js" defer></script>
-  <script src="js/script.js" defer></script>
-  
-  <!-- Blog Post Page Script -->
-  <script src="js/blog-post.js" defer></script>
+  <!-- Main Article Dynamic Area -->
+  <main id="blog-post-main" class="container">
+    <!-- Initial Skeleton Loading State -->
+    <div class="blog-post-loading" id="loading-state">
+      <div class="post-skeleton-hero"></div>
+      <div class="post-skeleton-title"></div>
+      <div class="post-skeleton-line" style="width: 90%;"></div>
+      <div class="post-skeleton-line" style="width: 75%;"></div>
+      <div class="post-skeleton-line" style="width: 85%;"></div>
+      <div class="post-skeleton-line" style="width: 60%;"></div>
+    </div>
+  </main>
+
+  <!-- Official Footer -->
+  <footer class="container blog-footer" role="contentinfo">
+    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <img src="assets/logos/iiec-logo.webp" alt="IIEC Logo" width="32" height="32" style="object-fit: contain;" />
+      <span class="footer-home">IIEC &bull; Incubation, Innovation &amp; Entrepreneurship Cell</span>
+      <span style="color: #999;">&copy; 2026 CSMU</span>
+    </div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/iiec.csmu" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://linkedin.com/company/iiec-csmu" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:iiec@csmu.ac.in">iiec@csmu.ac.in</a>
+      <a href="sitemap.xml">Sitemap</a>
+      <a href="admin" class="footer-admin-link">Post Blog &rarr;</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/mobile-nav.js"></script>
+  <script src="js/blog-post.js"></script>
 </body>
 </html>
