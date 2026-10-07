@@ -102,21 +102,38 @@
     }
   }
 
+  const SEED_POST_IMAGES = {
+    "b7e4521a-4712-4fbc-b40b-46bf8d8e5900": 'assets/images/blog/blog-genz-entrepreneurship.jpg',
+    "9144387c-ac86-4d3b-9624-c22198050133": 'assets/images/blog/blog-balancing-studies.jpg',
+    "945a638a-9f8d-4fc9-9045-9cf05ffd8b82": 'assets/images/blog/blog-side-hustle.jpg',
+    "3b021725-a990-4a13-807f-44a65624e432": 'assets/images/blog/blog-failed-startup-pivot.jpg'
+  };
+
   /**
-   * Get image for post with smart fallback
+   * Get image for post with smart fallback:
+   * Always prioritizes user-uploaded/provided image URL for new posts.
    */
   function getPostImage(post, index) {
-    if (post.imageUrl && post.imageUrl.trim() !== '' && !post.imageUrl.includes('Next_Gen_Pitch') && !post.imageUrl.includes('default-blog')) {
-      return post.imageUrl;
+    if (!post) return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
+
+    // 1. Prioritize user uploaded/provided image URL directly
+    const userImg = (post.imageUrl || post.image || '').trim();
+    if (userImg !== '') {
+      return userImg;
     }
-    if (post.image && post.image.trim() !== '' && !post.image.includes('Next_Gen_Pitch') && !post.image.includes('default-blog')) {
-      return post.image;
+
+    // 2. Map original seed posts without a custom image URL to their specific assets
+    if (post.id && SEED_POST_IMAGES[post.id]) {
+      return SEED_POST_IMAGES[post.id];
     }
-    
-    if (index !== undefined && index !== null && CURATED_ARTICLE_IMAGES[index % CURATED_ARTICLE_IMAGES.length]) {
-      return CURATED_ARTICLE_IMAGES[index % CURATED_ARTICLE_IMAGES.length];
-    }
-    return CURATED_ARTICLE_IMAGES[0];
+    const title = (post.title || '').toLowerCase();
+    if (title.includes('gen-') || title.includes('gen z')) return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
+    if (title.includes('balancing') || title.includes('studies')) return 'assets/images/blog/blog-balancing-studies.jpg';
+    if (title.includes('side hustle') || title.includes('hustling')) return 'assets/images/blog/blog-side-hustle.jpg';
+    if (title.includes('midterm') || title.includes('failed')) return 'assets/images/blog/blog-failed-startup-pivot.jpg';
+
+    // 3. Clean default fallback for new posts created without an image
+    return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
   }
 
   /**
