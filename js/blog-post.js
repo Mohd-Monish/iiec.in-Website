@@ -92,28 +92,38 @@
     }
   }
 
+  const SEED_POST_IMAGES = {
+    "b7e4521a-4712-4fbc-b40b-46bf8d8e5900": 'assets/images/blog/blog-genz-entrepreneurship.jpg',
+    "9144387c-ac86-4d3b-9624-c22198050133": 'assets/images/blog/blog-balancing-studies.jpg',
+    "945a638a-9f8d-4fc9-9045-9cf05ffd8b82": 'assets/images/blog/blog-side-hustle.jpg',
+    "3b021725-a990-4a13-807f-44a65624e432": 'assets/images/blog/blog-failed-startup-pivot.jpg'
+  };
+
   /**
-   * Resolve Cover Image
+   * Resolve Cover Image:
+   * Always prioritizes user-uploaded/provided image URL for new posts.
    */
   function resolveArticleImage(post, index) {
-    if (post && post.imageUrl && post.imageUrl.trim() !== '' && !post.imageUrl.includes('Next_Gen_Pitch') && !post.imageUrl.includes('default-blog')) {
-      return post.imageUrl;
-    }
-    if (post && post.image && post.image.trim() !== '' && !post.image.includes('Next_Gen_Pitch') && !post.image.includes('default-blog')) {
-      return post.image;
-    }
+    if (!post) return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
 
-    if (index !== undefined && index !== null && CURATED_ARTICLE_IMAGES[index % CURATED_ARTICLE_IMAGES.length]) {
-      return CURATED_ARTICLE_IMAGES[index % CURATED_ARTICLE_IMAGES.length];
+    // 1. Prioritize user uploaded/provided image URL directly
+    const userImg = (post.imageUrl || post.image || '').trim();
+    if (userImg !== '') {
+      return userImg;
     }
 
-    const title = (post?.title || '').toLowerCase();
-    if (title.includes('gen-') || title.includes('gen z')) return CURATED_ARTICLE_IMAGES[0];
-    if (title.includes('balancing') || title.includes('studies')) return CURATED_ARTICLE_IMAGES[1];
-    if (title.includes('side hustle') || title.includes('hustling')) return CURATED_ARTICLE_IMAGES[2];
-    if (title.includes('midterm') || title.includes('failed')) return CURATED_ARTICLE_IMAGES[3];
+    // 2. Map original seed posts without a custom image URL to their specific assets
+    if (post.id && SEED_POST_IMAGES[post.id]) {
+      return SEED_POST_IMAGES[post.id];
+    }
+    const title = (post.title || '').toLowerCase();
+    if (title.includes('gen-') || title.includes('gen z')) return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
+    if (title.includes('balancing') || title.includes('studies')) return 'assets/images/blog/blog-balancing-studies.jpg';
+    if (title.includes('side hustle') || title.includes('hustling')) return 'assets/images/blog/blog-side-hustle.jpg';
+    if (title.includes('midterm') || title.includes('failed')) return 'assets/images/blog/blog-failed-startup-pivot.jpg';
 
-    return CURATED_ARTICLE_IMAGES[0];
+    // 3. Fallback for new posts without an image
+    return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
   }
 
   /**
@@ -230,7 +240,7 @@
                 <div class="author-cluster-avatar">${authorInitials}</div>
                 <div class="author-cluster-info">
                   <span class="author-cluster-name">${escapeHtml(author)}</span>
-                  <span class="author-cluster-role">IIEC CSMU &bull; Author</span>
+                  <span class="author-cluster-role">Incubation, Innovation &amp; Entrepreneurship Cell &bull; CSMU</span>
                 </div>
               </div>
               <div class="article-meta-tags">
@@ -284,7 +294,7 @@
             <div class="author-card-avatar">${authorInitials}</div>
             <div class="author-card-details">
               <h4>Written by ${escapeHtml(author)}</h4>
-              <div class="author-role-sub">IIEC CSMU Innovation &amp; Startup Cell</div>
+              <div class="author-role-sub">Incubation, Innovation &amp; Entrepreneurship Cell, CSMU</div>
               <p>Sharing student founder playbooks, startup insights, and campus innovation lessons from the IIEC community at Chhatrapati Shivaji Maharaj University.</p>
             </div>
           </div>

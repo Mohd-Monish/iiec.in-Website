@@ -11,6 +11,11 @@
   'use strict';
 
   const DRAFT_KEY = 'iiec_admin_blog_draft_v2';
+  const APPWRITE_CONFIG = {
+    endpoint: 'https://cloud.appwrite.io/v1',
+    projectId: '6ac5db02000db126dbac',
+    bucketId: '6ac5db260028625f06bb'
+  };
 
   class BlogStudioEnhancer {
     constructor() {
@@ -32,6 +37,9 @@
       this.authorInput = document.getElementById('post-author');
       this.readTimeInput = document.getElementById('post-read-time');
       this.imageInput = document.getElementById('post-image');
+      this.imageFileInput = document.getElementById('post-image-file');
+      this.coverUploadBtn = document.getElementById('post-image-file-btn');
+      this.removeCoverBtn = document.getElementById('remove-cover-btn');
       this.excerptInput = document.getElementById('post-excerpt');
       this.contentInput = document.getElementById('post-content');
       
@@ -52,6 +60,19 @@
       this.viewButtons = document.querySelectorAll('.view-mode-btn');
       this.clearDraftBtn = document.getElementById('clear-blog-draft-btn');
 
+      // Edit Mode Controls & UI Elements
+      this.postEditIdInput = document.getElementById('post-edit-id');
+      this.studioEditBanner = document.getElementById('studio-edit-banner');
+      this.studioEditArticleTitle = document.getElementById('studio-edit-article-title');
+      this.bannerCancelEditBtn = document.getElementById('banner-cancel-edit-btn');
+      this.cancelEditBtn = document.getElementById('cancel-edit-btn');
+      this.publishBtn = document.getElementById('publish-submit-btn');
+      this.publishBtnText = document.getElementById('publish-btn-text');
+      this.studioMainTitle = document.getElementById('blog-studio-title');
+      this.studioPanelTag = document.getElementById('studio-panel-tag');
+      this.studioSubtitle = document.getElementById('blog-studio-subtitle');
+      this.currentEditingPost = null;
+
       // Sync State Flags
       this.isSyncing = false;
       this.isUserTypingInPreview = false;
@@ -69,6 +90,7 @@
       this.currentFeaturedId = null;
       this.hasUnsavedOrder = false;
 
+      window.iiecStudioEnhancer = this;
       this.init();
     }
 
@@ -79,6 +101,7 @@
       this.initAutoSave();
       this.initViewModes();
       this.initDraftClearing();
+      this.initEditModeControls();
       this.initArticleManager();
       this.suppressRecruitmentPill();
 
@@ -377,14 +400,145 @@
     }
 
     /* ------------------------------------------------------------
-       4. COVER IMAGE PREVIEW
+       4. COVER IMAGE PREVIEW & APPWRITE STORAGE UPLOAD
        ------------------------------------------------------------ */
     initCoverPreview() {
+      // Direct text/URL input
       if (this.imageInput) {
         this.imageInput.addEventListener('input', () => {
           this.updateCoverPreview();
           this.saveDraft();
         });
+      }
+
+      // File input picker
+      if (this.imageFileInput) {
+        this.imageFileInput.addEventListener('change', (e) => {
+          const file = e.target.files?.[0];
+          if (file) {
+            this.uploadImageToAppwrite(file);
+          }
+        });
+      }
+
+      // Remove cover button
+      if (this.removeCoverBtn) {
+        this.removeCoverBtn.addEventListener('click', () => {
+          if (this.imageInput) this.imageInput.value = '';
+          if (this.imagePreviewCard) this.imagePreviewCard.style.display = 'none';
+          if (this.imageFileInput) this.imageFileInput.value = '';
+          this.saveDraft();
+          this.showToast('Cover image removed', 'success');
+        });
+      }
+
+      // Drag and drop onto image input wrapper
+      const dropZone = this.imageInput?.closest('.cover-upload-group');
+      if (dropZone) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+          dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.add('drag-over');
+          });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+          dropZone.addEventListener(eventName, (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('drag-over');
+          });
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+          const file = e.dataTransfer?.files?.[0];
+          if (file && file.type.startsWith('image/')) {
+            this.uploadImageToAppwrite(file);
+          }
+        });
+      }
+    }
+
+    async uploadImageToAppwrite(file) {
+      if (!file) return;
+
+      // Validate format
+      if (!file.type.startsWith('image/')) {
+        this.showToast('Please select a valid image file (PNG, JPG, WebP, GIF, SVG)', 'error');
+        return;
+      }
+
+      // Max size check: 10MB
+      if (file.size > 10 * 1024 * 1024) {
+        this.showToast('Image file size must be under 10MB', 'error');
+        return;
+      }
+
+      // Instant optimistic thumbnail preview
+      const localBlobUrl = URL.createObjectURL(file);
+      if (this.imagePreviewImg && this.imagePreviewCard) {
+        this.imagePreviewImg.src = localBlobUrl;
+        if (this.imagePreviewUrl) this.imagePreviewUrl.textContent = `Uploading ${file.name} to Appwrite Storage...`;
+        const statusTag = document.getElementById('cover-preview-status-tag');
+        if (statusTag) statusTag.textContent = 'UPLOADING...';
+        this.imagePreviewCard.style.display = 'flex';
+      }
+
+      const uploadBtn = this.coverUploadBtn || document.getElementById('post-image-file-btn');
+      const uploadText = uploadBtn?.querySelector('.upload-btn-text');
+      if (uploadBtn) uploadBtn.classList.add('is-uploading');
+      if (uploadText) uploadText.textContent = 'Uploading...';
+
+      try {
+        const formData = new FormData();
+        // Generate a clean safe unique file ID (alphanumeric, lowercase, max 36 chars)
+        const safeId = 'img_' + Date.now().toString(36) + '_' + Math.random().toString(36).substring(2, 7);
+        formData.append('fileId', safeId);
+        formData.append('file', file);
+        formData.append('permissions[]', 'read("any")');
+
+        const uploadUrl = `${APPWRITE_CONFIG.endpoint}/storage/buckets/${APPWRITE_CONFIG.bucketId}/files`;
+
+        const response = await fetch(uploadUrl, {
+          method: 'POST',
+          headers: {
+            'X-Appwrite-Project': APPWRITE_CONFIG.projectId
+          },
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errData = await response.json().catch(() => ({}));
+          throw new Error(errData.message || `Upload failed with status ${response.status}`);
+        }
+
+        const data = await response.json();
+        const uploadedFileId = data.$id || safeId;
+
+        // Construct public direct view URL for the uploaded image
+        const publicFileUrl = `${APPWRITE_CONFIG.endpoint}/storage/buckets/${APPWRITE_CONFIG.bucketId}/files/${uploadedFileId}/view?project=${APPWRITE_CONFIG.projectId}`;
+
+        if (this.imageInput) {
+          this.imageInput.value = publicFileUrl;
+        }
+
+        if (this.imagePreviewImg) this.imagePreviewImg.src = publicFileUrl;
+        if (this.imagePreviewUrl) this.imagePreviewUrl.textContent = publicFileUrl;
+        const statusTag = document.getElementById('cover-preview-status-tag');
+        if (statusTag) statusTag.textContent = 'APPWRITE CLOUD ACTIVE';
+        if (this.imagePreviewCard) this.imagePreviewCard.style.display = 'flex';
+
+        this.saveDraft();
+        this.showToast('✓ Cover image uploaded to Appwrite Storage!', 'success');
+      } catch (err) {
+        console.error('Appwrite upload error:', err);
+        this.showToast(`Upload failed: ${err.message}. Ensure Appwrite Storage Bucket has "Any" role with Create & Read permissions.`, 'error');
+        const statusTag = document.getElementById('cover-preview-status-tag');
+        if (statusTag) statusTag.textContent = 'UPLOAD FAILED';
+      } finally {
+        if (uploadBtn) uploadBtn.classList.remove('is-uploading');
+        if (uploadText) uploadText.textContent = 'Upload';
       }
     }
 
@@ -395,6 +549,10 @@
       if (url && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('/') || url.startsWith('./'))) {
         this.imagePreviewImg.src = url;
         if (this.imagePreviewUrl) this.imagePreviewUrl.textContent = url;
+        const statusTag = document.getElementById('cover-preview-status-tag');
+        if (statusTag) {
+          statusTag.textContent = url.includes('appwrite.io') ? 'APPWRITE CLOUD ACTIVE' : 'COVER ACTIVE';
+        }
         this.imagePreviewCard.style.display = 'flex';
         this.imagePreviewImg.onerror = () => {
           this.imagePreviewCard.style.display = 'none';
@@ -880,9 +1038,31 @@
       }
     }
 
+    initEditModeControls() {
+      if (this.bannerCancelEditBtn) {
+        this.bannerCancelEditBtn.addEventListener('click', () => {
+          this.exitEditMode(true);
+          this.showToast('Exited edit mode. Ready to compose a new article.', 'success');
+        });
+      }
+      if (this.cancelEditBtn) {
+        this.cancelEditBtn.addEventListener('click', () => {
+          this.exitEditMode(true);
+          this.showToast('Exited edit mode. Ready to compose a new article.', 'success');
+        });
+      }
+    }
+
     loadPostIntoStudio(post) {
       if (!post) return;
+      this.enterEditMode(post);
+    }
 
+    enterEditMode(post) {
+      if (!post) return;
+      this.currentEditingPost = post;
+
+      if (this.postEditIdInput) this.postEditIdInput.value = post.id || '';
       if (this.titleInput) this.titleInput.value = post.title || '';
       if (this.categorySelect) this.categorySelect.value = post.category || 'Entrepreneurship';
       if (this.authorInput) this.authorInput.value = post.author || 'IIEC Team';
@@ -891,14 +1071,87 @@
       if (this.contentInput) this.contentInput.value = post.content || '';
       if (this.readTimeInput) this.readTimeInput.value = post.readTime || '5 min read';
 
+      // Update Studio Header
+      if (this.studioMainTitle) {
+        this.studioMainTitle.innerHTML = 'Edit &amp; <span>Update Article</span>';
+      }
+      if (this.studioPanelTag) {
+        this.studioPanelTag.textContent = 'EDITING MODE';
+        this.studioPanelTag.style.background = 'rgba(245, 158, 11, 0.2)';
+        this.studioPanelTag.style.borderColor = 'rgba(245, 158, 11, 0.5)';
+        this.studioPanelTag.style.color = '#fbbf24';
+      }
+      if (this.studioSubtitle) {
+        this.studioSubtitle.textContent = 'Modify article details below and click "Update Article" to sync with Google Sheets.';
+      }
+
+      // Show Edit Mode Banner
+      if (this.studioEditBanner) {
+        this.studioEditBanner.style.display = 'flex';
+      }
+      if (this.studioEditArticleTitle) {
+        this.studioEditArticleTitle.textContent = post.title || 'Untitled Post';
+      }
+
+      // Show Cancel Action Button & Update Submit Button Text
+      if (this.cancelEditBtn) {
+        this.cancelEditBtn.style.display = 'inline-flex';
+      }
+      if (this.publishBtnText) {
+        this.publishBtnText.textContent = 'Update Article';
+      }
+
       this.updateStats();
       this.updateCoverPreview();
       this.renderMarkdownToPreview();
-      this.saveDraft();
 
       // Switch to Studio View
       this.openStudio();
-      this.showToast(`Loaded "${post.title}" into Blog Studio for editing`, 'success');
+      this.showToast(`Loaded "${post.title}" for editing.`, 'success');
+    }
+
+    exitEditMode(clearForm = true) {
+      this.currentEditingPost = null;
+      if (this.postEditIdInput) this.postEditIdInput.value = '';
+
+      // Reset Studio Header
+      if (this.studioMainTitle) {
+        this.studioMainTitle.innerHTML = 'Compose &amp; <span>Publish Article</span>';
+      }
+      if (this.studioPanelTag) {
+        this.studioPanelTag.textContent = 'STUDIO';
+        this.studioPanelTag.style.background = '';
+        this.studioPanelTag.style.borderColor = '';
+        this.studioPanelTag.style.color = '';
+      }
+      if (this.studioSubtitle) {
+        this.studioSubtitle.textContent = 'Bidirectional Markdown workspace with instant live editorial preview.';
+      }
+
+      // Hide Edit Banner & Cancel Button
+      if (this.studioEditBanner) {
+        this.studioEditBanner.style.display = 'none';
+      }
+      if (this.cancelEditBtn) {
+        this.cancelEditBtn.style.display = 'none';
+      }
+      if (this.publishBtnText) {
+        this.publishBtnText.textContent = 'Publish Post';
+      }
+
+      if (clearForm) {
+        if (this.blogForm) this.blogForm.reset();
+        if (this.authorInput) this.authorInput.value = 'IIEC Team';
+        if (this.categorySelect) this.categorySelect.value = 'Entrepreneurship';
+        if (this.contentInput) this.contentInput.value = '';
+        if (this.excerptInput) this.excerptInput.value = '';
+        if (this.titleInput) this.titleInput.value = '';
+        if (this.imageInput) this.imageInput.value = '';
+        this.updateStats();
+        this.updateCoverPreview();
+        this.renderMarkdownToPreview();
+        localStorage.removeItem(DRAFT_KEY);
+      }
     }
 
     showToast(message, type = 'success') {

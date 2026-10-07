@@ -158,7 +158,39 @@ function doPost(e) {
       });
     }
     
-    // ACTION 2: Publish New Post
+    // ACTION 2: Edit / Update Existing Post in Sheet1
+    if (data.action === 'edit_post' || data.action === 'update_post') {
+      const targetId = String(data.id || '').trim();
+      if (!targetId) {
+        return createResponse(false, 'Missing post ID for edit');
+      }
+      
+      const rows = sheet.getDataRange().getValues();
+      let foundRowIndex = -1;
+      for (let i = 1; i < rows.length; i++) {
+        if (String(rows[i][0]).trim() === targetId) {
+          foundRowIndex = i + 1; // 1-indexed row in Google Sheet
+          break;
+        }
+      }
+      
+      if (foundRowIndex === -1) {
+        return createResponse(false, 'Post not found in Google Sheet with ID: ' + targetId);
+      }
+      
+      // Update fields: Title (col 3), Category (col 4), Excerpt (col 5), Content (col 6), Image URL (col 7), Author (col 8), Read Time (col 9)
+      if (data.title) sheet.getRange(foundRowIndex, 3).setValue(data.title.trim());
+      if (data.category) sheet.getRange(foundRowIndex, 4).setValue(data.category.trim());
+      if (data.excerpt) sheet.getRange(foundRowIndex, 5).setValue(data.excerpt.trim());
+      if (data.content) sheet.getRange(foundRowIndex, 6).setValue(data.content.trim());
+      sheet.getRange(foundRowIndex, 7).setValue((data.imageUrl || data.image || '').trim());
+      if (data.author) sheet.getRange(foundRowIndex, 8).setValue(data.author.trim());
+      if (data.readTime) sheet.getRange(foundRowIndex, 9).setValue(data.readTime.trim());
+      
+      return createResponse(true, 'Post updated successfully in Google Sheet!', { id: targetId });
+    }
+    
+    // ACTION 3: Publish New Post
     if (!data.title || !data.category || !data.excerpt || !data.content || !data.author) {
       return createResponse(false, 'Missing required fields');
     }
