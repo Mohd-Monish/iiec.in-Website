@@ -301,15 +301,18 @@
             <svg class="blog-search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <input type="text" id="blog-search" class="blog-search-input" placeholder="Search by title, topic, or keyword..." aria-label="Search articles">
+            <input type="text" id="blog-search" class="blog-search-input" placeholder="Search by title, topic, or keyword..." aria-label="Search articles" autocomplete="off">
+            <button type="button" id="blog-search-clear" class="blog-search-clear" aria-label="Clear search input" title="Clear search" style="display: none;">
+              &times;
+            </button>
           </div>
 
           <div class="blog-hero-stats">
-            <span class="hero-stat-pill">
-              <span class="stat-dot"></span> <span id="blog-editions-count">4</span> Published Editions
+            <span class="hero-stat-pill" title="Live total of published articles">
+              <span class="stat-dot"></span> <span id="blog-editions-count">—</span> Published Editions
             </span>
-            <span class="hero-stat-pill">
-              <span class="stat-dot" style="background: #157f4a;"></span> <span id="blog-read-avg">5 Min</span> Avg Read
+            <span class="hero-stat-pill" title="Calculated average reading time">
+              <span class="stat-dot" style="background: #157f4a;"></span> <span id="blog-read-avg">—</span> Avg Read
             </span>
             <span class="hero-stat-pill">
               <span class="stat-dot" style="background: #0077b6;"></span> Student Driven
@@ -326,7 +329,7 @@
       <div class="blog-filter-bar" id="blog-category-filter-bar" role="tablist" aria-label="Filter articles by category">
         <button class="filter-pill active" data-filter="all" role="tab" aria-selected="true">
           <span>All Articles</span>
-          <span class="filter-pill-count">4</span>
+          <span class="filter-pill-count" id="filter-all-count">—</span>
         </button>
       </div>
     </section>
@@ -335,6 +338,16 @@
          FEATURED ARTICLE SPOTLIGHT (Dynamic Featured Edition)
          ================================================================ -->
     <section class="container blog-featured-section" id="blog-featured-section">
+      <!-- Loading Skeleton for Featured Edition -->
+      <div class="featured-skeleton-card">
+        <div class="featured-skeleton-media"></div>
+        <div class="featured-skeleton-body">
+          <div class="skeleton-pill"></div>
+          <div class="skeleton-title" style="height: 38px; width: 85%;"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text" style="width: 65%;"></div>
+        </div>
+      </div>
     </section>
 
     <!-- ================================================================
@@ -345,187 +358,40 @@
         <div>
           <h2 id="articles-heading" class="blog-grid-title">
             Latest Articles
-            <span class="articles-count-pill" id="articles-count">4</span>
+            <span class="articles-count-pill" id="articles-count">—</span>
           </h2>
         </div>
       </div>
 
       <div class="blog-grid" id="blog-posts">
-        <!-- Article 1: Gen Z Redefining Entrepreneurship -->
-        <article class="blog-card" data-category="entrepreneurship" data-post-index="0">
-          <div class="blog-card-image">
-            <img src="assets/images/blog/blog-genz-entrepreneurship.jpg" 
-                 alt="Gen- Z redefining Entrepreneurship" 
-                 width="400" height="250" loading="lazy">
-            <span class="blog-card-category">Entrepreneurship</span>
+        <!-- Dynamic Backend Skeleton Loading State -->
+        <div class="blog-card-skeleton">
+          <div class="skeleton-image"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-pill"></div>
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text" style="width: 70%;"></div>
           </div>
-          <div class="blog-card-content">
-            <div class="blog-card-meta">
-              <span class="blog-card-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Sept 2026
-              </span>
-              <span class="blog-card-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                5 min read
-              </span>
-            </div>
-            <h2 class="blog-card-title">
-              <a href="blog-post.html?index=0">Gen- Z redefining Entrepreneurship</a>
-            </h2>
-            <p class="blog-card-excerpt">
-              The arena where businesses compete now isn't just a playground to push each other behind - That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.
-            </p>
-            <div class="blog-card-footer">
-              <div class="blog-card-author-tag">
-                <span class="tag-avatar">IE</span>
-                <span>IIEC Editorial</span>
-              </div>
-              <a href="blog-post.html?index=0" class="blog-card-link" data-post-index="0">
-                <span>Read Article</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
+        </div>
+        <div class="blog-card-skeleton">
+          <div class="skeleton-image"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-pill"></div>
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text" style="width: 70%;"></div>
           </div>
-        </article>
-
-        <!-- Article 2: Balancing Studies and Start-Up -->
-        <article class="blog-card" data-category="entrepreneurship" data-post-index="1">
-          <div class="blog-card-image">
-            <img src="assets/images/blog/blog-balancing-studies.jpg" 
-                 alt="Balancing Studies and Start-Up" 
-                 width="400" height="250" loading="lazy">
-            <span class="blog-card-category">Entrepreneurship</span>
+        </div>
+        <div class="blog-card-skeleton">
+          <div class="skeleton-image"></div>
+          <div class="skeleton-body">
+            <div class="skeleton-pill"></div>
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text" style="width: 70%;"></div>
           </div>
-          <div class="blog-card-content">
-            <div class="blog-card-meta">
-              <span class="blog-card-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Sept 2026
-              </span>
-              <span class="blog-card-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                5 min read
-              </span>
-            </div>
-            <h2 class="blog-card-title">
-              <a href="blog-post.html?index=1">Balancing Studies and Start-Up as a full-time student</a>
-            </h2>
-            <p class="blog-card-excerpt">
-              There could be nothing more overwhelming than the constant juggling between start-up drive as an individual and managing the duties of a student at the college. Discover efficient and feasible hacks!
-            </p>
-            <div class="blog-card-footer">
-              <div class="blog-card-author-tag">
-                <span class="tag-avatar">IE</span>
-                <span>IIEC Editorial</span>
-              </div>
-              <a href="blog-post.html?index=1" class="blog-card-link" data-post-index="1">
-                <span>Read Article</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Article 3: Side Hustle -->
-        <article class="blog-card" data-category="startup stories" data-post-index="2">
-          <div class="blog-card-image">
-            <img src="assets/images/blog/blog-side-hustle.jpg" 
-                 alt="Side Hustle Stepping Stone" 
-                 width="400" height="250" loading="lazy">
-            <span class="blog-card-category">Startup Stories</span>
-          </div>
-          <div class="blog-card-content">
-            <div class="blog-card-meta">
-              <span class="blog-card-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Sept 2026
-              </span>
-              <span class="blog-card-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                5 min read
-              </span>
-            </div>
-            <h2 class="blog-card-title">
-              <a href="blog-post.html?index=2">Side Hustle: Beyond just a culture, a stepping stone.</a>
-            </h2>
-            <p class="blog-card-excerpt">
-              Hustling is an essential element to acquiring almost anything extraordinary. Getting fuel ready for your own Start-Up is hardly any different — exploring how young student ventures excel behind the scenes.
-            </p>
-            <div class="blog-card-footer">
-              <div class="blog-card-author-tag">
-                <span class="tag-avatar">IE</span>
-                <span>IIEC Editorial</span>
-              </div>
-              <a href="blog-post.html?index=2" class="blog-card-link" data-post-index="2">
-                <span>Read Article</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <!-- Article 4: The Midterm Manoeuvre -->
-        <article class="blog-card" data-category="startup stories" data-post-index="3">
-          <div class="blog-card-image">
-            <img src="assets/images/blog/blog-failed-startup-pivot.jpg" 
-                 alt="The Midterm Manoeuvre" 
-                 width="400" height="250" loading="lazy">
-            <span class="blog-card-category">Startup Stories</span>
-          </div>
-          <div class="blog-card-content">
-            <div class="blog-card-meta">
-              <span class="blog-card-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                Sept 2026
-              </span>
-              <span class="blog-card-meta-item">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                4 min read
-              </span>
-            </div>
-            <h2 class="blog-card-title">
-              <a href="blog-post.html?index=3">The Midterm Manoeuvre: Why Your "Failed" Startup is Your Best Grade Yet</a>
-            </h2>
-            <p class="blog-card-excerpt">
-              Getting an idea and wanting to make it a reality is a canon event for university students. Early failure isn't meant to demotivate you — it is the highest-value laboratory curriculum in entrepreneurship.
-            </p>
-            <div class="blog-card-footer">
-              <div class="blog-card-author-tag">
-                <span class="tag-avatar">IE</span>
-                <span>IIEC Editorial</span>
-              </div>
-              <a href="blog-post.html?index=3" class="blog-card-link" data-post-index="3">
-                <span>Read Article</span>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
 
       <!-- Empty State (Hidden by default, shown when search has 0 results) -->

@@ -8,60 +8,11 @@
 
   const API_URL = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3MEtKazhPYkR3LVhwejlUSmxQWExDWE9Fb3ZXeDBJM2JTVWxjVG1CTFdiX0tMb0w0QXZ0QWtHNW9FbnZ4TUZOdnJ5QS9leGVj');
 
-  // Curated article artwork fallback
-  const CURATED_ARTICLE_IMAGES = [
-    'assets/images/blog/blog-genz-entrepreneurship.jpg', // Post 0: Gen Z
-    'assets/images/blog/blog-balancing-studies.jpg',      // Post 1: Balancing Studies & Startup
-    'assets/images/blog/blog-side-hustle.jpg',           // Post 2: Side Hustle
-    'assets/images/blog/blog-failed-startup-pivot.jpg'   // Post 3: Failed Startup / Midterm
-  ];
-
-  // Offline dataset of published articles for instant zero-latency render
-  const FALLBACK_POSTS = [
-    {
-      id: "b7e4521a-4712-4fbc-b40b-46bf8d8e5900",
-      timestamp: "2026-03-04T12:08:44.839Z",
-      title: "Gen- Z redefining Entrepreneurship",
-      category: "Entrepreneurship",
-      excerpt: "The arena where businesses compete now isn't just a playground to push each other behind - That is what Gen Z has managed to prove with their ways of turning business ventures into yet another fun quest.",
-      content: `### GEN-Z: REDEFINING ENTREPRENEURSHIP\n\nMove over, traditional playbooks! Gen-Z entrepreneurs are here, rewriting the rules of business.\nUnlike earlier generations, they aren't waiting for degrees, promotions, or years of experience to begin. Many are starting their ventures in their late teens or early twenties, powered by technology, creativity, and a strong sense of purpose.\n\nGen-Z doesn't just value profit, they prioritise IMPACT.\nThey are building startups in climate tech, mental health, creator economy, and education- areas that shape lives and communities. This generation views entrepreneurship as a means to address problems they deeply care about, rather than just a way to accumulate wealth.\n\nAnother defining trait? Speed and adaptability!\nGen-Z founders are digital natives; it's their niche.\nThey experiment quickly, fail fast, and pivot with confidence swiftly. Social media isn't just their marketing channel- it's their testing ground, community space, and storytelling platform. Unlike older generations, they don't see collaboration as a weakness. They actively co-create, network, and leverage ecosystems.\n\nWhat sets them apart is also their authenticity. Gen-Z founders connect with audiences by being real- sharing struggles as openly as successes. Not ashamed of their setbacks, which leads to the still-growing entrepreneurs feeling related and understood rather than being called a failure and left demotivated. This transparency builds stronger brands and deeper trust.\n\nIf entrepreneurship used to be about profits, Gen-Z is proving it's about purpose with profits. They are demonstrating that businesses can scale and still stay socially conscious.\n\nThe future of entrepreneurship is already here, and it looks bold, inclusive, and disruptive.\n\nWith Gen-Z leading the charge, we aren't just seeing startups- we're seeing co-operation and movements.`,
-      author: "Sarah Sameer",
-      readTime: "5 min read"
-    },
-    {
-      id: "9144387c-ac86-4d3b-9624-c22198050133",
-      timestamp: "2026-03-04T16:30:26.894Z",
-      title: "Balancing Studies and Start-Up as a full-time student",
-      category: "Entrepreneurship",
-      excerpt: "There could be nothing more overwhelming than the constant juggling between start-up drive as an individual and managing the duties of a student at the college. Discover efficient and feasible hacks!",
-      content: `For student founders, the struggle is real: balancing assignments, exams, projects, pitch decks, prototypes, and investor calls can feel like running two full-time jobs.\nHowever, with discipline and clarity, it is possible to manage both your studies and your startup and still thrive!\n\nHere are three strategies that can make a significant difference:\n\n1. **Time-blocking:** Set aside fixed hours dedicated to your startup work. Treat this time as non-negotiable, just like your classes.\n\n2. **Leverage your circle:** Collaborate with classmates and peers. Group projects can serve as valuable testing grounds for your ideas.\n\n3. **Prioritize:** Not every email, feature, or meeting is urgent. Focus on high-impact tasks that drive your venture forward.\n\nMany successful founders launched their companies while still in college. Their success came not from superhuman effort, but from focus and synergy. They didn't view their studies and startups as opposing forces; instead, they utilized their education to fuel their entrepreneurial journey.\n\nFor instance, coursework in finance may help you refine your revenue model, while a marketing assignment could inspire your next campaign idea. When approached this way, your degree and your startup can COMPLEMENT each other rather than COMPETE.\n\nRemember: burnout is real!\n\nBalance is not about doing everything at once; it's about knowing what matters most at the moment.\n\nYour degree is an investment in your knowledge. Your startup is an investment in your vision.\nIf you can nurture both, you'll graduate not just with a certificate but also with a company.`,
-      author: "Sarah Sameer",
-      readTime: "5 min read"
-    },
-    {
-      id: "945a638a-9f8d-4fc9-9045-9cf05ffd8b82",
-      timestamp: "2026-03-29T20:44:34.079Z",
-      title: "Side Hustle: Beyond just a culture, a stepping stone.",
-      category: "Startup Stories",
-      excerpt: "Hustling is an essential element to acquiring almost anything extraordinary. Getting fuel ready for your own Start-Up is hardly any different — exploring how young student ventures excel behind the scenes.",
-      content: `We've all seen the "hustle culture" reels — the 5:00 AM routines, the aesthetic desk setups, and the pressure to be the next teenage billionaire. It's exhausting, right? Honestly, when you're staring down a thermodynamics lab report or a 2,000-word sociology essay, the idea of "starting a company" feels like trying to climb Everest in flip-flops.\n\nBut here's a secret we don't talk about enough at the E-Cell: **Entrepreneurship doesn't have to be a grand explosion. Sometimes, it's just a slow burn.**\n\n### Redefining the "Startup"\nIf you are a Literature major selling hand-painted bookmarks on Instagram, you are a founder. If you're a Psych student offering freelance tutoring, you're managing a service-based startup. If you're an artist taking commissions for digital portraits, you're navigating supply and demand.\n\nThe "Side-Hustle" isn't just a trendy buzzword to add to your LinkedIn bio. It is a low-stakes laboratory where you can fail, pivot, and learn without the world watching.\n\n### Why the "Small Start" is Your Superpower\nWhen you start small, you're doing more than just earning extra coffee money. You're building a toolkit that your future self will thank you for:\n\n- **The "Yes/No" Muscle:** You learn how to prioritize your time between a mid-term and a client deadline.\n- **The Language of Value:** You stop thinking about "tasks" and start thinking about "solutions." You aren't just selling a product; you're solving a peer's problem.\n- **The Community Effect:** A side-hustle connects you with people outside your major. It turns the campus from a collection of classrooms into a network of collaborators.\n\n### A Space for Everyone\nInnovation isn't reserved for the person who can write 1,000 lines of code before breakfast. It's for the person who notices a gap — a missing service, a clunky process, or a need for something beautiful — and decides to fill it.\n\nWhether your "stepping stone" leads to a global corporation or simply makes you the most resourceful person in your future workplace, it matters. This campus isn't just a place to get a degree; it's a sandbox.\n\nSo, what's that one small idea you've been sitting on? Don't worry about the "scaling" yet.\n\nJust worry about the first step.`,
-      author: "Sarah Sameer",
-      readTime: "5 min read"
-    },
-    {
-      id: "3b021725-a990-4a13-807f-44a65624e432",
-      timestamp: "2026-03-30T06:47:19.477Z",
-      title: "The Midterm Manoeuvre: Why Your \"Failed\" Startup is Your Best Grade Yet",
-      category: "Startup Stories",
-      excerpt: "Getting an idea and wanting to make it a reality is a canon event for university students. Early failure isn't meant to demotivate you — it is the highest-value laboratory curriculum in entrepreneurship.",
-      content: `In the pressure cooker of Indian universities, we are conditioned to fear the "F." Whether it's a dreaded red mark on a Fluid Mechanics paper or a low CGPA, failure feels like a dead end. But in the world of entrepreneurship, "failure" isn't a grade — it's a prerequisite.\n\nThink about that project you started in your second year. Maybe it was a campus delivery service that crashed after three days, or a custom merchandise startup that left you with a box of unsold hoodies under your hostel bed. On paper, it looks like a loss of pocket money and time. But look closer at your "DMC" (Detailed Mark Certificate) of life.\n\nWhile your peers were solely focused on rote learning for the midterms, you were learning things no lecture hall can teach:\n\n- **The "Jugaad" Strategy:** You learned how to build a landing page with zero budget and how to negotiate with the local printer in the market.\n- **The Pitch:** You learned how to convince your skeptical roommates (and maybe a professor) that your idea actually had legs.\n- **The Resilience:** You faced the "silence" of zero orders and kept going anyway.\n\nIf you're heading into placements or your first job, don't hide your "failed" ventures. To a recruiter, a student who tried to solve a campus problem and failed is infinitely more valuable than one who never tried at all. It shows initiative, ownership, and a high "Adversity Quotient."\n\nThe IIEC isn't just a place for the "toppers" of the startup world. It's a space for the hustlers who are currently failing their way toward something great.\n\nYour botched, messy prototype is just a rough draft.\n\nYour midterms will come and go, but the skin you developed while trying to build something from scratch? That stays for life.\n\nSo, if your current hustle is struggling, take a breath.\nYou aren't failing; you're just in the middle of a very intense, very practical lab session.`,
-      author: "Sarah Sameer",
-      readTime: "4 min read"
-    }
-  ];
+  // Default fallback image if an article has no image URL specified
+  const DEFAULT_COVER_IMAGE = 'assets/og-image.webp';
 
   const mainEl = document.getElementById('blog-post-main');
-  let allPosts = FALLBACK_POSTS;
+  let allPosts = [];
   let activePost = null;
 
   /**
@@ -92,38 +43,17 @@
     }
   }
 
-  const SEED_POST_IMAGES = {
-    "b7e4521a-4712-4fbc-b40b-46bf8d8e5900": 'assets/images/blog/blog-genz-entrepreneurship.jpg',
-    "9144387c-ac86-4d3b-9624-c22198050133": 'assets/images/blog/blog-balancing-studies.jpg',
-    "945a638a-9f8d-4fc9-9045-9cf05ffd8b82": 'assets/images/blog/blog-side-hustle.jpg',
-    "3b021725-a990-4a13-807f-44a65624e432": 'assets/images/blog/blog-failed-startup-pivot.jpg'
-  };
-
   /**
    * Resolve Cover Image:
-   * Always prioritizes user-uploaded/provided image URL for new posts.
+   * Purely uses the user-uploaded / provided image URL from Google Sheets / Appwrite Storage.
    */
-  function resolveArticleImage(post, index) {
-    if (!post) return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
-
-    // 1. Prioritize user uploaded/provided image URL directly
+  function resolveArticleImage(post) {
+    if (!post) return DEFAULT_COVER_IMAGE;
     const userImg = (post.imageUrl || post.image || '').trim();
     if (userImg !== '') {
       return userImg;
     }
-
-    // 2. Map original seed posts without a custom image URL to their specific assets
-    if (post.id && SEED_POST_IMAGES[post.id]) {
-      return SEED_POST_IMAGES[post.id];
-    }
-    const title = (post.title || '').toLowerCase();
-    if (title.includes('gen-') || title.includes('gen z')) return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
-    if (title.includes('balancing') || title.includes('studies')) return 'assets/images/blog/blog-balancing-studies.jpg';
-    if (title.includes('side hustle') || title.includes('hustling')) return 'assets/images/blog/blog-side-hustle.jpg';
-    if (title.includes('midterm') || title.includes('failed')) return 'assets/images/blog/blog-failed-startup-pivot.jpg';
-
-    // 3. Fallback for new posts without an image
-    return 'assets/images/blog/blog-genz-entrepreneurship.jpg';
+    return DEFAULT_COVER_IMAGE;
   }
 
   /**
@@ -354,12 +284,12 @@
       const cat = post.category || 'General';
       const read = post.readTime || '5 min read';
       const date = formatDate(post.timestamp);
-      const targetUrl = `blog-post.html?index=${globalIdx >= 0 ? globalIdx : 0}`;
+      const targetUrl = post.id ? `blog-post.html?id=${encodeURIComponent(post.id)}` : `blog-post.html?index=${globalIdx >= 0 ? globalIdx : 0}`;
 
       return `
         <article class="blog-card" style="background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: transform 0.2s ease, box-shadow 0.2s ease;">
           <div style="position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden; background: var(--bg-subtle);">
-            <img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" loading="lazy">
+            <img src="${escapeHtml(img)}" alt="${escapeHtml(post.title)}" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" loading="lazy" onerror="this.src='assets/og-image.webp'">
             <span style="position: absolute; top: 12px; left: 12px; padding: 3px 10px; background: rgba(245, 245, 240, 0.94); backdrop-filter: blur(8px); border-radius: 999px; font-family: var(--font-mono); font-size: 10px; font-weight: 800; color: var(--accent-dark); border: 1px solid var(--accent-border); text-transform: uppercase;">
               ${escapeHtml(cat)}
             </span>
@@ -371,14 +301,14 @@
               <span>${escapeHtml(read)}</span>
             </div>
             <h4 style="font-family: var(--font-heading); font-size: 16px; font-weight: 800; line-height: 1.3; color: var(--ink); margin: 0;">
-              <a href="${targetUrl}" class="related-post-link" data-index="${globalIdx}">${escapeHtml(post.title)}</a>
+              <a href="${targetUrl}" class="related-post-link" data-id="${escapeHtml(post.id || '')}" data-index="${globalIdx}">${escapeHtml(post.title)}</a>
             </h4>
             <p style="font-size: 13px; color: var(--muted); line-height: 1.5; margin-top: auto; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
               ${escapeHtml(post.excerpt || '')}
             </p>
             <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 1px solid var(--line); margin-top: 0.5rem;">
               <span style="font-size: 12px; font-weight: 700; color: var(--ink);">${escapeHtml(author)}</span>
-              <a href="${targetUrl}" class="related-post-link" data-index="${globalIdx}" style="font-size: 12px; font-weight: 800; color: var(--accent); display: inline-flex; align-items: center; gap: 3px;">
+              <a href="${targetUrl}" class="related-post-link" data-id="${escapeHtml(post.id || '')}" data-index="${globalIdx}" style="font-size: 12px; font-weight: 800; color: var(--accent); display: inline-flex; align-items: center; gap: 3px;">
                 <span>Read</span> &rarr;
               </a>
             </div>
@@ -398,8 +328,12 @@
     const linkedinBtn = document.getElementById('share-linkedin');
     const whatsappBtn = document.getElementById('share-whatsapp');
 
-    const articleUrl = window.location.href;
-    const title = post.title;
+    // Canonical permanent share URL always targets ?id=
+    const origin = window.location.origin || (window.location.protocol + '//' + window.location.host);
+    const path = window.location.pathname.replace(/\/$/, '') || '/blog-post.html';
+    const postSlug = post.id ? `?id=${encodeURIComponent(post.id)}` : window.location.search;
+    const articleUrl = `${origin}${path.endsWith('.html') ? path : '/blog-post.html'}${postSlug}`;
+    const title = post.title || 'IIEC Blog Article';
 
     if (copyBtn) {
       copyBtn.addEventListener('click', async () => {
@@ -410,7 +344,8 @@
             if (copyLabel) copyLabel.textContent = 'Copy Link';
           }, 2000);
         } catch (err) {
-          if (copyLabel) copyLabel.textContent = 'Link: ' + articleUrl;
+          if (copyLabel) copyLabel.textContent = 'Link Copied!';
+          prompt('Copy article link:', articleUrl);
         }
       });
     }
@@ -438,11 +373,13 @@
 
     // Related post dynamic click delegation
     document.querySelectorAll('.related-post-link').forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', () => {
+        const targetId = link.dataset.id;
         const idx = parseInt(link.dataset.index || '-1');
-        if (idx >= 0 && allPosts[idx]) {
+        const target = allPosts.find(p => p.id === targetId) || (idx >= 0 ? allPosts[idx] : null);
+        if (target) {
           try {
-            localStorage.setItem('currentBlogPost', JSON.stringify(allPosts[idx]));
+            localStorage.setItem('currentBlogPost', JSON.stringify(target));
           } catch (err) {}
         }
       });
@@ -474,37 +411,29 @@
     initReadingHairline();
 
     const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('id');
+    const postId = (urlParams.get('id') || '').trim();
     const postIndex = urlParams.get('index');
 
-    let detectedIndex = null;
+    let detectedIndex = (postIndex !== null && postIndex !== '') ? parseInt(postIndex) : null;
     const pathMatch = window.location.pathname.match(/blog-post-(\d+)/);
-    if (pathMatch) {
+    if (pathMatch && detectedIndex === null) {
       detectedIndex = parseInt(pathMatch[1]);
-    } else if (postIndex !== null) {
-      detectedIndex = parseInt(postIndex);
     }
 
-    // 1. Try local cached post in session storage
-    const storedPost = localStorage.getItem('currentBlogPost');
-    if (storedPost) {
+    // 1. Try local cached post in session storage for instant preview if matching ID
+    let hasRenderedCache = false;
+    const storedPostRaw = localStorage.getItem('currentBlogPost');
+    if (storedPostRaw) {
       try {
-        const post = JSON.parse(storedPost);
-        localStorage.removeItem('currentBlogPost');
-        renderPost(post, detectedIndex || 0);
-        fetchAllPostsLive();
-        return;
+        const cached = JSON.parse(storedPostRaw);
+        if (cached && (!postId || String(cached.id).trim() === postId)) {
+          renderPost(cached, detectedIndex || 0);
+          hasRenderedCache = true;
+        }
       } catch (e) {}
     }
 
-    // 2. Instant fallback if index matched
-    if (detectedIndex !== null && FALLBACK_POSTS[detectedIndex]) {
-      renderPost(FALLBACK_POSTS[detectedIndex], detectedIndex);
-      fetchAllPostsLive();
-      return;
-    }
-
-    // 3. Live Fetch from Google Apps Script
+    // 2. Pure live fetch from Google Apps Script Backend (Google Sheets CMS)
     try {
       const response = await fetch(API_URL, { method: 'GET', redirect: 'follow' });
       const data = await response.json();
@@ -525,65 +454,66 @@
 
         allPosts = sortedPosts;
         let post = null;
+        let activeIdx = 0;
+
+        // Match priority: 1. ID -> 2. Index -> 3. Newest published post
         if (postId) {
-          post = sortedPosts.find(p => p.id === postId);
-        } else if (detectedIndex !== null && sortedPosts[detectedIndex]) {
+          const foundIdx = sortedPosts.findIndex(p => String(p.id).trim() === postId);
+          if (foundIdx !== -1) {
+            post = sortedPosts[foundIdx];
+            activeIdx = foundIdx;
+          }
+        }
+        
+        if (!post && detectedIndex !== null && sortedPosts[detectedIndex]) {
           post = sortedPosts[detectedIndex];
-        } else {
+          activeIdx = detectedIndex;
+        }
+
+        if (!post && !postId && detectedIndex === null && sortedPosts.length > 0) {
           post = sortedPosts[0];
-          detectedIndex = 0;
+          activeIdx = 0;
         }
 
         if (post) {
-          renderPost(post, detectedIndex || 0);
+          renderPost(post, activeIdx);
+          // Canonicalize address bar to always include ?id=
+          if (post.id && window.history && window.history.replaceState) {
+            const canonicalHref = 'blog-post.html?id=' + encodeURIComponent(post.id);
+            window.history.replaceState(null, '', canonicalHref);
+          }
         } else {
           renderNotFound();
         }
-      } else if (FALLBACK_POSTS[0]) {
-        renderPost(FALLBACK_POSTS[0], 0);
       } else {
         renderNotFound();
       }
     } catch (err) {
-      if (detectedIndex !== null && FALLBACK_POSTS[detectedIndex]) {
-        renderPost(FALLBACK_POSTS[detectedIndex], detectedIndex);
-      } else if (FALLBACK_POSTS[0]) {
-        renderPost(FALLBACK_POSTS[0], 0);
-      } else {
-        renderNotFound();
+      console.error('Error fetching live article from Google Sheets CMS:', err);
+      if (!hasRenderedCache) {
+        renderError();
       }
     }
   }
 
-  async function fetchAllPostsLive() {
-    try {
-      const response = await fetch(API_URL, { method: 'GET', redirect: 'follow' });
-      const data = await response.json();
-      if (data && data.success && Array.isArray(data.posts) && data.posts.length > 0) {
-        let sortedPosts = data.posts;
-        if (Array.isArray(data.orderedIds) && data.orderedIds.length > 0) {
-          const map = new Map(data.posts.map(p => [p.id, p]));
-          const arranged = [];
-          data.orderedIds.forEach(id => {
-            if (map.has(id)) {
-              arranged.push(map.get(id));
-              map.delete(id);
-            }
-          });
-          map.forEach(p => arranged.push(p));
-          sortedPosts = arranged;
-        }
-        allPosts = sortedPosts;
-        // Re-render related posts if active post is set
-        if (activePost) {
-          const relatedGrid = document.getElementById('related-grid');
-          if (relatedGrid) {
-            relatedGrid.innerHTML = renderRelatedArticlesHtml(activePost);
-            initShareButtons(activePost);
-          }
-        }
-      }
-    } catch (e) {}
+  function renderError() {
+    if (!mainEl) return;
+    mainEl.innerHTML = `
+      <div class="article-reader-container" style="text-align: center; padding: 6rem 1.5rem;">
+        <div class="article-main-card" style="max-width: 580px; margin: 0 auto; padding: 3rem 2rem;">
+          <h2 style="font-family: var(--font-heading); font-size: 28px; font-weight: 900; margin-bottom: 0.75rem; color: var(--ink);">Unable to Connect</h2>
+          <p style="color: var(--muted); margin-bottom: 1.75rem;">Could not load article from Google Sheets. Please verify your connection.</p>
+          <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <button onclick="location.reload()" class="btn-back-articles" style="cursor: pointer; border: none;">
+              <span>↻ Reload Page</span>
+            </button>
+            <a href="blog.html" class="btn-back-articles">
+              <span>&larr; Return to All Articles</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   if (document.readyState === 'loading') {

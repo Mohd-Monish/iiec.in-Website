@@ -34,6 +34,7 @@
       this.blogForm = document.getElementById('blog-post-form');
       this.titleInput = document.getElementById('post-title');
       this.categorySelect = document.getElementById('post-category');
+      this.customCategoryInput = document.getElementById('post-custom-category');
       this.authorInput = document.getElementById('post-author');
       this.readTimeInput = document.getElementById('post-read-time');
       this.imageInput = document.getElementById('post-image');
@@ -42,7 +43,7 @@
       this.removeCoverBtn = document.getElementById('remove-cover-btn');
       this.excerptInput = document.getElementById('post-excerpt');
       this.contentInput = document.getElementById('post-content');
-      
+
       // Cover Preview
       this.imagePreviewCard = document.getElementById('post-image-preview-card');
       this.imagePreviewImg = document.getElementById('post-image-preview-img');
@@ -52,7 +53,7 @@
       this.wordCountEl = document.getElementById('blog-live-word-count');
       this.readTimeEl = document.getElementById('blog-live-read-time');
       this.draftIndicator = document.getElementById('blog-draft-indicator');
-      
+
       // Editor & Preview Pane
       this.editorContainer = document.getElementById('blog-editor-container');
       this.previewPane = document.getElementById('preview-pane');
@@ -98,6 +99,7 @@
       this.initViewToggles();
       this.initBidirectionalEditor();
       this.initCoverPreview();
+      this.initCategoryControls();
       this.initAutoSave();
       this.initViewModes();
       this.initDraftClearing();
@@ -304,7 +306,7 @@
     /* DOM / HTML -> Markdown Converter */
     domToMarkdown(element) {
       if (!element) return '';
-      
+
       const processNode = (node) => {
         if (node.nodeType === Node.TEXT_NODE) {
           return node.nodeValue;
@@ -563,10 +565,38 @@
     }
 
     /* ------------------------------------------------------------
-       5. DRAFT PERSISTENCE & AUTO-SAVE
+       5. CATEGORY CONTROLS & DRAFT AUTO-SAVE
        ------------------------------------------------------------ */
+    initCategoryControls() {
+      if (this.categorySelect) {
+        this.categorySelect.addEventListener('change', () => {
+          if (this.categorySelect.value === '__custom__') {
+            if (this.customCategoryInput) {
+              this.customCategoryInput.style.display = 'block';
+              this.customCategoryInput.focus();
+            }
+          } else {
+            if (this.customCategoryInput) {
+              this.customCategoryInput.style.display = 'none';
+            }
+          }
+          this.saveDraft();
+        });
+      }
+      if (this.customCategoryInput) {
+        this.customCategoryInput.addEventListener('input', () => this.saveDraft());
+      }
+    }
+
+    getCategoryValue() {
+      if (this.categorySelect?.value === '__custom__') {
+        return (this.customCategoryInput?.value || '').trim() || 'General';
+      }
+      return (this.categorySelect?.value || '').trim();
+    }
+
     initAutoSave() {
-      [this.titleInput, this.categorySelect, this.authorInput, this.excerptInput].forEach(el => {
+      [this.titleInput, this.categorySelect, this.customCategoryInput, this.authorInput, this.excerptInput].forEach(el => {
         if (el) {
           el.addEventListener('input', () => this.saveDraft());
           el.addEventListener('change', () => this.saveDraft());
@@ -577,7 +607,7 @@
     saveDraft() {
       const draft = {
         title: this.titleInput?.value || '',
-        category: this.categorySelect?.value || '',
+        category: this.getCategoryValue(),
         author: this.authorInput?.value || '',
         readTime: this.readTimeInput?.value || '',
         image: this.imageInput?.value || '',
@@ -603,7 +633,26 @@
       try {
         const draft = JSON.parse(raw);
         if (this.titleInput && draft.title) this.titleInput.value = draft.title;
-        if (this.categorySelect && draft.category) this.categorySelect.value = draft.category;
+        if (this.categorySelect && draft.category) {
+          const cat = draft.category.trim();
+          let matched = false;
+          for (let i = 0; i < this.categorySelect.options.length; i++) {
+            if (this.categorySelect.options[i].value.toLowerCase() === cat.toLowerCase()) {
+              this.categorySelect.selectedIndex = i;
+              matched = true;
+              break;
+            }
+          }
+          if (!matched) {
+            this.categorySelect.value = '__custom__';
+            if (this.customCategoryInput) {
+              this.customCategoryInput.value = cat;
+              this.customCategoryInput.style.display = 'block';
+            }
+          } else if (this.customCategoryInput) {
+            this.customCategoryInput.style.display = 'none';
+          }
+        }
         if (this.authorInput && draft.author) this.authorInput.value = draft.author;
         if (this.imageInput && draft.image) this.imageInput.value = draft.image;
         if (this.excerptInput && draft.excerpt) this.excerptInput.value = draft.excerpt;
@@ -766,7 +815,7 @@
       const savedLayoutRaw = localStorage.getItem('iiec_blog_layout_v1');
       let localConfig = null;
       if (savedLayoutRaw) {
-        try { localConfig = JSON.parse(savedLayoutRaw); } catch (e) {}
+        try { localConfig = JSON.parse(savedLayoutRaw); } catch (e) { }
       }
 
       const activeFeaturedId = remoteFeaturedId || localConfig?.featuredId || (rawPosts.length > 0 ? rawPosts[0].id : null);
@@ -887,7 +936,7 @@
                 </svg>
               </button>
 
-              <a href="blog-post.html?index=${idx}" target="_blank" class="btn-action-icon" title="Preview article live on site">
+              <a href="blog-post.html?${post.id ? `id=${encodeURIComponent(post.id)}` : `index=${idx}`}" target="_blank" class="btn-action-icon" title="Preview article live on site">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
@@ -987,7 +1036,7 @@
           this.layoutStateEl.style.background = '#fff3e0';
           this.layoutStateEl.style.color = '#e65100';
         }
-      } catch (err) {}
+      } catch (err) { }
 
       // 2. Remote Save to Google Sheet CMS
       const SCRIPT_URL = atob('aHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J3MEtKazhPYkR3LVhwejlUSmxQWExDWE9Fb3ZXeDBJM2JTVWxjVG1CTFdiX0tMb0w0QXZ0QWtHNW9FbnZ4TUZOdnJ5QS9leGVj');
@@ -1030,8 +1079,8 @@
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'update_layout', featuredId: '', orderedIds: [] })
-          }).catch(function() {});
-        } catch (e) {}
+          }).catch(function () { });
+        } catch (e) { }
 
         this.fetchAndSetupArticles();
         this.showToast('Reset blog layout to default chronological sequence.', 'success');
@@ -1064,7 +1113,32 @@
 
       if (this.postEditIdInput) this.postEditIdInput.value = post.id || '';
       if (this.titleInput) this.titleInput.value = post.title || '';
-      if (this.categorySelect) this.categorySelect.value = post.category || 'Entrepreneurship';
+      if (this.categorySelect) {
+        const cat = (post.category || 'Entrepreneurship').trim();
+        let matched = false;
+        for (let i = 0; i < this.categorySelect.options.length; i++) {
+          if (this.categorySelect.options[i].value.toLowerCase() === cat.toLowerCase()) {
+            this.categorySelect.selectedIndex = i;
+            matched = true;
+            break;
+          }
+        }
+        if (!matched) {
+          const opt = document.createElement('option');
+          opt.value = cat;
+          opt.textContent = cat;
+          opt.selected = true;
+          const customOpt = this.categorySelect.querySelector('option[value="__custom__"]');
+          if (customOpt) {
+            this.categorySelect.insertBefore(opt, customOpt);
+          } else {
+            this.categorySelect.appendChild(opt);
+          }
+        }
+        if (this.customCategoryInput) {
+          this.customCategoryInput.style.display = 'none';
+        }
+      }
       if (this.authorInput) this.authorInput.value = post.author || 'IIEC Team';
       if (this.imageInput) this.imageInput.value = post.imageUrl || post.image || '';
       if (this.excerptInput) this.excerptInput.value = post.excerpt || '';
